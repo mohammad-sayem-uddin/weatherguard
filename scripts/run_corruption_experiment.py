@@ -65,6 +65,7 @@ def main() -> None:
     grid = default_corruption_grid()
     rows_csv: list[dict] = []
     per_corruption_summary: dict[str, dict] = {}
+    per_image_records: dict[str, list[dict]] = {}
 
     for cfg in grid:
         print(f"\n=== Corruption: {cfg.name} ({cfg.description}) ===")
@@ -83,6 +84,7 @@ def main() -> None:
         eval_records = predictions_to_eval_records(corrupted_records, run.predictions)
         eval50 = evaluate_detections(eval_records, iou_threshold=0.5, score_threshold=0.5)
 
+        per_image_records[cfg.name] = eval_records
         per_corruption_summary[cfg.name] = {
             "description": cfg.description,
             "params": cfg.params,
@@ -122,6 +124,11 @@ def main() -> None:
             w.writeheader()
             w.writerows(rows_csv)
     print(f"Saved {out_csv}")
+
+    # Also save per-corruption per-image predictions (for downstream bootstrap).
+    out_per_image = ARTIFACTS / f"corruption_{args.tag}_per_image.json"
+    out_per_image.write_text(json.dumps(per_image_records, indent=2, default=float))
+    print(f"Saved {out_per_image}")
 
 
 if __name__ == "__main__":

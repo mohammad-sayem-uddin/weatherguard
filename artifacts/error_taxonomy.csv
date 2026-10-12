@@ -1,0 +1,151 @@
+detector,scope,category,class,n
+Faster R-CNN ResNet-50 FPN,predictions,TP,Car,784
+Faster R-CNN ResNet-50 FPN,predictions,Class_confusion,Car,19
+Faster R-CNN ResNet-50 FPN,predictions,Duplicate,Car,130
+Faster R-CNN ResNet-50 FPN,predictions,FP_other,Car,104
+Faster R-CNN ResNet-50 FPN,predictions,Localization,Car,54
+Faster R-CNN ResNet-50 FPN,predictions,TP,Person,82
+Faster R-CNN ResNet-50 FPN,predictions,FP_other,Person,59
+Faster R-CNN ResNet-50 FPN,predictions,Duplicate,Person,15
+Faster R-CNN ResNet-50 FPN,predictions,Localization,Person,6
+Faster R-CNN ResNet-50 FPN,predictions,Class_confusion,Person,2
+Faster R-CNN ResNet-50 FPN,predictions,TP,Bus,13
+Faster R-CNN ResNet-50 FPN,predictions,Class_confusion,Bus,4
+Faster R-CNN ResNet-50 FPN,predictions,Duplicate,Bus,4
+Faster R-CNN ResNet-50 FPN,predictions,Localization,Bus,1
+Faster R-CNN ResNet-50 FPN,predictions,Duplicate,Truck,41
+Faster R-CNN ResNet-50 FPN,predictions,Class_confusion,Truck,52
+Faster R-CNN ResNet-50 FPN,predictions,Localization,Truck,7
+Faster R-CNN ResNet-50 FPN,predictions,TP,Truck,35
+Faster R-CNN ResNet-50 FPN,predictions,FP_other,Truck,5
+Faster R-CNN ResNet-50 FPN,predictions,TP,Motorcycle,7
+Faster R-CNN ResNet-50 FPN,predictions,Localization,Motorcycle,1
+Faster R-CNN ResNet-50 FPN,predictions,Duplicate,Motorcycle,2
+Faster R-CNN ResNet-50 FPN,predictions,FP_other,Motorcycle,1
+Faster R-CNN ResNet-50 FPN,predictions,FP_other,Bicycle,2
+Faster R-CNN ResNet-50 FPN,ground_truth,Detected,Car,793
+Faster R-CNN ResNet-50 FPN,ground_truth,Missed_class,Car,368
+Faster R-CNN ResNet-50 FPN,ground_truth,Missed_class,Bus,21
+Faster R-CNN ResNet-50 FPN,ground_truth,Detected,Bus,13
+Faster R-CNN ResNet-50 FPN,ground_truth,Missed_class,Person,28
+Faster R-CNN ResNet-50 FPN,ground_truth,Detected,Person,83
+Faster R-CNN ResNet-50 FPN,ground_truth,Missed_class,Truck,80
+Faster R-CNN ResNet-50 FPN,ground_truth,Detected,Truck,35
+Faster R-CNN ResNet-50 FPN,ground_truth,Missed_class,Motorcycle,7
+Faster R-CNN ResNet-50 FPN,ground_truth,Detected,Motorcycle,8
+Faster R-CNN ResNet-50 FPN,ground_truth,Missed_class,Bicycle,2
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,TP,small,79
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,FP_other,small,6
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Localization,small,7
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Duplicate,small,5
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Class_confusion,small,1
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,TP,large,464
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Duplicate,large,123
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Class_confusion,large,47
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Localization,large,24
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,FP_other,large,55
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,TP,medium,378
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Class_confusion,medium,29
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Duplicate,medium,64
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,Localization,medium,38
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,FP_other,medium,24
+Faster R-CNN ResNet-50 FPN,predictions_by_gt_size,FP_other,n/a,86
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,TP,dusttornado,44
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Class_confusion,dusttornado,2
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Duplicate,dusttornado,2
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,FP_other,dusttornado,4
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,TP,foggy,55
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,FP_other,foggy,4
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Class_confusion,foggy,6
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Localization,foggy,7
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Duplicate,foggy,13
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,TP,haze,71
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,FP_other,haze,17
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Localization,haze,6
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Duplicate,haze,12
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Class_confusion,haze,5
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,TP,mist,92
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Class_confusion,mist,12
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Duplicate,mist,18
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Localization,mist,10
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,FP_other,mist,9
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,TP,rain_storm,178
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,FP_other,rain_storm,35
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Class_confusion,rain_storm,11
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Duplicate,rain_storm,34
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Localization,rain_storm,11
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,TP,sand_storm,178
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Class_confusion,sand_storm,17
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,FP_other,sand_storm,43
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Duplicate,sand_storm,31
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Localization,sand_storm,7
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,TP,sand_storm_g2_,58
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,FP_other,sand_storm_g2_,8
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Duplicate,sand_storm_g2_,9
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Class_confusion,sand_storm_g2_,6
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Localization,sand_storm_g2_,4
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Localization,snow_storm,24
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,FP_other,snow_storm,51
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,TP,snow_storm,245
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Class_confusion,snow_storm,18
+Faster R-CNN ResNet-50 FPN,predictions_by_condition,Duplicate,snow_storm,73
+YOLOv8n,predictions,TP,Car,395
+YOLOv8n,predictions,Class_confusion,Car,3
+YOLOv8n,predictions,Localization,Car,9
+YOLOv8n,predictions,Duplicate,Car,4
+YOLOv8n,predictions,FP_other,Car,4
+YOLOv8n,predictions,TP,Person,52
+YOLOv8n,predictions,Class_confusion,Person,1
+YOLOv8n,predictions,Class_confusion,Truck,24
+YOLOv8n,predictions,TP,Truck,13
+YOLOv8n,predictions,FP_other,Truck,2
+YOLOv8n,predictions,Duplicate,Truck,2
+YOLOv8n,predictions,TP,Bus,10
+YOLOv8n,predictions,Class_confusion,Bus,3
+YOLOv8n,ground_truth,Detected,Car,395
+YOLOv8n,ground_truth,Missed_class,Car,766
+YOLOv8n,ground_truth,Missed_class,Bus,24
+YOLOv8n,ground_truth,Detected,Bus,10
+YOLOv8n,ground_truth,Missed_class,Person,59
+YOLOv8n,ground_truth,Detected,Person,52
+YOLOv8n,ground_truth,Missed_class,Truck,102
+YOLOv8n,ground_truth,Detected,Truck,13
+YOLOv8n,ground_truth,Missed_class,Motorcycle,15
+YOLOv8n,ground_truth,Missed_class,Bicycle,2
+YOLOv8n,predictions_by_gt_size,TP,small,7
+YOLOv8n,predictions_by_gt_size,TP,large,321
+YOLOv8n,predictions_by_gt_size,Class_confusion,large,25
+YOLOv8n,predictions_by_gt_size,Duplicate,large,6
+YOLOv8n,predictions_by_gt_size,FP_other,large,3
+YOLOv8n,predictions_by_gt_size,Localization,large,6
+YOLOv8n,predictions_by_gt_size,TP,medium,142
+YOLOv8n,predictions_by_gt_size,Class_confusion,medium,6
+YOLOv8n,predictions_by_gt_size,Localization,medium,3
+YOLOv8n,predictions_by_gt_size,FP_other,medium,1
+YOLOv8n,predictions_by_gt_size,FP_other,n/a,2
+YOLOv8n,predictions_by_condition,TP,dusttornado,15
+YOLOv8n,predictions_by_condition,Class_confusion,dusttornado,1
+YOLOv8n,predictions_by_condition,TP,foggy,30
+YOLOv8n,predictions_by_condition,Class_confusion,foggy,3
+YOLOv8n,predictions_by_condition,TP,haze,29
+YOLOv8n,predictions_by_condition,Localization,haze,1
+YOLOv8n,predictions_by_condition,Duplicate,haze,1
+YOLOv8n,predictions_by_condition,TP,mist,45
+YOLOv8n,predictions_by_condition,Class_confusion,mist,2
+YOLOv8n,predictions_by_condition,TP,rain_storm,87
+YOLOv8n,predictions_by_condition,FP_other,rain_storm,2
+YOLOv8n,predictions_by_condition,Class_confusion,rain_storm,2
+YOLOv8n,predictions_by_condition,Localization,rain_storm,5
+YOLOv8n,predictions_by_condition,TP,sand_storm,93
+YOLOv8n,predictions_by_condition,Class_confusion,sand_storm,7
+YOLOv8n,predictions_by_condition,Localization,sand_storm,2
+YOLOv8n,predictions_by_condition,FP_other,sand_storm,2
+YOLOv8n,predictions_by_condition,Duplicate,sand_storm,1
+YOLOv8n,predictions_by_condition,TP,sand_storm_g2_,31
+YOLOv8n,predictions_by_condition,Class_confusion,sand_storm_g2_,1
+YOLOv8n,predictions_by_condition,FP_other,sand_storm_g2_,1
+YOLOv8n,predictions_by_condition,TP,snow_storm,140
+YOLOv8n,predictions_by_condition,Class_confusion,snow_storm,15
+YOLOv8n,predictions_by_condition,FP_other,snow_storm,1
+YOLOv8n,predictions_by_condition,Duplicate,snow_storm,4
+YOLOv8n,predictions_by_condition,Localization,snow_storm,1

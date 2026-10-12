@@ -1,0 +1,361 @@
+{
+  "config": {
+    "score_threshold": 0.5,
+    "iou_threshold": 0.5,
+    "n_bins": 10
+  },
+  "detectors": {
+    "fasterrcnn_val_full": {
+      "label": "Faster R-CNN ResNet-50 FPN",
+      "n_pairs": 1304,
+      "n_fit": 652,
+      "n_eval": 652,
+      "temperature": 3.104367397877837,
+      "brier_pre": 0.05197629232202593,
+      "brier_post": 0.07250540165349906,
+      "nll_pre": 0.22339993231151636,
+      "nll_post": 0.2923348779717045,
+      "reliability_pre": [
+        {
+          "bin_lo": 0.0,
+          "bin_hi": 0.1,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.1,
+          "bin_hi": 0.2,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.2,
+          "bin_hi": 0.3,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.3,
+          "bin_hi": 0.4,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.4,
+          "bin_hi": 0.5,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.5,
+          "bin_hi": 0.6,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.6,
+          "bin_hi": 0.7,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.7,
+          "bin_hi": 0.8,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.8,
+          "bin_hi": 0.9,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.9,
+          "bin_hi": 1.0,
+          "count": 652,
+          "mean_conf": 0.9792786555056192,
+          "frac_correct": 0.9447852760736196,
+          "gap": 0.03449337943199959
+        }
+      ],
+      "reliability_post": [
+        {
+          "bin_lo": 0.0,
+          "bin_hi": 0.1,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.1,
+          "bin_hi": 0.2,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.2,
+          "bin_hi": 0.3,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.3,
+          "bin_hi": 0.4,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.4,
+          "bin_hi": 0.5,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.5,
+          "bin_hi": 0.6,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.6,
+          "bin_hi": 0.7,
+          "count": 15,
+          "mean_conf": 0.6972040382230063,
+          "frac_correct": 0.8666666666666667,
+          "gap": -0.16946262844366045
+        },
+        {
+          "bin_lo": 0.7,
+          "bin_hi": 0.8,
+          "count": 318,
+          "mean_conf": 0.7521749445815538,
+          "frac_correct": 0.9182389937106918,
+          "gap": -0.16606404912913808
+        },
+        {
+          "bin_lo": 0.8,
+          "bin_hi": 0.9,
+          "count": 295,
+          "mean_conf": 0.8451293702036529,
+          "frac_correct": 0.976271186440678,
+          "gap": -0.13114181623702514
+        },
+        {
+          "bin_lo": 0.9,
+          "bin_hi": 1.0,
+          "count": 24,
+          "mean_conf": 0.9153043265788554,
+          "frac_correct": 0.9583333333333334,
+          "gap": -0.04302900675447796
+        }
+      ],
+      "caveat": "Temperature is fitted on a random half of val and evaluated on the other half. The reported post-calibration numbers are therefore out-of-sample for the temperature parameter, but still on the same val set used for all other WeatherGuard metrics."
+    },
+    "yolov8n_val_full": {
+      "label": "YOLOv8n",
+      "n_pairs": 498,
+      "n_fit": 249,
+      "n_eval": 249,
+      "temperature": 0.21377376580940433,
+      "brier_pre": 0.04778297487167837,
+      "brier_post": 0.02406906728436728,
+      "nll_pre": 0.22729963025299235,
+      "nll_post": 0.18224354619003988,
+      "reliability_pre": [
+        {
+          "bin_lo": 0.0,
+          "bin_hi": 0.1,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.1,
+          "bin_hi": 0.2,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.2,
+          "bin_hi": 0.3,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.3,
+          "bin_hi": 0.4,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.4,
+          "bin_hi": 0.5,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.5,
+          "bin_hi": 0.6,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.6,
+          "bin_hi": 0.7,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.7,
+          "bin_hi": 0.8,
+          "count": 85,
+          "mean_conf": 0.7685742055668551,
+          "frac_correct": 0.9882352941176471,
+          "gap": -0.21966108855079203
+        },
+        {
+          "bin_lo": 0.8,
+          "bin_hi": 0.9,
+          "count": 134,
+          "mean_conf": 0.8499804027934572,
+          "frac_correct": 0.9626865671641791,
+          "gap": -0.1127061643707219
+        },
+        {
+          "bin_lo": 0.9,
+          "bin_hi": 1.0,
+          "count": 30,
+          "mean_conf": 0.9128077864646912,
+          "frac_correct": 1.0,
+          "gap": -0.08719221353530882
+        }
+      ],
+      "reliability_post": [
+        {
+          "bin_lo": 0.0,
+          "bin_hi": 0.1,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.1,
+          "bin_hi": 0.2,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.2,
+          "bin_hi": 0.3,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.3,
+          "bin_hi": 0.4,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.4,
+          "bin_hi": 0.5,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.5,
+          "bin_hi": 0.6,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.6,
+          "bin_hi": 0.7,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.7,
+          "bin_hi": 0.8,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.8,
+          "bin_hi": 0.9,
+          "count": 0,
+          "mean_conf": null,
+          "frac_correct": null,
+          "gap": null
+        },
+        {
+          "bin_lo": 0.9,
+          "bin_hi": 1.0,
+          "count": 249,
+          "mean_conf": 0.9983827198386517,
+          "frac_correct": 0.9759036144578314,
+          "gap": 0.02247910538082032
+        }
+      ],
+      "caveat": "Temperature is fitted on a random half of val and evaluated on the other half. The reported post-calibration numbers are therefore out-of-sample for the temperature parameter, but still on the same val set used for all other WeatherGuard metrics."
+    }
+  }
+}

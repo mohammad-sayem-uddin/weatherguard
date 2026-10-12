@@ -1,0 +1,296 @@
+{
+  "detector": "fasterrcnn_resnet50_fpn",
+  "n_source_images": 48,
+  "per_preprocessor": {
+    "identity": {
+      "preprocessor": "identity",
+      "description": "Original baseline",
+      "n_images": 48,
+      "mAP_50": 0.4620112105904254,
+      "micro_precision": 0.6744186046511628,
+      "micro_recall": 0.655367231638418,
+      "micro_f1": 0.6647564469914039,
+      "micro_tp": 232,
+      "micro_fp": 112,
+      "micro_fn": 122,
+      "preprocessing_total_seconds": 2.8115167089854367,
+      "inference_total_seconds": 87.87699679203797,
+      "inference_mean_seconds": 1.7960994869620965,
+      "wall_total_seconds": 90.69193241698667,
+      "per_condition": {
+        "rain_storm": {
+          "n_images": 6,
+          "mAP_50": 0.528581704324279,
+          "micro_f1": 0.6060606060606061
+        },
+        "sand_storm_g2_": {
+          "n_images": 6,
+          "mAP_50": 0.4747657141490546,
+          "micro_f1": 0.6883116883116883
+        },
+        "foggy": {
+          "n_images": 6,
+          "mAP_50": 0.3694059405940597,
+          "micro_f1": 0.6
+        },
+        "sand_storm": {
+          "n_images": 6,
+          "mAP_50": 0.41650165016501656,
+          "micro_f1": 0.6190476190476191
+        },
+        "mist": {
+          "n_images": 6,
+          "mAP_50": 0.3270252655517654,
+          "micro_f1": 0.6915887850467289
+        },
+        "haze": {
+          "n_images": 6,
+          "mAP_50": 0.47205280528052834,
+          "micro_f1": 0.6666666666666667
+        },
+        "snow_storm": {
+          "n_images": 6,
+          "mAP_50": 0.7478952056566301,
+          "micro_f1": 0.6717557251908396
+        },
+        "dusttornado": {
+          "n_images": 6,
+          "mAP_50": 0.4279702970297032,
+          "micro_f1": 0.6969696969696971
+        }
+      }
+    },
+    "clahe_mild": {
+      "preprocessor": "clahe_mild",
+      "description": "Mild CLAHE (L channel, tile 64, cutoff 2)",
+      "n_images": 48,
+      "mAP_50": 0.3652741934698511,
+      "micro_precision": 0.6299694189602446,
+      "micro_recall": 0.5819209039548022,
+      "micro_f1": 0.6049926578560939,
+      "micro_tp": 206,
+      "micro_fp": 121,
+      "micro_fn": 148,
+      "preprocessing_total_seconds": 4.363627208978869,
+      "inference_total_seconds": 87.70076487498591,
+      "inference_mean_seconds": 1.7962317317651468,
+      "wall_total_seconds": 92.06738958397182,
+      "per_condition": {
+        "rain_storm": {
+          "n_images": 6,
+          "mAP_50": 0.3924415971008866,
+          "micro_f1": 0.5172413793103449
+        },
+        "sand_storm_g2_": {
+          "n_images": 6,
+          "mAP_50": 0.4696974023382425,
+          "micro_f1": 0.6049382716049382
+        },
+        "foggy": {
+          "n_images": 6,
+          "mAP_50": 0.13108910891089115,
+          "micro_f1": 0.39999999999999997
+        },
+        "sand_storm": {
+          "n_images": 6,
+          "mAP_50": 0.36585658565856605,
+          "micro_f1": 0.6046511627906976
+        },
+        "mist": {
+          "n_images": 6,
+          "mAP_50": 0.24450999836008455,
+          "micro_f1": 0.6199999999999999
+        },
+        "haze": {
+          "n_images": 6,
+          "mAP_50": 0.4417906496532007,
+          "micro_f1": 0.6363636363636364
+        },
+        "snow_storm": {
+          "n_images": 6,
+          "mAP_50": 0.6560893794393053,
+          "micro_f1": 0.671875
+        },
+        "dusttornado": {
+          "n_images": 6,
+          "mAP_50": 0.5565181518151814,
+          "micro_f1": 0.6486486486486486
+        }
+      }
+    },
+    "gamma_brighten": {
+      "preprocessor": "gamma_brighten",
+      "description": "Mild gamma brighten (\u03b3=1.2)",
+      "n_images": 48,
+      "mAP_50": 0.473854102714599,
+      "micro_precision": 0.696969696969697,
+      "micro_recall": 0.6497175141242938,
+      "micro_f1": 0.6725146198830408,
+      "micro_tp": 230,
+      "micro_fp": 100,
+      "micro_fn": 124,
+      "preprocessing_total_seconds": 3.4225898329750635,
+      "inference_total_seconds": 83.8137411249918,
+      "inference_mean_seconds": 1.7216877681239566,
+      "wall_total_seconds": 87.23683374997927,
+      "per_condition": {
+        "rain_storm": {
+          "n_images": 6,
+          "mAP_50": 0.500528899043751,
+          "micro_f1": 0.634920634920635
+        },
+        "sand_storm_g2_": {
+          "n_images": 6,
+          "mAP_50": 0.4648244893613783,
+          "micro_f1": 0.6754966887417218
+        },
+        "foggy": {
+          "n_images": 6,
+          "mAP_50": 0.5096305119233726,
+          "micro_f1": 0.6440677966101696
+        },
+        "sand_storm": {
+          "n_images": 6,
+          "mAP_50": 0.4297029702970299,
+          "micro_f1": 0.6341463414634146
+        },
+        "mist": {
+          "n_images": 6,
+          "mAP_50": 0.3212758040509931,
+          "micro_f1": 0.6990291262135923
+        },
+        "haze": {
+          "n_images": 6,
+          "mAP_50": 0.5724332925956483,
+          "micro_f1": 0.6944444444444444
+        },
+        "snow_storm": {
+          "n_images": 6,
+          "mAP_50": 0.7485300957500473,
+          "micro_f1": 0.6821705426356588
+        },
+        "dusttornado": {
+          "n_images": 6,
+          "mAP_50": 0.418968212610735,
+          "micro_f1": 0.6666666666666667
+        }
+      }
+    },
+    "gamma_darken": {
+      "preprocessor": "gamma_darken",
+      "description": "Mild gamma darken (\u03b3=0.8)",
+      "n_images": 48,
+      "mAP_50": 0.4715879010915384,
+      "micro_precision": 0.6714285714285714,
+      "micro_recall": 0.6638418079096046,
+      "micro_f1": 0.6676136363636364,
+      "micro_tp": 235,
+      "micro_fp": 115,
+      "micro_fn": 119,
+      "preprocessing_total_seconds": 2.742465541989077,
+      "inference_total_seconds": 60.5899567080196,
+      "inference_mean_seconds": 1.2435112960641466,
+      "wall_total_seconds": 63.33272179198684,
+      "per_condition": {
+        "rain_storm": {
+          "n_images": 6,
+          "mAP_50": 0.528581704324279,
+          "micro_f1": 0.6060606060606061
+        },
+        "sand_storm_g2_": {
+          "n_images": 6,
+          "mAP_50": 0.48002295921827537,
+          "micro_f1": 0.6838709677419356
+        },
+        "foggy": {
+          "n_images": 6,
+          "mAP_50": 0.4773817381738178,
+          "micro_f1": 0.6451612903225807
+        },
+        "sand_storm": {
+          "n_images": 6,
+          "mAP_50": 0.48184818481848196,
+          "micro_f1": 0.6511627906976745
+        },
+        "mist": {
+          "n_images": 6,
+          "mAP_50": 0.32282754819883563,
+          "micro_f1": 0.6990291262135923
+        },
+        "haze": {
+          "n_images": 6,
+          "mAP_50": 0.42087337154768123,
+          "micro_f1": 0.6133333333333333
+        },
+        "snow_storm": {
+          "n_images": 6,
+          "mAP_50": 0.7504256562950635,
+          "micro_f1": 0.6870229007633588
+        },
+        "dusttornado": {
+          "n_images": 6,
+          "mAP_50": 0.46259464181712306,
+          "micro_f1": 0.6956521739130435
+        }
+      }
+    },
+    "smoothing_r1": {
+      "preprocessor": "smoothing_r1",
+      "description": "Light Gaussian blur preprocessing (r=1)",
+      "n_images": 48,
+      "mAP_50": 0.47575898402226297,
+      "micro_precision": 0.7034700315457413,
+      "micro_recall": 0.6299435028248588,
+      "micro_f1": 0.6646795827123696,
+      "micro_tp": 223,
+      "micro_fp": 94,
+      "micro_fn": 131,
+      "preprocessing_total_seconds": 3.3415501670097,
+      "inference_total_seconds": 58.38974420801969,
+      "inference_mean_seconds": 1.1980763862108386,
+      "wall_total_seconds": 61.73169270902872,
+      "per_condition": {
+        "rain_storm": {
+          "n_images": 6,
+          "mAP_50": 0.5301518613399806,
+          "micro_f1": 0.6451612903225806
+        },
+        "sand_storm_g2_": {
+          "n_images": 6,
+          "mAP_50": 0.48940157870466844,
+          "micro_f1": 0.6797385620915033
+        },
+        "foggy": {
+          "n_images": 6,
+          "mAP_50": 0.3941537010843944,
+          "micro_f1": 0.6101694915254238
+        },
+        "sand_storm": {
+          "n_images": 6,
+          "mAP_50": 0.4297029702970299,
+          "micro_f1": 0.6190476190476191
+        },
+        "mist": {
+          "n_images": 6,
+          "mAP_50": 0.26893087565672075,
+          "micro_f1": 0.6391752577319588
+        },
+        "haze": {
+          "n_images": 6,
+          "mAP_50": 0.5589878987898794,
+          "micro_f1": 0.7142857142857143
+        },
+        "snow_storm": {
+          "n_images": 6,
+          "mAP_50": 0.7478978956108794,
+          "micro_f1": 0.6984126984126985
+        },
+        "dusttornado": {
+          "n_images": 6,
+          "mAP_50": 0.3740545929592961,
+          "micro_f1": 0.6451612903225806
+        }
+      }
+    }
+  }
+}

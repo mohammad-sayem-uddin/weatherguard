@@ -1,0 +1,1557 @@
+{
+  "fasterrcnn_val_full": {
+    "detector": "Faster R-CNN ResNet-50 FPN",
+    "tag": "fasterrcnn_val_full",
+    "n_images": 206,
+    "iou_threshold": 0.5,
+    "score_threshold": 0.5,
+    "per_class_pred": {
+      "Car": {
+        "TP": 784,
+        "Class_confusion": 19,
+        "Duplicate": 130,
+        "FP_other": 104,
+        "Localization": 54
+      },
+      "Person": {
+        "TP": 82,
+        "FP_other": 59,
+        "Duplicate": 15,
+        "Localization": 6,
+        "Class_confusion": 2
+      },
+      "Bus": {
+        "TP": 13,
+        "Class_confusion": 4,
+        "Duplicate": 4,
+        "Localization": 1
+      },
+      "Truck": {
+        "Duplicate": 41,
+        "Class_confusion": 52,
+        "Localization": 7,
+        "TP": 35,
+        "FP_other": 5
+      },
+      "Motorcycle": {
+        "TP": 7,
+        "Localization": 1,
+        "Duplicate": 2,
+        "FP_other": 1
+      },
+      "Bicycle": {
+        "FP_other": 2
+      }
+    },
+    "per_class_gt": {
+      "Car": {
+        "Detected": 793,
+        "Missed_class": 368
+      },
+      "Bus": {
+        "Missed_class": 21,
+        "Detected": 13
+      },
+      "Person": {
+        "Missed_class": 28,
+        "Detected": 83
+      },
+      "Truck": {
+        "Missed_class": 80,
+        "Detected": 35
+      },
+      "Motorcycle": {
+        "Missed_class": 7,
+        "Detected": 8
+      },
+      "Bicycle": {
+        "Missed_class": 2
+      }
+    },
+    "per_size_pred": {
+      "small": {
+        "TP": 79,
+        "FP_other": 6,
+        "Localization": 7,
+        "Duplicate": 5,
+        "Class_confusion": 1
+      },
+      "large": {
+        "TP": 464,
+        "Duplicate": 123,
+        "Class_confusion": 47,
+        "Localization": 24,
+        "FP_other": 55
+      },
+      "medium": {
+        "TP": 378,
+        "Class_confusion": 29,
+        "Duplicate": 64,
+        "Localization": 38,
+        "FP_other": 24
+      },
+      "n/a": {
+        "FP_other": 86
+      }
+    },
+    "per_size_gt": {
+      "large": {
+        "Detected": 468,
+        "Missed_class": 139
+      },
+      "medium": {
+        "Detected": 384,
+        "Missed_class": 273
+      },
+      "small": {
+        "Missed_class": 94,
+        "Detected": 80
+      }
+    },
+    "per_condition_pred": {
+      "dusttornado": {
+        "TP": 44,
+        "Class_confusion": 2,
+        "Duplicate": 2,
+        "FP_other": 4
+      },
+      "foggy": {
+        "TP": 55,
+        "FP_other": 4,
+        "Class_confusion": 6,
+        "Localization": 7,
+        "Duplicate": 13
+      },
+      "haze": {
+        "TP": 71,
+        "FP_other": 17,
+        "Localization": 6,
+        "Duplicate": 12,
+        "Class_confusion": 5
+      },
+      "mist": {
+        "TP": 92,
+        "Class_confusion": 12,
+        "Duplicate": 18,
+        "Localization": 10,
+        "FP_other": 9
+      },
+      "rain_storm": {
+        "TP": 178,
+        "FP_other": 35,
+        "Class_confusion": 11,
+        "Duplicate": 34,
+        "Localization": 11
+      },
+      "sand_storm": {
+        "TP": 178,
+        "Class_confusion": 17,
+        "FP_other": 43,
+        "Duplicate": 31,
+        "Localization": 7
+      },
+      "sand_storm_g2_": {
+        "TP": 58,
+        "FP_other": 8,
+        "Duplicate": 9,
+        "Class_confusion": 6,
+        "Localization": 4
+      },
+      "snow_storm": {
+        "Localization": 24,
+        "FP_other": 51,
+        "TP": 245,
+        "Class_confusion": 18,
+        "Duplicate": 73
+      }
+    },
+    "per_condition_gt": {
+      "dusttornado": {
+        "Detected": 44,
+        "Missed_class": 20
+      },
+      "foggy": {
+        "Detected": 55,
+        "Missed_class": 45
+      },
+      "haze": {
+        "Detected": 75,
+        "Missed_class": 55
+      },
+      "mist": {
+        "Detected": 92,
+        "Missed_class": 64
+      },
+      "rain_storm": {
+        "Detected": 180,
+        "Missed_class": 98
+      },
+      "sand_storm": {
+        "Detected": 179,
+        "Missed_class": 87
+      },
+      "sand_storm_g2_": {
+        "Detected": 59,
+        "Missed_class": 37
+      },
+      "snow_storm": {
+        "Detected": 248,
+        "Missed_class": 100
+      }
+    },
+    "confusion": {
+      "Bus__Car": 4,
+      "Car__Truck": 47,
+      "Bus__Truck": 5,
+      "Truck__Bus": 3,
+      "Truck__Car": 15,
+      "Car__Person": 1,
+      "Car__Bus": 1,
+      "Truck__Person": 1
+    },
+    "examples": [
+      {
+        "image_id": "dusttornado-001",
+        "condition": "dusttornado",
+        "n_pred": 10,
+        "n_gt": 16,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "Class_confusion",
+          "TP"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Person",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.9973756074905396,
+          0.9946626424789429,
+          0.9944983124732971,
+          0.9892702102661133,
+          0.9864462614059448,
+          0.9691944718360901,
+          0.9623044729232788,
+          0.950173020362854,
+          0.790867269039154,
+          0.6031504273414612
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Detected"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Bus",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Person",
+          "Person"
+        ]
+      },
+      {
+        "image_id": "dusttornado-014",
+        "condition": "dusttornado",
+        "n_pred": 5,
+        "n_gt": 8,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.9968189001083374,
+          0.9945863485336304,
+          0.9365004301071167,
+          0.8603119850158691,
+          0.593307614326477
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Truck"
+        ]
+      },
+      {
+        "image_id": "dusttornado-015",
+        "condition": "dusttornado",
+        "n_pred": 9,
+        "n_gt": 11,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "Duplicate",
+          "TP",
+          "TP",
+          "Duplicate"
+        ],
+        "pred_classes": [
+          "Person",
+          "Person",
+          "Car",
+          "Car",
+          "Bus",
+          "Car",
+          "Car",
+          "Person",
+          "Truck"
+        ],
+        "pred_scores": [
+          0.9995784163475037,
+          0.9994502663612366,
+          0.9870703816413879,
+          0.9272568225860596,
+          0.8763774037361145,
+          0.7583266496658325,
+          0.7424490451812744,
+          0.7364402413368225,
+          0.5358679294586182
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Person",
+          "Car",
+          "Person",
+          "Bus",
+          "Car",
+          "Truck",
+          "Car",
+          "Car",
+          "Person",
+          "Person",
+          "Person"
+        ]
+      },
+      {
+        "image_id": "dusttornado-023",
+        "condition": "dusttornado",
+        "n_pred": 16,
+        "n_gt": 15,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "FP_other",
+          "TP",
+          "TP",
+          "FP_other",
+          "TP",
+          "TP",
+          "TP",
+          "FP_other",
+          "FP_other",
+          "TP"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.9968247413635254,
+          0.9954047203063965,
+          0.9928160905838013,
+          0.9925826787948608,
+          0.9786829948425293,
+          0.97698974609375,
+          0.9428897500038147,
+          0.9327183961868286,
+          0.9210871458053589,
+          0.909437894821167,
+          0.8936668634414673,
+          0.8568869829177856,
+          0.6707528829574585,
+          0.6646535992622375,
+          0.5521899461746216,
+          0.5436299443244934
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Detected"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-002",
+        "condition": "foggy",
+        "n_pred": 1,
+        "n_gt": 4,
+        "pred_cats": [
+          "Class_confusion"
+        ],
+        "pred_classes": [
+          "Truck"
+        ],
+        "pred_scores": [
+          0.8042029738426208
+        ],
+        "gt_cats": [
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Person",
+          "Car",
+          "Motorcycle",
+          "Person"
+        ]
+      },
+      {
+        "image_id": "foggy-014",
+        "condition": "foggy",
+        "n_pred": 8,
+        "n_gt": 7,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "Localization",
+          "Class_confusion",
+          "TP",
+          "Duplicate",
+          "Duplicate"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Truck",
+          "Car",
+          "Truck",
+          "Truck"
+        ],
+        "pred_scores": [
+          0.9727638959884644,
+          0.8428438305854797,
+          0.7976389527320862,
+          0.7339500784873962,
+          0.7309563755989075,
+          0.6874563097953796,
+          0.6040590405464172,
+          0.5867241621017456
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Bus",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-039",
+        "condition": "foggy",
+        "n_pred": 16,
+        "n_gt": 15,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "Localization",
+          "TP",
+          "TP",
+          "Localization",
+          "Duplicate",
+          "Localization",
+          "Localization",
+          "TP",
+          "Duplicate"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Truck",
+          "Car",
+          "Car",
+          "Car",
+          "Truck",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.9984452128410339,
+          0.9953383207321167,
+          0.9929012060165405,
+          0.9820299744606018,
+          0.9723492860794067,
+          0.9381203055381775,
+          0.8799338340759277,
+          0.8755114674568176,
+          0.8006587028503418,
+          0.7950547933578491,
+          0.7602552771568298,
+          0.6975962519645691,
+          0.6854555606842041,
+          0.5181952118873596,
+          0.5117235779762268,
+          0.5084571838378906
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-049",
+        "condition": "foggy",
+        "n_pred": 1,
+        "n_gt": 5,
+        "pred_cats": [
+          "TP"
+        ],
+        "pred_classes": [
+          "Car"
+        ],
+        "pred_scores": [
+          0.9978331923484802
+        ],
+        "gt_cats": [
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-093",
+        "condition": "foggy",
+        "n_pred": 9,
+        "n_gt": 15,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "TP",
+          "Localization",
+          "Localization",
+          "Duplicate",
+          "Duplicate"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Truck",
+          "Truck"
+        ],
+        "pred_scores": [
+          0.9875820875167847,
+          0.977016270160675,
+          0.9757810235023499,
+          0.9598286747932434,
+          0.9138223528862,
+          0.8903563618659973,
+          0.7479111552238464,
+          0.5560503602027893,
+          0.5266212224960327
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Missed_class",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Truck",
+          "Person",
+          "Person",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Truck"
+        ]
+      },
+      {
+        "image_id": "foggy-102",
+        "condition": "foggy",
+        "n_pred": 4,
+        "n_gt": 6,
+        "pred_cats": [
+          "TP",
+          "Class_confusion",
+          "Duplicate",
+          "FP_other"
+        ],
+        "pred_classes": [
+          "Car",
+          "Truck",
+          "Car",
+          "Person"
+        ],
+        "pred_scores": [
+          0.9876713752746582,
+          0.9256904721260071,
+          0.6924355626106262,
+          0.602294385433197
+        ],
+        "gt_cats": [
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Truck",
+          "Truck",
+          "Truck",
+          "Truck",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-104",
+        "condition": "foggy",
+        "n_pred": 3,
+        "n_gt": 4,
+        "pred_cats": [
+          "TP",
+          "Class_confusion",
+          "Duplicate"
+        ],
+        "pred_classes": [
+          "Car",
+          "Bus",
+          "Car"
+        ],
+        "pred_scores": [
+          0.979754626750946,
+          0.8358946442604065,
+          0.5536057949066162
+        ],
+        "gt_cats": [
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Truck",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "haze-019",
+        "condition": "haze",
+        "n_pred": 16,
+        "n_gt": 7,
+        "pred_cats": [
+          "TP",
+          "FP_other",
+          "TP",
+          "FP_other",
+          "TP",
+          "TP",
+          "FP_other",
+          "FP_other",
+          "TP",
+          "Localization",
+          "FP_other",
+          "FP_other",
+          "Duplicate",
+          "FP_other",
+          "FP_other",
+          "FP_other"
+        ],
+        "pred_classes": [
+          "Car",
+          "Person",
+          "Car",
+          "Person",
+          "Car",
+          "Car",
+          "Person",
+          "Person",
+          "Car",
+          "Car",
+          "Person",
+          "Car",
+          "Car",
+          "Car",
+          "Person",
+          "Person"
+        ],
+        "pred_scores": [
+          0.9932512640953064,
+          0.9472376704216003,
+          0.9421601891517639,
+          0.9398894309997559,
+          0.8868342041969299,
+          0.8814372420310974,
+          0.8391724824905396,
+          0.8229548931121826,
+          0.7978172302246094,
+          0.7851599454879761,
+          0.775385856628418,
+          0.7605223059654236,
+          0.7579329013824463,
+          0.7088862657546997,
+          0.6443570256233215,
+          0.6327192783355713
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Detected",
+          "Detected"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ]
+      }
+    ]
+  },
+  "yolov8n_val_full": {
+    "detector": "YOLOv8n",
+    "tag": "yolov8n_val_full",
+    "n_images": 206,
+    "iou_threshold": 0.5,
+    "score_threshold": 0.5,
+    "per_class_pred": {
+      "Car": {
+        "TP": 395,
+        "Class_confusion": 3,
+        "Localization": 9,
+        "Duplicate": 4,
+        "FP_other": 4
+      },
+      "Person": {
+        "TP": 52,
+        "Class_confusion": 1
+      },
+      "Truck": {
+        "Class_confusion": 24,
+        "TP": 13,
+        "FP_other": 2,
+        "Duplicate": 2
+      },
+      "Bus": {
+        "TP": 10,
+        "Class_confusion": 3
+      }
+    },
+    "per_class_gt": {
+      "Car": {
+        "Detected": 395,
+        "Missed_class": 766
+      },
+      "Bus": {
+        "Missed_class": 24,
+        "Detected": 10
+      },
+      "Person": {
+        "Missed_class": 59,
+        "Detected": 52
+      },
+      "Truck": {
+        "Missed_class": 102,
+        "Detected": 13
+      },
+      "Motorcycle": {
+        "Missed_class": 15
+      },
+      "Bicycle": {
+        "Missed_class": 2
+      }
+    },
+    "per_size_pred": {
+      "small": {
+        "TP": 7
+      },
+      "large": {
+        "TP": 321,
+        "Class_confusion": 25,
+        "Duplicate": 6,
+        "FP_other": 3,
+        "Localization": 6
+      },
+      "medium": {
+        "TP": 142,
+        "Class_confusion": 6,
+        "Localization": 3,
+        "FP_other": 1
+      },
+      "n/a": {
+        "FP_other": 2
+      }
+    },
+    "per_size_gt": {
+      "large": {
+        "Detected": 321,
+        "Missed_class": 286
+      },
+      "medium": {
+        "Detected": 142,
+        "Missed_class": 515
+      },
+      "small": {
+        "Missed_class": 167,
+        "Detected": 7
+      }
+    },
+    "per_condition_pred": {
+      "dusttornado": {
+        "TP": 15,
+        "Class_confusion": 1
+      },
+      "foggy": {
+        "TP": 30,
+        "Class_confusion": 3
+      },
+      "haze": {
+        "TP": 29,
+        "Localization": 1,
+        "Duplicate": 1
+      },
+      "mist": {
+        "TP": 45,
+        "Class_confusion": 2
+      },
+      "rain_storm": {
+        "TP": 87,
+        "FP_other": 2,
+        "Class_confusion": 2,
+        "Localization": 5
+      },
+      "sand_storm": {
+        "TP": 93,
+        "Class_confusion": 7,
+        "Localization": 2,
+        "FP_other": 2,
+        "Duplicate": 1
+      },
+      "sand_storm_g2_": {
+        "TP": 31,
+        "Class_confusion": 1,
+        "FP_other": 1
+      },
+      "snow_storm": {
+        "TP": 140,
+        "Class_confusion": 15,
+        "FP_other": 1,
+        "Duplicate": 4,
+        "Localization": 1
+      }
+    },
+    "per_condition_gt": {
+      "dusttornado": {
+        "Detected": 15,
+        "Missed_class": 49
+      },
+      "foggy": {
+        "Detected": 30,
+        "Missed_class": 70
+      },
+      "haze": {
+        "Detected": 29,
+        "Missed_class": 101
+      },
+      "mist": {
+        "Missed_class": 111,
+        "Detected": 45
+      },
+      "rain_storm": {
+        "Detected": 87,
+        "Missed_class": 191
+      },
+      "sand_storm": {
+        "Detected": 93,
+        "Missed_class": 173
+      },
+      "sand_storm_g2_": {
+        "Detected": 31,
+        "Missed_class": 65
+      },
+      "snow_storm": {
+        "Detected": 140,
+        "Missed_class": 208
+      }
+    },
+    "confusion": {
+      "Bus__Truck": 1,
+      "Car__Truck": 23,
+      "Truck__Car": 2,
+      "Truck__Person": 1,
+      "Car__Bus": 3,
+      "Bus__Car": 1
+    },
+    "examples": [
+      {
+        "image_id": "dusttornado-001",
+        "condition": "dusttornado",
+        "n_pred": 3,
+        "n_gt": 16,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.8419198989868164,
+          0.7024816870689392,
+          0.6450363397598267
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Bus",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Person",
+          "Person"
+        ]
+      },
+      {
+        "image_id": "dusttornado-014",
+        "condition": "dusttornado",
+        "n_pred": 3,
+        "n_gt": 8,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.7221920490264893,
+          0.5776717066764832,
+          0.569291889667511
+        ],
+        "gt_cats": [
+          "Detected",
+          "Missed_class",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Truck"
+        ]
+      },
+      {
+        "image_id": "dusttornado-015",
+        "condition": "dusttornado",
+        "n_pred": 4,
+        "n_gt": 11,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "TP"
+        ],
+        "pred_classes": [
+          "Person",
+          "Person",
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.9086527824401855,
+          0.8916184902191162,
+          0.6271456480026245,
+          0.520548939704895
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Person",
+          "Car",
+          "Person",
+          "Bus",
+          "Car",
+          "Truck",
+          "Car",
+          "Car",
+          "Person",
+          "Person",
+          "Person"
+        ]
+      },
+      {
+        "image_id": "dusttornado-017",
+        "condition": "dusttornado",
+        "n_pred": 4,
+        "n_gt": 8,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP",
+          "Class_confusion"
+        ],
+        "pred_classes": [
+          "Car",
+          "Person",
+          "Car",
+          "Truck"
+        ],
+        "pred_scores": [
+          0.8985452055931091,
+          0.7557424306869507,
+          0.7229783535003662,
+          0.5271362066268921
+        ],
+        "gt_cats": [
+          "Detected",
+          "Missed_class",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Detected"
+        ],
+        "gt_classes": [
+          "Car",
+          "Bus",
+          "Car",
+          "Car",
+          "Bus",
+          "Person",
+          "Person",
+          "Person"
+        ]
+      },
+      {
+        "image_id": "dusttornado-023",
+        "condition": "dusttornado",
+        "n_pred": 1,
+        "n_gt": 15,
+        "pred_cats": [
+          "TP"
+        ],
+        "pred_classes": [
+          "Car"
+        ],
+        "pred_scores": [
+          0.833175539970398
+        ],
+        "gt_cats": [
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-002",
+        "condition": "foggy",
+        "n_pred": 1,
+        "n_gt": 4,
+        "pred_cats": [
+          "Class_confusion"
+        ],
+        "pred_classes": [
+          "Truck"
+        ],
+        "pred_scores": [
+          0.5300511717796326
+        ],
+        "gt_cats": [
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Person",
+          "Car",
+          "Motorcycle",
+          "Person"
+        ]
+      },
+      {
+        "image_id": "foggy-014",
+        "condition": "foggy",
+        "n_pred": 1,
+        "n_gt": 7,
+        "pred_cats": [
+          "TP"
+        ],
+        "pred_classes": [
+          "Car"
+        ],
+        "pred_scores": [
+          0.7299396395683289
+        ],
+        "gt_cats": [
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Bus",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-027",
+        "condition": "foggy",
+        "n_pred": 2,
+        "n_gt": 7,
+        "pred_cats": [
+          "TP",
+          "TP"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.8670108318328857,
+          0.8554742932319641
+        ],
+        "gt_cats": [
+          "Detected",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Motorcycle",
+          "Person",
+          "Person",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-034",
+        "condition": "foggy",
+        "n_pred": 0,
+        "n_gt": 3,
+        "pred_cats": [],
+        "pred_classes": [],
+        "pred_scores": [],
+        "gt_cats": [
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-039",
+        "condition": "foggy",
+        "n_pred": 3,
+        "n_gt": 15,
+        "pred_cats": [
+          "TP",
+          "TP",
+          "TP"
+        ],
+        "pred_classes": [
+          "Car",
+          "Car",
+          "Car"
+        ],
+        "pred_scores": [
+          0.7652595043182373,
+          0.6409107446670532,
+          0.6355898380279541
+        ],
+        "gt_cats": [
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Detected",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-049",
+        "condition": "foggy",
+        "n_pred": 0,
+        "n_gt": 5,
+        "pred_cats": [],
+        "pred_classes": [],
+        "pred_scores": [],
+        "gt_cats": [
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car",
+          "Car",
+          "Car"
+        ]
+      },
+      {
+        "image_id": "foggy-067",
+        "condition": "foggy",
+        "n_pred": 0,
+        "n_gt": 3,
+        "pred_cats": [],
+        "pred_classes": [],
+        "pred_scores": [],
+        "gt_cats": [
+          "Missed_class",
+          "Missed_class",
+          "Missed_class"
+        ],
+        "gt_classes": [
+          "Car",
+          "Car",
+          "Car"
+        ]
+      }
+    ]
+  }
+}
