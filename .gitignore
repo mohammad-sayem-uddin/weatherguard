@@ -1,0 +1,35 @@
+# WeatherGuard .gitignore
+
+# Datasets and large derived files
+*.parquet
+artifacts/eval_*.json
+artifacts/corruption_*.json
+artifacts/corruption_*.csv
+artifacts/*.log
+yolov8n.pt
+yolo*.pt
+
+# Virtual environment
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Agent / IDE session state (not part of the project)
+.commandcode/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Any large generated images or prediction galleries
+artifacts/qualitative/

@@ -1,0 +1,54 @@
+# WeatherGuard — default experiment configuration
+#
+# All scripts in `scripts/` read this file. The fields are deliberately
+# explicit; the goal is reproducibility, not configuration cleverness.
+
+dataset:
+  name: DAWN
+  version: Maxim37/dawn-dataset (Hugging Face)
+  val_parquet: val-00000-of-00001.parquet
+  train_parquet: train-00000-of-00001.parquet
+  license: CC-BY-NC-3.0
+  classes: [Truck, Person, Bicycle, Car, Motorcycle, Bus]
+  # Weather condition is parsed from the prefix of image_id before '-'.
+
+detectors:
+  fasterrcnn_resnet50_fpn:
+    framework: torchvision
+    architecture: Faster R-CNN with ResNet-50 FPN
+    weights: COCO 2017 (Torchvision pretrained)
+    license: BSD-3-Clause (code); weights per Torchvision model registry
+  yolov8n:
+    framework: ultralytics
+    architecture: YOLOv8 nano
+    weights: yolov8n.pt (Ultralytics)
+    license: AGPL-3.0
+
+evaluation:
+  iou_threshold: 0.5
+  score_threshold: 0.5
+  ap_protocol: 101-point interpolation
+  mAP_protocol: macro-average AP over classes with >=1 GT
+  match_protocol: greedy IoU (each GT used at most once)
+  # Out-of-DAWN-vocabulary predictions are ignored, not counted as FP.
+
+experiments:
+  smoke_test:
+    n_images: 8
+    seed: 42
+  full_eval:
+    sample: full val split
+    seed: 42
+  weather_breakdown:
+    sample: per-condition counts from full val
+  corruption:
+    n_per_condition: 10
+    seed: 42
+    corruptions:
+      - identity
+      - brightness_reduce
+      - contrast_reduce
+      - blur
+      - gaussian_noise
+
+seed: 42
