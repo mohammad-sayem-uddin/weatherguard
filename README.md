@@ -57,6 +57,51 @@ help the detector).
 > WeatherGuard: substantially higher mAP at the cost of ~13× higher
 > per-image latency. YOLOv8n is reported as a speed reference.
 
+### Statistical reliability (500 paired image-level bootstrap replicates)
+
+| Metric | FRCNN | YOLOv8n | Paired diff (FRCNN − YOLOv8n) |
+|---|---:|---:|---:|
+| mAP@.5 | 0.410 [0.34, 0.52] | 0.192 [0.16, 0.25] | +0.217 [0.15, 0.30] |
+| Micro F1 | 0.660 [0.64, 0.69] | 0.481 [0.45, 0.52] | +0.180 [0.15, 0.21] |
+
+The paired-difference CI for mAP@.5 does **not** straddle zero, which
+is consistent with a robust detector-ordering effect at the image
+resampling level. We do not interpret this as a population-level
+claim; the dataset is small.
+
+### Controlled corruption severity (FRCNN, 40 stratified images)
+
+| Family | Best (mAP@.5) | Worst (mAP@.5) | Range | Paired CI (drop at moderate severity) |
+|---|---:|---:|---|---|
+| Blur r=1..8 | 0.519 (r=1) | 0.038 (r=8) | −0.481 | r=4: [−0.30, −0.12] |
+| Gaussian noise σ=5..50 | 0.539 (σ=5) | 0.132 (σ=50) | −0.407 | σ=25: [−0.26, −0.07] |
+| Brightness 0.9..0.15 | 0.552 (0.9) | 0.266 (0.15) | −0.286 | 0.5: [−0.04, −0.00] |
+| Contrast 0.9..0.15 | 0.551 (0.9) | 0.233 (0.15) | −0.318 | 0.5: [−0.02, +0.03] |
+
+All four families are monotonically degrading. Blur and noise CIs at
+moderate severity do not straddle zero; contrast and brightness at
+factor 0.5 do.
+
+### Calibration
+
+| Detector | Brier (pre) | T fitted | Brier (post) | Note |
+|---|---:|---:|---:|---|
+| FRCNN | 0.052 | 3.1 | 0.073 | A single global temperature **worsens** the Brier score. |
+| YOLOv8n | 0.048 | 0.21 | 0.024 | A small T halves the Brier; YOLO is under-confident. |
+
+### Preprocessing ablation (FRCNN, 48 stratified images)
+
+| Preprocessor | mAP@.5 | Δ vs baseline |
+|---|---:|---:|
+| identity | 0.462 | — |
+| CLAHE (L, tile 64, cutoff 2) | 0.365 | **−0.097** |
+| gamma brighten (γ=1.2) | 0.474 | +0.012 |
+| gamma darken (γ=0.8) | 0.472 | +0.010 |
+| smoothing (r=1) | 0.476 | +0.014 |
+
+We report these as exploratory. CLAHE on the L channel is a clear
+**negative finding** for FRCNN on DAWN.
+
 ---
 
 ## Architecture
@@ -164,6 +209,16 @@ PYTHONPATH=. .venv/bin/python scripts/run_full_eval.py --tag yolov8n_val_full --
 
 # Controlled corruption experiment (10 images per condition, ~10 min CPU)
 PYTHONPATH=. .venv/bin/python scripts/run_corruption_experiment.py --tag fasterrcnn_corruption --limit 10
+
+# Advanced experiments (run after the four above)
+PYTHONPATH=. .venv/bin/python scripts/run_corruption_severity.py --tag fasterrcnn_severity --limit 5
+PYTHONPATH=. .venv/bin/python scripts/run_corruption_severity.py --detector yolov8n --tag yolov8n_severity --limit 5
+PYTHONPATH=. .venv/bin/python scripts/run_statistical_analysis.py --replicates 500
+PYTHONPATH=. .venv/bin/python scripts/run_threshold_sweep.py
+PYTHONPATH=. .venv/bin/python scripts/run_error_taxonomy.py
+PYTHONPATH=. .venv/bin/python scripts/run_preprocessing_ablation.py --tag fasterrcnn_preproc --limit 6
+PYTHONPATH=. .venv/bin/python scripts/run_calibration.py
+PYTHONPATH=. .venv/bin/python scripts/validate_artifacts.py
 
 # Launch the dashboard
 PYTHONPATH=. .venv/bin/streamlit run app.py

@@ -2,12 +2,20 @@
 
 # Datasets and large derived files
 *.parquet
-artifacts/eval_*.json
-artifacts/corruption_*.json
-artifacts/corruption_*.csv
-artifacts/*.log
 yolov8n.pt
 yolo*.pt
+
+# Generated runtime logs (kept on disk, not in git)
+artifacts/*.log
+
+# Generated machine-readable experiment outputs are tracked:
+#   artifacts/*.json, artifacts/*.csv
+#   artifacts/plots/*.png
+# These are the inputs the dashboard reads and they are small enough
+# (the largest is ~18 MB).
+
+# Large per-image prediction gallery (kept on disk for local use)
+artifacts/qualitative/
 
 # Virtual environment
 .venv/
@@ -30,6 +38,3 @@ __pycache__/
 
 # Streamlit
 .streamlit/secrets.toml
-
-# Any large generated images or prediction galleries
-artifacts/qualitative/
