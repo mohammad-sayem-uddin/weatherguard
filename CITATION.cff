@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: WeatherGuard
+message: |
+  If you use WeatherGuard, please cite the underlying dataset (DAWN) and
+  the model providers (Torchvision / Ultralytics) as appropriate.
+type: software
+date-released: 2026-10-12
+license: MIT
+authors:
+  - name: WeatherGuard contributors
+references:
+  - type: dataset
+    title: "DAWN: Vehicle Detection in Adverse Weather Nature"
+    license: CC-BY-NC-3.0
+    url: https://huggingface.co/datasets/Maxim37/dawn-dataset
+  - type: software
+    title: "Torchvision"
+    license: BSD-3-Clause
+    url: https://github.com/pytorch/vision
+  - type: software
+    title: "Ultralytics YOLOv8"
+    license: AGPL-3.0
+    url: https://github.com/ultralytics/ultralytics
+keywords:
+  - computer vision
+  - object detection
+  - adverse weather
+  - robustness
+  - benchmarking

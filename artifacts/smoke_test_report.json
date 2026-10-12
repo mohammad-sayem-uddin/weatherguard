@@ -1,0 +1,127 @@
+{
+  "stage": "smoke_test",
+  "n_images": 8,
+  "dataset_source": "/Users/sayemuddin/Desktop/WeatherGuard/val-00000-of-00001.parquet",
+  "detector_name": "fasterrcnn_resnet50_fpn",
+  "detector_load_seconds": 13.644037874997593,
+  "detector_device": "cpu",
+  "weights_provenance": "Torchvision pretrained weights (COCO 2017 train). Model architecture: Faster R-CNN with ResNet-50 FPN backbone, shipped via torchvision.models.detection.",
+  "license_note": "Torchvision code: BSD-3-Clause. Pretrained COCO weights: research-use terms per torchvision model registry. See https://github.com/pytorch/vision/blob/main/LICENSE for code and https://pytorch.org/vision/stable/models.html for weight notes.",
+  "inference_total_seconds": 9.324191582971253,
+  "inference_mean_seconds": 1.1550702502499917,
+  "inference_median_seconds": 1.0900817090296187,
+  "total_detections": 214,
+  "per_image_prediction_counts": [
+    45,
+    17,
+    5,
+    26,
+    27,
+    8,
+    84,
+    2
+  ],
+  "image_ids": [
+    "dusttornado-023",
+    "haze-003",
+    "haze-063",
+    "mist-075",
+    "mist-142",
+    "rain_storm-086",
+    "snow_storm-025",
+    "snow_storm-241"
+  ],
+  "eval_at_iou0.5_score0.5": {
+    "iou_threshold": 0.5,
+    "score_threshold": 0.5,
+    "n_images": 8,
+    "per_class": [
+      {
+        "class_name": "Truck",
+        "tp": 0,
+        "fp": 3,
+        "fn": 4,
+        "n_gt": 4,
+        "n_pred": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "ap_50": 0.0
+      },
+      {
+        "class_name": "Person",
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "n_gt": 1,
+        "n_pred": 1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "ap_50": 1.0000000000000007
+      },
+      {
+        "class_name": "Bicycle",
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "n_gt": 0,
+        "n_pred": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "ap_50": NaN
+      },
+      {
+        "class_name": "Car",
+        "tp": 31,
+        "fp": 10,
+        "fn": 12,
+        "n_gt": 43,
+        "n_pred": 41,
+        "precision": 0.7560975609756098,
+        "recall": 0.7209302325581395,
+        "f1": 0.7380952380952381,
+        "ap_50": 0.6827363618714816
+      },
+      {
+        "class_name": "Motorcycle",
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "n_gt": 0,
+        "n_pred": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "ap_50": NaN
+      },
+      {
+        "class_name": "Bus",
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "n_gt": 0,
+        "n_pred": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "ap_50": NaN
+      }
+    ],
+    "micro": {
+      "tp": 32,
+      "fp": 13,
+      "fn": 16,
+      "precision": 0.7111111111111111,
+      "recall": 0.6666666666666666,
+      "f1": 0.6881720430107527
+    },
+    "macro": {
+      "precision": 0.5853658536585366,
+      "recall": 0.5736434108527132,
+      "mAP_50": 0.5609121206238274
+    },
+    "notes": []
+  }
+}

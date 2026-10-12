@@ -1,0 +1,41 @@
+# Third-party notices
+
+WeatherGuard depends on the following open-source components. Their licenses
+govern the corresponding portions of this project. WeatherGuard's own code
+is released under the MIT License (see LICENSE).
+
+## Dataset — DAWN
+
+Source: <https://huggingface.co/datasets/Maxim37/dawn-dataset>
+License: **Creative Commons Attribution-NonCommercial 3.0 (CC BY-NC 3.0)**.
+
+The dataset is used in this project for non-commercial research only. No
+images from the dataset are redistributed in this repository. Attribution
+is preserved in `CITATION.cff`. The original paper:
+
+> Kenan A. Y. (2020). *DAWN: Vehicle Detection in Adverse Weather
+> Nature* (DATASET). Hugging Face. (See dataset card for the canonical
+> reference.)
+
+## Models
+
+### Torchvision — Faster R-CNN ResNet-50 FPN
+
+- Code: BSD-3-Clause (PyTorch / Torchvision)
+- Pretrained weights (COCO 2017): per the Torchvision model registry;
+  research use terms apply.
+- See <https://github.com/pytorch/vision/blob/main/LICENSE> and
+  <https://pytorch.org/vision/stable/models.html>.
+
+### Ultralytics — YOLOv8n
+
+- Package and weights: **AGPL-3.0**.
+- **Commercial use** of Ultralytics code or weights requires a separate
+  commercial licence from Ultralytics. See
+  <https://github.com/ultralytics/ultralytics/blob/main/LICENSE>.
+
+## Libraries
+
+- `numpy`, `pandas`, `pyarrow`, `pillow` — BSD-3-Clause (or compatible).
+- `streamlit`, `matplotlib` — BSD-3-Clause (or compatible permissive).
+- `torch` — BSD-3-Clause-style licence.
