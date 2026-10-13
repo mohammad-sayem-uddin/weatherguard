@@ -1,7 +1,7 @@
 # WeatherGuard — Experiment Log
 
-Chronological log of executed experiments. Generated manually; the
-canonical machine-readable record is `artifacts/experiment_registry.jsonl`.
+Chronological log of executed experiments. The canonical
+machine-readable record is `artifacts/experiment_registry.jsonl`.
 
 | # | Time (UTC) | Experiment | Detector | n_images | Status | Runtime (s) | Artifact |
 |--:|---|---|---|---:|---|--:|---|
@@ -20,10 +20,15 @@ canonical machine-readable record is `artifacts/experiment_registry.jsonl`.
 | 13 | 2026-10-12 21:47Z | corruption_severity_yolov8n | YOLOv8n | 40 | completed | 230 | `artifacts/corruption_severity_yolov8n_severity.json` |
 | 14 | 2026-10-12 21:47Z | preprocessing_ablation_fasterrcnn | FRCNN | 48 | completed | 415 | `artifacts/preprocessing_ablation_fasterrcnn_preproc.json` |
 | 15 | 2026-10-12 21:55Z | artifact_validation | — | — | passed | 0 | (script ran) |
+| 16 | 2026-10-13 11:52Z | dev_eval_fasterrcnn | FRCNN | 821 (dev) | completed | 1593 | `artifacts/eval_dev_fasterrcnn.json` |
+| 17 | 2026-10-13 12:19Z | dev_eval_yolov8n | YOLOv8n | 821 (dev) | completed | 150 | `artifacts/eval_dev_yolov8n.json` |
+| 18 | 2026-10-13 12:22Z | heldout_eval_fasterrcnn | FRCNN | 202 (clean heldout) | completed | 436 | `artifacts/eval_heldout_fasterrcnn.json` |
+| 19 | 2026-10-13 12:22Z | heldout_eval_yolov8n | YOLOv8n | 202 (clean heldout) | completed | 26 | `artifacts/eval_heldout_yolov8n.json` |
+| 20 | 2026-10-13 12:34Z | threshold_transfer_study | both | 821+202 | completed | 50 | `artifacts/threshold_transfer.json` + `artifacts/threshold_transfer.csv` + `artifacts/plots/threshold_transfer.png` |
 
 **Detector load times (CPU, M1):**
-- Faster R-CNN ResNet-50 FPN: ~13.6s first run, ~0.7s on subsequent
-  warm loads (Torchvision caches weights under `~/.cache/torch/hub/checkpoints/`).
-- YOLOv8n: ~0.6s (Ultralytics caches after first instantiation).
+- Faster R-CNN ResNet-50 FPN: ~13.6s first run (cold cache),
+  ~0.6s on subsequent warm loads.
+- YOLOv8n: ~0.6s on first run, ~0.03s on warm loads.
 
 **Failed or blocked experiments:** none.
