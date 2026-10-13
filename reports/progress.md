@@ -1,47 +1,43 @@
 # WeatherGuard — Progress Log
 
-Updated by the autonomous build session. Tracks which stages are complete
-and what is currently in flight, so a future run can resume without
-repeating finished work.
-
 ## MVP (commit `dd51841`) — complete
 
-| Stage | Name                              | Status        |
-|-------|-----------------------------------|---------------|
-| 0     | Environment & feasibility         | ✅ done       |
-| 1     | Environment & inference baseline  | ✅ done       |
-| 2     | Dataset & evaluation pipeline     | ✅ done       |
-| 3     | Model comparison                  | ✅ done       |
-| 4     | Weather & corruption experiments  | ✅ done       |
-| 5     | Error analysis & research report  | ✅ done       |
-| 6     | Streamlit dashboard               | ✅ done       |
-| 7     | Tests & hardening                 | ✅ done       |
-| 8     | Final polish & release            | ✅ done       |
+| Stage | Name | Status |
+|---|---|---|
+| 0 | Environment & feasibility | done |
+| 1 | Environment & inference baseline | done |
+| 2 | Dataset & evaluation pipeline | done |
+| 3 | Model comparison | done |
+| 4 | Weather & corruption experiments | done |
+| 5 | Error analysis & research report | done |
+| 6 | Streamlit dashboard | done |
+| 7 | Tests & hardening | done |
+| 8 | Final polish & release | done |
 
-## Advanced mission — complete (commit `4503f03`)
+## Advanced mission (commit `4503f03`) — complete
 
-| Workstream | Description                          | Status        |
-|------------|--------------------------------------|---------------|
-| A          | Statistical reliability (bootstrap)  | ✅ done       |
-| B          | Advanced detection error taxonomy    | ✅ done       |
-| C          | Confidence-threshold sweep           | ✅ done       |
-| D          | Deeper robustness (severity curves)  | ✅ done       |
-| E          | Preprocessing ablation               | ✅ done       |
-| F          | Calibration improvements              | ✅ done       |
-| G          | Streamlit dashboard upgrade          | ✅ done       |
-| H          | Experiment registry & validator      | ✅ done       |
-| I          | Research paper draft                 | ✅ done       |
-| J          | Final integration & QA               | ✅ done       |
+All 10 workstreams done; see `reports/advanced_mission_final_report.md`.
 
-## Headline advanced-mission numbers
+## Focused research mission — in flight
 
-- **FRCNN mAP@.5** = 0.410, 95% paired bootstrap CI [0.34, 0.52].
-- **YOLOv8n mAP@.5** = 0.192, 95% paired bootstrap CI [0.16, 0.25].
-- **Paired mAP diff (FRCNN − YOLO)** = +0.217, 95% CI [0.15, 0.30].
-- **Car/Truck confusion** dominates: 47 GT Cars predicted as Trucks.
-- **Blur r=4 paired mAP drop CI** = [−0.30, −0.12] (entirely negative).
-- **Noise σ=25 paired mAP drop CI** = [−0.26, −0.07] (entirely negative).
-- **CLAHE preprocessing** drops FRCNN mAP by 0.097.
-- **FRCNN temperature scaling** worsens Brier (0.052 → 0.073);
-  YOLO halves it (0.048 → 0.024).
-- **71 unit tests pass** (up from 48).
+Primary research question:
+
+> How well do confidence thresholds selected on development data transfer
+> to held-out adverse-weather traffic images, and what trade-offs do
+> they create between detection quality, missed objects, false alarms,
+> and inference speed?
+
+Sub-questions: RQ1 (Faster R-CNN vs YOLOv8n under same protocol),
+RQ2 (development-set threshold → held-out), RQ3 (per-condition /
+per-class transfer), RQ4 (detector+operating-point trade-off against
+CPU latency).
+
+| Phase | Activity | Status |
+|---|---|---|
+| 1 | Audit (splits, code, prior results, fair-comparison) | in flight |
+| 2 | Re-run dev + val eval on current code, freeze cached predictions | pending |
+| 3 | Threshold selection on dev, locked before val evaluation | pending |
+| 4 | Held-out evaluation; per-condition, per-class, bootstrap | pending |
+| 5 | Latency benchmark (warm-up vs steady-state) | pending |
+| 6 | Reports and figures | pending |
+| 7 | Paper draft + README rewrite | pending |
