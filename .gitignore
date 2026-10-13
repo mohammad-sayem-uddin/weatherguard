@@ -1,40 +1,118 @@
 # WeatherGuard .gitignore
+#
+# Goal: publish the small, intentional research artefacts (JSON / CSV /
+# plots / Markdown reports) and the code, while excluding private data,
+# large derived files, model weights, and machine-specific state.
 
-# Datasets and large derived files
+# ----------------------------------------------------------------------
+# Datasets
+# ----------------------------------------------------------------------
+# DAWN parquet files. The dataset is CC BY-NC 3.0; we use it for
+# research only and do not redistribute it. Download from
+# https://huggingface.co/datasets/Maxim37/dawn-dataset
 *.parquet
+
+# ----------------------------------------------------------------------
+# Model weights and checkpoints
+# ----------------------------------------------------------------------
+# Anything larger than a few KB that came out of a model download.
 yolov8n.pt
-yolo*.pt
+yolov8*.pt
+yolo11*.pt
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.torchscript
 
-# Generated runtime logs (kept on disk, not in git)
-artifacts/*.log
-
-# Generated machine-readable experiment outputs are tracked:
-#   artifacts/*.json, artifacts/*.csv
-#   artifacts/plots/*.png
-# These are the inputs the dashboard reads and they are small enough
-# (the largest is ~18 MB).
-
-# Large per-image prediction gallery (kept on disk for local use)
-artifacts/qualitative/
-
-# Virtual environment
+# ----------------------------------------------------------------------
+# Local virtual environments and dependency caches
+# ----------------------------------------------------------------------
 .venv/
 venv/
 env/
+.python-version
+pip-wheel-cache/
+
+# ----------------------------------------------------------------------
+# Python build / cache artifacts
+# ----------------------------------------------------------------------
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.installed.cfg
+*.egg
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.cache/
 
-# Agent / IDE session state (not part of the project)
-.commandcode/
-
-# OS / editor
-.DS_Store
+# ----------------------------------------------------------------------
+# Local editor / IDE state
+# ----------------------------------------------------------------------
 .idea/
 .vscode/
 *.swp
+*.swo
+.DS_Store
+Thumbs.db
 
-# Streamlit
+# ----------------------------------------------------------------------
+# Environment files and secrets
+# ----------------------------------------------------------------------
+# Never commit credentials, API keys, or local environment overrides.
+.env
+.env.*
+*.pem
+*.key
+secrets/
 .streamlit/secrets.toml
+
+# ----------------------------------------------------------------------
+# Agent / session state
+# ----------------------------------------------------------------------
+# Files created by the AI coding agent that ran the autonomous build.
+.commandcode/
+
+# ----------------------------------------------------------------------
+# Generated runtime logs (kept on disk locally, not in git)
+# ----------------------------------------------------------------------
+*.log
+artifacts/*.log
+
+# ----------------------------------------------------------------------
+# Generated per-image prediction galleries (large, derived from DAWN)
+# ----------------------------------------------------------------------
+# These are pixel-level visualisations of ground truth + predictions.
+# They are produced for local inspection; they are not source artefacts
+# and are not in the published research deliverable.
+artifacts/qualitative/
+
+# ----------------------------------------------------------------------
+# Streamlit caches
+# ----------------------------------------------------------------------
+.streamlit/
+
+# ----------------------------------------------------------------------
+# What is INTENTIONALLY kept in git
+# ----------------------------------------------------------------------
+# - src/, tests/, scripts/, configs/, docs/, .github/  (code)
+# - app.py, requirements.txt, README.md, LICENSE, NOTICE, CITATION.cff
+# - artifacts/*.json, artifacts/*.csv
+#   (machine-readable experiment outputs that the dashboard reads)
+# - artifacts/plots/*.png
+#   (small, intentionally rendered matplotlib figures)
+# - reports/*.md
+#   (Markdown research reports)
+# - configs/default.yaml
