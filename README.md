@@ -29,18 +29,43 @@ held-out split. **No training is performed.**
 threshold transfer to held-out adverse-weather images, and what
 trade-offs does it create?
 
-**Strongest finding.** For both detectors, a confidence threshold
-selected on the development split of DAWN **transfers essentially
-without degradation** to the held-out split. The dev-selected
-threshold is also competitive with an unobservable held-out oracle
-(both within 0.006 F1) and is meaningfully better than the
-commonly used default-0.5 threshold for YOLO.
+**Strongest finding (conservative wording).** A dev-tuned
+threshold (0.60 for Faster R-CNN, 0.20 for YOLOv8n) on the DAWN
+development split yields a held-out F1 that is **within 0.011 of
+the dev F1 and within 0.006 of an unobservable val-oracle** for
+both detectors, and is **robustly higher** (95% paired image-level
+bootstrap CI for the difference default-0.5 minus dev-F1 is
+entirely negative) than the default 0.5 threshold. The dev-tuned
+threshold does not become dramatically worse on held-out
+adverse-weather data; the residual gap to the val-oracle is
+within the 0.05 threshold grid step.
 
-**Why it matters.** This contradicts the strong form of the concern
-that "a dev-tuned threshold will not transfer to held-out weather".
-It also gives a concrete, deployment-relevant threshold to use
-(score 0.6 for Faster R-CNN, score 0.2 for YOLOv8n) and a robust
-95% CI for the F1 improvement over the default.
+**Absolute F1 difference, dev → held-out (at the dev-tuned
+threshold):**
+
+| Detector | Dev F1 (n=821) | Held-out F1 (n=202) | Absolute Δ | Relative Δ |
+|---|---:|---:|---:|---:|
+| Faster R-CNN | 0.6648 | 0.6740 | **+0.0092** | **+1.4%** |
+| YOLOv8n | 0.5675 | 0.5776 | **+0.0101** | **+1.8%** |
+
+(Slight improvement, not degradation. Values from
+`artifacts/threshold_transfer.json`; dev and heldout computed at
+the same threshold with the same matching protocol.)
+
+**What the 95% confidence intervals estimate.** The CIs in the
+table below are **paired image-level bootstrap 95% CIs from 500
+replicates (seed 20261012)**. They describe the uncertainty in
+the F1 estimate on this specific **202-image held-out sample**
+under image-level resampling with replacement. They are **not**
+a statement about uncertainty on a deployment population, and
+they are **not** a hypothesis test.
+
+**Why it matters.** The result contradicts the strong form of
+the concern that "a dev-tuned threshold will not transfer to
+held-out weather". It also gives a concrete, deployment-relevant
+threshold to use (score 0.60 for Faster R-CNN, score 0.20 for
+YOLOv8n) and a robust CI for the F1 improvement over the default
+0.5 threshold.
 
 ## Main results table
 

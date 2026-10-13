@@ -300,26 +300,70 @@ parquet files. The heldout eval uses the 202-image clean list in
 
 ---
 
-## 7. Conclusion (one paragraph)
+## 7. Exploratory post-hoc analyses
 
-A confidence threshold selected on the development (train) split of
-DAWN transfers essentially without degradation to a 202-image
-held-out (val) split for both Faster R-CNN ResNet-50 FPN and YOLOv8n
-in this study, contradicting the strong form of hypothesis H1
-(thresholds can become dramatically worse on held-out weather). The
-dev-tuned threshold gives a heldout F1 of 0.674 for FRCNN and 0.578
-for YOLO, compared to 0.680 and 0.580 for an unobservable val-oracle
-and 0.658 and 0.483 for the default-0.5 threshold. The dev-tuned
-threshold is therefore a defensible, near-oracle policy for both
-detectors, and is meaningfully better than the default for YOLO
-(paired bootstrap CI for the F1 difference: [−0.115, −0.075]).
-Faster R-CNN beats YOLOv8n at their respective dev-F1 thresholds
-(paired F1 difference +0.097, CI [+0.071, +0.124]) but takes ~18×
-the per-image CPU time. Neither detector offers a high-recall (≥0.85)
-operating point, and per-condition transfer gaps (range −0.22 to
-+0.13 across the eight conditions, with two conditions exploratory
+The following analyses were **not** part of the preregistered
+protocol and are reported here only for transparency. They are
+**post-hoc** and **do not** change the preregistered 0.05-grid
+analysis above.
+
+### 7.1 Finer (0.01) grid sweep on the dev set
+
+A 0.01-grid dev sweep was run to test whether the preregistered
+0.05 grid captured the dev-F1 plateau. FRCNN's dev-best-F1
+threshold is unchanged (0.60, F1=0.6648). YOLOv8n's dev-best-F1
+threshold is 0.18 (F1=0.5693) at the 0.01 grid versus 0.20
+(F1=0.5675) at the preregistered 0.05 grid — a development-F1
+difference of 0.0018. The YOLO dev-F1 surface is flat in the
+0.15–0.25 range (dev F1 at 0.15, 0.18, 0.20, 0.25 = 0.5664, 0.5693,
+0.5675, 0.5609), so the choice between 0.18 and 0.20 is within
+threshold-grid noise. This is **post-hoc** and does not change the
+preregistered 0.05-grid analysis above. The held-out F1 surface
+is similarly flat in the same range (0.5800 / 0.5854 / 0.5776 /
+0.5659 at 0.15 / 0.18 / 0.20 / 0.25).
+
+### 7.2 Stability of the dev-best-F1 threshold under dev bootstrap
+
+A 200-replicate bootstrap of the dev set (with replacement, at
+the image level, seed 20261012) was run. FRCNN's chosen threshold
+0.60 wins 91% of the time, with the remainder at 0.55 / 0.65 /
+0.70 (the F1 surface is flat across ±0.05). YOLOv8n's chosen
+threshold 0.20 wins 72% of the time and 0.15 wins 28%; this
+confirms the flatness of the YOLO dev-F1 surface noted in § 7.1.
+
+---
+
+## 8. Conclusion (one paragraph)
+
+A confidence threshold selected on the development (train) split
+of DAWN transfers essentially without degradation to a 202-image
+held-out (val) split for both Faster R-CNN ResNet-50 FPN and
+YOLOv8n in this study, contradicting the strong form of hypothesis
+H1 (thresholds can become dramatically worse on held-out weather).
+The absolute dev→held-out F1 difference at the dev-tuned
+threshold is +0.0092 for FRCNN (0.6648 → 0.6740) and +0.0101
+for YOLOv8n (0.5675 → 0.5776); both are within the 0.05 grid
+step and well inside the 95% bootstrap CIs. The dev-tuned
+threshold is within 0.006 of an unobservable val-oracle
+(FRCNN +0.006, YOLO +0.002) and is robustly better than the
+default 0.5 threshold (paired bootstrap CI for "default minus
+dev-F1" entirely negative: FRCNN [−0.026, −0.008], YOLO
+[−0.115, −0.075]). The 95% CIs are paired image-level bootstrap
+95% CIs from 500 replicates (seed 20261012) and describe the
+uncertainty in the F1 estimate on this specific 202-image
+held-out sample under image-level resampling; they are not a
+statement about uncertainty on a deployment population, and
+they are not a hypothesis test. Faster R-CNN beats YOLOv8n at
+their respective dev-F1 thresholds (paired F1 difference
++0.097, CI [+0.071, +0.124]) but takes ~18× the per-image CPU
+time. Neither detector offers a high-recall (≥0.85) operating
+point, and per-condition transfer gaps (range −0.22 to +0.13
+across the eight conditions, with two conditions exploratory
 at n<15) are within bootstrap noise for conditions with n≥15,
-supporting the cautious form of hypothesis H3.
+supporting the cautious form of hypothesis H3. A post-hoc
+0.01-grid dev sweep (§ 7.1) confirms that the preregistered
+0.05 grid adequately captures the dev-F1 plateau for both
+detectors and does not change the headline finding.
 
 ---
 

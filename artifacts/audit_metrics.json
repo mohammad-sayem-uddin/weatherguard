@@ -1,0 +1,390 @@
+{
+  "audit_metadata": {
+    "scope": "Independent audit of the threshold-transfer study",
+    "method": "Re-implement matching and metric accumulation from scratch; do not call src/metrics.evaluate_detections. Compare to artifacts/threshold_transfer.json. No model inference re-run.",
+    "verdict": "PASS \u2014 study is methodologically defensible, ready to share.",
+    "confirmed_defects": 0,
+    "wording_recommendations_applied": 3,
+    "exploratory_post_hoc_analyses": 3
+  },
+  "data_split_audit": {
+    "dev_image_count": 821,
+    "heldout_image_count": 202,
+    "dev_image_ids_match_parquet": true,
+    "heldout_image_ids_match_clean_list": true,
+    "dev_heldout_image_id_overlap_after_exclusion": 0,
+    "byte_duplicate_pairs_found": 4,
+    "byte_duplicate_pairs_all_pixel_identical": true,
+    "byte_duplicate_pairs_in_excluded_list": 4,
+    "excluded_val_image_ids": [
+      "dusttornado-023",
+      "haze-003",
+      "haze-059",
+      "haze-077"
+    ],
+    "byte_duplicate_pair_details": [
+      {
+        "train": "sand_storm-057",
+        "val": "dusttornado-023",
+        "identical_bytes": true,
+        "identical_dims": true,
+        "identical_annotations": false,
+        "note": "train has 16 Cars; val has 15 Cars"
+      },
+      {
+        "train": "haze-098",
+        "val": "haze-077",
+        "identical_bytes": true,
+        "identical_dims": true,
+        "identical_annotations": true
+      },
+      {
+        "train": "foggy-011",
+        "val": "haze-003",
+        "identical_bytes": true,
+        "identical_dims": true,
+        "identical_annotations": true
+      },
+      {
+        "train": "haze-036",
+        "val": "haze-059",
+        "identical_bytes": true,
+        "identical_dims": true,
+        "identical_annotations": false,
+        "note": "train has 1 Truck; val has 2 Trucks"
+      }
+    ],
+    "threshold_selection_used_dev_only": true,
+    "val_oracle_labelled_diagnostic": true
+  },
+  "headline_metric_recomputation": {
+    "fasterrcnn_resnet50_fpn": {
+      "heldout_default_0.5": {
+        "independent_tp": 923,
+        "independent_fp": 476,
+        "independent_fn": 483,
+        "independent_precision": 0.659757,
+        "independent_recall": 0.656472,
+        "independent_f1": 0.658111,
+        "existing_f1": 0.658111,
+        "match": true
+      },
+      "heldout_dev_f1_0.6": {
+        "independent_tp": 888,
+        "independent_fp": 341,
+        "independent_fn": 518,
+        "independent_precision": 0.722539,
+        "independent_recall": 0.631579,
+        "independent_f1": 0.674004,
+        "existing_f1": 0.674004,
+        "match": true
+      },
+      "heldout_val_oracle_0.7": {
+        "independent_tp": 847,
+        "independent_fp": 239,
+        "independent_fn": 559,
+        "independent_precision": 0.779926,
+        "independent_recall": 0.602418,
+        "independent_f1": 0.679775,
+        "existing_f1": 0.679775,
+        "match": true
+      },
+      "dev_dev_f1_0.6": {
+        "independent_tp": 3887,
+        "independent_fp": 1400,
+        "independent_fn": 2520,
+        "existing_tp": 3887,
+        "existing_fp": 1400,
+        "existing_fn": 2520,
+        "match": true
+      }
+    },
+    "yolov8n": {
+      "heldout_default_0.5": {
+        "independent_tp": 463,
+        "independent_fp": 50,
+        "independent_fn": 943,
+        "independent_precision": 0.902534,
+        "independent_recall": 0.329303,
+        "independent_f1": 0.482543,
+        "existing_f1": 0.482543,
+        "match": true
+      },
+      "heldout_dev_f1_0.2": {
+        "independent_tp": 683,
+        "independent_fp": 276,
+        "independent_fn": 723,
+        "independent_precision": 0.7122,
+        "independent_recall": 0.485775,
+        "independent_f1": 0.57759,
+        "existing_f1": 0.57759,
+        "match": true
+      },
+      "heldout_val_oracle_0.15": {
+        "independent_tp": 734,
+        "independent_fp": 391,
+        "independent_fn": 672,
+        "independent_precision": 0.652444,
+        "independent_recall": 0.522048,
+        "independent_f1": 0.580008,
+        "existing_f1": 0.580008,
+        "match": true
+      },
+      "dev_dev_f1_0.2": {
+        "independent_tp": 3048,
+        "independent_fp": 1287,
+        "independent_fn": 3359,
+        "existing_tp": 3048,
+        "existing_fp": 1287,
+        "existing_fn": 3359,
+        "match": true
+      }
+    }
+  },
+  "dev_to_heldout_f1_at_dev_f1_threshold": {
+    "fasterrcnn_resnet50_fpn": {
+      "dev_F1": 0.6648,
+      "heldout_F1": 0.674,
+      "absolute_delta": 0.0092,
+      "relative_delta": 0.0139
+    },
+    "yolov8n": {
+      "dev_F1": 0.5675,
+      "heldout_F1": 0.5776,
+      "absolute_delta": 0.0101,
+      "relative_delta": 0.0178
+    }
+  },
+  "bootstrap_recomputation": {
+    "implementation_audit": {
+      "resampling_unit": "image (with replacement)",
+      "paired_within_detector_uses_same_indices": true,
+      "paired_across_detector_uses_aligned_image_ids": true,
+      "empty_GT_handling": "0 of 202 heldout images have empty GT; evaluate_detections excludes empty-GT classes from mAP",
+      "ci_calculation": "2.5 / 50 / 97.5 percentiles with linear interpolation",
+      "rng_reproducibility": "single random.Random(20261012) shared across FRCNN then YOLO then detector-vs-detector draws; re-implementing with the same RNG usage produces exact-match CI bounds and means to 6 decimal places"
+    },
+    "fasterrcnn_default_minus_dev_f1": {
+      "independent_mean": -0.016512,
+      "independent_median": -0.016606,
+      "independent_ci95": [
+        -0.025772,
+        -0.007644
+      ],
+      "existing_mean": -0.016512,
+      "existing_median": -0.016606,
+      "existing_ci95": [
+        -0.025772,
+        -0.007644
+      ],
+      "match": true
+    },
+    "yolov8n_default_minus_dev_f1": {
+      "independent_mean": -0.095117,
+      "independent_median": -0.095464,
+      "independent_ci95": [
+        -0.115369,
+        -0.074682
+      ],
+      "existing_mean": -0.095117,
+      "existing_median": -0.095464,
+      "existing_ci95": [
+        -0.115369,
+        -0.074682
+      ],
+      "match": true
+    },
+    "fasterrcnn_minus_yolov8n_at_dev_f1": {
+      "independent_mean": 0.096636,
+      "independent_median": 0.096574,
+      "independent_ci95": [
+        0.070563,
+        0.123616
+      ],
+      "existing_mean": 0.096636,
+      "existing_median": 0.096574,
+      "existing_ci95": [
+        0.070563,
+        0.123616
+      ],
+      "match": true
+    },
+    "ci_interpretation": "95% CIs are paired image-level bootstrap (500 reps, seed 20261012); they describe uncertainty in the F1 estimate on the 202-image heldout sample under image-level resampling, not on a deployment population. They are not a hypothesis test."
+  },
+  "threshold_transfer_conclusion_audit": {
+    "dev_best_f1_threshold_stability_under_dev_bootstrap_200_reps": {
+      "fasterrcnn": {
+        "0.60": 91.0,
+        "0.65": 4.5,
+        "0.55": 4.0,
+        "0.70": 0.5
+      },
+      "yolov8n": {
+        "0.20": 72.0,
+        "0.15": 28.0,
+        "0.30": 0.5
+      },
+      "note": "FRCNN's chosen 0.60 is sharply stable. YOLO's 0.20 is less sharply defined: 28% of dev bootstraps pick 0.15, reflecting a flat F1 surface in the 0.15-0.25 range."
+    },
+    "f1_sensitivity_to_threshold_within_pm_0.05": {
+      "fasterrcnn_dev": {
+        "0.55": 0.662,
+        "0.60": 0.6648,
+        "0.65": 0.6617
+      },
+      "fasterrcnn_heldout": {
+        "0.55": 0.6676,
+        "0.60": 0.674,
+        "0.65": 0.6765
+      },
+      "yolov8n_dev": {
+        "0.15": 0.5664,
+        "0.20": 0.5675,
+        "0.25": 0.5609
+      },
+      "yolov8n_heldout": {
+        "0.15": 0.58,
+        "0.20": 0.5776,
+        "0.25": 0.5659
+      },
+      "note": "Maximum F1 swing within \u00b10.05 of chosen threshold is 0.005 (FRCNN dev) and 0.013 (YOLO heldout). The 0.05 grid is fine enough for the headline claim."
+    },
+    "post_hoc_finer_grid_check_exploratory": {
+      "fasterrcnn": "0.01 grid picks 0.60 (same as 0.05 grid)",
+      "yolov8n": {
+        "best_0.01_threshold": 0.18,
+        "best_0.01_F1": 0.5693,
+        "best_0.05_threshold": 0.2,
+        "best_0.05_F1": 0.5675,
+        "dev_F1_difference": 0.0018,
+        "heldout_F1_at_0.18": 0.5854,
+        "heldout_F1_at_0.20": 0.5776
+      },
+      "label": "exploratory \u2014 not used to retroactively change the preregistered 0.05 grid"
+    },
+    "per_condition_transfer_gap": {
+      "snow_storm": {
+        "n": 47,
+        "FRCNN_gap": -0.006,
+        "YOLO_gap": -0.019
+      },
+      "rain_storm": {
+        "n": 46,
+        "FRCNN_gap": 0.016,
+        "YOLO_gap": -0.007
+      },
+      "sand_storm": {
+        "n": 40,
+        "FRCNN_gap": -0.062,
+        "YOLO_gap": -0.065
+      },
+      "foggy": {
+        "n": 19,
+        "FRCNN_gap": 0.071,
+        "YOLO_gap": 0.014
+      },
+      "mist": {
+        "n": 18,
+        "FRCNN_gap": 0.037,
+        "YOLO_gap": 0.019
+      },
+      "haze": {
+        "n": 15,
+        "FRCNN_gap": 0.026,
+        "YOLO_gap": 0.125
+      },
+      "dusttornado": {
+        "n": 8,
+        "FRCNN_gap": -0.221,
+        "YOLO_gap": -0.01,
+        "note": "exploratory, n<15"
+      },
+      "sand_storm_g2_": {
+        "n": 9,
+        "FRCNN_gap": -0.032,
+        "YOLO_gap": -0.033,
+        "note": "exploratory, n<15"
+      }
+    }
+  },
+  "findings_three_categories": {
+    "1_confirmed_defects_requiring_fixes": {
+      "count": 0,
+      "items": [],
+      "verdict": "None. Every numerical result in artifacts/threshold_transfer.json reproduces to 6 decimal places when matching and metric accumulation are re-implemented from scratch. The bootstrap is correctly implemented. The data split is correctly defined. No code change is required to the study artefacts."
+    },
+    "2_wording_recommendations_for_public_reporting": {
+      "count": 3,
+      "applied_in_this_commit": true,
+      "items": [
+        {
+          "id": "W1",
+          "target": "README.md",
+          "change": "Add a 'What the CIs estimate' note that the 95% CIs are paired image-level bootstrap 95% CIs from 500 replicates describing uncertainty on this specific 202-image held-out sample, not on a deployment population and not a hypothesis test.",
+          "status": "applied"
+        },
+        {
+          "id": "W2",
+          "target": "README.md",
+          "change": "Refine the strongest-finding paragraph to report the absolute dev\u2192held-out F1 difference (+0.0092 for FRCNN, +0.0101 for YOLO) and the relative percentage (+1.4% / +1.8%) instead of the looser 'essentially without degradation' phrase.",
+          "status": "applied"
+        },
+        {
+          "id": "W3",
+          "target": "reports/threshold_transfer_study.md",
+          "change": "Add a new \u00a7 7 'Exploratory post-hoc analyses' documenting the 0.01-grid sweep (YOLO 0.18 vs 0.20, dev F1 difference 0.0018) and the dev-bootstrap stability. Update \u00a7 8 'Conclusion' to include the absolute dev\u2192held-out F1 differences and the explicit CI interpretation.",
+          "status": "applied"
+        }
+      ]
+    },
+    "3_exploratory_post_hoc_analyses": {
+      "count": 3,
+      "do_not_change_preregistered_protocol": true,
+      "items": [
+        {
+          "id": "E1",
+          "name": "0.01-grid dev sweep",
+          "finding": "FRCNN's dev-best-F1 threshold is unchanged at 0.60. YOLOv8n's would have been 0.18 (F1=0.5693) instead of 0.20 (F1=0.5675), a dev-F1 difference of 0.0018. The YOLO dev-F1 surface is flat in 0.15-0.25.",
+          "documented_in": "reports/threshold_transfer_study.md \u00a7 7.1"
+        },
+        {
+          "id": "E2",
+          "name": "Dev-best-F1 threshold stability under dev bootstrap (200 reps)",
+          "finding": "FRCNN's chosen 0.60 wins 91% of dev bootstraps. YOLOv8n's chosen 0.20 wins 72%, with 0.15 winning 28% \u2014 consistent with the flat YOLO dev-F1 surface.",
+          "documented_in": "reports/threshold_transfer_study.md \u00a7 7.2"
+        },
+        {
+          "id": "E3",
+          "name": "Hash + pixel-level duplicate verification",
+          "finding": "SHA-1 of every image's raw bytes was computed for all 1,027 images. Only the 4 documented pairs overlap between dev and heldout. Pixel equality verified (max |diff|=0).",
+          "documented_in": "reports/methodological_audit.md \u00a7 1.2"
+        }
+      ]
+    }
+  },
+  "canonical_verdict": {
+    "pass_or_fail": "PASS",
+    "one_sentence": "The threshold-transfer study is methodologically defensible and ready to share publicly.",
+    "scope": "Based on the audit of the four phases (data split, metric recomputation, bootstrap, threshold-transfer conclusion) and the machine-readable cross-check in this file. No model inference was re-run; the audit used cached per-image predictions only."
+  },
+  "tests_run": {
+    "unit_tests": "PYTHONPATH=. .venv/bin/python -m unittest discover -s tests -> 71 tests OK",
+    "artifact_validator": "PYTHONPATH=. .venv/bin/python scripts/validate_artifacts.py -> All checks passed",
+    "git_diff_check": "git diff --check (run during final integration; no whitespace errors)"
+  },
+  "files_unchanged": [
+    "src/metrics.py",
+    "scripts/run_transfer_eval.py",
+    "scripts/run_threshold_transfer_study.py",
+    "artifacts/threshold_transfer.json",
+    "artifacts/threshold_transfer.csv",
+    "artifacts/plots/threshold_transfer.png",
+    "reports/research_question_and_protocol.md"
+  ],
+  "files_modified_in_this_audit_commit": [
+    "README.md (refined headline + CI-interpretation paragraph)",
+    "reports/threshold_transfer_study.md (added \u00a7 7 exploratory, refined \u00a7 8 conclusion)",
+    "reports/methodological_audit.md (restructured into 3 categories, \u00a7 6 applied wording, \u00a7 7 verdict)",
+    "artifacts/audit_metrics.json (matches new 3-category structure)"
+  ]
+}
