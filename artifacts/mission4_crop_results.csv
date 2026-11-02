@@ -1,0 +1,4 @@
+Method,Max_Crops,Min_Score,Crops_%,Total_Crops,F1,Precision,Recall,Small_Recall_%,Med_Recall_%,Large_Recall_%,FP/Img,Mean_Latency_ms,P95_Latency_ms,FPS
+crop_refine_k1_s15,1,0.15,66.25,106,0.40439,0.45056,0.3668,7.98,48.5,80.0,6.181,113.08,157.68,8.84
+crop_refine_k2_s15,2,0.15,66.25,145,0.38354,0.40188,0.3668,7.98,48.5,80.0,7.544,139.02,258.97,7.19
+crop_refine_k1_s20,1,0.2,50.0,80,0.41761,0.48476,0.3668,7.98,48.5,80.0,5.388,102.53,165.4,9.75

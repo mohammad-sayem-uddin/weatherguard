@@ -1,0 +1,46 @@
+{
+  "hardware": "Apple MacBook Air M1, 8-core CPU, 8 GB unified memory",
+  "os": "macOS",
+  "device": "cpu",
+  "threads": 4,
+  "stages_ms": {
+    "frame_load_and_preprocess": 4.2,
+    "yolov8n_640_inference": 38.0,
+    "yolov8n_832_inference": 52.0,
+    "nms_decoding_class_filter": 0.8,
+    "temporal_router_decision": 0.04,
+    "bytetrack_association_kalman": 0.35,
+    "extrapolation_recovery": 0.08,
+    "postprocessing": 0.15
+  },
+  "pipelines": {
+    "yolov8n_640_static": {
+      "mean_latency_ms": 43.19,
+      "p90_ms": 45.2,
+      "p95_ms": 47.8,
+      "throughput_fps": 23.15,
+      "peak_memory_mb": 425
+    },
+    "yolov8n_832_static": {
+      "mean_latency_ms": 57.19,
+      "p90_ms": 59.8,
+      "p95_ms": 63.4,
+      "throughput_fps": 17.48,
+      "peak_memory_mb": 512
+    },
+    "hold_time_h3_detector_only": {
+      "mean_latency_ms": 46.85,
+      "p90_ms": 55.4,
+      "p95_ms": 58.9,
+      "throughput_fps": 21.34,
+      "peak_memory_mb": 518
+    },
+    "weatherguard_temporal_full": {
+      "mean_latency_ms": 47.28,
+      "p90_ms": 56.1,
+      "p95_ms": 59.5,
+      "throughput_fps": 21.15,
+      "peak_memory_mb": 524
+    }
+  }
+}

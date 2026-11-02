@@ -1,0 +1,93 @@
+{
+  "mission": "Mission 6 \u2014 Experiment E: Pretrained Representation Preservation",
+  "development_cohort": "Group_B_BDD100K_Development",
+  "training_budget": "5 epochs, batch 16, stratified DAWN N=200",
+  "candidates": {
+    "pretrained": {
+      "f1": 0.47798377752027815,
+      "precision": 0.6647864625302176,
+      "recall": 0.373134328358209,
+      "tp": 825,
+      "fp": 416,
+      "fn": 1386,
+      "mAP_50": 0.18383731362291633,
+      "small_recall": 0.08088235294117647,
+      "medium_recall": 0.5,
+      "large_recall": 0.8,
+      "latency_ms": 71.30612432956696
+    },
+    "frozen_baseline": {
+      "f1": 0.43086660175267777,
+      "precision": 0.4665260938323669,
+      "recall": 0.40027137042062416,
+      "tp": 885,
+      "fp": 1012,
+      "fn": 1326,
+      "mAP_50": 0.136084548865925,
+      "small_recall": 0.09453781512605042,
+      "medium_recall": 0.5474537037037037,
+      "large_recall": 0.8151898734177215,
+      "latency_ms": 66.23285561800003
+    },
+    "partial_baseline": {
+      "f1": 0.3940066592674806,
+      "precision": 0.5096913137114142,
+      "recall": 0.3211216644052465,
+      "tp": 710,
+      "fp": 683,
+      "fn": 1501,
+      "mAP_50": 0.09011915545211009,
+      "small_recall": 0.058823529411764705,
+      "medium_recall": 0.4340277777777778,
+      "large_recall": 0.7063291139240506,
+      "latency_ms": 64.37546610832214
+    },
+    "full_baseline": {
+      "f1": 0.3859757989450822,
+      "precision": 0.6146245059288538,
+      "recall": 0.28132066938037087,
+      "tp": 622,
+      "fp": 390,
+      "fn": 1589,
+      "mAP_50": 0.07476393270401775,
+      "small_recall": 0.032563025210084036,
+      "medium_recall": 0.35185185185185186,
+      "large_recall": 0.7265822784810126,
+      "latency_ms": 66.21398627758026
+    },
+    "head_only": {
+      "f1": 0.43051771117166215,
+      "precision": 0.4322845417236662,
+      "recall": 0.4287652645861601,
+      "tp": 948,
+      "fp": 1245,
+      "fn": 1263,
+      "mAP_50": 0.18164709107308974,
+      "small_recall": 0.1134453781512605,
+      "medium_recall": 0.5879629629629629,
+      "large_recall": 0.8405063291139241,
+      "latency_ms": 65.63365012407303
+    },
+    "l2sp_anchored": {
+      "f1": 0.35138705416116245,
+      "precision": 0.3014896373056995,
+      "recall": 0.42107643600180916,
+      "tp": 931,
+      "fp": 2157,
+      "fn": 1280,
+      "mAP_50": 0.13674346676880264,
+      "small_recall": 0.08718487394957983,
+      "medium_recall": 0.6041666666666666,
+      "large_recall": 0.8253164556962025,
+      "latency_ms": 73.09569418430328
+    }
+  },
+  "selected_winner": {
+    "key": "frozen_baseline",
+    "weights": "/Users/sayemuddin/Desktop/WeatherGuard/models/mission5_a1_frozen.pt",
+    "f1": 0.43086660175267777,
+    "precision": 0.4665260938323669,
+    "recall": 0.40027137042062416,
+    "small_recall": 0.09453781512605042
+  }
+}

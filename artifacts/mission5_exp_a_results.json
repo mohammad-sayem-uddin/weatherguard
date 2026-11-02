@@ -1,0 +1,107 @@
+{
+  "exp_a1_frozen": {
+    "name": "dawn_frozen_backbone",
+    "in_domain_dawn_val": {
+      "n_images": 206,
+      "threshold": 0.2,
+      "f1": 0.6015037593984963,
+      "precision": 0.5473204104903079,
+      "recall": 0.6675938803894298,
+      "tp": 960,
+      "fp": 794,
+      "fn": 478,
+      "mAP_50": 0.3123861524280383,
+      "small_recall": 0.45977011494252873,
+      "medium_recall": 0.5875190258751902,
+      "large_recall": 0.8138385502471169,
+      "mean_latency_ms": 61.591638792749805,
+      "throughput_fps": 16.235970005034417
+    },
+    "out_of_domain_bdd_dev": {
+      "n_images": 160,
+      "threshold": 0.2,
+      "f1": 0.43086660175267777,
+      "precision": 0.4665260938323669,
+      "recall": 0.40027137042062416,
+      "tp": 885,
+      "fp": 1012,
+      "fn": 1326,
+      "mAP_50": 0.136084548865925,
+      "small_recall": 0.09453781512605042,
+      "medium_recall": 0.5474537037037037,
+      "large_recall": 0.8151898734177215,
+      "mean_latency_ms": 53.97231533725062,
+      "throughput_fps": 18.52801744285778
+    }
+  },
+  "exp_a2_partial": {
+    "name": "dawn_partial_backbone",
+    "in_domain_dawn_val": {
+      "n_images": 206,
+      "threshold": 0.2,
+      "f1": 0.5820757622420695,
+      "precision": 0.5223880597014925,
+      "recall": 0.6571627260083449,
+      "tp": 945,
+      "fp": 864,
+      "fn": 493,
+      "mAP_50": 0.2587030966147063,
+      "small_recall": 0.4367816091954023,
+      "medium_recall": 0.5920852359208524,
+      "large_recall": 0.7907742998352554,
+      "mean_latency_ms": 63.47892133522444,
+      "throughput_fps": 15.753260751220425
+    },
+    "out_of_domain_bdd_dev": {
+      "n_images": 160,
+      "threshold": 0.2,
+      "f1": 0.3940066592674806,
+      "precision": 0.5096913137114142,
+      "recall": 0.3211216644052465,
+      "tp": 710,
+      "fp": 683,
+      "fn": 1501,
+      "mAP_50": 0.09011915545211009,
+      "small_recall": 0.058823529411764705,
+      "medium_recall": 0.4340277777777778,
+      "large_recall": 0.7063291139240506,
+      "mean_latency_ms": 54.858883788892854,
+      "throughput_fps": 18.228588169022636
+    }
+  },
+  "exp_a3_full": {
+    "name": "dawn_full_finetuning",
+    "in_domain_dawn_val": {
+      "n_images": 206,
+      "threshold": 0.2,
+      "f1": 0.5976253298153035,
+      "precision": 0.5683814303638645,
+      "recall": 0.6300417246175244,
+      "tp": 906,
+      "fp": 688,
+      "fn": 532,
+      "mAP_50": 0.2507935655338465,
+      "small_recall": 0.46551724137931033,
+      "medium_recall": 0.5525114155251142,
+      "large_recall": 0.7611202635914333,
+      "mean_latency_ms": 59.63488594186379,
+      "throughput_fps": 16.76870818491829
+    },
+    "out_of_domain_bdd_dev": {
+      "n_images": 160,
+      "threshold": 0.2,
+      "f1": 0.3859757989450822,
+      "precision": 0.6146245059288538,
+      "recall": 0.28132066938037087,
+      "tp": 622,
+      "fp": 390,
+      "fn": 1589,
+      "mAP_50": 0.07476393270401775,
+      "small_recall": 0.032563025210084036,
+      "medium_recall": 0.35185185185185186,
+      "large_recall": 0.7265822784810126,
+      "mean_latency_ms": 52.16519714376773,
+      "throughput_fps": 19.16986908424771
+    }
+  }
+}

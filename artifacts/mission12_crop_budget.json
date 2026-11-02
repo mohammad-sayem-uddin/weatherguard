@@ -1,0 +1,30 @@
+{
+  "mission": "Mission 12 \u2014 Crop Budget Optimization",
+  "created_at": "2026-11-02T14:48:33Z",
+  "results": {
+    "K_1": {
+      "max_crops": 1,
+      "overall_f1": 0.4221,
+      "small_f1": 0.1094,
+      "ultra_small_f1": 0.007,
+      "mean_latency_ms": 65.7,
+      "fps": 15.22
+    },
+    "K_2": {
+      "max_crops": 2,
+      "overall_f1": 0.4442,
+      "small_f1": 0.1285,
+      "ultra_small_f1": 0.0069,
+      "mean_latency_ms": 143.93,
+      "fps": 6.95
+    },
+    "K_3": {
+      "max_crops": 3,
+      "overall_f1": 0.4473,
+      "small_f1": 0.1328,
+      "ultra_small_f1": 0.0069,
+      "mean_latency_ms": 162.55,
+      "fps": 6.15
+    }
+  }
+}

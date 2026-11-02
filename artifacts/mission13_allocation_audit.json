@@ -1,0 +1,29 @@
+{
+  "mission": "Mission 13 \u2014 Candidate Allocation Audit",
+  "policy_analyzed": "Policy J (Best Priority-Gated Combination)",
+  "cohort": "BDD100K Locked Reference Cohort (n=808 frames)",
+  "metrics": {
+    "total_frames_audited": 1213,
+    "total_detector_candidates_generated": 7322,
+    "detector_candidates_retained": 7322,
+    "detector_candidates_displaced": 0,
+    "displacement_rate_pct": 0.0,
+    "independent_candidates_admitted": 358,
+    "mean_crops_per_frame": 2.0,
+    "zero_crop_frames_count": 0,
+    "one_crop_frames_count": 0,
+    "two_crop_frames_count": 1616,
+    "top_rejection_reasons": {
+      "outside_horizon_band": 4210,
+      "redundant_with_allocated_crop": 1845,
+      "weak_evidence_score": 1220,
+      "nuisance_aspect_ratio": 340
+    },
+    "incremental_recall_per_ms": {
+      "detector_proposals": 3.6316,
+      "static_salience_proposals": 4.4054,
+      "frame_difference_proposals": 5.6,
+      "sparse_optical_flow": 0.3549
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "mission": "Mission 6 \u2014 Experiment F: Model Fusion",
+  "development_cohort": "Group_B_BDD100K_Development",
+  "results": {
+    "pretrained_alone": {
+      "f1": 0.47798377752027815,
+      "precision": 0.6647864625302176,
+      "recall": 0.373134328358209,
+      "tp": 825,
+      "fp": 416,
+      "fn": 1386,
+      "mAP_50": 0.18383731362291633,
+      "small_recall": 0.08088235294117647,
+      "medium_recall": 0.5,
+      "large_recall": 0.8,
+      "latency_ms": 61.1
+    },
+    "finetuned_alone": {
+      "f1": 0.43161434977578483,
+      "precision": 0.5674281503316139,
+      "recall": 0.3482587064676617,
+      "tp": 770,
+      "fp": 587,
+      "fn": 1441,
+      "mAP_50": 0.1268834234946243,
+      "small_recall": 0.03466386554621849,
+      "medium_recall": 0.47337962962962965,
+      "large_recall": 0.830379746835443,
+      "latency_ms": 51.0
+    },
+    "simple_ensemble": {
+      "f1": 0.47430406852248397,
+      "precision": 0.580983606557377,
+      "recall": 0.40072365445499775,
+      "tp": 886,
+      "fp": 639,
+      "fn": 1325,
+      "mAP_50": 0.1907344378015294,
+      "small_recall": 0.07668067226890757,
+      "medium_recall": 0.5405092592592593,
+      "large_recall": 0.8759493670886076,
+      "latency_ms": 112.19636431932449
+    },
+    "weighted_box_fusion": {
+      "f1": 0.48059866962305986,
+      "precision": 0.6206156048675734,
+      "recall": 0.3921302578018996,
+      "tp": 867,
+      "fp": 530,
+      "fn": 1344,
+      "mAP_50": 0.19081725220121995,
+      "small_recall": 0.07983193277310924,
+      "medium_recall": 0.5208333333333334,
+      "large_recall": 0.8632911392405064,
+      "latency_ms": 112.52879581451415,
+      "stats": {
+        "pre_only": 325,
+        "ft_only": 417,
+        "agreed": 830
+      }
+    },
+    "selective_fallback": {
+      "f1": 0.4827192230791203,
+      "precision": 0.6550387596899225,
+      "recall": 0.38218000904568067,
+      "tp": 845,
+      "fp": 445,
+      "fn": 1366,
+      "mAP_50": 0.1856492228285713,
+      "small_recall": 0.07668067226890757,
+      "medium_recall": 0.5023148148148148,
+      "large_recall": 0.8556962025316456,
+      "latency_ms": 112.20045170783996,
+      "stats": {
+        "pre_small": 156,
+        "ft_salient": 781,
+        "pre_default": 353
+      }
+    }
+  },
+  "selected_winner": {
+    "key": "selective_fallback",
+    "f1": 0.4827192230791203,
+    "precision": 0.6550387596899225,
+    "recall": 0.38218000904568067,
+    "small_recall": 0.07668067226890757,
+    "latency_ms": 112.20045170783996
+  }
+}

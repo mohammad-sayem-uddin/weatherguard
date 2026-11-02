@@ -1,0 +1,12 @@
+{
+  "dataset": "FLIR ADAS Thermal Validation",
+  "num_images": 150,
+  "overall_f1": 0.3131,
+  "precision": 0.6889,
+  "recall": 0.2026,
+  "small_f1": 0.0786,
+  "ultra_small_f1": 0.0746,
+  "mean_latency_ms": 198.8,
+  "fps": 5.03,
+  "thermal_blooming_observations": "Saturated thermal bloom around hot exhausts creates 14 false salience clusters, successfully filtered by conservative merge conf >= 0.35."
+}

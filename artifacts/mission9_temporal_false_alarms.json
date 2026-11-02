@@ -1,0 +1,7172 @@
+{
+  "mission": "Mission 9",
+  "experiment": "Experiment H \u2014 Temporal False-Alarm Suppression",
+  "created_at": "2026-11-02T11:45:00Z",
+  "configurations": {
+    "raw_unsuppressed_640": {
+      "title": "Raw YOLOv8n 640px (M=1, No Suppression)",
+      "params": {
+        "min_persistence": 1,
+        "preserve_stationary": true
+      },
+      "diagnostics": {
+        "total_suppressed_ephemeral_boxes": 0,
+        "total_preserved_stationary_boxes": 10586
+      },
+      "aggregate_overall": {
+        "total_frames": 1621,
+        "total_gt": 39290,
+        "total_preds": 20274,
+        "tp": 13178,
+        "fp": 7096,
+        "fn": 26112,
+        "precision": 0.65,
+        "recall": 0.3354,
+        "f1": 0.4425,
+        "temporal_stability": {
+          "mean_track_coverage": 0.2561,
+          "flicker_rate": 0.06,
+          "total_flicker_events": 2168,
+          "mean_dropout_gap_frames": 12.23,
+          "total_dropout_events": 2051
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.5462,
+            "recall": 0.1197,
+            "f1": 0.1964,
+            "tp": 1885,
+            "fp": 1566,
+            "fn": 13862
+          },
+          "medium": {
+            "precision": 0.651,
+            "recall": 0.3995,
+            "f1": 0.4952,
+            "tp": 6700,
+            "fp": 3592,
+            "fn": 10070
+          },
+          "large": {
+            "precision": 0.7033,
+            "recall": 0.6781,
+            "f1": 0.6905,
+            "tp": 4593,
+            "fp": 1938,
+            "fn": 2180
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.6923,
+            "recall": 0.4958,
+            "f1": 0.5778,
+            "tp": 12500,
+            "fp": 5555,
+            "fn": 12714
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 10776
+          },
+          "Truck": {
+            "precision": 0.3725,
+            "recall": 0.3133,
+            "f1": 0.3403,
+            "tp": 567,
+            "fp": 955,
+            "fn": 1243
+          },
+          "Bus": {
+            "precision": 0.1071,
+            "recall": 0.0845,
+            "f1": 0.0945,
+            "tp": 59,
+            "fp": 492,
+            "fn": 639
+          },
+          "Bicycle": {
+            "precision": 0.4643,
+            "recall": 0.0657,
+            "f1": 0.115,
+            "tp": 52,
+            "fp": 60,
+            "fn": 740
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 34,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_dev": {
+        "total_frames": 810,
+        "total_gt": 24038,
+        "total_preds": 11058,
+        "tp": 7174,
+        "fp": 3884,
+        "fn": 16864,
+        "precision": 0.6488,
+        "recall": 0.2984,
+        "f1": 0.4088,
+        "temporal_stability": {
+          "mean_track_coverage": 0.204,
+          "flicker_rate": 0.0528,
+          "total_flicker_events": 1199,
+          "mean_dropout_gap_frames": 14.91,
+          "total_dropout_events": 1124
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.4949,
+            "recall": 0.1006,
+            "f1": 0.1672,
+            "tp": 1067,
+            "fp": 1089,
+            "fn": 9537
+          },
+          "medium": {
+            "precision": 0.6685,
+            "recall": 0.3648,
+            "f1": 0.472,
+            "tp": 3579,
+            "fp": 1775,
+            "fn": 6232
+          },
+          "large": {
+            "precision": 0.7125,
+            "recall": 0.6978,
+            "f1": 0.7051,
+            "tp": 2528,
+            "fp": 1020,
+            "fn": 1095
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.6916,
+            "recall": 0.4363,
+            "f1": 0.535,
+            "tp": 6766,
+            "fp": 3017,
+            "fn": 8743
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 6560
+          },
+          "Truck": {
+            "precision": 0.3726,
+            "recall": 0.3436,
+            "f1": 0.3575,
+            "tp": 345,
+            "fp": 581,
+            "fn": 659
+          },
+          "Bus": {
+            "precision": 0.0602,
+            "recall": 0.0456,
+            "f1": 0.0519,
+            "tp": 13,
+            "fp": 203,
+            "fn": 272
+          },
+          "Bicycle": {
+            "precision": 0.4717,
+            "recall": 0.0735,
+            "f1": 0.1272,
+            "tp": 50,
+            "fp": 56,
+            "fn": 630
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 27,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_locked_test": {
+        "total_frames": 811,
+        "total_gt": 15252,
+        "total_preds": 9216,
+        "tp": 6004,
+        "fp": 3212,
+        "fn": 9248,
+        "precision": 0.6515,
+        "recall": 0.3937,
+        "f1": 0.4908,
+        "temporal_stability": {
+          "mean_track_coverage": 0.3082,
+          "flicker_rate": 0.0673,
+          "total_flicker_events": 969,
+          "mean_dropout_gap_frames": 9.56,
+          "total_dropout_events": 927
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.6317,
+            "recall": 0.1591,
+            "f1": 0.2541,
+            "tp": 818,
+            "fp": 477,
+            "fn": 4325
+          },
+          "medium": {
+            "precision": 0.632,
+            "recall": 0.4485,
+            "f1": 0.5247,
+            "tp": 3121,
+            "fp": 1817,
+            "fn": 3838
+          },
+          "large": {
+            "precision": 0.6923,
+            "recall": 0.6556,
+            "f1": 0.6734,
+            "tp": 2065,
+            "fp": 918,
+            "fn": 1085
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.6932,
+            "recall": 0.5908,
+            "f1": 0.6379,
+            "tp": 5734,
+            "fp": 2538,
+            "fn": 3971
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4216
+          },
+          "Truck": {
+            "precision": 0.3725,
+            "recall": 0.2754,
+            "f1": 0.3167,
+            "tp": 222,
+            "fp": 374,
+            "fn": 584
+          },
+          "Bus": {
+            "precision": 0.1373,
+            "recall": 0.1114,
+            "f1": 0.123,
+            "tp": 46,
+            "fp": 289,
+            "fn": 367
+          },
+          "Bicycle": {
+            "precision": 0.3333,
+            "recall": 0.0179,
+            "f1": 0.0339,
+            "tp": 2,
+            "fp": 4,
+            "fn": 110
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 7,
+            "fn": 0
+          }
+        }
+      },
+      "per_sequence": {
+        "b1e9ee0e-67e26f2e": {
+          "sequence_id": "b1e9ee0e-67e26f2e",
+          "frames_evaluated": 203,
+          "total_gt": 8719,
+          "total_preds": 3872,
+          "tp": 2600,
+          "fp": 1272,
+          "fn": 6119,
+          "precision": 0.6715,
+          "recall": 0.2982,
+          "f1": 0.413,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2286,
+            "flicker_rate": 0.0457,
+            "total_flicker_events": 396,
+            "mean_dropout_gap_frames": 24.57,
+            "total_dropout_events": 247,
+            "dropout_gap_histogram": {
+              "157": 1,
+              "20": 2,
+              "22": 2,
+              "200": 5,
+              "5": 13,
+              "3": 17,
+              "11": 8,
+              "8": 9,
+              "48": 1,
+              "50": 1,
+              "17": 3,
+              "30": 2,
+              "1": 54,
+              "6": 7,
+              "2": 35,
+              "12": 8,
+              "10": 3,
+              "42": 1,
+              "13": 1,
+              "14": 4,
+              "9": 5,
+              "4": 17,
+              "201": 7,
+              "62": 1,
+              "7": 8,
+              "89": 1,
+              "96": 1,
+              "103": 1,
+              "36": 1,
+              "44": 1,
+              "115": 1,
+              "202": 1,
+              "41": 2,
+              "93": 1,
+              "105": 1,
+              "71": 1,
+              "54": 1,
+              "58": 1,
+              "32": 3,
+              "31": 1,
+              "167": 1,
+              "35": 1,
+              "198": 1,
+              "18": 1,
+              "26": 2,
+              "28": 1,
+              "19": 1,
+              "85": 1,
+              "91": 1,
+              "152": 1,
+              "129": 1,
+              "15": 1,
+              "38": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.4138,
+              "recall": 0.0788,
+              "f1": 0.1324,
+              "tp": 324,
+              "fp": 459,
+              "fn": 3787
+            },
+            "medium": {
+              "precision": 0.6769,
+              "recall": 0.3412,
+              "f1": 0.4537,
+              "tp": 995,
+              "fp": 475,
+              "fn": 1921
+            },
+            "large": {
+              "precision": 0.7912,
+              "recall": 0.7571,
+              "f1": 0.7738,
+              "tp": 1281,
+              "fp": 338,
+              "fn": 411
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6954,
+              "recall": 0.3333,
+              "f1": 0.4506,
+              "tp": 2600,
+              "fp": 1139,
+              "fn": 5200
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 631
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 133,
+              "fn": 288
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-65deaeef": {
+          "sequence_id": "b1d0a191-65deaeef",
+          "frames_evaluated": 202,
+          "total_gt": 4199,
+          "total_preds": 2399,
+          "tp": 1674,
+          "fp": 725,
+          "fn": 2525,
+          "precision": 0.6978,
+          "recall": 0.3987,
+          "f1": 0.5074,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2652,
+            "flicker_rate": 0.0593,
+            "total_flicker_events": 243,
+            "mean_dropout_gap_frames": 12.23,
+            "total_dropout_events": 199,
+            "dropout_gap_histogram": {
+              "1": 45,
+              "12": 2,
+              "30": 5,
+              "4": 14,
+              "8": 4,
+              "6": 9,
+              "41": 1,
+              "3": 18,
+              "7": 6,
+              "2": 21,
+              "11": 4,
+              "31": 2,
+              "5": 15,
+              "15": 3,
+              "19": 1,
+              "60": 1,
+              "21": 4,
+              "51": 1,
+              "20": 5,
+              "13": 3,
+              "9": 3,
+              "22": 3,
+              "104": 1,
+              "33": 1,
+              "63": 1,
+              "16": 1,
+              "10": 2,
+              "37": 1,
+              "89": 1,
+              "39": 1,
+              "57": 1,
+              "90": 1,
+              "74": 1,
+              "54": 1,
+              "77": 1,
+              "40": 1,
+              "18": 2,
+              "69": 1,
+              "23": 2,
+              "29": 1,
+              "32": 2,
+              "47": 1,
+              "35": 2,
+              "24": 1,
+              "26": 1,
+              "17": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.6567,
+              "recall": 0.0329,
+              "f1": 0.0626,
+              "tp": 44,
+              "fp": 23,
+              "fn": 1294
+            },
+            "medium": {
+              "precision": 0.6934,
+              "recall": 0.4831,
+              "f1": 0.5695,
+              "tp": 787,
+              "fp": 348,
+              "fn": 842
+            },
+            "large": {
+              "precision": 0.7043,
+              "recall": 0.6843,
+              "f1": 0.6941,
+              "tp": 843,
+              "fp": 354,
+              "fn": 389
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7653,
+              "recall": 0.5406,
+              "f1": 0.6336,
+              "tp": 1373,
+              "fp": 421,
+              "fn": 1167
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1147
+            },
+            "Truck": {
+              "precision": 0.597,
+              "recall": 0.7388,
+              "f1": 0.6604,
+              "tp": 280,
+              "fp": 189,
+              "fn": 99
+            },
+            "Bus": {
+              "precision": 0.0847,
+              "recall": 0.119,
+              "f1": 0.099,
+              "tp": 10,
+              "fp": 108,
+              "fn": 74
+            },
+            "Bicycle": {
+              "precision": 0.6875,
+              "recall": 0.2245,
+              "f1": 0.3385,
+              "tp": 11,
+              "fp": 5,
+              "fn": 38
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 2,
+              "fn": 0
+            }
+          }
+        },
+        "b24071b8-b3ee1196": {
+          "sequence_id": "b24071b8-b3ee1196",
+          "frames_evaluated": 202,
+          "total_gt": 5755,
+          "total_preds": 1997,
+          "tp": 1170,
+          "fp": 827,
+          "fn": 4585,
+          "precision": 0.5859,
+          "recall": 0.2033,
+          "f1": 0.3019,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0744,
+            "flicker_rate": 0.0367,
+            "total_flicker_events": 200,
+            "mean_dropout_gap_frames": 11.7,
+            "total_dropout_events": 366,
+            "dropout_gap_histogram": {
+              "1": 69,
+              "7": 14,
+              "5": 20,
+              "2": 58,
+              "8": 11,
+              "3": 27,
+              "4": 30,
+              "9": 14,
+              "21": 4,
+              "6": 18,
+              "11": 9,
+              "16": 5,
+              "96": 1,
+              "14": 4,
+              "87": 1,
+              "20": 2,
+              "12": 5,
+              "15": 7,
+              "26": 2,
+              "13": 3,
+              "28": 1,
+              "10": 7,
+              "19": 3,
+              "98": 2,
+              "22": 2,
+              "56": 2,
+              "25": 4,
+              "17": 7,
+              "18": 2,
+              "70": 2,
+              "116": 1,
+              "80": 2,
+              "99": 1,
+              "72": 1,
+              "102": 1,
+              "109": 1,
+              "73": 1,
+              "66": 2,
+              "40": 1,
+              "24": 3,
+              "61": 1,
+              "47": 1,
+              "44": 1,
+              "54": 2,
+              "27": 1,
+              "43": 2,
+              "34": 1,
+              "36": 2,
+              "29": 2,
+              "62": 1,
+              "55": 1,
+              "49": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5537,
+              "recall": 0.131,
+              "f1": 0.2119,
+              "tp": 325,
+              "fp": 262,
+              "fn": 2156
+            },
+            "medium": {
+              "precision": 0.6235,
+              "recall": 0.2274,
+              "f1": 0.3333,
+              "tp": 679,
+              "fp": 410,
+              "fn": 2307
+            },
+            "large": {
+              "precision": 0.5171,
+              "recall": 0.5764,
+              "f1": 0.5452,
+              "tp": 166,
+              "fp": 155,
+              "fn": 122
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6791,
+              "recall": 0.568,
+              "f1": 0.6186,
+              "tp": 1090,
+              "fp": 515,
+              "fn": 829
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3048
+            },
+            "Truck": {
+              "precision": 0.1667,
+              "recall": 0.3333,
+              "f1": 0.2222,
+              "tp": 38,
+              "fp": 190,
+              "fn": 76
+            },
+            "Bus": {
+              "precision": 0.05,
+              "recall": 0.0149,
+              "f1": 0.023,
+              "tp": 3,
+              "fp": 57,
+              "fn": 198
+            },
+            "Bicycle": {
+              "precision": 0.4333,
+              "recall": 0.0825,
+              "f1": 0.1385,
+              "tp": 39,
+              "fp": 51,
+              "fn": 434
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 14,
+              "fn": 0
+            }
+          }
+        },
+        "b2208b0f-2796a692": {
+          "sequence_id": "b2208b0f-2796a692",
+          "frames_evaluated": 203,
+          "total_gt": 5365,
+          "total_preds": 2790,
+          "tp": 1730,
+          "fp": 1060,
+          "fn": 3635,
+          "precision": 0.6201,
+          "recall": 0.3225,
+          "f1": 0.4243,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2477,
+            "flicker_rate": 0.0694,
+            "total_flicker_events": 360,
+            "mean_dropout_gap_frames": 11.13,
+            "total_dropout_events": 312,
+            "dropout_gap_histogram": {
+              "1": 67,
+              "17": 2,
+              "2": 51,
+              "7": 11,
+              "59": 2,
+              "4": 26,
+              "5": 13,
+              "3": 28,
+              "13": 6,
+              "18": 2,
+              "23": 2,
+              "11": 5,
+              "40": 4,
+              "41": 2,
+              "27": 2,
+              "20": 7,
+              "9": 10,
+              "42": 1,
+              "49": 2,
+              "14": 4,
+              "6": 4,
+              "29": 1,
+              "26": 1,
+              "12": 8,
+              "19": 3,
+              "16": 4,
+              "8": 9,
+              "10": 7,
+              "32": 1,
+              "34": 3,
+              "43": 1,
+              "78": 1,
+              "117": 1,
+              "24": 3,
+              "44": 1,
+              "21": 2,
+              "61": 1,
+              "105": 1,
+              "57": 1,
+              "47": 1,
+              "87": 1,
+              "88": 1,
+              "82": 1,
+              "48": 1,
+              "15": 1,
+              "97": 1,
+              "53": 1,
+              "33": 1,
+              "71": 1,
+              "35": 1,
+              "38": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5202,
+              "recall": 0.1399,
+              "f1": 0.2205,
+              "tp": 374,
+              "fp": 345,
+              "fn": 2300
+            },
+            "medium": {
+              "precision": 0.6735,
+              "recall": 0.4904,
+              "f1": 0.5675,
+              "tp": 1118,
+              "fp": 542,
+              "fn": 1162
+            },
+            "large": {
+              "precision": 0.5791,
+              "recall": 0.5791,
+              "f1": 0.5791,
+              "tp": 238,
+              "fp": 173,
+              "fn": 173
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6439,
+              "recall": 0.524,
+              "f1": 0.5778,
+              "tp": 1703,
+              "fp": 942,
+              "fn": 1547
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1734
+            },
+            "Truck": {
+              "precision": 0.2812,
+              "recall": 0.1211,
+              "f1": 0.1693,
+              "tp": 27,
+              "fp": 69,
+              "fn": 196
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 38,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 158
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 11,
+              "fn": 0
+            }
+          }
+        },
+        "b2064e61-2beadd45": {
+          "sequence_id": "b2064e61-2beadd45",
+          "frames_evaluated": 203,
+          "total_gt": 2857,
+          "total_preds": 1973,
+          "tp": 1206,
+          "fp": 767,
+          "fn": 1651,
+          "precision": 0.6113,
+          "recall": 0.4221,
+          "f1": 0.4994,
+          "temporal_stability": {
+            "mean_track_coverage": 0.4208,
+            "flicker_rate": 0.0813,
+            "total_flicker_events": 227,
+            "mean_dropout_gap_frames": 10.45,
+            "total_dropout_events": 153,
+            "dropout_gap_histogram": {
+              "1": 49,
+              "6": 11,
+              "5": 9,
+              "8": 4,
+              "2": 22,
+              "3": 14,
+              "69": 1,
+              "20": 2,
+              "12": 1,
+              "71": 1,
+              "178": 1,
+              "61": 1,
+              "14": 3,
+              "4": 11,
+              "11": 3,
+              "81": 2,
+              "55": 1,
+              "101": 1,
+              "16": 2,
+              "80": 1,
+              "21": 1,
+              "73": 1,
+              "56": 1,
+              "7": 2,
+              "13": 1,
+              "10": 1,
+              "24": 1,
+              "17": 1,
+              "53": 1,
+              "23": 1,
+              "28": 1,
+              "9": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.3713,
+              "recall": 0.0541,
+              "f1": 0.0945,
+              "tp": 62,
+              "fp": 105,
+              "fn": 1083
+            },
+            "medium": {
+              "precision": 0.5532,
+              "recall": 0.5727,
+              "f1": 0.5628,
+              "tp": 697,
+              "fp": 563,
+              "fn": 520
+            },
+            "large": {
+              "precision": 0.8187,
+              "recall": 0.903,
+              "f1": 0.8588,
+              "tp": 447,
+              "fp": 99,
+              "fn": 48
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6103,
+              "recall": 0.4751,
+              "f1": 0.5343,
+              "tp": 1192,
+              "fp": 761,
+              "fn": 1317
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 29
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 37
+            },
+            "Bus": {
+              "precision": 0.7,
+              "recall": 0.0496,
+              "f1": 0.0927,
+              "tp": 14,
+              "fp": 6,
+              "fn": 268
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-03dcecc2": {
+          "sequence_id": "b1d0a191-03dcecc2",
+          "frames_evaluated": 202,
+          "total_gt": 3752,
+          "total_preds": 2272,
+          "tp": 1437,
+          "fp": 835,
+          "fn": 2315,
+          "precision": 0.6325,
+          "recall": 0.383,
+          "f1": 0.4771,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2299,
+            "flicker_rate": 0.049,
+            "total_flicker_events": 177,
+            "mean_dropout_gap_frames": 11.15,
+            "total_dropout_events": 196,
+            "dropout_gap_histogram": {
+              "77": 1,
+              "43": 1,
+              "1": 33,
+              "3": 14,
+              "12": 5,
+              "14": 6,
+              "16": 2,
+              "21": 2,
+              "20": 5,
+              "17": 8,
+              "18": 9,
+              "4": 12,
+              "9": 5,
+              "2": 21,
+              "6": 9,
+              "7": 9,
+              "26": 2,
+              "55": 1,
+              "62": 1,
+              "31": 2,
+              "8": 6,
+              "24": 1,
+              "22": 2,
+              "36": 2,
+              "35": 1,
+              "42": 1,
+              "5": 12,
+              "15": 6,
+              "13": 3,
+              "33": 1,
+              "79": 1,
+              "10": 1,
+              "54": 1,
+              "11": 4,
+              "41": 1,
+              "39": 1,
+              "59": 1,
+              "19": 1,
+              "25": 1,
+              "34": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.538,
+              "recall": 0.0741,
+              "f1": 0.1303,
+              "tp": 99,
+              "fp": 85,
+              "fn": 1237
+            },
+            "medium": {
+              "precision": 0.6453,
+              "recall": 0.4616,
+              "f1": 0.5382,
+              "tp": 764,
+              "fp": 420,
+              "fn": 891
+            },
+            "large": {
+              "precision": 0.635,
+              "recall": 0.7543,
+              "f1": 0.6895,
+              "tp": 574,
+              "fp": 330,
+              "fn": 187
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7187,
+              "recall": 0.6099,
+              "f1": 0.6598,
+              "tp": 1349,
+              "fp": 528,
+              "fn": 863
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1065
+            },
+            "Truck": {
+              "precision": 0.364,
+              "recall": 0.2628,
+              "f1": 0.3053,
+              "tp": 87,
+              "fp": 152,
+              "fn": 244
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 152,
+              "fn": 60
+            },
+            "Bicycle": {
+              "precision": 0.5,
+              "recall": 0.0119,
+              "f1": 0.0233,
+              "tp": 1,
+              "fp": 1,
+              "fn": 83
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 2,
+              "fn": 0
+            }
+          }
+        },
+        "b1d968b9-ce42734f": {
+          "sequence_id": "b1d968b9-ce42734f",
+          "frames_evaluated": 203,
+          "total_gt": 4138,
+          "total_preds": 3388,
+          "tp": 2364,
+          "fp": 1024,
+          "fn": 1774,
+          "precision": 0.6978,
+          "recall": 0.5713,
+          "f1": 0.6282,
+          "temporal_stability": {
+            "mean_track_coverage": 0.4956,
+            "flicker_rate": 0.0971,
+            "total_flicker_events": 387,
+            "mean_dropout_gap_frames": 6.17,
+            "total_dropout_events": 267,
+            "dropout_gap_histogram": {
+              "1": 96,
+              "3": 27,
+              "2": 50,
+              "24": 1,
+              "14": 3,
+              "11": 5,
+              "5": 10,
+              "60": 1,
+              "89": 1,
+              "12": 1,
+              "7": 12,
+              "19": 3,
+              "6": 8,
+              "17": 2,
+              "22": 2,
+              "8": 6,
+              "4": 16,
+              "9": 2,
+              "10": 6,
+              "13": 1,
+              "21": 1,
+              "20": 1,
+              "18": 1,
+              "91": 1,
+              "42": 2,
+              "86": 1,
+              "16": 1,
+              "27": 1,
+              "33": 1,
+              "28": 1,
+              "69": 1,
+              "50": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.7116,
+              "recall": 0.3654,
+              "f1": 0.4829,
+              "tp": 649,
+              "fp": 263,
+              "fn": 1127
+            },
+            "medium": {
+              "precision": 0.7085,
+              "recall": 0.6698,
+              "f1": 0.6886,
+              "tp": 1286,
+              "fp": 529,
+              "fn": 634
+            },
+            "large": {
+              "precision": 0.649,
+              "recall": 0.9706,
+              "f1": 0.7779,
+              "tp": 429,
+              "fp": 232,
+              "fn": 13
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.731,
+              "recall": 0.6442,
+              "f1": 0.6848,
+              "tp": 2337,
+              "fp": 860,
+              "fn": 1291
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 280
+            },
+            "Truck": {
+              "precision": 0.0862,
+              "recall": 0.0789,
+              "f1": 0.0824,
+              "tp": 15,
+              "fp": 159,
+              "fn": 175
+            },
+            "Bus": {
+              "precision": 0.7059,
+              "recall": 0.3243,
+              "f1": 0.4444,
+              "tp": 12,
+              "fp": 5,
+              "fn": 25
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1ca2e5d-84cf9134": {
+          "sequence_id": "b1ca2e5d-84cf9134",
+          "frames_evaluated": 203,
+          "total_gt": 4505,
+          "total_preds": 1583,
+          "tp": 997,
+          "fp": 586,
+          "fn": 3508,
+          "precision": 0.6298,
+          "recall": 0.2213,
+          "f1": 0.3275,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0865,
+            "flicker_rate": 0.0419,
+            "total_flicker_events": 178,
+            "mean_dropout_gap_frames": 10.48,
+            "total_dropout_events": 311,
+            "dropout_gap_histogram": {
+              "1": 63,
+              "2": 33,
+              "3": 35,
+              "4": 26,
+              "12": 10,
+              "5": 11,
+              "8": 9,
+              "11": 13,
+              "6": 16,
+              "7": 10,
+              "27": 5,
+              "15": 4,
+              "19": 3,
+              "17": 4,
+              "23": 2,
+              "13": 2,
+              "10": 9,
+              "14": 4,
+              "20": 2,
+              "29": 3,
+              "25": 6,
+              "60": 1,
+              "9": 4,
+              "73": 1,
+              "78": 1,
+              "56": 1,
+              "76": 1,
+              "57": 3,
+              "65": 1,
+              "63": 1,
+              "38": 1,
+              "52": 1,
+              "45": 1,
+              "48": 1,
+              "41": 2,
+              "58": 1,
+              "21": 5,
+              "30": 1,
+              "51": 1,
+              "22": 3,
+              "35": 1,
+              "31": 4,
+              "24": 3,
+              "37": 1,
+              "28": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.25,
+              "recall": 0.009,
+              "f1": 0.0174,
+              "tp": 8,
+              "fp": 24,
+              "fn": 878
+            },
+            "medium": {
+              "precision": 0.5508,
+              "recall": 0.1726,
+              "f1": 0.2628,
+              "tp": 374,
+              "fp": 305,
+              "fn": 1793
+            },
+            "large": {
+              "precision": 0.7053,
+              "recall": 0.4236,
+              "f1": 0.5293,
+              "tp": 615,
+              "fp": 257,
+              "fn": 837
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6876,
+              "recall": 0.6313,
+              "f1": 0.6582,
+              "tp": 856,
+              "fp": 389,
+              "fn": 500
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 2842
+            },
+            "Truck": {
+              "precision": 0.6557,
+              "recall": 0.4839,
+              "f1": 0.5568,
+              "tp": 120,
+              "fp": 63,
+              "fn": 128
+            },
+            "Bus": {
+              "precision": 0.137,
+              "recall": 0.5882,
+              "f1": 0.2222,
+              "tp": 20,
+              "fp": 126,
+              "fn": 14
+            },
+            "Bicycle": {
+              "precision": 0.25,
+              "recall": 0.04,
+              "f1": 0.069,
+              "tp": 1,
+              "fp": 3,
+              "fn": 24
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 5,
+              "fn": 0
+            }
+          }
+        }
+      }
+    },
+    "temporal_persistence_m2": {
+      "title": "Temporal Persistence M=2 with Stationary Preservation",
+      "params": {
+        "min_persistence": 2,
+        "preserve_stationary": true
+      },
+      "diagnostics": {
+        "total_suppressed_ephemeral_boxes": 3325,
+        "total_preserved_stationary_boxes": 10586
+      },
+      "aggregate_overall": {
+        "total_frames": 1621,
+        "total_gt": 39290,
+        "total_preds": 16949,
+        "tp": 11434,
+        "fp": 5515,
+        "fn": 27856,
+        "precision": 0.6746,
+        "recall": 0.291,
+        "f1": 0.4066,
+        "temporal_stability": {
+          "mean_track_coverage": 0.1897,
+          "flicker_rate": 0.0723,
+          "total_flicker_events": 2581,
+          "mean_dropout_gap_frames": 11.73,
+          "total_dropout_events": 2358
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.5683,
+            "recall": 0.0982,
+            "f1": 0.1675,
+            "tp": 1547,
+            "fp": 1175,
+            "fn": 14200
+          },
+          "medium": {
+            "precision": 0.6721,
+            "recall": 0.3358,
+            "f1": 0.4478,
+            "tp": 5631,
+            "fp": 2747,
+            "fn": 11139
+          },
+          "large": {
+            "precision": 0.7276,
+            "recall": 0.6284,
+            "f1": 0.6744,
+            "tp": 4256,
+            "fp": 1593,
+            "fn": 2517
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.717,
+            "recall": 0.431,
+            "f1": 0.5384,
+            "tp": 10868,
+            "fp": 4289,
+            "fn": 14346
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 10776
+          },
+          "Truck": {
+            "precision": 0.3921,
+            "recall": 0.2801,
+            "f1": 0.3268,
+            "tp": 507,
+            "fp": 786,
+            "fn": 1303
+          },
+          "Bus": {
+            "precision": 0.119,
+            "recall": 0.0716,
+            "f1": 0.0894,
+            "tp": 50,
+            "fp": 370,
+            "fn": 648
+          },
+          "Bicycle": {
+            "precision": 0.1475,
+            "recall": 0.0114,
+            "f1": 0.0211,
+            "tp": 9,
+            "fp": 52,
+            "fn": 783
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 18,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_dev": {
+        "total_frames": 810,
+        "total_gt": 24038,
+        "total_preds": 9479,
+        "tp": 6421,
+        "fp": 3058,
+        "fn": 17617,
+        "precision": 0.6774,
+        "recall": 0.2671,
+        "f1": 0.3831,
+        "temporal_stability": {
+          "mean_track_coverage": 0.1681,
+          "flicker_rate": 0.0624,
+          "total_flicker_events": 1397,
+          "mean_dropout_gap_frames": 14.42,
+          "total_dropout_events": 1251
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.5112,
+            "recall": 0.084,
+            "f1": 0.1443,
+            "tp": 891,
+            "fp": 852,
+            "fn": 9713
+          },
+          "medium": {
+            "precision": 0.6989,
+            "recall": 0.3184,
+            "f1": 0.4375,
+            "tp": 3124,
+            "fp": 1346,
+            "fn": 6687
+          },
+          "large": {
+            "precision": 0.7367,
+            "recall": 0.6641,
+            "f1": 0.6985,
+            "tp": 2406,
+            "fp": 860,
+            "fn": 1217
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7191,
+            "recall": 0.3918,
+            "f1": 0.5072,
+            "tp": 6076,
+            "fp": 2373,
+            "fn": 9433
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 6560
+          },
+          "Truck": {
+            "precision": 0.4067,
+            "recall": 0.3257,
+            "f1": 0.3617,
+            "tp": 327,
+            "fp": 477,
+            "fn": 677
+          },
+          "Bus": {
+            "precision": 0.0584,
+            "recall": 0.0316,
+            "f1": 0.041,
+            "tp": 9,
+            "fp": 145,
+            "fn": 276
+          },
+          "Bicycle": {
+            "precision": 0.1552,
+            "recall": 0.0132,
+            "f1": 0.0244,
+            "tp": 9,
+            "fp": 49,
+            "fn": 671
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 14,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_locked_test": {
+        "total_frames": 811,
+        "total_gt": 15252,
+        "total_preds": 7470,
+        "tp": 5013,
+        "fp": 2457,
+        "fn": 10239,
+        "precision": 0.6711,
+        "recall": 0.3287,
+        "f1": 0.4412,
+        "temporal_stability": {
+          "mean_track_coverage": 0.2113,
+          "flicker_rate": 0.0822,
+          "total_flicker_events": 1184,
+          "mean_dropout_gap_frames": 9.04,
+          "total_dropout_events": 1107
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.6701,
+            "recall": 0.1276,
+            "f1": 0.2143,
+            "tp": 656,
+            "fp": 323,
+            "fn": 4487
+          },
+          "medium": {
+            "precision": 0.6415,
+            "recall": 0.3603,
+            "f1": 0.4614,
+            "tp": 2507,
+            "fp": 1401,
+            "fn": 4452
+          },
+          "large": {
+            "precision": 0.7162,
+            "recall": 0.5873,
+            "f1": 0.6454,
+            "tp": 1850,
+            "fp": 733,
+            "fn": 1300
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7144,
+            "recall": 0.4938,
+            "f1": 0.5839,
+            "tp": 4792,
+            "fp": 1916,
+            "fn": 4913
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4216
+          },
+          "Truck": {
+            "precision": 0.3681,
+            "recall": 0.2233,
+            "f1": 0.278,
+            "tp": 180,
+            "fp": 309,
+            "fn": 626
+          },
+          "Bus": {
+            "precision": 0.1541,
+            "recall": 0.0993,
+            "f1": 0.1208,
+            "tp": 41,
+            "fp": 225,
+            "fn": 372
+          },
+          "Bicycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 3,
+            "fn": 112
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 4,
+            "fn": 0
+          }
+        }
+      },
+      "per_sequence": {
+        "b1e9ee0e-67e26f2e": {
+          "sequence_id": "b1e9ee0e-67e26f2e",
+          "frames_evaluated": 203,
+          "total_gt": 8719,
+          "total_preds": 3596,
+          "tp": 2475,
+          "fp": 1121,
+          "fn": 6244,
+          "precision": 0.6883,
+          "recall": 0.2839,
+          "f1": 0.4019,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2164,
+            "flicker_rate": 0.047,
+            "total_flicker_events": 407,
+            "mean_dropout_gap_frames": 25.13,
+            "total_dropout_events": 246,
+            "dropout_gap_histogram": {
+              "2": 34,
+              "157": 1,
+              "20": 2,
+              "22": 1,
+              "200": 5,
+              "6": 8,
+              "4": 17,
+              "12": 8,
+              "9": 7,
+              "49": 1,
+              "51": 1,
+              "18": 3,
+              "30": 2,
+              "3": 30,
+              "7": 12,
+              "13": 3,
+              "11": 6,
+              "43": 1,
+              "14": 2,
+              "23": 1,
+              "15": 3,
+              "8": 7,
+              "10": 3,
+              "5": 12,
+              "201": 7,
+              "62": 1,
+              "1": 35,
+              "17": 1,
+              "89": 1,
+              "96": 1,
+              "103": 1,
+              "36": 1,
+              "44": 1,
+              "118": 1,
+              "202": 1,
+              "41": 3,
+              "94": 1,
+              "105": 1,
+              "71": 1,
+              "54": 1,
+              "59": 1,
+              "32": 3,
+              "31": 1,
+              "21": 2,
+              "167": 1,
+              "35": 1,
+              "198": 1,
+              "26": 2,
+              "29": 1,
+              "19": 1,
+              "85": 1,
+              "91": 1,
+              "152": 1,
+              "129": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.4158,
+              "recall": 0.0691,
+              "f1": 0.1185,
+              "tp": 284,
+              "fp": 399,
+              "fn": 3827
+            },
+            "medium": {
+              "precision": 0.6932,
+              "recall": 0.3169,
+              "f1": 0.4349,
+              "tp": 924,
+              "fp": 409,
+              "fn": 1992
+            },
+            "large": {
+              "precision": 0.8019,
+              "recall": 0.7488,
+              "f1": 0.7744,
+              "tp": 1267,
+              "fp": 313,
+              "fn": 425
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7114,
+              "recall": 0.3173,
+              "f1": 0.4389,
+              "tp": 2475,
+              "fp": 1004,
+              "fn": 5325
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 631
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 117,
+              "fn": 288
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-65deaeef": {
+          "sequence_id": "b1d0a191-65deaeef",
+          "frames_evaluated": 202,
+          "total_gt": 4199,
+          "total_preds": 2053,
+          "tp": 1516,
+          "fp": 537,
+          "fn": 2683,
+          "precision": 0.7384,
+          "recall": 0.361,
+          "f1": 0.485,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2301,
+            "flicker_rate": 0.0674,
+            "total_flicker_events": 276,
+            "mean_dropout_gap_frames": 11.62,
+            "total_dropout_events": 222,
+            "dropout_gap_histogram": {
+              "1": 43,
+              "3": 21,
+              "13": 4,
+              "30": 4,
+              "5": 21,
+              "9": 5,
+              "2": 29,
+              "6": 14,
+              "42": 1,
+              "4": 14,
+              "8": 6,
+              "14": 1,
+              "7": 5,
+              "31": 2,
+              "15": 2,
+              "19": 1,
+              "60": 1,
+              "21": 4,
+              "52": 1,
+              "20": 3,
+              "23": 3,
+              "12": 1,
+              "27": 1,
+              "104": 1,
+              "33": 1,
+              "63": 1,
+              "22": 4,
+              "17": 2,
+              "11": 3,
+              "16": 1,
+              "37": 2,
+              "89": 1,
+              "39": 1,
+              "57": 1,
+              "90": 1,
+              "74": 1,
+              "54": 1,
+              "77": 1,
+              "40": 1,
+              "18": 2,
+              "69": 1,
+              "29": 1,
+              "32": 2,
+              "47": 1,
+              "35": 2,
+              "24": 1,
+              "26": 1,
+              "10": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.6667,
+              "recall": 0.0239,
+              "f1": 0.0462,
+              "tp": 32,
+              "fp": 16,
+              "fn": 1306
+            },
+            "medium": {
+              "precision": 0.7284,
+              "recall": 0.4131,
+              "f1": 0.5272,
+              "tp": 673,
+              "fp": 251,
+              "fn": 956
+            },
+            "large": {
+              "precision": 0.7502,
+              "recall": 0.6583,
+              "f1": 0.7013,
+              "tp": 811,
+              "fp": 270,
+              "fn": 421
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.8013,
+              "recall": 0.4843,
+              "f1": 0.6037,
+              "tp": 1230,
+              "fp": 305,
+              "fn": 1310
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1147
+            },
+            "Truck": {
+              "precision": 0.6459,
+              "recall": 0.7124,
+              "f1": 0.6775,
+              "tp": 270,
+              "fp": 148,
+              "fn": 109
+            },
+            "Bus": {
+              "precision": 0.0814,
+              "recall": 0.0833,
+              "f1": 0.0824,
+              "tp": 7,
+              "fp": 79,
+              "fn": 77
+            },
+            "Bicycle": {
+              "precision": 0.6923,
+              "recall": 0.1837,
+              "f1": 0.2903,
+              "tp": 9,
+              "fp": 4,
+              "fn": 40
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 0
+            }
+          }
+        },
+        "b24071b8-b3ee1196": {
+          "sequence_id": "b24071b8-b3ee1196",
+          "frames_evaluated": 202,
+          "total_gt": 5755,
+          "total_preds": 1613,
+          "tp": 976,
+          "fp": 637,
+          "fn": 4779,
+          "precision": 0.6051,
+          "recall": 0.1696,
+          "f1": 0.2649,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0464,
+            "flicker_rate": 0.0452,
+            "total_flicker_events": 246,
+            "mean_dropout_gap_frames": 11.12,
+            "total_dropout_events": 402,
+            "dropout_gap_histogram": {
+              "1": 79,
+              "7": 16,
+              "2": 64,
+              "6": 17,
+              "3": 33,
+              "9": 17,
+              "4": 32,
+              "22": 4,
+              "5": 23,
+              "11": 9,
+              "16": 7,
+              "96": 1,
+              "15": 7,
+              "87": 1,
+              "20": 2,
+              "12": 6,
+              "8": 12,
+              "26": 3,
+              "13": 5,
+              "28": 1,
+              "10": 7,
+              "19": 3,
+              "99": 2,
+              "14": 2,
+              "60": 1,
+              "25": 4,
+              "17": 6,
+              "21": 3,
+              "18": 2,
+              "70": 2,
+              "116": 1,
+              "80": 2,
+              "72": 1,
+              "102": 1,
+              "109": 1,
+              "73": 1,
+              "66": 2,
+              "40": 1,
+              "61": 1,
+              "98": 1,
+              "47": 1,
+              "44": 1,
+              "54": 2,
+              "27": 1,
+              "56": 1,
+              "43": 2,
+              "34": 1,
+              "36": 2,
+              "24": 3,
+              "29": 2,
+              "62": 1,
+              "55": 1,
+              "49": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5853,
+              "recall": 0.1092,
+              "f1": 0.1841,
+              "tp": 271,
+              "fp": 192,
+              "fn": 2210
+            },
+            "medium": {
+              "precision": 0.6439,
+              "recall": 0.1896,
+              "f1": 0.2929,
+              "tp": 566,
+              "fp": 313,
+              "fn": 2420
+            },
+            "large": {
+              "precision": 0.5129,
+              "recall": 0.4826,
+              "f1": 0.4973,
+              "tp": 139,
+              "fp": 132,
+              "fn": 149
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7128,
+              "recall": 0.4914,
+              "f1": 0.5817,
+              "tp": 943,
+              "fp": 380,
+              "fn": 976
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3048
+            },
+            "Truck": {
+              "precision": 0.1566,
+              "recall": 0.2719,
+              "f1": 0.1987,
+              "tp": 31,
+              "fp": 167,
+              "fn": 83
+            },
+            "Bus": {
+              "precision": 0.05,
+              "recall": 0.01,
+              "f1": 0.0166,
+              "tp": 2,
+              "fp": 38,
+              "fn": 199
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 45,
+              "fn": 473
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 7,
+              "fn": 0
+            }
+          }
+        },
+        "b2208b0f-2796a692": {
+          "sequence_id": "b2208b0f-2796a692",
+          "frames_evaluated": 203,
+          "total_gt": 5365,
+          "total_preds": 2217,
+          "tp": 1454,
+          "fp": 763,
+          "fn": 3911,
+          "precision": 0.6558,
+          "recall": 0.271,
+          "f1": 0.3835,
+          "temporal_stability": {
+            "mean_track_coverage": 0.1797,
+            "flicker_rate": 0.0902,
+            "total_flicker_events": 468,
+            "mean_dropout_gap_frames": 9.81,
+            "total_dropout_events": 381,
+            "dropout_gap_histogram": {
+              "1": 104,
+              "3": 42,
+              "2": 59,
+              "18": 4,
+              "7": 7,
+              "59": 2,
+              "4": 33,
+              "5": 11,
+              "14": 2,
+              "22": 2,
+              "10": 9,
+              "23": 2,
+              "17": 3,
+              "40": 4,
+              "41": 2,
+              "27": 1,
+              "20": 8,
+              "9": 11,
+              "6": 7,
+              "42": 1,
+              "64": 1,
+              "11": 3,
+              "15": 3,
+              "29": 1,
+              "26": 1,
+              "13": 6,
+              "36": 1,
+              "12": 8,
+              "19": 4,
+              "16": 3,
+              "21": 2,
+              "8": 8,
+              "32": 2,
+              "34": 3,
+              "43": 1,
+              "78": 1,
+              "117": 1,
+              "30": 1,
+              "44": 1,
+              "61": 1,
+              "105": 1,
+              "57": 1,
+              "24": 1,
+              "47": 1,
+              "87": 1,
+              "88": 1,
+              "82": 1,
+              "48": 1,
+              "49": 1,
+              "97": 1,
+              "54": 1,
+              "33": 1,
+              "71": 1,
+              "35": 1,
+              "38": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5537,
+              "recall": 0.1137,
+              "f1": 0.1886,
+              "tp": 304,
+              "fp": 245,
+              "fn": 2370
+            },
+            "medium": {
+              "precision": 0.7204,
+              "recall": 0.4215,
+              "f1": 0.5318,
+              "tp": 961,
+              "fp": 373,
+              "fn": 1319
+            },
+            "large": {
+              "precision": 0.5659,
+              "recall": 0.4599,
+              "f1": 0.5074,
+              "tp": 189,
+              "fp": 145,
+              "fn": 222
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6761,
+              "recall": 0.4394,
+              "f1": 0.5326,
+              "tp": 1428,
+              "fp": 684,
+              "fn": 1822
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1734
+            },
+            "Truck": {
+              "precision": 0.3662,
+              "recall": 0.1166,
+              "f1": 0.1769,
+              "tp": 26,
+              "fp": 45,
+              "fn": 197
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 28,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 158
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 6,
+              "fn": 0
+            }
+          }
+        },
+        "b2064e61-2beadd45": {
+          "sequence_id": "b2064e61-2beadd45",
+          "frames_evaluated": 203,
+          "total_gt": 2857,
+          "total_preds": 1576,
+          "tp": 1030,
+          "fp": 546,
+          "fn": 1827,
+          "precision": 0.6536,
+          "recall": 0.3605,
+          "f1": 0.4647,
+          "temporal_stability": {
+            "mean_track_coverage": 0.3165,
+            "flicker_rate": 0.097,
+            "total_flicker_events": 271,
+            "mean_dropout_gap_frames": 9.53,
+            "total_dropout_events": 185,
+            "dropout_gap_histogram": {
+              "1": 64,
+              "2": 27,
+              "7": 5,
+              "6": 9,
+              "9": 4,
+              "3": 23,
+              "5": 7,
+              "72": 1,
+              "20": 3,
+              "12": 4,
+              "73": 1,
+              "178": 1,
+              "62": 1,
+              "11": 3,
+              "82": 2,
+              "10": 3,
+              "56": 2,
+              "102": 1,
+              "17": 1,
+              "81": 1,
+              "21": 1,
+              "16": 2,
+              "74": 1,
+              "14": 2,
+              "13": 3,
+              "8": 3,
+              "4": 5,
+              "24": 1,
+              "18": 1,
+              "53": 1,
+              "23": 1,
+              "28": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.3727,
+              "recall": 0.0358,
+              "f1": 0.0653,
+              "tp": 41,
+              "fp": 69,
+              "fn": 1104
+            },
+            "medium": {
+              "precision": 0.5945,
+              "recall": 0.4832,
+              "f1": 0.5331,
+              "tp": 588,
+              "fp": 401,
+              "fn": 629
+            },
+            "large": {
+              "precision": 0.8407,
+              "recall": 0.8101,
+              "f1": 0.8251,
+              "tp": 401,
+              "fp": 76,
+              "fn": 94
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6526,
+              "recall": 0.4057,
+              "f1": 0.5004,
+              "tp": 1018,
+              "fp": 542,
+              "fn": 1491
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 29
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 37
+            },
+            "Bus": {
+              "precision": 0.75,
+              "recall": 0.0426,
+              "f1": 0.0805,
+              "tp": 12,
+              "fp": 4,
+              "fn": 270
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-03dcecc2": {
+          "sequence_id": "b1d0a191-03dcecc2",
+          "frames_evaluated": 202,
+          "total_gt": 3752,
+          "total_preds": 1860,
+          "tp": 1213,
+          "fp": 647,
+          "fn": 2539,
+          "precision": 0.6522,
+          "recall": 0.3233,
+          "f1": 0.4323,
+          "temporal_stability": {
+            "mean_track_coverage": 0.1642,
+            "flicker_rate": 0.0579,
+            "total_flicker_events": 209,
+            "mean_dropout_gap_frames": 10.56,
+            "total_dropout_events": 227,
+            "dropout_gap_histogram": {
+              "78": 1,
+              "45": 1,
+              "2": 17,
+              "4": 13,
+              "13": 4,
+              "3": 19,
+              "14": 6,
+              "16": 2,
+              "21": 2,
+              "20": 3,
+              "17": 8,
+              "18": 8,
+              "5": 15,
+              "1": 44,
+              "8": 11,
+              "7": 8,
+              "22": 3,
+              "10": 3,
+              "23": 2,
+              "9": 7,
+              "27": 2,
+              "55": 1,
+              "62": 1,
+              "31": 1,
+              "24": 1,
+              "6": 12,
+              "36": 1,
+              "35": 1,
+              "11": 6,
+              "42": 1,
+              "15": 6,
+              "37": 1,
+              "33": 1,
+              "80": 1,
+              "54": 1,
+              "41": 1,
+              "19": 2,
+              "12": 4,
+              "39": 1,
+              "59": 1,
+              "25": 1,
+              "34": 1,
+              "32": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.6077,
+              "recall": 0.0591,
+              "f1": 0.1078,
+              "tp": 79,
+              "fp": 51,
+              "fn": 1257
+            },
+            "medium": {
+              "precision": 0.6485,
+              "recall": 0.3589,
+              "f1": 0.4621,
+              "tp": 594,
+              "fp": 322,
+              "fn": 1061
+            },
+            "large": {
+              "precision": 0.6634,
+              "recall": 0.7096,
+              "f1": 0.6857,
+              "tp": 540,
+              "fp": 274,
+              "fn": 221
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7464,
+              "recall": 0.5163,
+              "f1": 0.6104,
+              "tp": 1142,
+              "fp": 388,
+              "fn": 1070
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1065
+            },
+            "Truck": {
+              "precision": 0.3463,
+              "recall": 0.2145,
+              "f1": 0.2649,
+              "tp": 71,
+              "fp": 134,
+              "fn": 260
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 123,
+              "fn": 60
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 84
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 0
+            }
+          }
+        },
+        "b1d968b9-ce42734f": {
+          "sequence_id": "b1d968b9-ce42734f",
+          "frames_evaluated": 203,
+          "total_gt": 4138,
+          "total_preds": 2747,
+          "tp": 1893,
+          "fp": 854,
+          "fn": 2245,
+          "precision": 0.6891,
+          "recall": 0.4575,
+          "f1": 0.5499,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2949,
+            "flicker_rate": 0.1308,
+            "total_flicker_events": 521,
+            "mean_dropout_gap_frames": 5.62,
+            "total_dropout_events": 373,
+            "dropout_gap_histogram": {
+              "1": 126,
+              "3": 41,
+              "6": 17,
+              "8": 11,
+              "5": 17,
+              "25": 1,
+              "17": 2,
+              "9": 4,
+              "2": 69,
+              "4": 27,
+              "11": 4,
+              "60": 1,
+              "89": 1,
+              "14": 8,
+              "19": 2,
+              "7": 11,
+              "23": 1,
+              "12": 3,
+              "13": 3,
+              "10": 6,
+              "22": 2,
+              "18": 2,
+              "20": 2,
+              "99": 1,
+              "42": 2,
+              "86": 1,
+              "16": 1,
+              "27": 1,
+              "33": 1,
+              "28": 1,
+              "69": 1,
+              "50": 1,
+              "15": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.7354,
+              "recall": 0.2973,
+              "f1": 0.4234,
+              "tp": 528,
+              "fp": 190,
+              "fn": 1248
+            },
+            "medium": {
+              "precision": 0.6919,
+              "recall": 0.537,
+              "f1": 0.6047,
+              "tp": 1031,
+              "fp": 459,
+              "fn": 889
+            },
+            "large": {
+              "precision": 0.6197,
+              "recall": 0.7557,
+              "f1": 0.6809,
+              "tp": 334,
+              "fp": 205,
+              "fn": 108
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.722,
+              "recall": 0.5168,
+              "f1": 0.6024,
+              "tp": 1875,
+              "fp": 722,
+              "fn": 1753
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 280
+            },
+            "Truck": {
+              "precision": 0.0588,
+              "recall": 0.0421,
+              "f1": 0.0491,
+              "tp": 8,
+              "fp": 128,
+              "fn": 182
+            },
+            "Bus": {
+              "precision": 0.7143,
+              "recall": 0.2703,
+              "f1": 0.3922,
+              "tp": 10,
+              "fp": 4,
+              "fn": 27
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1ca2e5d-84cf9134": {
+          "sequence_id": "b1ca2e5d-84cf9134",
+          "frames_evaluated": 203,
+          "total_gt": 4505,
+          "total_preds": 1287,
+          "tp": 877,
+          "fp": 410,
+          "fn": 3628,
+          "precision": 0.6814,
+          "recall": 0.1947,
+          "f1": 0.3028,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0694,
+            "flicker_rate": 0.0431,
+            "total_flicker_events": 183,
+            "mean_dropout_gap_frames": 10.46,
+            "total_dropout_events": 322,
+            "dropout_gap_histogram": {
+              "1": 54,
+              "2": 50,
+              "3": 34,
+              "5": 16,
+              "13": 6,
+              "4": 22,
+              "8": 10,
+              "21": 6,
+              "11": 11,
+              "7": 15,
+              "6": 10,
+              "27": 5,
+              "15": 3,
+              "19": 4,
+              "17": 4,
+              "23": 2,
+              "12": 7,
+              "10": 9,
+              "20": 2,
+              "29": 2,
+              "26": 1,
+              "16": 2,
+              "18": 1,
+              "61": 1,
+              "14": 4,
+              "73": 1,
+              "78": 1,
+              "56": 1,
+              "76": 1,
+              "57": 3,
+              "65": 1,
+              "63": 1,
+              "30": 2,
+              "9": 4,
+              "38": 1,
+              "52": 1,
+              "45": 1,
+              "48": 1,
+              "41": 2,
+              "58": 1,
+              "51": 1,
+              "22": 3,
+              "35": 1,
+              "31": 4,
+              "24": 3,
+              "25": 5,
+              "37": 1,
+              "28": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.381,
+              "recall": 0.009,
+              "f1": 0.0176,
+              "tp": 8,
+              "fp": 13,
+              "fn": 878
+            },
+            "medium": {
+              "precision": 0.5731,
+              "recall": 0.1357,
+              "f1": 0.2194,
+              "tp": 294,
+              "fp": 219,
+              "fn": 1873
+            },
+            "large": {
+              "precision": 0.7636,
+              "recall": 0.396,
+              "f1": 0.5215,
+              "tp": 575,
+              "fp": 178,
+              "fn": 877
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7414,
+              "recall": 0.5583,
+              "f1": 0.6369,
+              "tp": 757,
+              "fp": 264,
+              "fn": 599
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 2842
+            },
+            "Truck": {
+              "precision": 0.6824,
+              "recall": 0.4073,
+              "f1": 0.5101,
+              "tp": 101,
+              "fp": 47,
+              "fn": 147
+            },
+            "Bus": {
+              "precision": 0.1681,
+              "recall": 0.5588,
+              "f1": 0.2585,
+              "tp": 19,
+              "fp": 94,
+              "fn": 15
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 2,
+              "fn": 25
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 3,
+              "fn": 0
+            }
+          }
+        }
+      }
+    },
+    "temporal_persistence_m3": {
+      "title": "Temporal Persistence M=3 with Stationary Preservation",
+      "params": {
+        "min_persistence": 3,
+        "preserve_stationary": true
+      },
+      "diagnostics": {
+        "total_suppressed_ephemeral_boxes": 4281,
+        "total_preserved_stationary_boxes": 10586
+      },
+      "aggregate_overall": {
+        "total_frames": 1621,
+        "total_gt": 39290,
+        "total_preds": 15993,
+        "tp": 10806,
+        "fp": 5187,
+        "fn": 28484,
+        "precision": 0.6757,
+        "recall": 0.275,
+        "f1": 0.3909,
+        "temporal_stability": {
+          "mean_track_coverage": 0.169,
+          "flicker_rate": 0.0689,
+          "total_flicker_events": 2471,
+          "mean_dropout_gap_frames": 11.99,
+          "total_dropout_events": 2353
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.5658,
+            "recall": 0.0893,
+            "f1": 0.1542,
+            "tp": 1406,
+            "fp": 1079,
+            "fn": 14341
+          },
+          "medium": {
+            "precision": 0.6707,
+            "recall": 0.3135,
+            "f1": 0.4273,
+            "tp": 5257,
+            "fp": 2581,
+            "fn": 11513
+          },
+          "large": {
+            "precision": 0.7307,
+            "recall": 0.6117,
+            "f1": 0.6659,
+            "tp": 4143,
+            "fp": 1527,
+            "fn": 2630
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7183,
+            "recall": 0.4069,
+            "f1": 0.5195,
+            "tp": 10260,
+            "fp": 4023,
+            "fn": 14954
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 10776
+          },
+          "Truck": {
+            "precision": 0.3969,
+            "recall": 0.2713,
+            "f1": 0.3223,
+            "tp": 491,
+            "fp": 746,
+            "fn": 1319
+          },
+          "Bus": {
+            "precision": 0.1178,
+            "recall": 0.0673,
+            "f1": 0.0857,
+            "tp": 47,
+            "fp": 352,
+            "fn": 651
+          },
+          "Bicycle": {
+            "precision": 0.1379,
+            "recall": 0.0101,
+            "f1": 0.0188,
+            "tp": 8,
+            "fp": 50,
+            "fn": 784
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 16,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_dev": {
+        "total_frames": 810,
+        "total_gt": 24038,
+        "total_preds": 9039,
+        "tp": 6139,
+        "fp": 2900,
+        "fn": 17899,
+        "precision": 0.6792,
+        "recall": 0.2554,
+        "f1": 0.3712,
+        "temporal_stability": {
+          "mean_track_coverage": 0.1546,
+          "flicker_rate": 0.0603,
+          "total_flicker_events": 1353,
+          "mean_dropout_gap_frames": 14.62,
+          "total_dropout_events": 1247
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.509,
+            "recall": 0.0773,
+            "f1": 0.1343,
+            "tp": 820,
+            "fp": 791,
+            "fn": 9784
+          },
+          "medium": {
+            "precision": 0.6991,
+            "recall": 0.3014,
+            "f1": 0.4212,
+            "tp": 2957,
+            "fp": 1273,
+            "fn": 6854
+          },
+          "large": {
+            "precision": 0.7386,
+            "recall": 0.6519,
+            "f1": 0.6926,
+            "tp": 2362,
+            "fp": 836,
+            "fn": 1261
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7206,
+            "recall": 0.3739,
+            "f1": 0.4923,
+            "tp": 5799,
+            "fp": 2249,
+            "fn": 9710
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 6560
+          },
+          "Truck": {
+            "precision": 0.4157,
+            "recall": 0.3217,
+            "f1": 0.3627,
+            "tp": 323,
+            "fp": 454,
+            "fn": 681
+          },
+          "Bus": {
+            "precision": 0.0616,
+            "recall": 0.0316,
+            "f1": 0.0418,
+            "tp": 9,
+            "fp": 137,
+            "fn": 276
+          },
+          "Bicycle": {
+            "precision": 0.1455,
+            "recall": 0.0118,
+            "f1": 0.0218,
+            "tp": 8,
+            "fp": 47,
+            "fn": 672
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 13,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_locked_test": {
+        "total_frames": 811,
+        "total_gt": 15252,
+        "total_preds": 6954,
+        "tp": 4667,
+        "fp": 2287,
+        "fn": 10585,
+        "precision": 0.6711,
+        "recall": 0.306,
+        "f1": 0.4203,
+        "temporal_stability": {
+          "mean_track_coverage": 0.1834,
+          "flicker_rate": 0.0776,
+          "total_flicker_events": 1118,
+          "mean_dropout_gap_frames": 9.37,
+          "total_dropout_events": 1106
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.6705,
+            "recall": 0.1139,
+            "f1": 0.1948,
+            "tp": 586,
+            "fp": 288,
+            "fn": 4557
+          },
+          "medium": {
+            "precision": 0.6375,
+            "recall": 0.3305,
+            "f1": 0.4353,
+            "tp": 2300,
+            "fp": 1308,
+            "fn": 4659
+          },
+          "large": {
+            "precision": 0.7205,
+            "recall": 0.5654,
+            "f1": 0.6336,
+            "tp": 1781,
+            "fp": 691,
+            "fn": 1369
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7155,
+            "recall": 0.4597,
+            "f1": 0.5597,
+            "tp": 4461,
+            "fp": 1774,
+            "fn": 5244
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4216
+          },
+          "Truck": {
+            "precision": 0.3652,
+            "recall": 0.2084,
+            "f1": 0.2654,
+            "tp": 168,
+            "fp": 292,
+            "fn": 638
+          },
+          "Bus": {
+            "precision": 0.1502,
+            "recall": 0.092,
+            "f1": 0.1141,
+            "tp": 38,
+            "fp": 215,
+            "fn": 375
+          },
+          "Bicycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 3,
+            "fn": 112
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 3,
+            "fn": 0
+          }
+        }
+      },
+      "per_sequence": {
+        "b1e9ee0e-67e26f2e": {
+          "sequence_id": "b1e9ee0e-67e26f2e",
+          "frames_evaluated": 203,
+          "total_gt": 8719,
+          "total_preds": 3543,
+          "tp": 2447,
+          "fp": 1096,
+          "fn": 6272,
+          "precision": 0.6907,
+          "recall": 0.2807,
+          "f1": 0.3991,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2083,
+            "flicker_rate": 0.0473,
+            "total_flicker_events": 409,
+            "mean_dropout_gap_frames": 24.94,
+            "total_dropout_events": 249,
+            "dropout_gap_histogram": {
+              "2": 34,
+              "157": 1,
+              "20": 2,
+              "22": 1,
+              "200": 5,
+              "6": 9,
+              "4": 23,
+              "12": 8,
+              "9": 7,
+              "49": 1,
+              "51": 1,
+              "18": 3,
+              "30": 2,
+              "3": 28,
+              "7": 11,
+              "13": 3,
+              "11": 5,
+              "43": 1,
+              "14": 2,
+              "23": 1,
+              "15": 4,
+              "8": 9,
+              "10": 3,
+              "5": 10,
+              "201": 7,
+              "62": 1,
+              "1": 34,
+              "17": 1,
+              "89": 1,
+              "96": 1,
+              "103": 1,
+              "36": 1,
+              "44": 1,
+              "118": 1,
+              "202": 1,
+              "41": 3,
+              "94": 1,
+              "105": 1,
+              "71": 1,
+              "54": 1,
+              "59": 1,
+              "33": 2,
+              "31": 1,
+              "21": 2,
+              "167": 1,
+              "35": 1,
+              "198": 1,
+              "26": 2,
+              "29": 1,
+              "19": 1,
+              "85": 1,
+              "91": 1,
+              "152": 1,
+              "129": 1,
+              "32": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.4152,
+              "recall": 0.0667,
+              "f1": 0.1149,
+              "tp": 274,
+              "fp": 386,
+              "fn": 3837
+            },
+            "medium": {
+              "precision": 0.6952,
+              "recall": 0.3121,
+              "f1": 0.4308,
+              "tp": 910,
+              "fp": 399,
+              "fn": 2006
+            },
+            "large": {
+              "precision": 0.8024,
+              "recall": 0.7465,
+              "f1": 0.7734,
+              "tp": 1263,
+              "fp": 311,
+              "fn": 429
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.714,
+              "recall": 0.3137,
+              "f1": 0.4359,
+              "tp": 2447,
+              "fp": 980,
+              "fn": 5353
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 631
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 116,
+              "fn": 288
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-65deaeef": {
+          "sequence_id": "b1d0a191-65deaeef",
+          "frames_evaluated": 202,
+          "total_gt": 4199,
+          "total_preds": 1970,
+          "tp": 1458,
+          "fp": 512,
+          "fn": 2741,
+          "precision": 0.7401,
+          "recall": 0.3472,
+          "f1": 0.4727,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2166,
+            "flicker_rate": 0.0664,
+            "total_flicker_events": 272,
+            "mean_dropout_gap_frames": 11.94,
+            "total_dropout_events": 221,
+            "dropout_gap_histogram": {
+              "1": 40,
+              "4": 14,
+              "13": 5,
+              "30": 3,
+              "6": 18,
+              "9": 7,
+              "2": 26,
+              "3": 19,
+              "43": 1,
+              "5": 18,
+              "8": 4,
+              "10": 2,
+              "7": 9,
+              "14": 1,
+              "31": 3,
+              "15": 1,
+              "19": 1,
+              "60": 1,
+              "21": 4,
+              "52": 1,
+              "20": 3,
+              "23": 3,
+              "28": 2,
+              "104": 1,
+              "33": 1,
+              "63": 1,
+              "12": 1,
+              "17": 3,
+              "11": 3,
+              "16": 1,
+              "22": 3,
+              "37": 2,
+              "89": 1,
+              "39": 1,
+              "57": 1,
+              "90": 1,
+              "74": 1,
+              "54": 1,
+              "77": 1,
+              "40": 1,
+              "18": 2,
+              "69": 1,
+              "29": 1,
+              "32": 2,
+              "47": 1,
+              "35": 2,
+              "24": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.6667,
+              "recall": 0.0224,
+              "f1": 0.0434,
+              "tp": 30,
+              "fp": 15,
+              "fn": 1308
+            },
+            "medium": {
+              "precision": 0.7261,
+              "recall": 0.3874,
+              "f1": 0.5052,
+              "tp": 631,
+              "fp": 238,
+              "fn": 998
+            },
+            "large": {
+              "precision": 0.7547,
+              "recall": 0.6469,
+              "f1": 0.6967,
+              "tp": 797,
+              "fp": 259,
+              "fn": 435
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.8019,
+              "recall": 0.4622,
+              "f1": 0.5864,
+              "tp": 1174,
+              "fp": 290,
+              "fn": 1366
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1147
+            },
+            "Truck": {
+              "precision": 0.6593,
+              "recall": 0.7098,
+              "f1": 0.6836,
+              "tp": 269,
+              "fp": 139,
+              "fn": 110
+            },
+            "Bus": {
+              "precision": 0.0824,
+              "recall": 0.0833,
+              "f1": 0.0828,
+              "tp": 7,
+              "fp": 78,
+              "fn": 77
+            },
+            "Bicycle": {
+              "precision": 0.6667,
+              "recall": 0.1633,
+              "f1": 0.2623,
+              "tp": 8,
+              "fp": 4,
+              "fn": 41
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 0
+            }
+          }
+        },
+        "b24071b8-b3ee1196": {
+          "sequence_id": "b24071b8-b3ee1196",
+          "frames_evaluated": 202,
+          "total_gt": 5755,
+          "total_preds": 1502,
+          "tp": 909,
+          "fp": 593,
+          "fn": 4846,
+          "precision": 0.6052,
+          "recall": 0.1579,
+          "f1": 0.2505,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0417,
+            "flicker_rate": 0.0422,
+            "total_flicker_events": 230,
+            "mean_dropout_gap_frames": 11.45,
+            "total_dropout_events": 396,
+            "dropout_gap_histogram": {
+              "1": 59,
+              "7": 17,
+              "3": 34,
+              "5": 25,
+              "2": 68,
+              "4": 35,
+              "9": 18,
+              "25": 5,
+              "6": 18,
+              "11": 10,
+              "16": 5,
+              "96": 1,
+              "15": 7,
+              "87": 1,
+              "30": 1,
+              "12": 6,
+              "8": 11,
+              "20": 1,
+              "26": 3,
+              "13": 4,
+              "28": 1,
+              "10": 8,
+              "14": 3,
+              "19": 4,
+              "99": 2,
+              "22": 3,
+              "61": 2,
+              "17": 7,
+              "21": 3,
+              "18": 2,
+              "70": 2,
+              "116": 1,
+              "80": 2,
+              "72": 1,
+              "102": 1,
+              "109": 1,
+              "73": 1,
+              "66": 2,
+              "40": 1,
+              "98": 1,
+              "47": 1,
+              "44": 1,
+              "54": 2,
+              "27": 1,
+              "56": 1,
+              "43": 2,
+              "34": 1,
+              "36": 2,
+              "24": 3,
+              "29": 2,
+              "62": 1,
+              "55": 1,
+              "49": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5948,
+              "recall": 0.1024,
+              "f1": 0.1747,
+              "tp": 254,
+              "fp": 173,
+              "fn": 2227
+            },
+            "medium": {
+              "precision": 0.6443,
+              "recall": 0.1765,
+              "f1": 0.2771,
+              "tp": 527,
+              "fp": 291,
+              "fn": 2459
+            },
+            "large": {
+              "precision": 0.4981,
+              "recall": 0.4444,
+              "f1": 0.4697,
+              "tp": 128,
+              "fp": 129,
+              "fn": 160
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.715,
+              "recall": 0.4575,
+              "f1": 0.558,
+              "tp": 878,
+              "fp": 350,
+              "fn": 1041
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3048
+            },
+            "Truck": {
+              "precision": 0.1543,
+              "recall": 0.2544,
+              "f1": 0.1921,
+              "tp": 29,
+              "fp": 159,
+              "fn": 85
+            },
+            "Bus": {
+              "precision": 0.0556,
+              "recall": 0.01,
+              "f1": 0.0169,
+              "tp": 2,
+              "fp": 34,
+              "fn": 199
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 43,
+              "fn": 473
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 7,
+              "fn": 0
+            }
+          }
+        },
+        "b2208b0f-2796a692": {
+          "sequence_id": "b2208b0f-2796a692",
+          "frames_evaluated": 203,
+          "total_gt": 5365,
+          "total_preds": 2024,
+          "tp": 1325,
+          "fp": 699,
+          "fn": 4040,
+          "precision": 0.6546,
+          "recall": 0.247,
+          "f1": 0.3586,
+          "temporal_stability": {
+            "mean_track_coverage": 0.1519,
+            "flicker_rate": 0.0852,
+            "total_flicker_events": 442,
+            "mean_dropout_gap_frames": 10.14,
+            "total_dropout_events": 381,
+            "dropout_gap_histogram": {
+              "1": 83,
+              "4": 37,
+              "3": 46,
+              "19": 4,
+              "2": 63,
+              "7": 11,
+              "60": 1,
+              "5": 18,
+              "14": 1,
+              "34": 4,
+              "23": 4,
+              "17": 2,
+              "40": 3,
+              "41": 2,
+              "27": 2,
+              "20": 8,
+              "6": 6,
+              "9": 14,
+              "42": 1,
+              "64": 1,
+              "11": 2,
+              "15": 4,
+              "29": 1,
+              "26": 1,
+              "13": 9,
+              "50": 1,
+              "16": 2,
+              "12": 7,
+              "8": 6,
+              "10": 7,
+              "32": 2,
+              "43": 1,
+              "18": 4,
+              "78": 1,
+              "117": 1,
+              "31": 1,
+              "44": 1,
+              "61": 1,
+              "105": 1,
+              "57": 1,
+              "24": 1,
+              "47": 1,
+              "87": 1,
+              "88": 1,
+              "21": 1,
+              "82": 1,
+              "48": 1,
+              "49": 1,
+              "97": 1,
+              "73": 1,
+              "33": 1,
+              "45": 1,
+              "59": 1,
+              "71": 1,
+              "35": 1,
+              "38": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.547,
+              "recall": 0.098,
+              "f1": 0.1662,
+              "tp": 262,
+              "fp": 217,
+              "fn": 2412
+            },
+            "medium": {
+              "precision": 0.7204,
+              "recall": 0.3899,
+              "f1": 0.506,
+              "tp": 889,
+              "fp": 345,
+              "fn": 1391
+            },
+            "large": {
+              "precision": 0.5595,
+              "recall": 0.4234,
+              "f1": 0.482,
+              "tp": 174,
+              "fp": 137,
+              "fn": 237
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6739,
+              "recall": 0.4,
+              "f1": 0.502,
+              "tp": 1300,
+              "fp": 629,
+              "fn": 1950
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1734
+            },
+            "Truck": {
+              "precision": 0.3846,
+              "recall": 0.1121,
+              "f1": 0.1736,
+              "tp": 25,
+              "fp": 40,
+              "fn": 198
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 25,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 158
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 5,
+              "fn": 0
+            }
+          }
+        },
+        "b2064e61-2beadd45": {
+          "sequence_id": "b2064e61-2beadd45",
+          "frames_evaluated": 203,
+          "total_gt": 2857,
+          "total_preds": 1456,
+          "tp": 949,
+          "fp": 507,
+          "fn": 1908,
+          "precision": 0.6518,
+          "recall": 0.3322,
+          "f1": 0.4401,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2782,
+            "flicker_rate": 0.0913,
+            "total_flicker_events": 255,
+            "mean_dropout_gap_frames": 10.3,
+            "total_dropout_events": 179,
+            "dropout_gap_histogram": {
+              "1": 53,
+              "3": 18,
+              "2": 27,
+              "7": 7,
+              "6": 11,
+              "9": 3,
+              "5": 6,
+              "4": 10,
+              "76": 1,
+              "20": 3,
+              "14": 8,
+              "74": 2,
+              "178": 1,
+              "62": 1,
+              "12": 2,
+              "94": 1,
+              "56": 2,
+              "83": 1,
+              "104": 1,
+              "18": 1,
+              "82": 1,
+              "21": 1,
+              "16": 2,
+              "8": 4,
+              "13": 2,
+              "10": 2,
+              "15": 1,
+              "27": 1,
+              "19": 1,
+              "53": 1,
+              "23": 1,
+              "28": 1,
+              "11": 2
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.3673,
+              "recall": 0.0314,
+              "f1": 0.0579,
+              "tp": 36,
+              "fp": 62,
+              "fn": 1109
+            },
+            "medium": {
+              "precision": 0.5899,
+              "recall": 0.4396,
+              "f1": 0.5038,
+              "tp": 535,
+              "fp": 372,
+              "fn": 682
+            },
+            "large": {
+              "precision": 0.8381,
+              "recall": 0.7636,
+              "f1": 0.7992,
+              "tp": 378,
+              "fp": 73,
+              "fn": 117
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6509,
+              "recall": 0.3739,
+              "f1": 0.4749,
+              "tp": 938,
+              "fp": 503,
+              "fn": 1571
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 29
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 37
+            },
+            "Bus": {
+              "precision": 0.7333,
+              "recall": 0.039,
+              "f1": 0.0741,
+              "tp": 11,
+              "fp": 4,
+              "fn": 271
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-03dcecc2": {
+          "sequence_id": "b1d0a191-03dcecc2",
+          "frames_evaluated": 202,
+          "total_gt": 3752,
+          "total_preds": 1738,
+          "tp": 1128,
+          "fp": 610,
+          "fn": 2624,
+          "precision": 0.649,
+          "recall": 0.3006,
+          "f1": 0.4109,
+          "temporal_stability": {
+            "mean_track_coverage": 0.1423,
+            "flicker_rate": 0.0576,
+            "total_flicker_events": 208,
+            "mean_dropout_gap_frames": 10.61,
+            "total_dropout_events": 234,
+            "dropout_gap_histogram": {
+              "79": 1,
+              "45": 1,
+              "2": 22,
+              "18": 8,
+              "3": 18,
+              "14": 6,
+              "16": 2,
+              "21": 3,
+              "20": 3,
+              "17": 8,
+              "5": 20,
+              "1": 44,
+              "9": 6,
+              "8": 10,
+              "23": 2,
+              "4": 11,
+              "11": 7,
+              "7": 9,
+              "38": 2,
+              "55": 1,
+              "62": 1,
+              "31": 1,
+              "24": 2,
+              "22": 2,
+              "6": 10,
+              "10": 3,
+              "36": 1,
+              "35": 1,
+              "12": 4,
+              "42": 1,
+              "15": 7,
+              "13": 4,
+              "33": 2,
+              "81": 1,
+              "68": 1,
+              "41": 1,
+              "19": 2,
+              "39": 1,
+              "59": 1,
+              "25": 1,
+              "34": 1,
+              "32": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5963,
+              "recall": 0.0487,
+              "f1": 0.09,
+              "tp": 65,
+              "fp": 44,
+              "fn": 1271
+            },
+            "medium": {
+              "precision": 0.6417,
+              "recall": 0.3257,
+              "f1": 0.4321,
+              "tp": 539,
+              "fp": 301,
+              "fn": 1116
+            },
+            "large": {
+              "precision": 0.6641,
+              "recall": 0.6886,
+              "f1": 0.6761,
+              "tp": 524,
+              "fp": 265,
+              "fn": 237
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7474,
+              "recall": 0.4815,
+              "f1": 0.5856,
+              "tp": 1065,
+              "fp": 360,
+              "fn": 1147
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1065
+            },
+            "Truck": {
+              "precision": 0.3281,
+              "recall": 0.1903,
+              "f1": 0.2409,
+              "tp": 63,
+              "fp": 129,
+              "fn": 268
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 119,
+              "fn": 60
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 84
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 0
+            }
+          }
+        },
+        "b1d968b9-ce42734f": {
+          "sequence_id": "b1d968b9-ce42734f",
+          "frames_evaluated": 203,
+          "total_gt": 4138,
+          "total_preds": 2559,
+          "tp": 1760,
+          "fp": 799,
+          "fn": 2378,
+          "precision": 0.6878,
+          "recall": 0.4253,
+          "f1": 0.5256,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2488,
+            "flicker_rate": 0.1187,
+            "total_flicker_events": 473,
+            "mean_dropout_gap_frames": 6.07,
+            "total_dropout_events": 367,
+            "dropout_gap_histogram": {
+              "1": 105,
+              "4": 34,
+              "7": 12,
+              "3": 40,
+              "10": 7,
+              "8": 14,
+              "5": 15,
+              "9": 6,
+              "26": 3,
+              "17": 2,
+              "11": 8,
+              "2": 68,
+              "65": 1,
+              "89": 1,
+              "14": 8,
+              "19": 3,
+              "6": 16,
+              "12": 2,
+              "13": 4,
+              "22": 2,
+              "23": 1,
+              "15": 3,
+              "20": 1,
+              "18": 1,
+              "99": 1,
+              "42": 2,
+              "86": 1,
+              "16": 1,
+              "27": 1,
+              "33": 1,
+              "28": 1,
+              "69": 1,
+              "50": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.7377,
+              "recall": 0.2691,
+              "f1": 0.3944,
+              "tp": 478,
+              "fp": 170,
+              "fn": 1298
+            },
+            "medium": {
+              "precision": 0.6888,
+              "recall": 0.5016,
+              "f1": 0.5805,
+              "tp": 963,
+              "fp": 435,
+              "fn": 957
+            },
+            "large": {
+              "precision": 0.6218,
+              "recall": 0.7217,
+              "f1": 0.6681,
+              "tp": 319,
+              "fp": 194,
+              "fn": 123
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7214,
+              "recall": 0.481,
+              "f1": 0.5771,
+              "tp": 1745,
+              "fp": 674,
+              "fn": 1883
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 280
+            },
+            "Truck": {
+              "precision": 0.0469,
+              "recall": 0.0316,
+              "f1": 0.0377,
+              "tp": 6,
+              "fp": 122,
+              "fn": 184
+            },
+            "Bus": {
+              "precision": 0.75,
+              "recall": 0.2432,
+              "f1": 0.3673,
+              "tp": 9,
+              "fp": 3,
+              "fn": 28
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1ca2e5d-84cf9134": {
+          "sequence_id": "b1ca2e5d-84cf9134",
+          "frames_evaluated": 203,
+          "total_gt": 4505,
+          "total_preds": 1201,
+          "tp": 830,
+          "fp": 371,
+          "fn": 3675,
+          "precision": 0.6911,
+          "recall": 0.1842,
+          "f1": 0.2909,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0642,
+            "flicker_rate": 0.0429,
+            "total_flicker_events": 182,
+            "mean_dropout_gap_frames": 10.48,
+            "total_dropout_events": 326,
+            "dropout_gap_histogram": {
+              "1": 53,
+              "2": 50,
+              "3": 35,
+              "5": 16,
+              "14": 7,
+              "13": 5,
+              "4": 25,
+              "8": 15,
+              "21": 6,
+              "11": 11,
+              "7": 11,
+              "6": 10,
+              "27": 5,
+              "15": 2,
+              "19": 4,
+              "17": 4,
+              "23": 2,
+              "12": 6,
+              "10": 9,
+              "24": 4,
+              "20": 2,
+              "29": 2,
+              "26": 1,
+              "16": 2,
+              "18": 1,
+              "65": 2,
+              "73": 1,
+              "78": 1,
+              "56": 1,
+              "76": 1,
+              "57": 3,
+              "63": 1,
+              "30": 2,
+              "38": 1,
+              "52": 1,
+              "45": 1,
+              "48": 1,
+              "41": 2,
+              "58": 1,
+              "51": 1,
+              "22": 3,
+              "35": 1,
+              "31": 4,
+              "25": 5,
+              "9": 3,
+              "37": 1,
+              "28": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.3684,
+              "recall": 0.0079,
+              "f1": 0.0155,
+              "tp": 7,
+              "fp": 12,
+              "fn": 879
+            },
+            "medium": {
+              "precision": 0.568,
+              "recall": 0.1214,
+              "f1": 0.2,
+              "tp": 263,
+              "fp": 200,
+              "fn": 1904
+            },
+            "large": {
+              "precision": 0.7789,
+              "recall": 0.3857,
+              "f1": 0.5159,
+              "tp": 560,
+              "fp": 159,
+              "fn": 892
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7505,
+              "recall": 0.5258,
+              "f1": 0.6184,
+              "tp": 713,
+              "fp": 237,
+              "fn": 643
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 2842
+            },
+            "Truck": {
+              "precision": 0.7071,
+              "recall": 0.3992,
+              "f1": 0.5103,
+              "tp": 99,
+              "fp": 41,
+              "fn": 149
+            },
+            "Bus": {
+              "precision": 0.1682,
+              "recall": 0.5294,
+              "f1": 0.2553,
+              "tp": 18,
+              "fp": 89,
+              "fn": 16
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 2,
+              "fn": 25
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 2,
+              "fn": 0
+            }
+          }
+        }
+      }
+    },
+    "naive_suppression_m2_no_preserve": {
+      "title": "Naive Persistence M=2 (Without Stationary Preservation)",
+      "params": {
+        "min_persistence": 2,
+        "preserve_stationary": false
+      },
+      "diagnostics": {
+        "total_suppressed_ephemeral_boxes": 3325,
+        "total_preserved_stationary_boxes": 0
+      },
+      "aggregate_overall": {
+        "total_frames": 1621,
+        "total_gt": 39290,
+        "total_preds": 16949,
+        "tp": 11434,
+        "fp": 5515,
+        "fn": 27856,
+        "precision": 0.6746,
+        "recall": 0.291,
+        "f1": 0.4066,
+        "temporal_stability": {
+          "mean_track_coverage": 0.1897,
+          "flicker_rate": 0.0723,
+          "total_flicker_events": 2581,
+          "mean_dropout_gap_frames": 11.73,
+          "total_dropout_events": 2358
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.5683,
+            "recall": 0.0982,
+            "f1": 0.1675,
+            "tp": 1547,
+            "fp": 1175,
+            "fn": 14200
+          },
+          "medium": {
+            "precision": 0.6721,
+            "recall": 0.3358,
+            "f1": 0.4478,
+            "tp": 5631,
+            "fp": 2747,
+            "fn": 11139
+          },
+          "large": {
+            "precision": 0.7276,
+            "recall": 0.6284,
+            "f1": 0.6744,
+            "tp": 4256,
+            "fp": 1593,
+            "fn": 2517
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.717,
+            "recall": 0.431,
+            "f1": 0.5384,
+            "tp": 10868,
+            "fp": 4289,
+            "fn": 14346
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 10776
+          },
+          "Truck": {
+            "precision": 0.3921,
+            "recall": 0.2801,
+            "f1": 0.3268,
+            "tp": 507,
+            "fp": 786,
+            "fn": 1303
+          },
+          "Bus": {
+            "precision": 0.119,
+            "recall": 0.0716,
+            "f1": 0.0894,
+            "tp": 50,
+            "fp": 370,
+            "fn": 648
+          },
+          "Bicycle": {
+            "precision": 0.1475,
+            "recall": 0.0114,
+            "f1": 0.0211,
+            "tp": 9,
+            "fp": 52,
+            "fn": 783
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 18,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_dev": {
+        "total_frames": 810,
+        "total_gt": 24038,
+        "total_preds": 9479,
+        "tp": 6421,
+        "fp": 3058,
+        "fn": 17617,
+        "precision": 0.6774,
+        "recall": 0.2671,
+        "f1": 0.3831,
+        "temporal_stability": {
+          "mean_track_coverage": 0.1681,
+          "flicker_rate": 0.0624,
+          "total_flicker_events": 1397,
+          "mean_dropout_gap_frames": 14.42,
+          "total_dropout_events": 1251
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.5112,
+            "recall": 0.084,
+            "f1": 0.1443,
+            "tp": 891,
+            "fp": 852,
+            "fn": 9713
+          },
+          "medium": {
+            "precision": 0.6989,
+            "recall": 0.3184,
+            "f1": 0.4375,
+            "tp": 3124,
+            "fp": 1346,
+            "fn": 6687
+          },
+          "large": {
+            "precision": 0.7367,
+            "recall": 0.6641,
+            "f1": 0.6985,
+            "tp": 2406,
+            "fp": 860,
+            "fn": 1217
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7191,
+            "recall": 0.3918,
+            "f1": 0.5072,
+            "tp": 6076,
+            "fp": 2373,
+            "fn": 9433
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 6560
+          },
+          "Truck": {
+            "precision": 0.4067,
+            "recall": 0.3257,
+            "f1": 0.3617,
+            "tp": 327,
+            "fp": 477,
+            "fn": 677
+          },
+          "Bus": {
+            "precision": 0.0584,
+            "recall": 0.0316,
+            "f1": 0.041,
+            "tp": 9,
+            "fp": 145,
+            "fn": 276
+          },
+          "Bicycle": {
+            "precision": 0.1552,
+            "recall": 0.0132,
+            "f1": 0.0244,
+            "tp": 9,
+            "fp": 49,
+            "fn": 671
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 14,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_locked_test": {
+        "total_frames": 811,
+        "total_gt": 15252,
+        "total_preds": 7470,
+        "tp": 5013,
+        "fp": 2457,
+        "fn": 10239,
+        "precision": 0.6711,
+        "recall": 0.3287,
+        "f1": 0.4412,
+        "temporal_stability": {
+          "mean_track_coverage": 0.2113,
+          "flicker_rate": 0.0822,
+          "total_flicker_events": 1184,
+          "mean_dropout_gap_frames": 9.04,
+          "total_dropout_events": 1107
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.6701,
+            "recall": 0.1276,
+            "f1": 0.2143,
+            "tp": 656,
+            "fp": 323,
+            "fn": 4487
+          },
+          "medium": {
+            "precision": 0.6415,
+            "recall": 0.3603,
+            "f1": 0.4614,
+            "tp": 2507,
+            "fp": 1401,
+            "fn": 4452
+          },
+          "large": {
+            "precision": 0.7162,
+            "recall": 0.5873,
+            "f1": 0.6454,
+            "tp": 1850,
+            "fp": 733,
+            "fn": 1300
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7144,
+            "recall": 0.4938,
+            "f1": 0.5839,
+            "tp": 4792,
+            "fp": 1916,
+            "fn": 4913
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4216
+          },
+          "Truck": {
+            "precision": 0.3681,
+            "recall": 0.2233,
+            "f1": 0.278,
+            "tp": 180,
+            "fp": 309,
+            "fn": 626
+          },
+          "Bus": {
+            "precision": 0.1541,
+            "recall": 0.0993,
+            "f1": 0.1208,
+            "tp": 41,
+            "fp": 225,
+            "fn": 372
+          },
+          "Bicycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 3,
+            "fn": 112
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 4,
+            "fn": 0
+          }
+        }
+      },
+      "per_sequence": {
+        "b1e9ee0e-67e26f2e": {
+          "sequence_id": "b1e9ee0e-67e26f2e",
+          "frames_evaluated": 203,
+          "total_gt": 8719,
+          "total_preds": 3596,
+          "tp": 2475,
+          "fp": 1121,
+          "fn": 6244,
+          "precision": 0.6883,
+          "recall": 0.2839,
+          "f1": 0.4019,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2164,
+            "flicker_rate": 0.047,
+            "total_flicker_events": 407,
+            "mean_dropout_gap_frames": 25.13,
+            "total_dropout_events": 246,
+            "dropout_gap_histogram": {
+              "2": 34,
+              "157": 1,
+              "20": 2,
+              "22": 1,
+              "200": 5,
+              "6": 8,
+              "4": 17,
+              "12": 8,
+              "9": 7,
+              "49": 1,
+              "51": 1,
+              "18": 3,
+              "30": 2,
+              "3": 30,
+              "7": 12,
+              "13": 3,
+              "11": 6,
+              "43": 1,
+              "14": 2,
+              "23": 1,
+              "15": 3,
+              "8": 7,
+              "10": 3,
+              "5": 12,
+              "201": 7,
+              "62": 1,
+              "1": 35,
+              "17": 1,
+              "89": 1,
+              "96": 1,
+              "103": 1,
+              "36": 1,
+              "44": 1,
+              "118": 1,
+              "202": 1,
+              "41": 3,
+              "94": 1,
+              "105": 1,
+              "71": 1,
+              "54": 1,
+              "59": 1,
+              "32": 3,
+              "31": 1,
+              "21": 2,
+              "167": 1,
+              "35": 1,
+              "198": 1,
+              "26": 2,
+              "29": 1,
+              "19": 1,
+              "85": 1,
+              "91": 1,
+              "152": 1,
+              "129": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.4158,
+              "recall": 0.0691,
+              "f1": 0.1185,
+              "tp": 284,
+              "fp": 399,
+              "fn": 3827
+            },
+            "medium": {
+              "precision": 0.6932,
+              "recall": 0.3169,
+              "f1": 0.4349,
+              "tp": 924,
+              "fp": 409,
+              "fn": 1992
+            },
+            "large": {
+              "precision": 0.8019,
+              "recall": 0.7488,
+              "f1": 0.7744,
+              "tp": 1267,
+              "fp": 313,
+              "fn": 425
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7114,
+              "recall": 0.3173,
+              "f1": 0.4389,
+              "tp": 2475,
+              "fp": 1004,
+              "fn": 5325
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 631
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 117,
+              "fn": 288
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-65deaeef": {
+          "sequence_id": "b1d0a191-65deaeef",
+          "frames_evaluated": 202,
+          "total_gt": 4199,
+          "total_preds": 2053,
+          "tp": 1516,
+          "fp": 537,
+          "fn": 2683,
+          "precision": 0.7384,
+          "recall": 0.361,
+          "f1": 0.485,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2301,
+            "flicker_rate": 0.0674,
+            "total_flicker_events": 276,
+            "mean_dropout_gap_frames": 11.62,
+            "total_dropout_events": 222,
+            "dropout_gap_histogram": {
+              "1": 43,
+              "3": 21,
+              "13": 4,
+              "30": 4,
+              "5": 21,
+              "9": 5,
+              "2": 29,
+              "6": 14,
+              "42": 1,
+              "4": 14,
+              "8": 6,
+              "14": 1,
+              "7": 5,
+              "31": 2,
+              "15": 2,
+              "19": 1,
+              "60": 1,
+              "21": 4,
+              "52": 1,
+              "20": 3,
+              "23": 3,
+              "12": 1,
+              "27": 1,
+              "104": 1,
+              "33": 1,
+              "63": 1,
+              "22": 4,
+              "17": 2,
+              "11": 3,
+              "16": 1,
+              "37": 2,
+              "89": 1,
+              "39": 1,
+              "57": 1,
+              "90": 1,
+              "74": 1,
+              "54": 1,
+              "77": 1,
+              "40": 1,
+              "18": 2,
+              "69": 1,
+              "29": 1,
+              "32": 2,
+              "47": 1,
+              "35": 2,
+              "24": 1,
+              "26": 1,
+              "10": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.6667,
+              "recall": 0.0239,
+              "f1": 0.0462,
+              "tp": 32,
+              "fp": 16,
+              "fn": 1306
+            },
+            "medium": {
+              "precision": 0.7284,
+              "recall": 0.4131,
+              "f1": 0.5272,
+              "tp": 673,
+              "fp": 251,
+              "fn": 956
+            },
+            "large": {
+              "precision": 0.7502,
+              "recall": 0.6583,
+              "f1": 0.7013,
+              "tp": 811,
+              "fp": 270,
+              "fn": 421
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.8013,
+              "recall": 0.4843,
+              "f1": 0.6037,
+              "tp": 1230,
+              "fp": 305,
+              "fn": 1310
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1147
+            },
+            "Truck": {
+              "precision": 0.6459,
+              "recall": 0.7124,
+              "f1": 0.6775,
+              "tp": 270,
+              "fp": 148,
+              "fn": 109
+            },
+            "Bus": {
+              "precision": 0.0814,
+              "recall": 0.0833,
+              "f1": 0.0824,
+              "tp": 7,
+              "fp": 79,
+              "fn": 77
+            },
+            "Bicycle": {
+              "precision": 0.6923,
+              "recall": 0.1837,
+              "f1": 0.2903,
+              "tp": 9,
+              "fp": 4,
+              "fn": 40
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 0
+            }
+          }
+        },
+        "b24071b8-b3ee1196": {
+          "sequence_id": "b24071b8-b3ee1196",
+          "frames_evaluated": 202,
+          "total_gt": 5755,
+          "total_preds": 1613,
+          "tp": 976,
+          "fp": 637,
+          "fn": 4779,
+          "precision": 0.6051,
+          "recall": 0.1696,
+          "f1": 0.2649,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0464,
+            "flicker_rate": 0.0452,
+            "total_flicker_events": 246,
+            "mean_dropout_gap_frames": 11.12,
+            "total_dropout_events": 402,
+            "dropout_gap_histogram": {
+              "1": 79,
+              "7": 16,
+              "2": 64,
+              "6": 17,
+              "3": 33,
+              "9": 17,
+              "4": 32,
+              "22": 4,
+              "5": 23,
+              "11": 9,
+              "16": 7,
+              "96": 1,
+              "15": 7,
+              "87": 1,
+              "20": 2,
+              "12": 6,
+              "8": 12,
+              "26": 3,
+              "13": 5,
+              "28": 1,
+              "10": 7,
+              "19": 3,
+              "99": 2,
+              "14": 2,
+              "60": 1,
+              "25": 4,
+              "17": 6,
+              "21": 3,
+              "18": 2,
+              "70": 2,
+              "116": 1,
+              "80": 2,
+              "72": 1,
+              "102": 1,
+              "109": 1,
+              "73": 1,
+              "66": 2,
+              "40": 1,
+              "61": 1,
+              "98": 1,
+              "47": 1,
+              "44": 1,
+              "54": 2,
+              "27": 1,
+              "56": 1,
+              "43": 2,
+              "34": 1,
+              "36": 2,
+              "24": 3,
+              "29": 2,
+              "62": 1,
+              "55": 1,
+              "49": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5853,
+              "recall": 0.1092,
+              "f1": 0.1841,
+              "tp": 271,
+              "fp": 192,
+              "fn": 2210
+            },
+            "medium": {
+              "precision": 0.6439,
+              "recall": 0.1896,
+              "f1": 0.2929,
+              "tp": 566,
+              "fp": 313,
+              "fn": 2420
+            },
+            "large": {
+              "precision": 0.5129,
+              "recall": 0.4826,
+              "f1": 0.4973,
+              "tp": 139,
+              "fp": 132,
+              "fn": 149
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7128,
+              "recall": 0.4914,
+              "f1": 0.5817,
+              "tp": 943,
+              "fp": 380,
+              "fn": 976
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3048
+            },
+            "Truck": {
+              "precision": 0.1566,
+              "recall": 0.2719,
+              "f1": 0.1987,
+              "tp": 31,
+              "fp": 167,
+              "fn": 83
+            },
+            "Bus": {
+              "precision": 0.05,
+              "recall": 0.01,
+              "f1": 0.0166,
+              "tp": 2,
+              "fp": 38,
+              "fn": 199
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 45,
+              "fn": 473
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 7,
+              "fn": 0
+            }
+          }
+        },
+        "b2208b0f-2796a692": {
+          "sequence_id": "b2208b0f-2796a692",
+          "frames_evaluated": 203,
+          "total_gt": 5365,
+          "total_preds": 2217,
+          "tp": 1454,
+          "fp": 763,
+          "fn": 3911,
+          "precision": 0.6558,
+          "recall": 0.271,
+          "f1": 0.3835,
+          "temporal_stability": {
+            "mean_track_coverage": 0.1797,
+            "flicker_rate": 0.0902,
+            "total_flicker_events": 468,
+            "mean_dropout_gap_frames": 9.81,
+            "total_dropout_events": 381,
+            "dropout_gap_histogram": {
+              "1": 104,
+              "3": 42,
+              "2": 59,
+              "18": 4,
+              "7": 7,
+              "59": 2,
+              "4": 33,
+              "5": 11,
+              "14": 2,
+              "22": 2,
+              "10": 9,
+              "23": 2,
+              "17": 3,
+              "40": 4,
+              "41": 2,
+              "27": 1,
+              "20": 8,
+              "9": 11,
+              "6": 7,
+              "42": 1,
+              "64": 1,
+              "11": 3,
+              "15": 3,
+              "29": 1,
+              "26": 1,
+              "13": 6,
+              "36": 1,
+              "12": 8,
+              "19": 4,
+              "16": 3,
+              "21": 2,
+              "8": 8,
+              "32": 2,
+              "34": 3,
+              "43": 1,
+              "78": 1,
+              "117": 1,
+              "30": 1,
+              "44": 1,
+              "61": 1,
+              "105": 1,
+              "57": 1,
+              "24": 1,
+              "47": 1,
+              "87": 1,
+              "88": 1,
+              "82": 1,
+              "48": 1,
+              "49": 1,
+              "97": 1,
+              "54": 1,
+              "33": 1,
+              "71": 1,
+              "35": 1,
+              "38": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5537,
+              "recall": 0.1137,
+              "f1": 0.1886,
+              "tp": 304,
+              "fp": 245,
+              "fn": 2370
+            },
+            "medium": {
+              "precision": 0.7204,
+              "recall": 0.4215,
+              "f1": 0.5318,
+              "tp": 961,
+              "fp": 373,
+              "fn": 1319
+            },
+            "large": {
+              "precision": 0.5659,
+              "recall": 0.4599,
+              "f1": 0.5074,
+              "tp": 189,
+              "fp": 145,
+              "fn": 222
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6761,
+              "recall": 0.4394,
+              "f1": 0.5326,
+              "tp": 1428,
+              "fp": 684,
+              "fn": 1822
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1734
+            },
+            "Truck": {
+              "precision": 0.3662,
+              "recall": 0.1166,
+              "f1": 0.1769,
+              "tp": 26,
+              "fp": 45,
+              "fn": 197
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 28,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 158
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 6,
+              "fn": 0
+            }
+          }
+        },
+        "b2064e61-2beadd45": {
+          "sequence_id": "b2064e61-2beadd45",
+          "frames_evaluated": 203,
+          "total_gt": 2857,
+          "total_preds": 1576,
+          "tp": 1030,
+          "fp": 546,
+          "fn": 1827,
+          "precision": 0.6536,
+          "recall": 0.3605,
+          "f1": 0.4647,
+          "temporal_stability": {
+            "mean_track_coverage": 0.3165,
+            "flicker_rate": 0.097,
+            "total_flicker_events": 271,
+            "mean_dropout_gap_frames": 9.53,
+            "total_dropout_events": 185,
+            "dropout_gap_histogram": {
+              "1": 64,
+              "2": 27,
+              "7": 5,
+              "6": 9,
+              "9": 4,
+              "3": 23,
+              "5": 7,
+              "72": 1,
+              "20": 3,
+              "12": 4,
+              "73": 1,
+              "178": 1,
+              "62": 1,
+              "11": 3,
+              "82": 2,
+              "10": 3,
+              "56": 2,
+              "102": 1,
+              "17": 1,
+              "81": 1,
+              "21": 1,
+              "16": 2,
+              "74": 1,
+              "14": 2,
+              "13": 3,
+              "8": 3,
+              "4": 5,
+              "24": 1,
+              "18": 1,
+              "53": 1,
+              "23": 1,
+              "28": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.3727,
+              "recall": 0.0358,
+              "f1": 0.0653,
+              "tp": 41,
+              "fp": 69,
+              "fn": 1104
+            },
+            "medium": {
+              "precision": 0.5945,
+              "recall": 0.4832,
+              "f1": 0.5331,
+              "tp": 588,
+              "fp": 401,
+              "fn": 629
+            },
+            "large": {
+              "precision": 0.8407,
+              "recall": 0.8101,
+              "f1": 0.8251,
+              "tp": 401,
+              "fp": 76,
+              "fn": 94
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6526,
+              "recall": 0.4057,
+              "f1": 0.5004,
+              "tp": 1018,
+              "fp": 542,
+              "fn": 1491
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 29
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 37
+            },
+            "Bus": {
+              "precision": 0.75,
+              "recall": 0.0426,
+              "f1": 0.0805,
+              "tp": 12,
+              "fp": 4,
+              "fn": 270
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-03dcecc2": {
+          "sequence_id": "b1d0a191-03dcecc2",
+          "frames_evaluated": 202,
+          "total_gt": 3752,
+          "total_preds": 1860,
+          "tp": 1213,
+          "fp": 647,
+          "fn": 2539,
+          "precision": 0.6522,
+          "recall": 0.3233,
+          "f1": 0.4323,
+          "temporal_stability": {
+            "mean_track_coverage": 0.1642,
+            "flicker_rate": 0.0579,
+            "total_flicker_events": 209,
+            "mean_dropout_gap_frames": 10.56,
+            "total_dropout_events": 227,
+            "dropout_gap_histogram": {
+              "78": 1,
+              "45": 1,
+              "2": 17,
+              "4": 13,
+              "13": 4,
+              "3": 19,
+              "14": 6,
+              "16": 2,
+              "21": 2,
+              "20": 3,
+              "17": 8,
+              "18": 8,
+              "5": 15,
+              "1": 44,
+              "8": 11,
+              "7": 8,
+              "22": 3,
+              "10": 3,
+              "23": 2,
+              "9": 7,
+              "27": 2,
+              "55": 1,
+              "62": 1,
+              "31": 1,
+              "24": 1,
+              "6": 12,
+              "36": 1,
+              "35": 1,
+              "11": 6,
+              "42": 1,
+              "15": 6,
+              "37": 1,
+              "33": 1,
+              "80": 1,
+              "54": 1,
+              "41": 1,
+              "19": 2,
+              "12": 4,
+              "39": 1,
+              "59": 1,
+              "25": 1,
+              "34": 1,
+              "32": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.6077,
+              "recall": 0.0591,
+              "f1": 0.1078,
+              "tp": 79,
+              "fp": 51,
+              "fn": 1257
+            },
+            "medium": {
+              "precision": 0.6485,
+              "recall": 0.3589,
+              "f1": 0.4621,
+              "tp": 594,
+              "fp": 322,
+              "fn": 1061
+            },
+            "large": {
+              "precision": 0.6634,
+              "recall": 0.7096,
+              "f1": 0.6857,
+              "tp": 540,
+              "fp": 274,
+              "fn": 221
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7464,
+              "recall": 0.5163,
+              "f1": 0.6104,
+              "tp": 1142,
+              "fp": 388,
+              "fn": 1070
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1065
+            },
+            "Truck": {
+              "precision": 0.3463,
+              "recall": 0.2145,
+              "f1": 0.2649,
+              "tp": 71,
+              "fp": 134,
+              "fn": 260
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 123,
+              "fn": 60
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 84
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 0
+            }
+          }
+        },
+        "b1d968b9-ce42734f": {
+          "sequence_id": "b1d968b9-ce42734f",
+          "frames_evaluated": 203,
+          "total_gt": 4138,
+          "total_preds": 2747,
+          "tp": 1893,
+          "fp": 854,
+          "fn": 2245,
+          "precision": 0.6891,
+          "recall": 0.4575,
+          "f1": 0.5499,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2949,
+            "flicker_rate": 0.1308,
+            "total_flicker_events": 521,
+            "mean_dropout_gap_frames": 5.62,
+            "total_dropout_events": 373,
+            "dropout_gap_histogram": {
+              "1": 126,
+              "3": 41,
+              "6": 17,
+              "8": 11,
+              "5": 17,
+              "25": 1,
+              "17": 2,
+              "9": 4,
+              "2": 69,
+              "4": 27,
+              "11": 4,
+              "60": 1,
+              "89": 1,
+              "14": 8,
+              "19": 2,
+              "7": 11,
+              "23": 1,
+              "12": 3,
+              "13": 3,
+              "10": 6,
+              "22": 2,
+              "18": 2,
+              "20": 2,
+              "99": 1,
+              "42": 2,
+              "86": 1,
+              "16": 1,
+              "27": 1,
+              "33": 1,
+              "28": 1,
+              "69": 1,
+              "50": 1,
+              "15": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.7354,
+              "recall": 0.2973,
+              "f1": 0.4234,
+              "tp": 528,
+              "fp": 190,
+              "fn": 1248
+            },
+            "medium": {
+              "precision": 0.6919,
+              "recall": 0.537,
+              "f1": 0.6047,
+              "tp": 1031,
+              "fp": 459,
+              "fn": 889
+            },
+            "large": {
+              "precision": 0.6197,
+              "recall": 0.7557,
+              "f1": 0.6809,
+              "tp": 334,
+              "fp": 205,
+              "fn": 108
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.722,
+              "recall": 0.5168,
+              "f1": 0.6024,
+              "tp": 1875,
+              "fp": 722,
+              "fn": 1753
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 280
+            },
+            "Truck": {
+              "precision": 0.0588,
+              "recall": 0.0421,
+              "f1": 0.0491,
+              "tp": 8,
+              "fp": 128,
+              "fn": 182
+            },
+            "Bus": {
+              "precision": 0.7143,
+              "recall": 0.2703,
+              "f1": 0.3922,
+              "tp": 10,
+              "fp": 4,
+              "fn": 27
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1ca2e5d-84cf9134": {
+          "sequence_id": "b1ca2e5d-84cf9134",
+          "frames_evaluated": 203,
+          "total_gt": 4505,
+          "total_preds": 1287,
+          "tp": 877,
+          "fp": 410,
+          "fn": 3628,
+          "precision": 0.6814,
+          "recall": 0.1947,
+          "f1": 0.3028,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0694,
+            "flicker_rate": 0.0431,
+            "total_flicker_events": 183,
+            "mean_dropout_gap_frames": 10.46,
+            "total_dropout_events": 322,
+            "dropout_gap_histogram": {
+              "1": 54,
+              "2": 50,
+              "3": 34,
+              "5": 16,
+              "13": 6,
+              "4": 22,
+              "8": 10,
+              "21": 6,
+              "11": 11,
+              "7": 15,
+              "6": 10,
+              "27": 5,
+              "15": 3,
+              "19": 4,
+              "17": 4,
+              "23": 2,
+              "12": 7,
+              "10": 9,
+              "20": 2,
+              "29": 2,
+              "26": 1,
+              "16": 2,
+              "18": 1,
+              "61": 1,
+              "14": 4,
+              "73": 1,
+              "78": 1,
+              "56": 1,
+              "76": 1,
+              "57": 3,
+              "65": 1,
+              "63": 1,
+              "30": 2,
+              "9": 4,
+              "38": 1,
+              "52": 1,
+              "45": 1,
+              "48": 1,
+              "41": 2,
+              "58": 1,
+              "51": 1,
+              "22": 3,
+              "35": 1,
+              "31": 4,
+              "24": 3,
+              "25": 5,
+              "37": 1,
+              "28": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.381,
+              "recall": 0.009,
+              "f1": 0.0176,
+              "tp": 8,
+              "fp": 13,
+              "fn": 878
+            },
+            "medium": {
+              "precision": 0.5731,
+              "recall": 0.1357,
+              "f1": 0.2194,
+              "tp": 294,
+              "fp": 219,
+              "fn": 1873
+            },
+            "large": {
+              "precision": 0.7636,
+              "recall": 0.396,
+              "f1": 0.5215,
+              "tp": 575,
+              "fp": 178,
+              "fn": 877
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7414,
+              "recall": 0.5583,
+              "f1": 0.6369,
+              "tp": 757,
+              "fp": 264,
+              "fn": 599
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 2842
+            },
+            "Truck": {
+              "precision": 0.6824,
+              "recall": 0.4073,
+              "f1": 0.5101,
+              "tp": 101,
+              "fp": 47,
+              "fn": 147
+            },
+            "Bus": {
+              "precision": 0.1681,
+              "recall": 0.5588,
+              "f1": 0.2585,
+              "tp": 19,
+              "fp": 94,
+              "fn": 15
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 2,
+              "fn": 25
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 3,
+              "fn": 0
+            }
+          }
+        }
+      }
+    },
+    "policy_5a_temporal_persistence_m2": {
+      "title": "Policy 5a Dynamic Resolution + Persistence M=2",
+      "params": {
+        "min_persistence": 2,
+        "preserve_stationary": true
+      },
+      "diagnostics": {
+        "total_suppressed_ephemeral_boxes": 3458,
+        "total_preserved_stationary_boxes": 11603
+      },
+      "aggregate_overall": {
+        "total_frames": 1621,
+        "total_gt": 39290,
+        "total_preds": 18467,
+        "tp": 12882,
+        "fp": 5585,
+        "fn": 26408,
+        "precision": 0.6976,
+        "recall": 0.3279,
+        "f1": 0.4461,
+        "temporal_stability": {
+          "mean_track_coverage": 0.2119,
+          "flicker_rate": 0.0759,
+          "total_flicker_events": 2693,
+          "mean_dropout_gap_frames": 10.9,
+          "total_dropout_events": 2392
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.6351,
+            "recall": 0.1527,
+            "f1": 0.2462,
+            "tp": 2404,
+            "fp": 1381,
+            "fn": 13343
+          },
+          "medium": {
+            "precision": 0.7057,
+            "recall": 0.3645,
+            "f1": 0.4807,
+            "tp": 6112,
+            "fp": 2549,
+            "fn": 10658
+          },
+          "large": {
+            "precision": 0.7251,
+            "recall": 0.6446,
+            "f1": 0.6825,
+            "tp": 4366,
+            "fp": 1655,
+            "fn": 2407
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7477,
+            "recall": 0.4857,
+            "f1": 0.5889,
+            "tp": 12247,
+            "fp": 4133,
+            "fn": 12967
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 10776
+          },
+          "Truck": {
+            "precision": 0.3724,
+            "recall": 0.3,
+            "f1": 0.3323,
+            "tp": 543,
+            "fp": 915,
+            "fn": 1267
+          },
+          "Bus": {
+            "precision": 0.1188,
+            "recall": 0.086,
+            "f1": 0.0998,
+            "tp": 60,
+            "fp": 445,
+            "fn": 638
+          },
+          "Bicycle": {
+            "precision": 0.3168,
+            "recall": 0.0404,
+            "f1": 0.0717,
+            "tp": 32,
+            "fp": 69,
+            "fn": 760
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 23,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_dev": {
+        "total_frames": 810,
+        "total_gt": 24038,
+        "total_preds": 10633,
+        "tp": 7529,
+        "fp": 3104,
+        "fn": 16509,
+        "precision": 0.7081,
+        "recall": 0.3132,
+        "f1": 0.4343,
+        "temporal_stability": {
+          "mean_track_coverage": 0.1956,
+          "flicker_rate": 0.0652,
+          "total_flicker_events": 1454,
+          "mean_dropout_gap_frames": 13.28,
+          "total_dropout_events": 1265
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.6216,
+            "recall": 0.1487,
+            "f1": 0.24,
+            "tp": 1577,
+            "fp": 960,
+            "fn": 9027
+          },
+          "medium": {
+            "precision": 0.7331,
+            "recall": 0.3497,
+            "f1": 0.4735,
+            "tp": 3431,
+            "fp": 1249,
+            "fn": 6380
+          },
+          "large": {
+            "precision": 0.738,
+            "recall": 0.6958,
+            "f1": 0.7163,
+            "tp": 2521,
+            "fp": 895,
+            "fn": 1102
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7619,
+            "recall": 0.4597,
+            "f1": 0.5735,
+            "tp": 7130,
+            "fp": 2228,
+            "fn": 8379
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 6560
+          },
+          "Truck": {
+            "precision": 0.3706,
+            "recall": 0.3436,
+            "f1": 0.3566,
+            "tp": 345,
+            "fp": 586,
+            "fn": 659
+          },
+          "Bus": {
+            "precision": 0.0969,
+            "recall": 0.0772,
+            "f1": 0.0859,
+            "tp": 22,
+            "fp": 205,
+            "fn": 263
+          },
+          "Bicycle": {
+            "precision": 0.3265,
+            "recall": 0.0471,
+            "f1": 0.0823,
+            "tp": 32,
+            "fp": 66,
+            "fn": 648
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 19,
+            "fn": 0
+          }
+        }
+      },
+      "aggregate_locked_test": {
+        "total_frames": 811,
+        "total_gt": 15252,
+        "total_preds": 7834,
+        "tp": 5353,
+        "fp": 2481,
+        "fn": 9899,
+        "precision": 0.6833,
+        "recall": 0.351,
+        "f1": 0.4637,
+        "temporal_stability": {
+          "mean_track_coverage": 0.2281,
+          "flicker_rate": 0.0865,
+          "total_flicker_events": 1239,
+          "mean_dropout_gap_frames": 8.52,
+          "total_dropout_events": 1127
+        },
+        "scale_breakdown": {
+          "small": {
+            "precision": 0.6627,
+            "recall": 0.1608,
+            "f1": 0.2588,
+            "tp": 827,
+            "fp": 421,
+            "fn": 4316
+          },
+          "medium": {
+            "precision": 0.6734,
+            "recall": 0.3853,
+            "f1": 0.4901,
+            "tp": 2681,
+            "fp": 1300,
+            "fn": 4278
+          },
+          "large": {
+            "precision": 0.7083,
+            "recall": 0.5857,
+            "f1": 0.6412,
+            "tp": 1845,
+            "fp": 760,
+            "fn": 1305
+          }
+        },
+        "class_breakdown": {
+          "Car": {
+            "precision": 0.7287,
+            "recall": 0.5273,
+            "f1": 0.6118,
+            "tp": 5117,
+            "fp": 1905,
+            "fn": 4588
+          },
+          "Person": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 4216
+          },
+          "Truck": {
+            "precision": 0.3757,
+            "recall": 0.2457,
+            "f1": 0.2971,
+            "tp": 198,
+            "fp": 329,
+            "fn": 608
+          },
+          "Bus": {
+            "precision": 0.1367,
+            "recall": 0.092,
+            "f1": 0.11,
+            "tp": 38,
+            "fp": 240,
+            "fn": 375
+          },
+          "Bicycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 3,
+            "fn": 112
+          },
+          "Motorcycle": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0,
+            "fp": 4,
+            "fn": 0
+          }
+        }
+      },
+      "per_sequence": {
+        "b1e9ee0e-67e26f2e": {
+          "sequence_id": "b1e9ee0e-67e26f2e",
+          "frames_evaluated": 203,
+          "total_gt": 8719,
+          "total_preds": 4246,
+          "tp": 3208,
+          "fp": 1038,
+          "fn": 5511,
+          "precision": 0.7555,
+          "recall": 0.3679,
+          "f1": 0.4949,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2917,
+            "flicker_rate": 0.0481,
+            "total_flicker_events": 416,
+            "mean_dropout_gap_frames": 22.06,
+            "total_dropout_events": 247,
+            "dropout_gap_histogram": {
+              "2": 37,
+              "201": 6,
+              "200": 5,
+              "1": 40,
+              "3": 31,
+              "5": 19,
+              "202": 2,
+              "62": 1,
+              "44": 1,
+              "9": 9,
+              "143": 1,
+              "7": 11,
+              "10": 4,
+              "38": 1,
+              "133": 1,
+              "14": 8,
+              "6": 8,
+              "11": 2,
+              "4": 16,
+              "22": 1,
+              "16": 3,
+              "12": 4,
+              "18": 2,
+              "72": 1,
+              "86": 1,
+              "41": 1,
+              "8": 7,
+              "135": 1,
+              "71": 1,
+              "19": 3,
+              "21": 2,
+              "27": 2,
+              "26": 1,
+              "20": 3,
+              "167": 1,
+              "35": 1,
+              "47": 1,
+              "64": 1,
+              "91": 1,
+              "152": 1,
+              "129": 1,
+              "15": 1,
+              "52": 1,
+              "34": 1,
+              "32": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.657,
+              "recall": 0.1822,
+              "f1": 0.2853,
+              "tp": 749,
+              "fp": 391,
+              "fn": 3362
+            },
+            "medium": {
+              "precision": 0.7438,
+              "recall": 0.3704,
+              "f1": 0.4945,
+              "tp": 1080,
+              "fp": 372,
+              "fn": 1836
+            },
+            "large": {
+              "precision": 0.8337,
+              "recall": 0.815,
+              "f1": 0.8243,
+              "tp": 1379,
+              "fp": 275,
+              "fn": 313
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7928,
+              "recall": 0.4112,
+              "f1": 0.5415,
+              "tp": 3207,
+              "fp": 838,
+              "fn": 4593
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 631
+            },
+            "Truck": {
+              "precision": 0.005,
+              "recall": 0.0035,
+              "f1": 0.0041,
+              "tp": 1,
+              "fp": 200,
+              "fn": 287
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-65deaeef": {
+          "sequence_id": "b1d0a191-65deaeef",
+          "frames_evaluated": 202,
+          "total_gt": 4199,
+          "total_preds": 2086,
+          "tp": 1545,
+          "fp": 541,
+          "fn": 2654,
+          "precision": 0.7407,
+          "recall": 0.3679,
+          "f1": 0.4916,
+          "temporal_stability": {
+            "mean_track_coverage": 0.2329,
+            "flicker_rate": 0.0713,
+            "total_flicker_events": 292,
+            "mean_dropout_gap_frames": 11.14,
+            "total_dropout_events": 229,
+            "dropout_gap_histogram": {
+              "1": 42,
+              "3": 21,
+              "8": 7,
+              "2": 35,
+              "5": 20,
+              "22": 4,
+              "9": 7,
+              "6": 11,
+              "23": 6,
+              "14": 2,
+              "4": 14,
+              "7": 7,
+              "10": 3,
+              "20": 4,
+              "30": 2,
+              "36": 1,
+              "15": 1,
+              "19": 2,
+              "60": 1,
+              "21": 3,
+              "56": 1,
+              "13": 3,
+              "12": 2,
+              "27": 1,
+              "104": 1,
+              "33": 1,
+              "63": 2,
+              "25": 1,
+              "17": 2,
+              "11": 2,
+              "37": 2,
+              "89": 1,
+              "39": 1,
+              "57": 1,
+              "74": 1,
+              "54": 1,
+              "77": 1,
+              "18": 2,
+              "69": 1,
+              "29": 1,
+              "32": 2,
+              "31": 1,
+              "47": 1,
+              "35": 2,
+              "24": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.6346,
+              "recall": 0.0247,
+              "f1": 0.0475,
+              "tp": 33,
+              "fp": 19,
+              "fn": 1305
+            },
+            "medium": {
+              "precision": 0.7521,
+              "recall": 0.4322,
+              "f1": 0.5489,
+              "tp": 704,
+              "fp": 232,
+              "fn": 925
+            },
+            "large": {
+              "precision": 0.7359,
+              "recall": 0.6558,
+              "f1": 0.6936,
+              "tp": 808,
+              "fp": 290,
+              "fn": 424
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.8067,
+              "recall": 0.4945,
+              "f1": 0.6131,
+              "tp": 1256,
+              "fp": 301,
+              "fn": 1284
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1147
+            },
+            "Truck": {
+              "precision": 0.6244,
+              "recall": 0.7282,
+              "f1": 0.6724,
+              "tp": 276,
+              "fp": 166,
+              "fn": 103
+            },
+            "Bus": {
+              "precision": 0.0548,
+              "recall": 0.0476,
+              "f1": 0.051,
+              "tp": 4,
+              "fp": 69,
+              "fn": 80
+            },
+            "Bicycle": {
+              "precision": 0.6923,
+              "recall": 0.1837,
+              "f1": 0.2903,
+              "tp": 9,
+              "fp": 4,
+              "fn": 40
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 0
+            }
+          }
+        },
+        "b24071b8-b3ee1196": {
+          "sequence_id": "b24071b8-b3ee1196",
+          "frames_evaluated": 202,
+          "total_gt": 5755,
+          "total_preds": 1835,
+          "tp": 1162,
+          "fp": 673,
+          "fn": 4593,
+          "precision": 0.6332,
+          "recall": 0.2019,
+          "f1": 0.3062,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0596,
+            "flicker_rate": 0.0479,
+            "total_flicker_events": 261,
+            "mean_dropout_gap_frames": 10.58,
+            "total_dropout_events": 405,
+            "dropout_gap_histogram": {
+              "1": 84,
+              "7": 14,
+              "2": 59,
+              "4": 38,
+              "3": 37,
+              "9": 15,
+              "20": 2,
+              "6": 19,
+              "5": 26,
+              "11": 11,
+              "16": 5,
+              "96": 1,
+              "78": 1,
+              "21": 4,
+              "25": 3,
+              "12": 5,
+              "8": 10,
+              "15": 4,
+              "26": 2,
+              "13": 4,
+              "28": 1,
+              "10": 8,
+              "19": 3,
+              "86": 1,
+              "14": 2,
+              "22": 3,
+              "60": 1,
+              "17": 6,
+              "18": 2,
+              "70": 2,
+              "116": 1,
+              "80": 2,
+              "99": 1,
+              "72": 1,
+              "102": 1,
+              "109": 1,
+              "73": 1,
+              "66": 1,
+              "40": 1,
+              "61": 1,
+              "98": 1,
+              "47": 1,
+              "43": 3,
+              "42": 1,
+              "27": 1,
+              "30": 1,
+              "56": 1,
+              "34": 1,
+              "36": 2,
+              "24": 3,
+              "29": 2,
+              "62": 1,
+              "54": 1,
+              "55": 1,
+              "49": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5997,
+              "recall": 0.1479,
+              "f1": 0.2373,
+              "tp": 367,
+              "fp": 245,
+              "fn": 2114
+            },
+            "medium": {
+              "precision": 0.6899,
+              "recall": 0.219,
+              "f1": 0.3325,
+              "tp": 654,
+              "fp": 294,
+              "fn": 2332
+            },
+            "large": {
+              "precision": 0.5127,
+              "recall": 0.4896,
+              "f1": 0.5009,
+              "tp": 141,
+              "fp": 134,
+              "fn": 147
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7433,
+              "recall": 0.5675,
+              "f1": 0.6436,
+              "tp": 1089,
+              "fp": 376,
+              "fn": 830
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3048
+            },
+            "Truck": {
+              "precision": 0.1531,
+              "recall": 0.2807,
+              "f1": 0.1981,
+              "tp": 32,
+              "fp": 177,
+              "fn": 82
+            },
+            "Bus": {
+              "precision": 0.2647,
+              "recall": 0.0896,
+              "f1": 0.1338,
+              "tp": 18,
+              "fp": 50,
+              "fn": 183
+            },
+            "Bicycle": {
+              "precision": 0.2706,
+              "recall": 0.0486,
+              "f1": 0.0824,
+              "tp": 23,
+              "fp": 62,
+              "fn": 450
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 0
+            }
+          }
+        },
+        "b2208b0f-2796a692": {
+          "sequence_id": "b2208b0f-2796a692",
+          "frames_evaluated": 203,
+          "total_gt": 5365,
+          "total_preds": 2466,
+          "tp": 1614,
+          "fp": 852,
+          "fn": 3751,
+          "precision": 0.6545,
+          "recall": 0.3008,
+          "f1": 0.4122,
+          "temporal_stability": {
+            "mean_track_coverage": 0.1984,
+            "flicker_rate": 0.0935,
+            "total_flicker_events": 485,
+            "mean_dropout_gap_frames": 9.32,
+            "total_dropout_events": 384,
+            "dropout_gap_histogram": {
+              "1": 100,
+              "3": 41,
+              "2": 59,
+              "27": 4,
+              "8": 16,
+              "7": 9,
+              "6": 14,
+              "4": 23,
+              "5": 16,
+              "29": 2,
+              "36": 1,
+              "40": 3,
+              "41": 2,
+              "9": 14,
+              "42": 1,
+              "45": 1,
+              "18": 2,
+              "11": 4,
+              "14": 2,
+              "26": 1,
+              "13": 4,
+              "12": 10,
+              "15": 4,
+              "10": 7,
+              "19": 3,
+              "20": 6,
+              "16": 3,
+              "21": 2,
+              "32": 1,
+              "34": 3,
+              "43": 1,
+              "78": 1,
+              "63": 1,
+              "22": 1,
+              "44": 1,
+              "17": 2,
+              "61": 1,
+              "105": 1,
+              "57": 1,
+              "24": 1,
+              "47": 1,
+              "87": 1,
+              "88": 1,
+              "25": 1,
+              "55": 1,
+              "30": 1,
+              "49": 1,
+              "97": 1,
+              "54": 1,
+              "33": 1,
+              "37": 1,
+              "59": 1,
+              "71": 1,
+              "35": 1,
+              "38": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.5839,
+              "recall": 0.1601,
+              "f1": 0.2512,
+              "tp": 428,
+              "fp": 305,
+              "fn": 2246
+            },
+            "medium": {
+              "precision": 0.7388,
+              "recall": 0.4355,
+              "f1": 0.548,
+              "tp": 993,
+              "fp": 351,
+              "fn": 1287
+            },
+            "large": {
+              "precision": 0.4961,
+              "recall": 0.4696,
+              "f1": 0.4825,
+              "tp": 193,
+              "fp": 196,
+              "fn": 218
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6888,
+              "recall": 0.4855,
+              "f1": 0.5696,
+              "tp": 1578,
+              "fp": 713,
+              "fn": 1672
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1734
+            },
+            "Truck": {
+              "precision": 0.4557,
+              "recall": 0.1614,
+              "f1": 0.2384,
+              "tp": 36,
+              "fp": 43,
+              "fn": 187
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 86,
+              "fn": 0
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 158
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 10,
+              "fn": 0
+            }
+          }
+        },
+        "b2064e61-2beadd45": {
+          "sequence_id": "b2064e61-2beadd45",
+          "frames_evaluated": 203,
+          "total_gt": 2857,
+          "total_preds": 1632,
+          "tp": 1120,
+          "fp": 512,
+          "fn": 1737,
+          "precision": 0.6863,
+          "recall": 0.392,
+          "f1": 0.499,
+          "temporal_stability": {
+            "mean_track_coverage": 0.3384,
+            "flicker_rate": 0.1081,
+            "total_flicker_events": 302,
+            "mean_dropout_gap_frames": 8.45,
+            "total_dropout_events": 198,
+            "dropout_gap_histogram": {
+              "1": 67,
+              "2": 40,
+              "3": 24,
+              "72": 1,
+              "4": 7,
+              "26": 1,
+              "74": 1,
+              "178": 1,
+              "61": 1,
+              "16": 2,
+              "8": 3,
+              "7": 5,
+              "22": 1,
+              "77": 2,
+              "5": 10,
+              "79": 1,
+              "102": 1,
+              "18": 2,
+              "21": 1,
+              "78": 1,
+              "56": 1,
+              "10": 2,
+              "14": 1,
+              "12": 2,
+              "9": 6,
+              "6": 6,
+              "13": 3,
+              "24": 1,
+              "53": 1,
+              "23": 1,
+              "28": 1,
+              "11": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.4641,
+              "recall": 0.062,
+              "f1": 0.1094,
+              "tp": 71,
+              "fp": 82,
+              "fn": 1074
+            },
+            "medium": {
+              "precision": 0.6443,
+              "recall": 0.5357,
+              "f1": 0.585,
+              "tp": 652,
+              "fp": 360,
+              "fn": 565
+            },
+            "large": {
+              "precision": 0.8501,
+              "recall": 0.802,
+              "f1": 0.8254,
+              "tp": 397,
+              "fp": 70,
+              "fn": 98
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.6856,
+              "recall": 0.4416,
+              "f1": 0.5372,
+              "tp": 1108,
+              "fp": 508,
+              "fn": 1401
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 29
+            },
+            "Truck": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 37
+            },
+            "Bus": {
+              "precision": 0.75,
+              "recall": 0.0426,
+              "f1": 0.0805,
+              "tp": 12,
+              "fp": 4,
+              "fn": 270
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1d0a191-03dcecc2": {
+          "sequence_id": "b1d0a191-03dcecc2",
+          "frames_evaluated": 202,
+          "total_gt": 3752,
+          "total_preds": 1918,
+          "tp": 1285,
+          "fp": 633,
+          "fn": 2467,
+          "precision": 0.67,
+          "recall": 0.3425,
+          "f1": 0.4533,
+          "temporal_stability": {
+            "mean_track_coverage": 0.1744,
+            "flicker_rate": 0.0599,
+            "total_flicker_events": 216,
+            "mean_dropout_gap_frames": 10.06,
+            "total_dropout_events": 231,
+            "dropout_gap_histogram": {
+              "78": 1,
+              "46": 1,
+              "2": 15,
+              "5": 13,
+              "13": 3,
+              "3": 20,
+              "14": 5,
+              "16": 2,
+              "21": 2,
+              "20": 5,
+              "17": 8,
+              "18": 8,
+              "4": 12,
+              "1": 52,
+              "8": 11,
+              "7": 10,
+              "19": 3,
+              "6": 15,
+              "23": 1,
+              "9": 6,
+              "55": 1,
+              "41": 2,
+              "31": 1,
+              "24": 1,
+              "36": 1,
+              "35": 1,
+              "42": 1,
+              "15": 6,
+              "37": 1,
+              "33": 1,
+              "11": 8,
+              "80": 1,
+              "22": 2,
+              "68": 1,
+              "10": 2,
+              "12": 2,
+              "39": 1,
+              "59": 1,
+              "25": 1,
+              "34": 1,
+              "29": 1,
+              "26": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.7529,
+              "recall": 0.0958,
+              "f1": 0.17,
+              "tp": 128,
+              "fp": 42,
+              "fn": 1208
+            },
+            "medium": {
+              "precision": 0.6536,
+              "recall": 0.3728,
+              "f1": 0.4748,
+              "tp": 617,
+              "fp": 327,
+              "fn": 1038
+            },
+            "large": {
+              "precision": 0.6716,
+              "recall": 0.7096,
+              "f1": 0.6901,
+              "tp": 540,
+              "fp": 264,
+              "fn": 221
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7667,
+              "recall": 0.5452,
+              "f1": 0.6373,
+              "tp": 1206,
+              "fp": 367,
+              "fn": 1006
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 1065
+            },
+            "Truck": {
+              "precision": 0.3798,
+              "recall": 0.2387,
+              "f1": 0.2931,
+              "tp": 79,
+              "fp": 129,
+              "fn": 252
+            },
+            "Bus": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 135,
+              "fn": 60
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 84
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 1,
+              "fn": 0
+            }
+          }
+        },
+        "b1d968b9-ce42734f": {
+          "sequence_id": "b1d968b9-ce42734f",
+          "frames_evaluated": 203,
+          "total_gt": 4138,
+          "total_preds": 2983,
+          "tp": 2070,
+          "fp": 913,
+          "fn": 2068,
+          "precision": 0.6939,
+          "recall": 0.5002,
+          "f1": 0.5814,
+          "temporal_stability": {
+            "mean_track_coverage": 0.3304,
+            "flicker_rate": 0.1343,
+            "total_flicker_events": 535,
+            "mean_dropout_gap_frames": 5.14,
+            "total_dropout_events": 375,
+            "dropout_gap_histogram": {
+              "3": 44,
+              "6": 15,
+              "1": 138,
+              "7": 15,
+              "8": 8,
+              "20": 2,
+              "4": 30,
+              "17": 2,
+              "2": 66,
+              "9": 8,
+              "14": 3,
+              "65": 1,
+              "48": 1,
+              "43": 1,
+              "5": 11,
+              "10": 7,
+              "41": 1,
+              "19": 3,
+              "11": 3,
+              "12": 2,
+              "22": 1,
+              "13": 2,
+              "99": 1,
+              "42": 1,
+              "86": 1,
+              "16": 1,
+              "33": 1,
+              "18": 1,
+              "30": 1,
+              "69": 1,
+              "50": 1,
+              "15": 2
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.6831,
+              "recall": 0.3519,
+              "f1": 0.4645,
+              "tp": 625,
+              "fp": 290,
+              "fn": 1151
+            },
+            "medium": {
+              "precision": 0.7463,
+              "recall": 0.5807,
+              "f1": 0.6532,
+              "tp": 1115,
+              "fp": 379,
+              "fn": 805
+            },
+            "large": {
+              "precision": 0.5749,
+              "recall": 0.7466,
+              "f1": 0.6496,
+              "tp": 330,
+              "fp": 244,
+              "fn": 112
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7291,
+              "recall": 0.5653,
+              "f1": 0.6369,
+              "tp": 2051,
+              "fp": 762,
+              "fn": 1577
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 280
+            },
+            "Truck": {
+              "precision": 0.075,
+              "recall": 0.0632,
+              "f1": 0.0686,
+              "tp": 12,
+              "fp": 148,
+              "fn": 178
+            },
+            "Bus": {
+              "precision": 0.7,
+              "recall": 0.1892,
+              "f1": 0.2979,
+              "tp": 7,
+              "fp": 3,
+              "fn": 30
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 3
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "b1ca2e5d-84cf9134": {
+          "sequence_id": "b1ca2e5d-84cf9134",
+          "frames_evaluated": 203,
+          "total_gt": 4505,
+          "total_preds": 1301,
+          "tp": 878,
+          "fp": 423,
+          "fn": 3627,
+          "precision": 0.6749,
+          "recall": 0.1949,
+          "f1": 0.3024,
+          "temporal_stability": {
+            "mean_track_coverage": 0.0692,
+            "flicker_rate": 0.0438,
+            "total_flicker_events": 186,
+            "mean_dropout_gap_frames": 10.42,
+            "total_dropout_events": 323,
+            "dropout_gap_histogram": {
+              "1": 59,
+              "2": 46,
+              "3": 35,
+              "5": 17,
+              "13": 6,
+              "4": 20,
+              "8": 10,
+              "21": 6,
+              "11": 12,
+              "7": 15,
+              "6": 10,
+              "27": 5,
+              "15": 4,
+              "19": 4,
+              "17": 4,
+              "23": 2,
+              "12": 7,
+              "10": 7,
+              "20": 2,
+              "29": 2,
+              "26": 1,
+              "16": 2,
+              "61": 1,
+              "14": 5,
+              "73": 1,
+              "78": 1,
+              "56": 1,
+              "76": 1,
+              "57": 3,
+              "65": 1,
+              "63": 1,
+              "30": 2,
+              "9": 4,
+              "38": 1,
+              "52": 1,
+              "45": 1,
+              "48": 1,
+              "41": 2,
+              "58": 1,
+              "51": 1,
+              "22": 3,
+              "35": 1,
+              "31": 4,
+              "24": 3,
+              "25": 5,
+              "37": 1,
+              "28": 1
+            }
+          },
+          "scale_breakdown": {
+            "small": {
+              "precision": 0.3,
+              "recall": 0.0034,
+              "f1": 0.0067,
+              "tp": 3,
+              "fp": 7,
+              "fn": 883
+            },
+            "medium": {
+              "precision": 0.5593,
+              "recall": 0.1371,
+              "f1": 0.2202,
+              "tp": 297,
+              "fp": 234,
+              "fn": 1870
+            },
+            "large": {
+              "precision": 0.7605,
+              "recall": 0.3981,
+              "f1": 0.5226,
+              "tp": 578,
+              "fp": 182,
+              "fn": 874
+            }
+          },
+          "class_breakdown": {
+            "Car": {
+              "precision": 0.7373,
+              "recall": 0.5546,
+              "f1": 0.633,
+              "tp": 752,
+              "fp": 268,
+              "fn": 604
+            },
+            "Person": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 2842
+            },
+            "Truck": {
+              "precision": 0.673,
+              "recall": 0.4315,
+              "f1": 0.5258,
+              "tp": 107,
+              "fp": 52,
+              "fn": 141
+            },
+            "Bus": {
+              "precision": 0.1624,
+              "recall": 0.5588,
+              "f1": 0.2517,
+              "tp": 19,
+              "fp": 98,
+              "fn": 15
+            },
+            "Bicycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 2,
+              "fn": 25
+            },
+            "Motorcycle": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 3,
+              "fn": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

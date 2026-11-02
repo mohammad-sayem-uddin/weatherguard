@@ -1,0 +1,96 @@
+{
+  "cohort": "Group_B_BDD100K_Development",
+  "n_images": 160,
+  "experiments": {
+    "crop_refine_k1_s15": {
+      "max_crops": 1,
+      "min_score": 0.15,
+      "n_images": 160,
+      "total_crops_generated": 106,
+      "pct_images_with_crops": 66.25,
+      "mean_crops_per_image": 0.66,
+      "detection_metrics": {
+        "f1": 0.40439,
+        "precision": 0.45056,
+        "recall": 0.3668,
+        "tp": 811,
+        "fp": 989,
+        "fn": 1400,
+        "fp_per_image": 6.181
+      },
+      "scale_recall": {
+        "small": 7.98,
+        "medium": 48.5,
+        "large": 80.0,
+        "small_tp": 76,
+        "small_gt": 952
+      },
+      "latency_sequential": {
+        "mean_ms": 113.08,
+        "median_ms": 142.43,
+        "p95_ms": 157.68,
+        "fps": 8.84
+      }
+    },
+    "crop_refine_k2_s15": {
+      "max_crops": 2,
+      "min_score": 0.15,
+      "n_images": 160,
+      "total_crops_generated": 145,
+      "pct_images_with_crops": 66.25,
+      "mean_crops_per_image": 0.91,
+      "detection_metrics": {
+        "f1": 0.38354,
+        "precision": 0.40188,
+        "recall": 0.3668,
+        "tp": 811,
+        "fp": 1207,
+        "fn": 1400,
+        "fp_per_image": 7.544
+      },
+      "scale_recall": {
+        "small": 7.98,
+        "medium": 48.5,
+        "large": 80.0,
+        "small_tp": 76,
+        "small_gt": 952
+      },
+      "latency_sequential": {
+        "mean_ms": 139.02,
+        "median_ms": 148.15,
+        "p95_ms": 258.97,
+        "fps": 7.19
+      }
+    },
+    "crop_refine_k1_s20": {
+      "max_crops": 1,
+      "min_score": 0.2,
+      "n_images": 160,
+      "total_crops_generated": 80,
+      "pct_images_with_crops": 50.0,
+      "mean_crops_per_image": 0.5,
+      "detection_metrics": {
+        "f1": 0.41761,
+        "precision": 0.48476,
+        "recall": 0.3668,
+        "tp": 811,
+        "fp": 862,
+        "fn": 1400,
+        "fp_per_image": 5.388
+      },
+      "scale_recall": {
+        "small": 7.98,
+        "medium": 48.5,
+        "large": 80.0,
+        "small_tp": 76,
+        "small_gt": 952
+      },
+      "latency_sequential": {
+        "mean_ms": 102.53,
+        "median_ms": 84.17,
+        "p95_ms": 165.4,
+        "fps": 9.75
+      }
+    }
+  }
+}

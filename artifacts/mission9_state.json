@@ -1,0 +1,114 @@
+{
+  "mission": "Mission 9 \u2014 Temporal Video Object Detection, Sequence-Aware Conditional Inference & Independent Cross-Dataset Generalization",
+  "status": "in_progress",
+  "current_phase": "Phase 11: Final Synthesis & Literature Integration",
+  "completed_experiments": [
+    "experiment_a_historical_audit",
+    "experiment_b_dataset_discovery",
+    "experiment_c_sequence_split",
+    "experiment_d_video_baseline",
+    "experiment_e_temporal_tracking",
+    "experiment_f_temporal_confidence",
+    "experiment_g_temporal_routing",
+    "experiment_h_temporal_false_alarms",
+    "experiment_i_sequence_performance",
+    "experiment_j_locked_bootstrap"
+  ],
+  "hardware": "Apple MacBook Air M1 (8-core CPU), 8 GB Unified Memory",
+  "historical_cohort": "BDD100K Group C (Historical Locked Test N=203, now retired to historical benchmark)",
+  "historical_baseline_reconciliation": {
+    "status": "reconciled",
+    "root_cause": "Class vocabulary scope (all 80 COCO predicted classes vs 6 canonical BDD100K traffic classes)",
+    "pre_trained_640_canonical_f1": 0.5111,
+    "pre_trained_640_all_coco_f1": 0.4974,
+    "policy_5a_canonical_f1": 0.5442,
+    "policy_5a_all_coco_f1": 0.527,
+    "group_c_status": "Retired to historical benchmark (multiple prior evaluation exposures in Missions 5-8)"
+  },
+  "video_dataset": {
+    "total_sequences": 8,
+    "total_frames": 1621,
+    "total_boxes": 39290,
+    "total_unique_tracks": 1274,
+    "registry_path": "artifacts/mission9_dataset_registry.json"
+  },
+  "sequence_splits": {
+    "dev_sequences": [
+      "b1e9ee0e-67e26f2e",
+      "b1d0a191-65deaeef",
+      "b24071b8-b3ee1196",
+      "b2208b0f-2796a692"
+    ],
+    "dev_frames": 810,
+    "locked_test_sequences": [
+      "b2064e61-2beadd45",
+      "b1d0a191-03dcecc2",
+      "b1d968b9-ce42734f",
+      "b1ca2e5d-84cf9134"
+    ],
+    "locked_test_frames": 811,
+    "manifest_sha256": "15f0340343a450c497302c5f12138cdfc687fc2fc206557d4ed8b1b24fb3b572"
+  },
+  "created_at": "2026-11-02T05:04:00Z",
+  "video_baseline": {
+    "systems_evaluated": [
+      "yolov8n_640",
+      "yolov8n_832",
+      "head_only_640",
+      "policy_5a"
+    ],
+    "dev_f1": {
+      "yolov8n_640": 0.4091,
+      "yolov8n_832": 0.475,
+      "head_only_640": 0.4026,
+      "policy_5a": 0.4648
+    },
+    "locked_test_f1": {
+      "yolov8n_640": 0.5093,
+      "yolov8n_832": 0.5481,
+      "head_only_640": 0.5053,
+      "policy_5a": 0.5334
+    },
+    "artifact_path": "artifacts/mission9_video_baseline.json"
+  },
+  "tracking": {
+    "bytetrack_overall_f1": 0.3708,
+    "bytetrack_policy_5a_f1": 0.4285,
+    "artifact_path": "artifacts/mission9_tracking_results.json"
+  },
+  "temporal_confidence": {
+    "best_dev_alpha": 0.4,
+    "best_dev_recovery_gap": 0,
+    "recovery_overall_f1": 0.4422,
+    "policy_5a_recovery_f1": 0.4836,
+    "artifact_path": "artifacts/mission9_temporal_confidence.json"
+  },
+  "temporal_routing": {
+    "hysteresis_overall_f1": 0.4922,
+    "hysteresis_switches_per_100f": 12.21,
+    "p5a_switches_per_100f": 12.21,
+    "artifact_path": "artifacts/mission9_temporal_routing.json"
+  },
+  "false_alarms": {
+    "raw_fp": 7096,
+    "suppressed_fp_m2": 5515,
+    "raw_prec": 0.65,
+    "suppressed_prec_m2": 0.6746,
+    "artifact_path": "artifacts/mission9_temporal_false_alarms.json"
+  },
+  "sequence_performance": {
+    "static_640_f1": 0.4495,
+    "static_832_f1": 0.5043,
+    "weatherguard_temporal_f1": 0.4739,
+    "weatherguard_temporal_fps": 15.47,
+    "artifact_path": "artifacts/mission9_sequence_performance.json"
+  },
+  "locked_evaluation": {
+    "locked_test_640_f1": 0.5093,
+    "locked_test_832_f1": 0.5481,
+    "locked_test_temporal_f1": 0.4982,
+    "paired_bootstrap_delta_f1": -0.0115,
+    "paired_bootstrap_p_value": "0.1230",
+    "artifact_path": "artifacts/mission9_locked_video_results.json"
+  }
+}

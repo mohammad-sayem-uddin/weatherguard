@@ -1,0 +1,7 @@
+seed,comparison,metric,mean_estimate,ci_95_lower,ci_95_upper,p_value
+primary (20261101),Scale-Aware vs Baseline YOLO,Delta Micro F1,0.0667,0.0496,0.0839,0.0000
+primary (20261101),Scale-Aware vs Baseline YOLO,Delta Small Recall,19.99%,16.91%,23.13%,0.0000
+primary (20261101),Faster R-CNN vs Scale-Aware YOLO,Remaining F1 Gap,0.1099,0.0914,0.1281,N/A
+secondary (20261102),Scale-Aware vs Baseline YOLO,Delta Micro F1,0.0666,0.0467,0.0846,0.0000
+secondary (20261102),Scale-Aware vs Baseline YOLO,Delta Small Recall,20.04%,16.98%,23.19%,0.0000
+secondary (20261102),Faster R-CNN vs Scale-Aware YOLO,Remaining F1 Gap,0.1101,0.0920,0.1288,N/A

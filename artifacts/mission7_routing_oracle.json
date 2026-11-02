@@ -1,0 +1,171 @@
+{
+  "mission": "Mission 7 \u2014 Experiment B: Routing Oracle & Upper Bounds",
+  "cohort": "Group_B_BDD100K_Development",
+  "n_images": 160,
+  "base_model": {
+    "name": "Pretrained-YOLOv8n-640px",
+    "threshold": 0.2,
+    "f1": 0.4654442877291961,
+    "precision": 0.618440779610195,
+    "recall": 0.373134328358209,
+    "small_recall": 0.08088235294117647,
+    "tp": 825,
+    "fp": 509,
+    "fn": 1386
+  },
+  "single_candidate_oracles": {
+    "YOLOv8n-832px": {
+      "candidate_name": "YOLOv8n-832px",
+      "standalone": {
+        "f1": 0.5153927813163482,
+        "precision": 0.6236351958895312,
+        "recall": 0.4391677973767526,
+        "small_recall": 0.16176470588235295,
+        "tp": 971,
+        "fp": 586,
+        "fn": 1240
+      },
+      "oracle_upper_bound": {
+        "f1": 0.5343800757985924,
+        "precision": 0.6655428186109238,
+        "recall": 0.44640434192673,
+        "small_recall": 0.15756302521008403,
+        "tp": 987,
+        "fp": 496,
+        "fn": 1224,
+        "delta_f1_vs_base": 0.06893578806939626,
+        "delta_f1_vs_cand": 0.01898729448224412,
+        "escalation_count": 94,
+        "escalation_rate": 0.5875
+      },
+      "image_level_breakdown": {
+        "improves_f1": 94,
+        "reduces_f1": 46,
+        "f1_equal": 20,
+        "recall_gain_precision_loss": 25,
+        "no_change": 17,
+        "small_objects_recovered": 54,
+        "extra_false_positives": 75
+      }
+    },
+    "YOLOv8n-1280px": {
+      "candidate_name": "YOLOv8n-1280px",
+      "standalone": {
+        "f1": 0.5189243027888446,
+        "precision": 0.5772853185595568,
+        "recall": 0.47127996381727727,
+        "small_recall": 0.2415966386554622,
+        "tp": 1042,
+        "fp": 763,
+        "fn": 1169
+      },
+      "oracle_upper_bound": {
+        "f1": 0.5538382277176713,
+        "precision": 0.6433273488928786,
+        "recall": 0.4862053369516056,
+        "small_recall": 0.22058823529411764,
+        "tp": 1075,
+        "fp": 596,
+        "fn": 1136,
+        "delta_f1_vs_base": 0.08839393998847522,
+        "delta_f1_vs_cand": 0.03491392492882672,
+        "escalation_count": 98,
+        "escalation_rate": 0.6125
+      },
+      "image_level_breakdown": {
+        "improves_f1": 92,
+        "reduces_f1": 55,
+        "f1_equal": 13,
+        "recall_gain_precision_loss": 37,
+        "no_change": 10,
+        "small_objects_recovered": 81,
+        "extra_false_positives": 98
+      }
+    },
+    "Head-Only-640px": {
+      "candidate_name": "Head-Only-640px",
+      "standalone": {
+        "f1": 0.43051771117166215,
+        "precision": 0.4322845417236662,
+        "recall": 0.4287652645861601,
+        "small_recall": 0.1134453781512605,
+        "tp": 948,
+        "fp": 1245,
+        "fn": 1263
+      },
+      "oracle_upper_bound": {
+        "f1": 0.4940805051302289,
+        "precision": 0.590566037735849,
+        "recall": 0.42469470827679784,
+        "small_recall": 0.11029411764705882,
+        "tp": 939,
+        "fp": 651,
+        "fn": 1272,
+        "delta_f1_vs_base": 0.028636217401032782,
+        "delta_f1_vs_cand": 0.06356279395856673,
+        "escalation_count": 54,
+        "escalation_rate": 0.3375
+      },
+      "image_level_breakdown": {
+        "improves_f1": 57,
+        "reduces_f1": 93,
+        "f1_equal": 10,
+        "recall_gain_precision_loss": 54,
+        "no_change": 6,
+        "small_objects_recovered": 30,
+        "extra_false_positives": 134
+      }
+    },
+    "Faster-RCNN-Ref": {
+      "candidate_name": "Faster-RCNN-Ref",
+      "standalone": {
+        "f1": 0.6069561263923618,
+        "precision": 0.6101462522851919,
+        "recall": 0.6037991858887382,
+        "small_recall": 0.38130252100840334,
+        "tp": 1335,
+        "fp": 853,
+        "fn": 876
+      },
+      "oracle_upper_bound": {
+        "f1": 0.6264600715137069,
+        "precision": 0.6622983870967742,
+        "recall": 0.5943012211668928,
+        "small_recall": 0.3707983193277311,
+        "tp": 1314,
+        "fp": 670,
+        "fn": 897,
+        "delta_f1_vs_base": 0.16101578378451076,
+        "delta_f1_vs_cand": 0.019503945121345012,
+        "escalation_count": 121,
+        "escalation_rate": 0.75625
+      },
+      "image_level_breakdown": {
+        "improves_f1": 124,
+        "reduces_f1": 29,
+        "f1_equal": 7,
+        "recall_gain_precision_loss": 54,
+        "no_change": 3,
+        "small_objects_recovered": 105,
+        "extra_false_positives": 109
+      }
+    }
+  },
+  "multi_resolution_oracle": {
+    "oracle_f1": 0.6271403015589062,
+    "oracle_precision": 0.7209165687426558,
+    "oracle_recall": 0.5549525101763908,
+    "oracle_small_recall": 0.21953781512605042,
+    "delta_f1_vs_base": 0.1616960138297101,
+    "resolution_distribution": {
+      "640px": 45,
+      "832px": 52,
+      "1280px": 63
+    },
+    "resolution_percentages": {
+      "640px": 28.125,
+      "832px": 32.5,
+      "1280px": 39.375
+    }
+  }
+}

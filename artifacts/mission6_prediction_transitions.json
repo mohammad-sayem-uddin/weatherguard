@@ -1,0 +1,3025 @@
+{
+  "mission": "Mission 6 \u2014 Experiment A: Prediction-Level Forensics",
+  "champion_weights": "mission5_b1_photo.pt",
+  "operating_threshold": 0.2,
+  "iou_matching_threshold": 0.5,
+  "group_b_development": {
+    "n_images": 160,
+    "summary": {
+      "total_transitions": 1732,
+      "state_counts": {
+        "1_correct_to_correct": 683,
+        "2_correct_to_missed": 123,
+        "7_retained_false_positive": 183,
+        "6_fp_to_corrected": 233,
+        "5_additional_false_positive": 404,
+        "3_missed_to_recovered": 87,
+        "4_correct_to_wrong_class": 19
+      },
+      "state_percentages": {
+        "1_correct_to_correct": 39.43418013856813,
+        "2_correct_to_missed": 7.1016166281755195,
+        "7_retained_false_positive": 10.565819861431871,
+        "6_fp_to_corrected": 13.452655889145495,
+        "5_additional_false_positive": 23.325635103926096,
+        "3_missed_to_recovered": 5.023094688221709,
+        "4_correct_to_wrong_class": 1.0969976905311778
+      },
+      "by_class": {
+        "Car": {
+          "1_correct_to_correct": 609,
+          "2_correct_to_missed": 77,
+          "7_retained_false_positive": 137,
+          "5_additional_false_positive": 203,
+          "3_missed_to_recovered": 68,
+          "6_fp_to_corrected": 143
+        },
+        "Person": {
+          "6_fp_to_corrected": 40,
+          "1_correct_to_correct": 49,
+          "2_correct_to_missed": 44,
+          "5_additional_false_positive": 17,
+          "7_retained_false_positive": 10,
+          "3_missed_to_recovered": 3
+        },
+        "Truck": {
+          "3_missed_to_recovered": 16,
+          "5_additional_false_positive": 182,
+          "4_correct_to_wrong_class": 7,
+          "7_retained_false_positive": 20,
+          "6_fp_to_corrected": 40,
+          "1_correct_to_correct": 22,
+          "2_correct_to_missed": 1
+        },
+        "Bus": {
+          "6_fp_to_corrected": 10,
+          "1_correct_to_correct": 2,
+          "4_correct_to_wrong_class": 12,
+          "7_retained_false_positive": 16,
+          "5_additional_false_positive": 1,
+          "2_correct_to_missed": 1
+        },
+        "Motorcycle": {
+          "1_correct_to_correct": 1,
+          "5_additional_false_positive": 1
+        }
+      },
+      "by_scale": {
+        "large": {
+          "1_correct_to_correct": 298,
+          "7_retained_false_positive": 51,
+          "5_additional_false_positive": 181,
+          "3_missed_to_recovered": 30,
+          "4_correct_to_wrong_class": 15,
+          "6_fp_to_corrected": 56,
+          "2_correct_to_missed": 3
+        },
+        "medium": {
+          "1_correct_to_correct": 355,
+          "7_retained_false_positive": 105,
+          "6_fp_to_corrected": 121,
+          "3_missed_to_recovered": 54,
+          "5_additional_false_positive": 220,
+          "2_correct_to_missed": 73,
+          "4_correct_to_wrong_class": 4
+        },
+        "small": {
+          "2_correct_to_missed": 47,
+          "1_correct_to_correct": 30,
+          "7_retained_false_positive": 27,
+          "3_missed_to_recovered": 3,
+          "6_fp_to_corrected": 56,
+          "5_additional_false_positive": 3
+        }
+      },
+      "by_weather": {
+        "snowy": {
+          "1_correct_to_correct": 183,
+          "2_correct_to_missed": 46,
+          "7_retained_false_positive": 59,
+          "6_fp_to_corrected": 73,
+          "5_additional_false_positive": 133,
+          "3_missed_to_recovered": 23,
+          "4_correct_to_wrong_class": 10
+        },
+        "rainy": {
+          "3_missed_to_recovered": 28,
+          "1_correct_to_correct": 233,
+          "6_fp_to_corrected": 69,
+          "5_additional_false_positive": 119,
+          "2_correct_to_missed": 37,
+          "7_retained_false_positive": 61,
+          "4_correct_to_wrong_class": 3
+        },
+        "clear": {
+          "1_correct_to_correct": 131,
+          "5_additional_false_positive": 72,
+          "2_correct_to_missed": 18,
+          "4_correct_to_wrong_class": 4,
+          "7_retained_false_positive": 31,
+          "6_fp_to_corrected": 45,
+          "3_missed_to_recovered": 18
+        },
+        "overcast": {
+          "1_correct_to_correct": 136,
+          "7_retained_false_positive": 32,
+          "5_additional_false_positive": 80,
+          "3_missed_to_recovered": 18,
+          "6_fp_to_corrected": 46,
+          "2_correct_to_missed": 22,
+          "4_correct_to_wrong_class": 2
+        }
+      },
+      "confidence_stats": {
+        "1_correct_to_correct": {
+          "pretrained": {
+            "count": 683,
+            "mean": 0.6181095763931861,
+            "median": 0.6451784372329712,
+            "std": 0.19737432101276006
+          },
+          "adapted": {
+            "count": 683,
+            "mean": 0.6840414791033872,
+            "median": 0.7496333122253418,
+            "std": 0.23005757930386306
+          }
+        },
+        "2_correct_to_missed": {
+          "pretrained": {
+            "count": 123,
+            "mean": 0.32476139504735063,
+            "median": 0.28402143716812134,
+            "std": 0.11323740152504971
+          },
+          "adapted": {
+            "count": 103,
+            "mean": 0.1284208059857952,
+            "median": 0.11743658781051636,
+            "std": 0.10318709850537572
+          }
+        },
+        "3_missed_to_recovered": {
+          "pretrained": {
+            "count": 62,
+            "mean": 0.12089844260950602,
+            "median": 0.1206086315214634,
+            "std": 0.09451925523058163
+          },
+          "adapted": {
+            "count": 87,
+            "mean": 0.45777496352963065,
+            "median": 0.36295145750045776,
+            "std": 0.23606132997706938
+          }
+        },
+        "4_correct_to_wrong_class": {
+          "pretrained": {
+            "count": 19,
+            "mean": 0.5676944593065664,
+            "median": 0.5251154899597168,
+            "std": 0.22721749672351035
+          },
+          "adapted": {
+            "count": 19,
+            "mean": 0.6751489780451122,
+            "median": 0.6502370238304138,
+            "std": 0.23230378766011708
+          }
+        },
+        "5_additional_false_positive": {
+          "pretrained": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "std": null
+          },
+          "adapted": {
+            "count": 404,
+            "mean": 0.36557082267533436,
+            "median": 0.304941862821579,
+            "std": 0.17185214992430697
+          }
+        },
+        "6_fp_to_corrected": {
+          "pretrained": {
+            "count": 233,
+            "mean": 0.2933971954773424,
+            "median": 0.2552192211151123,
+            "std": 0.10494833517134573
+          },
+          "adapted": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        "7_retained_false_positive": {
+          "pretrained": {
+            "count": 183,
+            "mean": 0.38062155596871194,
+            "median": 0.34403195977211,
+            "std": 0.14971605267821064
+          },
+          "adapted": {
+            "count": 183,
+            "mean": 0.4346154096836601,
+            "median": 0.3813704550266266,
+            "std": 0.19862939186229492
+          }
+        }
+      }
+    },
+    "sample_cases": [
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.9141247868537903,
+        "adapted_conf": 0.6386796832084656,
+        "gt_box": [
+          132.207813,
+          235.008402,
+          513.316034,
+          502.483437
+        ],
+        "pretrained_box": [
+          134.3126220703125,
+          253.32012939453125,
+          513.6976928710938,
+          491.9404296875
+        ],
+        "adapted_box": [
+          127.11033630371094,
+          262.7720947265625,
+          508.7508544921875,
+          509.899169921875
+        ],
+        "iou_pre_gt": 0.8864027754908609,
+        "iou_adapt_gt": 0.8516132456473302
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8394685983657837,
+        "adapted_conf": 0.8683547377586365,
+        "gt_box": [
+          633.942031,
+          247.245823,
+          876.942226,
+          448.28915
+        ],
+        "pretrained_box": [
+          634.36181640625,
+          272.85748291015625,
+          871.5738525390625,
+          455.90130615234375
+        ],
+        "adapted_box": [
+          638.4188232421875,
+          273.17034912109375,
+          874.7374267578125,
+          451.78094482421875
+        ],
+        "iou_pre_gt": 0.8214589142107601,
+        "iou_adapt_gt": 0.8330289245784696
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.4733400344848633,
+        "adapted_conf": 0.8911311626434326,
+        "gt_box": [
+          936.381124,
+          186.058722,
+          1277.280679,
+          715.764184
+        ],
+        "pretrained_box": [
+          937.3304443359375,
+          192.4871368408203,
+          1279.5413818359375,
+          517.8594360351562
+        ],
+        "adapted_box": [
+          938.0153198242188,
+          202.0814208984375,
+          1278.782470703125,
+          692.8857421875
+        ],
+        "iou_pre_gt": 0.610055784454466,
+        "iou_adapt_gt": 0.9183704329196635
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7268728613853455,
+        "adapted_conf": 0.8991219997406006,
+        "gt_box": [
+          482.4326214736792,
+          254.27060996156592,
+          603.5388302792638,
+          351.15557700603364
+        ],
+        "pretrained_box": [
+          475.5054016113281,
+          259.5844421386719,
+          602.897216796875,
+          352.4707946777344
+        ],
+        "adapted_box": [
+          475.16046142578125,
+          258.7286071777344,
+          598.2257690429688,
+          355.0031433105469
+        ],
+        "iou_pre_gt": 0.8800045945002971,
+        "iou_adapt_gt": 0.8309958755662854
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7456015348434448,
+        "adapted_conf": 0.8673519492149353,
+        "gt_box": [
+          586.740555,
+          266.3812308421244,
+          639.186639,
+          325.914949
+        ],
+        "pretrained_box": [
+          582.9422607421875,
+          267.41046142578125,
+          637.4735107421875,
+          324.637451171875
+        ],
+        "adapted_box": [
+          585.7713623046875,
+          267.4737548828125,
+          636.9083251953125,
+          321.7003173828125
+        ],
+        "iou_pre_gt": 0.8693343068613153,
+        "iou_adapt_gt": 0.8568630636900234
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7125759720802307,
+        "adapted_conf": 0.8969513177871704,
+        "gt_box": [
+          805.26591,
+          212.9492701566679,
+          1015.050252,
+          366.123615
+        ],
+        "pretrained_box": [
+          804.7696533203125,
+          239.2620849609375,
+          1013.5301513671875,
+          366.2607421875
+        ],
+        "adapted_box": [
+          807.0255126953125,
+          240.15399169921875,
+          1009.1968994140625,
+          367.4053955078125
+        ],
+        "iou_pre_gt": 0.8198785937591269,
+        "iou_adapt_gt": 0.7862092043123647
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "2_correct_to_missed",
+        "pretrained_conf": 0.5118401646614075,
+        "adapted_conf": 0.17204566299915314,
+        "gt_box": [
+          671.746944,
+          261.356326,
+          692.725378,
+          287.579368
+        ],
+        "pretrained_box": [
+          659.9278564453125,
+          265.2735595703125,
+          693.9229736328125,
+          285.444580078125
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": 0.5206937432214147,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.5996090173721313,
+        "adapted_conf": 0.3395073413848877,
+        "gt_box": [
+          636.782887,
+          263.104529,
+          657.761321,
+          285.831166
+        ],
+        "pretrained_box": [
+          632.3184814453125,
+          263.77337646484375,
+          662.5299072265625,
+          284.91363525390625
+        ],
+        "adapted_box": [
+          630.7240600585938,
+          260.55316162109375,
+          662.5922241210938,
+          285.47698974609375
+        ],
+        "iou_pre_gt": 0.6599967919821835,
+        "iou_adapt_gt": 0.585425052738591
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "7_retained_false_positive",
+        "pretrained_conf": 0.301378071308136,
+        "adapted_conf": 0.23983052372932434,
+        "gt_box": null,
+        "pretrained_box": [
+          635.17578125,
+          264.2848205566406,
+          692.9222412109375,
+          285.1605529785156
+        ],
+        "adapted_box": [
+          628.6258544921875,
+          260.8389892578125,
+          693.2052001953125,
+          287.4088134765625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "7_retained_false_positive",
+        "pretrained_conf": 0.28576406836509705,
+        "adapted_conf": 0.7347517609596252,
+        "gt_box": null,
+        "pretrained_box": [
+          785.7698364257812,
+          196.78466796875,
+          1279.563232421875,
+          711.5570068359375
+        ],
+        "adapted_box": [
+          804.1380615234375,
+          197.52630615234375,
+          1280.0,
+          701.7098388671875
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Person",
+        "transition_type": "6_fp_to_corrected",
+        "pretrained_conf": 0.20751729607582092,
+        "adapted_conf": null,
+        "gt_box": null,
+        "pretrained_box": [
+          39.551124572753906,
+          296.9657897949219,
+          60.454139709472656,
+          352.0038757324219
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1d0a191-2ed2269e.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.2051231563091278,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          997.0051879882812,
+          197.92498779296875,
+          1279.737548828125,
+          420.082763671875
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1d0a191-5490450b.jpg",
+        "weather": "snowy",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "2_correct_to_missed",
+        "pretrained_conf": 0.29102063179016113,
+        "adapted_conf": 0.3568997383117676,
+        "gt_box": [
+          524.812139,
+          269.03552,
+          548.437123,
+          311.222991
+        ],
+        "pretrained_box": [
+          514.4791259765625,
+          265.7339172363281,
+          548.7340087890625,
+          313.5246276855469
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": 0.6088201837781412,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1d0a191-5490450b.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "3_missed_to_recovered",
+        "pretrained_conf": 0.29102063179016113,
+        "adapted_conf": 0.3568997383117676,
+        "gt_box": [
+          506.2496520000001,
+          263.973024,
+          539.9996290000001,
+          316.285487
+        ],
+        "pretrained_box": null,
+        "adapted_box": [
+          512.4754638671875,
+          261.4090881347656,
+          547.9281005859375,
+          312.9802551269531
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": 0.6008401054341674
+      },
+      {
+        "image_id": "b1d0a191-5490450b.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.6743499636650085,
+        "adapted_conf": 0.9095474481582642,
+        "gt_box": [
+          444.04422,
+          266.962312,
+          523.356666,
+          331.087268
+        ],
+        "pretrained_box": [
+          446.3270263671875,
+          263.227783203125,
+          532.5971069335938,
+          329.0130615234375
+        ],
+        "adapted_box": [
+          447.017333984375,
+          262.6503601074219,
+          524.09326171875,
+          327.0684509277344
+        ],
+        "iou_pre_gt": 0.7990934787256263,
+        "iou_adapt_gt": 0.8399887167714264
+      },
+      {
+        "image_id": "b1d0a191-5490450b.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "7_retained_false_positive",
+        "pretrained_conf": 0.3014404773712158,
+        "adapted_conf": 0.2942543923854828,
+        "gt_box": null,
+        "pretrained_box": [
+          300.2060546875,
+          316.01043701171875,
+          432.4390869140625,
+          347.76873779296875
+        ],
+        "adapted_box": [
+          301.9058837890625,
+          311.96588134765625,
+          430.262451171875,
+          352.83770751953125
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1d0a191-5490450b.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.2707439064979553,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          217.80580139160156,
+          293.08404541015625,
+          331.38671875,
+          340.61859130859375
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1e1a7b8-b397c445.jpg",
+        "weather": "rainy",
+        "scale_category": "large",
+        "class_name": "Truck",
+        "transition_type": "3_missed_to_recovered",
+        "pretrained_conf": 0.004826908465474844,
+        "adapted_conf": 0.21669812500476837,
+        "gt_box": [
+          0.0,
+          270.952062,
+          142.413056,
+          344.402922
+        ],
+        "pretrained_box": null,
+        "adapted_box": [
+          18.521728515625,
+          271.0480041503906,
+          113.76945495605469,
+          345.4741516113281
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": 0.6614872913767494
+      },
+      {
+        "image_id": "b1e1a7b8-b397c445.jpg",
+        "weather": "rainy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8072323799133301,
+        "adapted_conf": 0.9494664072990417,
+        "gt_box": [
+          666.696391,
+          315.405134,
+          738.515011,
+          372.533581
+        ],
+        "pretrained_box": [
+          669.5298461914062,
+          315.37933349609375,
+          737.9920043945312,
+          372.47442626953125
+        ],
+        "adapted_box": [
+          669.3706665039062,
+          316.32635498046875,
+          736.3303833007812,
+          374.592041015625
+        ],
+        "iou_pre_gt": 0.9518678707878765,
+        "iou_adapt_gt": 0.8874954782231651
+      },
+      {
+        "image_id": "b1e1a7b8-b397c445.jpg",
+        "weather": "rainy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8354942798614502,
+        "adapted_conf": 0.8981271982192993,
+        "gt_box": [
+          737.698889,
+          306.427808,
+          898.474658,
+          424.616915
+        ],
+        "pretrained_box": [
+          737.4730224609375,
+          302.22039794921875,
+          903.5345458984375,
+          428.68658447265625
+        ],
+        "adapted_box": [
+          736.7522583007812,
+          317.8978271484375,
+          902.7088012695312,
+          440.903076171875
+        ],
+        "iou_pre_gt": 0.9048041961099795,
+        "iou_adapt_gt": 0.7708747829413514
+      },
+      {
+        "image_id": "b1e1a7b8-b397c445.jpg",
+        "weather": "rainy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.6397398710250854,
+        "adapted_conf": 0.9553967714309692,
+        "gt_box": [
+          538.565446,
+          289.140884,
+          661.799668,
+          402.581656
+        ],
+        "pretrained_box": [
+          540.6107177734375,
+          293.6866455078125,
+          662.9320068359375,
+          405.02734375
+        ],
+        "adapted_box": [
+          537.3453979492188,
+          294.308837890625,
+          663.1426391601562,
+          408.13330078125
+        ],
+        "iou_pre_gt": 0.9163062078973923,
+        "iou_adapt_gt": 0.8921642794153689
+      },
+      {
+        "image_id": "b1e1a7b8-b397c445.jpg",
+        "weather": "rainy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "6_fp_to_corrected",
+        "pretrained_conf": 0.23732051253318787,
+        "adapted_conf": null,
+        "gt_box": null,
+        "pretrained_box": [
+          422.7177734375,
+          306.82061767578125,
+          537.451171875,
+          354.38690185546875
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1e1a7b8-b397c445.jpg",
+        "weather": "rainy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.3586429953575134,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          215.13922119140625,
+          314.8546447753906,
+          357.91815185546875,
+          379.7040100097656
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1e1a7b8-b397c445.jpg",
+        "weather": "rainy",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.24280709028244019,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          567.840576171875,
+          228.57916259765625,
+          651.58984375,
+          274.93182373046875
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1e1a7b8-b397c445.jpg",
+        "weather": "rainy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.23733431100845337,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          1221.7098388671875,
+          367.1475830078125,
+          1279.8839111328125,
+          415.3775634765625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20b69d2-ca16c907.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.21576599776744843,
+        "adapted_conf": 0.5514106750488281,
+        "gt_box": [
+          680.400611,
+          354.872017,
+          720.747816,
+          389.71733
+        ],
+        "pretrained_box": [
+          677.67626953125,
+          354.2384033203125,
+          721.9906005859375,
+          387.6844482421875
+        ],
+        "adapted_box": [
+          678.9856567382812,
+          352.02508544921875,
+          721.2992553710938,
+          385.12579345703125
+        ],
+        "iou_pre_gt": 0.8463902139659298,
+        "iou_adapt_gt": 0.7697091188179239
+      },
+      {
+        "image_id": "b20b69d2-ca16c907.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8398773074150085,
+        "adapted_conf": 0.883929431438446,
+        "gt_box": [
+          155.886932,
+          336.3105432712255,
+          460.324942,
+          508.924985
+        ],
+        "pretrained_box": [
+          155.03717041015625,
+          333.2860107421875,
+          460.26483154296875,
+          506.4210205078125
+        ],
+        "adapted_box": [
+          154.94296264648438,
+          335.8013916015625,
+          459.7541809082031,
+          503.524658203125
+        ],
+        "iou_pre_gt": 0.9656785490724172,
+        "iou_adapt_gt": 0.9611727064949365
+      },
+      {
+        "image_id": "b20b69d2-ca16c907.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.61154705286026,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          131.80128479003906,
+          270.7874755859375,
+          229.27427673339844,
+          405.5989990234375
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20b69d2-ca16c907.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.5368561148643494,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          134.82586669921875,
+          272.17315673828125,
+          212.324951171875,
+          375.87860107421875
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20b69d2-ca16c907.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.2057678997516632,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          131.80699157714844,
+          268.033935546875,
+          231.17674255371094,
+          356.45654296875
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "2_correct_to_missed",
+        "pretrained_conf": 0.27840545773506165,
+        "adapted_conf": 0.18606650829315186,
+        "gt_box": [
+          607.867033,
+          318.983364,
+          641.637423,
+          343.944088
+        ],
+        "pretrained_box": [
+          610.7122192382812,
+          325.435546875,
+          635.7658081054688,
+          344.08447265625
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": 0.5478233717574522,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.5216160416603088,
+        "adapted_conf": 0.5391330122947693,
+        "gt_box": [
+          666.965216,
+          315.55911895501333,
+          717.4010256465705,
+          351.285477
+        ],
+        "pretrained_box": [
+          670.1573486328125,
+          317.48101806640625,
+          720.1756591796875,
+          351.4453125
+        ],
+        "adapted_box": [
+          668.807861328125,
+          315.32318115234375,
+          717.5186767578125,
+          351.03582763671875
+        ],
+        "iou_pre_gt": 0.838927263496595,
+        "iou_adapt_gt": 0.9484863524784442
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7176591157913208,
+        "adapted_conf": 0.8643423318862915,
+        "gt_box": [
+          822.2356,
+          305.768864,
+          964.3976518261551,
+          385.055868
+        ],
+        "pretrained_box": [
+          822.66650390625,
+          304.011474609375,
+          963.734619140625,
+          383.1907958984375
+        ],
+        "adapted_box": [
+          822.57275390625,
+          303.6025390625,
+          953.44140625,
+          382.3189697265625
+        ],
+        "iou_pre_gt": 0.9481099003290016,
+        "iou_adapt_gt": 0.8669767404577869
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7546491026878357,
+        "adapted_conf": 0.9150187373161316,
+        "gt_box": [
+          927.584536,
+          273.466751,
+          1177.191772,
+          411.484869
+        ],
+        "pretrained_box": [
+          929.3660278320312,
+          276.78631591796875,
+          1169.544677734375,
+          408.81719970703125
+        ],
+        "adapted_box": [
+          931.71826171875,
+          276.217529296875,
+          1166.726318359375,
+          409.32916259765625
+        ],
+        "iou_pre_gt": 0.9204848761247798,
+        "iou_adapt_gt": 0.9080410688176521
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.6103744506835938,
+        "adapted_conf": 0.8722500801086426,
+        "gt_box": [
+          700.6802401696372,
+          309.1179684461019,
+          782.9038001696372,
+          357.9480928303629
+        ],
+        "pretrained_box": [
+          721.992431640625,
+          315.8582763671875,
+          782.185791015625,
+          357.455810546875
+        ],
+        "adapted_box": [
+          721.31396484375,
+          311.752685546875,
+          783.981201171875,
+          357.0576171875
+        ],
+        "iou_pre_gt": 0.6236372707329721,
+        "iou_adapt_gt": 0.686629383105758
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.4674327075481415,
+        "adapted_conf": 0.4098227620124817,
+        "gt_box": [
+          371.841367,
+          314.12775217525524,
+          404.14348,
+          342.75508777041705
+        ],
+        "pretrained_box": [
+          373.57373046875,
+          311.6168518066406,
+          405.45892333984375,
+          342.1591491699219
+        ],
+        "adapted_box": [
+          374.30548095703125,
+          309.1343994140625,
+          405.71881103515625,
+          341.73614501953125
+        ],
+        "iou_pre_gt": 0.8226433658656828,
+        "iou_adapt_gt": 0.7322002581350311
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.5521208047866821,
+        "adapted_conf": 0.5777498483657837,
+        "gt_box": [
+          205.5589,
+          327.793032,
+          284.845904,
+          367.436534
+        ],
+        "pretrained_box": [
+          207.52700805664062,
+          332.87841796875,
+          278.34686279296875,
+          362.63726806640625
+        ],
+        "adapted_box": [
+          205.72238159179688,
+          329.1670227050781,
+          274.08038330078125,
+          361.9602355957031
+        ],
+        "iou_pre_gt": 0.6704974922746103,
+        "iou_adapt_gt": 0.7131802495964256
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "2_correct_to_missed",
+        "pretrained_conf": 0.24830564856529236,
+        "adapted_conf": 0.09687615185976028,
+        "gt_box": [
+          0.0,
+          336.602699,
+          42.580058,
+          404.14348
+        ],
+        "pretrained_box": [
+          0.162689208984375,
+          345.31402587890625,
+          39.02735900878906,
+          401.18133544921875
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": 0.754988632366744,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Truck",
+        "transition_type": "4_correct_to_wrong_class",
+        "pretrained_conf": 0.4849521815776825,
+        "adapted_conf": 0.6514322757720947,
+        "gt_box": [
+          1141.953103,
+          175.28517453872038,
+          1279.971222,
+          441.584565
+        ],
+        "pretrained_box": [
+          1141.57373046875,
+          206.47821044921875,
+          1279.62451171875,
+          441.0526123046875
+        ],
+        "adapted_box": [
+          1140.921875,
+          215.55291748046875,
+          1279.02587890625,
+          441.18255615234375
+        ],
+        "iou_pre_gt": 0.8765321121907281,
+        "iou_adapt_gt": 0.8361812065256768
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "7_retained_false_positive",
+        "pretrained_conf": 0.5278109312057495,
+        "adapted_conf": 0.30853137373924255,
+        "gt_box": null,
+        "pretrained_box": [
+          627.90185546875,
+          323.6047058105469,
+          648.92236328125,
+          347.6844787597656
+        ],
+        "adapted_box": [
+          629.5662841796875,
+          321.6485595703125,
+          649.1116943359375,
+          347.90478515625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Truck",
+        "transition_type": "7_retained_false_positive",
+        "pretrained_conf": 0.2475147694349289,
+        "adapted_conf": 0.9490767121315002,
+        "gt_box": null,
+        "pretrained_box": [
+          282.8622131347656,
+          242.312255859375,
+          388.4881286621094,
+          350.43017578125
+        ],
+        "adapted_box": [
+          282.61279296875,
+          241.166259765625,
+          397.61474609375,
+          353.476806640625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.6514322757720947,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          1140.921875,
+          215.55291748046875,
+          1279.02587890625,
+          441.18255615234375
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.3526173532009125,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          495.10101318359375,
+          270.25396728515625,
+          548.8190307617188,
+          325.93963623046875
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.2645503878593445,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          495.1873779296875,
+          276.9804992675781,
+          534.97119140625,
+          325.6044616699219
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b20e291a-6012d836.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.23609130084514618,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          0.40093994140625,
+          230.4302978515625,
+          162.55543518066406,
+          383.21856689453125
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b24702e3-f56e0731.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.5757704973220825,
+        "adapted_conf": 0.6552417278289795,
+        "gt_box": [
+          609.868006,
+          272.787132,
+          680.416402,
+          332.361332
+        ],
+        "pretrained_box": [
+          613.8978881835938,
+          274.65570068359375,
+          678.7787475585938,
+          334.48150634765625
+        ],
+        "adapted_box": [
+          614.2770385742188,
+          272.0382080078125,
+          679.2064819335938,
+          333.6754150390625
+        ],
+        "iou_pre_gt": 0.8625866562018462,
+        "iou_adapt_gt": 0.8919265409465736
+      },
+      {
+        "image_id": "b24702e3-f56e0731.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7191848754882812,
+        "adapted_conf": 0.9206497669219971,
+        "gt_box": [
+          719.609957,
+          266.516164,
+          849.732553,
+          385.664567
+        ],
+        "pretrained_box": [
+          720.7174072265625,
+          268.1304931640625,
+          850.1798095703125,
+          390.094482421875
+        ],
+        "adapted_box": [
+          722.1207275390625,
+          269.83837890625,
+          847.2388916015625,
+          388.59661865234375
+        ],
+        "iou_pre_gt": 0.9400929496453396,
+        "iou_adapt_gt": 0.9131236890651101
+      },
+      {
+        "image_id": "b24702e3-f56e0731.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8070300817489624,
+        "adapted_conf": 0.9326969981193542,
+        "gt_box": [
+          442.119598,
+          266.516164,
+          623.977686,
+          385.664567
+        ],
+        "pretrained_box": [
+          442.9805908203125,
+          267.664794921875,
+          626.1300048828125,
+          390.8292236328125
+        ],
+        "adapted_box": [
+          444.3138427734375,
+          269.1090087890625,
+          622.33740234375,
+          385.57550048828125
+        ],
+        "iou_pre_gt": 0.9339529812692214,
+        "iou_adapt_gt": 0.9568803308921986
+      },
+      {
+        "image_id": "b24702e3-f56e0731.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7467900514602661,
+        "adapted_conf": 0.9230244755744934,
+        "gt_box": [
+          970.448699,
+          302.574232,
+          1186.797114,
+          427.993603
+        ],
+        "pretrained_box": [
+          969.279541015625,
+          304.978759765625,
+          1190.0849609375,
+          428.80133056640625
+        ],
+        "adapted_box": [
+          968.7939453125,
+          305.2998046875,
+          1188.28466796875,
+          428.796875
+        ],
+        "iou_pre_gt": 0.9552475445264388,
+        "iou_adapt_gt": 0.9584228715080285
+      },
+      {
+        "image_id": "b24702e3-f56e0731.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.6467017531394958,
+        "adapted_conf": 0.8905646800994873,
+        "gt_box": [
+          203.822792,
+          231.71474078681462,
+          362.164749,
+          322.95488
+        ],
+        "pretrained_box": [
+          204.94068908691406,
+          233.5927734375,
+          365.453125,
+          326.9276123046875
+        ],
+        "adapted_box": [
+          204.78538513183594,
+          232.76260375976562,
+          360.6177978515625,
+          324.0206604003906
+        ],
+        "iou_pre_gt": 0.9135947365074988,
+        "iou_adapt_gt": 0.9617917808466994
+      }
+    ]
+  },
+  "group_c_locked_test": {
+    "n_images": 203,
+    "summary": {
+      "total_transitions": 2188,
+      "state_counts": {
+        "1_correct_to_correct": 874,
+        "3_missed_to_recovered": 121,
+        "5_additional_false_positive": 539,
+        "2_correct_to_missed": 151,
+        "6_fp_to_corrected": 256,
+        "7_retained_false_positive": 229,
+        "4_correct_to_wrong_class": 18
+      },
+      "state_percentages": {
+        "1_correct_to_correct": 39.945155393053014,
+        "3_missed_to_recovered": 5.530164533820841,
+        "5_additional_false_positive": 24.63436928702011,
+        "2_correct_to_missed": 6.901279707495429,
+        "6_fp_to_corrected": 11.70018281535649,
+        "7_retained_false_positive": 10.46617915904936,
+        "4_correct_to_wrong_class": 0.8226691042047531
+      },
+      "by_class": {
+        "Car": {
+          "1_correct_to_correct": 803,
+          "3_missed_to_recovered": 98,
+          "5_additional_false_positive": 285,
+          "2_correct_to_missed": 97,
+          "6_fp_to_corrected": 152,
+          "7_retained_false_positive": 161
+        },
+        "Truck": {
+          "5_additional_false_positive": 245,
+          "3_missed_to_recovered": 20,
+          "7_retained_false_positive": 42,
+          "6_fp_to_corrected": 50,
+          "1_correct_to_correct": 23,
+          "4_correct_to_wrong_class": 5
+        },
+        "Person": {
+          "1_correct_to_correct": 47,
+          "5_additional_false_positive": 8,
+          "2_correct_to_missed": 51,
+          "6_fp_to_corrected": 42,
+          "7_retained_false_positive": 9,
+          "3_missed_to_recovered": 3
+        },
+        "Bus": {
+          "6_fp_to_corrected": 10,
+          "4_correct_to_wrong_class": 11,
+          "7_retained_false_positive": 16,
+          "5_additional_false_positive": 1
+        },
+        "Motorcycle": {
+          "1_correct_to_correct": 1,
+          "6_fp_to_corrected": 1,
+          "2_correct_to_missed": 1
+        },
+        "Bicycle": {
+          "2_correct_to_missed": 2,
+          "4_correct_to_wrong_class": 2,
+          "7_retained_false_positive": 1,
+          "6_fp_to_corrected": 1
+        }
+      },
+      "by_scale": {
+        "medium": {
+          "1_correct_to_correct": 452,
+          "3_missed_to_recovered": 65,
+          "5_additional_false_positive": 280,
+          "6_fp_to_corrected": 140,
+          "7_retained_false_positive": 149,
+          "2_correct_to_missed": 93,
+          "4_correct_to_wrong_class": 3
+        },
+        "large": {
+          "1_correct_to_correct": 385,
+          "5_additional_false_positive": 252,
+          "7_retained_false_positive": 71,
+          "6_fp_to_corrected": 69,
+          "3_missed_to_recovered": 50,
+          "4_correct_to_wrong_class": 15,
+          "2_correct_to_missed": 8
+        },
+        "small": {
+          "1_correct_to_correct": 37,
+          "2_correct_to_missed": 50,
+          "6_fp_to_corrected": 47,
+          "3_missed_to_recovered": 6,
+          "5_additional_false_positive": 7,
+          "7_retained_false_positive": 9
+        }
+      },
+      "by_weather": {
+        "clear": {
+          "1_correct_to_correct": 165,
+          "3_missed_to_recovered": 28,
+          "5_additional_false_positive": 88,
+          "7_retained_false_positive": 33,
+          "2_correct_to_missed": 32,
+          "6_fp_to_corrected": 45,
+          "4_correct_to_wrong_class": 3
+        },
+        "rainy": {
+          "1_correct_to_correct": 247,
+          "3_missed_to_recovered": 28,
+          "5_additional_false_positive": 167,
+          "2_correct_to_missed": 45,
+          "7_retained_false_positive": 79,
+          "6_fp_to_corrected": 75,
+          "4_correct_to_wrong_class": 6
+        },
+        "overcast": {
+          "1_correct_to_correct": 162,
+          "2_correct_to_missed": 31,
+          "6_fp_to_corrected": 41,
+          "5_additional_false_positive": 100,
+          "7_retained_false_positive": 50,
+          "4_correct_to_wrong_class": 5,
+          "3_missed_to_recovered": 17
+        },
+        "snowy": {
+          "1_correct_to_correct": 264,
+          "2_correct_to_missed": 35,
+          "7_retained_false_positive": 52,
+          "6_fp_to_corrected": 76,
+          "5_additional_false_positive": 152,
+          "3_missed_to_recovered": 39,
+          "4_correct_to_wrong_class": 4
+        },
+        "foggy": {
+          "1_correct_to_correct": 36,
+          "2_correct_to_missed": 8,
+          "3_missed_to_recovered": 9,
+          "7_retained_false_positive": 15,
+          "6_fp_to_corrected": 19,
+          "5_additional_false_positive": 32
+        }
+      },
+      "confidence_stats": {
+        "1_correct_to_correct": {
+          "pretrained": {
+            "count": 874,
+            "mean": 0.6294490761662784,
+            "median": 0.6511118710041046,
+            "std": 0.19767227824548397
+          },
+          "adapted": {
+            "count": 874,
+            "mean": 0.7023326797704947,
+            "median": 0.7601979672908783,
+            "std": 0.21623433178485973
+          }
+        },
+        "2_correct_to_missed": {
+          "pretrained": {
+            "count": 151,
+            "mean": 0.3332076216770324,
+            "median": 0.2980339825153351,
+            "std": 0.11790827279223752
+          },
+          "adapted": {
+            "count": 129,
+            "mean": 0.1238802710291749,
+            "median": 0.11034189164638519,
+            "std": 0.10992814604817042
+          }
+        },
+        "3_missed_to_recovered": {
+          "pretrained": {
+            "count": 94,
+            "mean": 0.10832276927558655,
+            "median": 0.10848773643374443,
+            "std": 0.08674999711446062
+          },
+          "adapted": {
+            "count": 121,
+            "mean": 0.4349550022320314,
+            "median": 0.3849959075450897,
+            "std": 0.19908932259184248
+          }
+        },
+        "4_correct_to_wrong_class": {
+          "pretrained": {
+            "count": 18,
+            "mean": 0.5817772017584907,
+            "median": 0.5627600252628326,
+            "std": 0.2349598487068621
+          },
+          "adapted": {
+            "count": 18,
+            "mean": 0.6612028115325503,
+            "median": 0.6668572723865509,
+            "std": 0.17956928674868486
+          }
+        },
+        "5_additional_false_positive": {
+          "pretrained": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "std": null
+          },
+          "adapted": {
+            "count": 539,
+            "mean": 0.3414763029187862,
+            "median": 0.2897334098815918,
+            "std": 0.1497303286120318
+          }
+        },
+        "6_fp_to_corrected": {
+          "pretrained": {
+            "count": 256,
+            "mean": 0.3123716955888085,
+            "median": 0.28100191056728363,
+            "std": 0.1142764248561679
+          },
+          "adapted": {
+            "count": 0,
+            "mean": null,
+            "median": null,
+            "std": null
+          }
+        },
+        "7_retained_false_positive": {
+          "pretrained": {
+            "count": 229,
+            "mean": 0.3791546121434874,
+            "median": 0.3320055305957794,
+            "std": 0.15264051223680192
+          },
+          "adapted": {
+            "count": 229,
+            "mean": 0.43671245859960284,
+            "median": 0.39097705483436584,
+            "std": 0.19550193275788955
+          }
+        }
+      }
+    },
+    "sample_cases": [
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.2017630785703659,
+        "adapted_conf": 0.26084664463996887,
+        "gt_box": [
+          873.152377,
+          392.094841,
+          917.084572,
+          429.437209
+        ],
+        "pretrained_box": [
+          871.249267578125,
+          398.5205078125,
+          903.85546875,
+          428.13836669921875
+        ],
+        "adapted_box": [
+          871.2398071289062,
+          391.8791198730469,
+          906.8338012695312,
+          426.9966125488281
+        ],
+        "iou_pre_gt": 0.535895334577868,
+        "iou_adapt_gt": 0.6854617959468888
+      },
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.4617651104927063,
+        "adapted_conf": 0.5943135619163513,
+        "gt_box": [
+          896.216779,
+          397.586365,
+          955.525242,
+          440.420257
+        ],
+        "pretrained_box": [
+          895.6243896484375,
+          399.0224914550781,
+          957.024658203125,
+          439.3429260253906
+        ],
+        "adapted_box": [
+          897.116943359375,
+          398.28607177734375,
+          958.82080078125,
+          440.10186767578125
+        ],
+        "iou_pre_gt": 0.9110729104006118,
+        "iou_adapt_gt": 0.9119454970608742
+      },
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.2341570258140564,
+        "adapted_conf": 0.6830642223358154,
+        "gt_box": [
+          273.917239,
+          356.949084,
+          377.157899,
+          431.633814
+        ],
+        "pretrained_box": [
+          274.69940185546875,
+          362.6475524902344,
+          378.35687255859375,
+          435.3658752441406
+        ],
+        "adapted_box": [
+          279.63970947265625,
+          363.04107666015625,
+          376.90545654296875,
+          433.22894287109375
+        ],
+        "iou_pre_gt": 0.8640792886911699,
+        "iou_adapt_gt": 0.8482098694008875
+      },
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.2939035892486572,
+        "adapted_conf": 0.3691956400871277,
+        "gt_box": [
+          226.937245,
+          376.718582,
+          296.981641,
+          437.125342
+        ],
+        "pretrained_box": [
+          236.3246307373047,
+          377.60443115234375,
+          296.89349365234375,
+          437.928466796875
+        ],
+        "adapted_box": [
+          235.2940673828125,
+          377.3307189941406,
+          295.7662353515625,
+          437.5884094238281
+        ],
+        "iou_pre_gt": 0.8423558149493849,
+        "iou_adapt_gt": 0.8489731380290051
+      },
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7188447117805481,
+        "adapted_conf": 0.9010315537452698,
+        "gt_box": [
+          0.0,
+          360.243999,
+          256.648674,
+          471.172793
+        ],
+        "pretrained_box": [
+          0.0,
+          361.34930419921875,
+          259.3406982421875,
+          475.015380859375
+        ],
+        "adapted_box": [
+          0.0,
+          360.140380859375,
+          254.6273193359375,
+          474.5216064453125
+        ],
+        "iou_pre_gt": 0.9470510537715897,
+        "iou_adapt_gt": 0.9624070009444169
+      },
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8958526253700256,
+        "adapted_conf": 0.7413895726203918,
+        "gt_box": [
+          988.9137370000001,
+          399.4056674040753,
+          1218.459457,
+          471.17279399999995
+        ],
+        "pretrained_box": [
+          988.48681640625,
+          401.676513671875,
+          1217.06494140625,
+          469.9998779296875
+        ],
+        "adapted_box": [
+          989.5267333984375,
+          397.8221435546875,
+          1214.5374755859375,
+          469.892333984375
+        ],
+        "iou_pre_gt": 0.9445587314883229,
+        "iou_adapt_gt": 0.9423718946981979
+      },
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.4032781422138214,
+        "adapted_conf": 0.7560298442840576,
+        "gt_box": [
+          808.791721,
+          390.11788899999993,
+          869.198489,
+          434.05008499999997
+        ],
+        "pretrained_box": [
+          799.9935302734375,
+          390.14337158203125,
+          869.0560302734375,
+          434.1383056640625
+        ],
+        "adapted_box": [
+          805.56005859375,
+          387.7388000488281,
+          870.00927734375,
+          437.4511413574219
+        ],
+        "iou_pre_gt": 0.8686273601193225,
+        "iou_adapt_gt": 0.8282980473020247
+      },
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "3_missed_to_recovered",
+        "pretrained_conf": null,
+        "adapted_conf": 0.5097739696502686,
+        "gt_box": [
+          450.744332,
+          380.2331449999999,
+          527.625676,
+          425.26364499999994
+        ],
+        "pretrained_box": null,
+        "adapted_box": [
+          454.51043701171875,
+          381.009521484375,
+          524.4144897460938,
+          422.7677001953125
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": 0.8431719833802922
+      },
+      {
+        "image_id": "b1d10d08-c35503b8.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.402039498090744,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          1095.27880859375,
+          296.5166320800781,
+          1279.7763671875,
+          445.2033996582031
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1e1a7b8-a7426a97.jpg",
+        "weather": "rainy",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.2339017689228058,
+        "adapted_conf": 0.24246685206890106,
+        "gt_box": [
+          577.356629,
+          322.649773,
+          602.669112,
+          358.087249
+        ],
+        "pretrained_box": [
+          576.991455078125,
+          326.40460205078125,
+          619.91015625,
+          357.16705322265625
+        ],
+        "adapted_box": [
+          572.4222412109375,
+          322.0180969238281,
+          617.6778564453125,
+          355.0653381347656
+        ],
+        "iou_pre_gt": 0.5412642086822133,
+        "iou_adapt_gt": 0.5219366150394138
+      },
+      {
+        "image_id": "b1e1a7b8-a7426a97.jpg",
+        "weather": "rainy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8656559586524963,
+        "adapted_conf": 0.9610189199447632,
+        "gt_box": [
+          309.044314,
+          324.337272,
+          503.10668,
+          435.712194
+        ],
+        "pretrained_box": [
+          305.58447265625,
+          320.2962646484375,
+          505.4425048828125,
+          438.908447265625
+        ],
+        "adapted_box": [
+          307.28656005859375,
+          320.7156982421875,
+          501.70318603515625,
+          440.27069091796875
+        ],
+        "iou_pre_gt": 0.9117543210206488,
+        "iou_adapt_gt": 0.9169896273867194
+      },
+      {
+        "image_id": "b1e1a7b8-a7426a97.jpg",
+        "weather": "rainy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8963490128517151,
+        "adapted_conf": 0.839424729347229,
+        "gt_box": [
+          597.606616,
+          268.64981,
+          881.106421,
+          518.399639
+        ],
+        "pretrained_box": [
+          597.4690551757812,
+          272.12176513671875,
+          883.1669311523438,
+          522.545654296875
+        ],
+        "adapted_box": [
+          597.1065673828125,
+          272.4951171875,
+          881.1051025390625,
+          524.4631958007812
+        ],
+        "iou_pre_gt": 0.9626341182384484,
+        "iou_adapt_gt": 0.9595937704065877
+      },
+      {
+        "image_id": "b1e1a7b8-a7426a97.jpg",
+        "weather": "rainy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7606988549232483,
+        "adapted_conf": 0.9401460289955139,
+        "gt_box": [
+          525.044166,
+          322.649773,
+          585.794123,
+          376.649735
+        ],
+        "pretrained_box": [
+          525.6751098632812,
+          324.55206298828125,
+          589.2494506835938,
+          372.64703369140625
+        ],
+        "adapted_box": [
+          522.122314453125,
+          323.8953552246094,
+          586.4560546875,
+          381.1297302246094
+        ],
+        "iou_pre_gt": 0.8389008558934629,
+        "iou_adapt_gt": 0.8528531265301597
+      },
+      {
+        "image_id": "b1e1a7b8-a7426a97.jpg",
+        "weather": "rainy",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "3_missed_to_recovered",
+        "pretrained_conf": 0.06358496099710464,
+        "adapted_conf": 0.316010445356369,
+        "gt_box": [
+          511.579158,
+          296.965462,
+          560.241565,
+          339.3891
+        ],
+        "pretrained_box": null,
+        "adapted_box": [
+          511.5002746582031,
+          292.15557861328125,
+          562.7119140625,
+          347.46954345703125
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": 0.7287826532710919
+      },
+      {
+        "image_id": "b1e1a7b8-a7426a97.jpg",
+        "weather": "rainy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.22303666174411774,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          572.8253173828125,
+          311.1750793457031,
+          620.6051025390625,
+          354.0115661621094
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.3868583142757416,
+        "adapted_conf": 0.40821951627731323,
+        "gt_box": [
+          365.915829,
+          254.641334,
+          404.825194,
+          271.526528
+        ],
+        "pretrained_box": [
+          369.2818603515625,
+          254.61444091796875,
+          411.6295166015625,
+          272.36065673828125
+        ],
+        "adapted_box": [
+          365.99066162109375,
+          252.20465087890625,
+          419.68145751953125,
+          275.51983642578125
+        ],
+        "iou_pre_gt": 0.74244882128129,
+        "iou_adapt_gt": 0.5232958206207999
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "2_correct_to_missed",
+        "pretrained_conf": 0.2852359712123871,
+        "adapted_conf": 0.19793549180030823,
+        "gt_box": [
+          324.804049,
+          250.23650099999998,
+          362.245135,
+          270.0582509999999
+        ],
+        "pretrained_box": [
+          332.04620361328125,
+          250.79928588867188,
+          360.69329833984375,
+          269.7619934082031
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": 0.7319653101523936,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.38886189460754395,
+        "adapted_conf": 0.5177426934242249,
+        "gt_box": [
+          190.561488,
+          244.363389,
+          247.824325,
+          272.994808
+        ],
+        "pretrained_box": [
+          194.07150268554688,
+          243.98583984375,
+          244.60000610351562,
+          272.5433349609375
+        ],
+        "adapted_box": [
+          189.520751953125,
+          241.42694091796875,
+          244.24746704101562,
+          272.84906005859375
+        ],
+        "iou_pre_gt": 0.8584928679575793,
+        "iou_adapt_gt": 0.8357346339848384
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.5707589387893677,
+        "adapted_conf": 0.5979759097099304,
+        "gt_box": [
+          54.745788,
+          242.895114,
+          150.917989,
+          272.994809
+        ],
+        "pretrained_box": [
+          54.06660461425781,
+          240.8028564453125,
+          149.0631561279297,
+          275.1854248046875
+        ],
+        "adapted_box": [
+          54.941158294677734,
+          240.41644287109375,
+          149.43612670898438,
+          297.67291259765625
+        ],
+        "iou_pre_gt": 0.8545685522376673,
+        "iou_adapt_gt": 0.5208395699386229
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7144428491592407,
+        "adapted_conf": 0.7242218255996704,
+        "gt_box": [
+          510.750947,
+          253.173056,
+          563.608949,
+          298.689669
+        ],
+        "pretrained_box": [
+          511.19549560546875,
+          253.07138061523438,
+          560.9058227539062,
+          298.9229431152344
+        ],
+        "adapted_box": [
+          511.56304931640625,
+          251.740478515625,
+          560.9076538085938,
+          298.0328369140625
+        ],
+        "iou_pre_gt": 0.9339865923011679,
+        "iou_adapt_gt": 0.8937986433328995
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.40408459305763245,
+        "adapted_conf": 0.22808760404586792,
+        "gt_box": [
+          800.526074,
+          260.514446,
+          829.157493,
+          278.13378
+        ],
+        "pretrained_box": [
+          801.645263671875,
+          259.09869384765625,
+          835.118408203125,
+          281.09246826171875
+        ],
+        "adapted_box": [
+          798.5316162109375,
+          257.056884765625,
+          833.5582275390625,
+          281.3006591796875
+        ],
+        "iou_pre_gt": 0.6412676618130944,
+        "iou_adapt_gt": 0.5940650508693796
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8665011525154114,
+        "adapted_conf": 0.9538926482200623,
+        "gt_box": [
+          542.948185,
+          211.432023,
+          673.624915,
+          362.664642
+        ],
+        "pretrained_box": [
+          544.0765380859375,
+          237.15655517578125,
+          679.6094970703125,
+          369.784912109375
+        ],
+        "adapted_box": [
+          542.6611938476562,
+          238.73358154296875,
+          681.9700317382812,
+          368.55572509765625
+        ],
+        "iou_pre_gt": 0.7569986593009823,
+        "iou_adapt_gt": 0.74792721892038
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8950200080871582,
+        "adapted_conf": 0.889056384563446,
+        "gt_box": [
+          918.231395,
+          204.18736000000004,
+          1279.356147,
+          512.999647
+        ],
+        "pretrained_box": [
+          919.269775390625,
+          205.27130126953125,
+          1279.416748046875,
+          505.34283447265625
+        ],
+        "adapted_box": [
+          912.814697265625,
+          203.62237548828125,
+          1272.467041015625,
+          512.3818359375
+        ],
+        "iou_pre_gt": 0.9687435913791651,
+        "iou_adapt_gt": 0.9627939149594799
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "6_fp_to_corrected",
+        "pretrained_conf": 0.27068889141082764,
+        "adapted_conf": null,
+        "gt_box": null,
+        "pretrained_box": [
+          942.86376953125,
+          255.60150146484375,
+          982.88671875,
+          310.86895751953125
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.504910409450531,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          55.8857307434082,
+          240.552001953125,
+          147.1088104248047,
+          278.28216552734375
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.41615030169487,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          828.1043090820312,
+          217.87820434570312,
+          944.5814819335938,
+          284.9214782714844
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.291884183883667,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          134.60366821289062,
+          187.80929565429688,
+          231.25558471679688,
+          269.85400390625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.2237560898065567,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          879.689697265625,
+          218.8780975341797,
+          946.350341796875,
+          285.62799072265625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "weather": "overcast",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.2092600166797638,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          0.0,
+          218.58685302734375,
+          99.72616577148438,
+          272.373291015625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Person",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8337555527687073,
+        "adapted_conf": 0.7625523209571838,
+        "gt_box": [
+          704.5567389999999,
+          320.027304,
+          804.6817259999999,
+          578.77727
+        ],
+        "pretrained_box": [
+          709.1061401367188,
+          318.63427734375,
+          791.1473999023438,
+          575.9906005859375
+        ],
+        "adapted_box": [
+          709.6703491210938,
+          320.388916015625,
+          793.1311645507812,
+          571.4383544921875
+        ],
+        "iou_pre_gt": 0.8070039133667644,
+        "iou_adapt_gt": 0.8087589574712509
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "2_correct_to_missed",
+        "pretrained_conf": 0.20155422389507294,
+        "adapted_conf": 0.14368604123592377,
+        "gt_box": [
+          392.931778,
+          374.027297,
+          412.056774,
+          389.777296
+        ],
+        "pretrained_box": [
+          393.78240966796875,
+          372.2774658203125,
+          414.99200439453125,
+          395.1217041015625
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": 0.578053519984096,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "2_correct_to_missed",
+        "pretrained_conf": 0.3631756603717804,
+        "adapted_conf": 0.168682262301445,
+        "gt_box": [
+          417.681775,
+          374.027297,
+          436.806771,
+          392.027295
+        ],
+        "pretrained_box": [
+          415.79150390625,
+          371.66204833984375,
+          440.155029296875,
+          396.58026123046875
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": 0.5670440362191067,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.5183988809585571,
+        "adapted_conf": 0.7105975151062012,
+        "gt_box": [
+          434.556773,
+          368.40229800000003,
+          468.306767,
+          398.77729400000004
+        ],
+        "pretrained_box": [
+          432.29730224609375,
+          369.84881591796875,
+          470.15997314453125,
+          400.06024169921875
+        ],
+        "adapted_box": [
+          428.55419921875,
+          367.55743408203125,
+          471.1143798828125,
+          399.09454345703125
+        ],
+        "iou_pre_gt": 0.8185894776665023,
+        "iou_adapt_gt": 0.7637734934776479
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.6506238579750061,
+        "adapted_conf": 0.8218411207199097,
+        "gt_box": [
+          476.18176800000003,
+          370.652297,
+          532.0250546130603,
+          414.6772993540578
+        ],
+        "pretrained_box": [
+          476.39947509765625,
+          372.3988952636719,
+          529.4237670898438,
+          415.6294860839844
+        ],
+        "adapted_box": [
+          474.6724853515625,
+          370.1950378417969,
+          531.4912109375,
+          415.2981872558594
+        ],
+        "iou_pre_gt": 0.893500004333092,
+        "iou_adapt_gt": 0.9415330461874261
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.6457052826881409,
+        "adapted_conf": 0.36223986744880676,
+        "gt_box": [
+          327.681787,
+          376.277296,
+          369.30678,
+          404.402292
+        ],
+        "pretrained_box": [
+          324.5712890625,
+          377.1375732421875,
+          368.25140380859375,
+          403.609619140625
+        ],
+        "adapted_box": [
+          325.611328125,
+          374.53564453125,
+          368.2681884765625,
+          403.69091796875
+        ],
+        "iou_pre_gt": 0.857081437901298,
+        "iou_adapt_gt": 0.8547079395196064
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.4589105248451233,
+        "adapted_conf": 0.6100941896438599,
+        "gt_box": [
+          164.556807,
+          380.77729600000004,
+          216.306801,
+          435.90228900000005
+        ],
+        "pretrained_box": [
+          170.882080078125,
+          381.1472473144531,
+          208.92086791992188,
+          428.1865539550781
+        ],
+        "adapted_box": [
+          173.49359130859375,
+          378.82232666015625,
+          207.50979614257812,
+          430.90216064453125
+        ],
+        "iou_pre_gt": 0.6272327547888248,
+        "iou_adapt_gt": 0.5840801397413943
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.8207034468650818,
+        "adapted_conf": 0.9314153790473938,
+        "gt_box": [
+          46.431822,
+          369.5272979999999,
+          182.556805,
+          459.52728399999995
+        ],
+        "pretrained_box": [
+          46.18017578125,
+          373.0264892578125,
+          174.91427612304688,
+          456.914794921875
+        ],
+        "adapted_box": [
+          45.255523681640625,
+          373.8106689453125,
+          149.4169921875,
+          452.21044921875
+        ],
+        "iou_pre_gt": 0.878248213690192,
+        "iou_adapt_gt": 0.654112333152366
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.9037719368934631,
+        "adapted_conf": 0.9054520726203918,
+        "gt_box": [
+          190.431804,
+          368.40229800000003,
+          353.556783,
+          462.90228600000006
+        ],
+        "pretrained_box": [
+          198.37249755859375,
+          370.0330505371094,
+          352.3759765625,
+          462.5225524902344
+        ],
+        "adapted_box": [
+          206.70477294921875,
+          372.17645263671875,
+          352.18011474609375,
+          466.11993408203125
+        ],
+        "iou_pre_gt": 0.9239974028757026,
+        "iou_adapt_gt": 0.8309539582703636
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "7_retained_false_positive",
+        "pretrained_conf": 0.4008966386318207,
+        "adapted_conf": 0.2274862676858902,
+        "gt_box": null,
+        "pretrained_box": [
+          0.78729248046875,
+          364.72796630859375,
+          72.78990173339844,
+          430.13006591796875
+        ],
+        "adapted_box": [
+          1.5307464599609375,
+          364.9024658203125,
+          67.49313354492188,
+          432.001220703125
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "small",
+        "class_name": "Car",
+        "transition_type": "6_fp_to_corrected",
+        "pretrained_conf": 0.2297499179840088,
+        "adapted_conf": null,
+        "gt_box": null,
+        "pretrained_box": [
+          386.465576171875,
+          378.65850830078125,
+          409.1717529296875,
+          396.0040283203125
+        ],
+        "adapted_box": null,
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "large",
+        "class_name": "Person",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.47689956426620483,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          724.4408569335938,
+          326.94580078125,
+          784.1674194335938,
+          572.1324462890625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b2490dcb-7469cbe8.jpg",
+        "weather": "snowy",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.25991639494895935,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          141.46914672851562,
+          372.4525146484375,
+          178.00198364257812,
+          441.03369140625
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b24b3585-221ac8ac.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.5307927131652832,
+        "adapted_conf": 0.4010418653488159,
+        "gt_box": [
+          479.981132,
+          490.73846,
+          606.763774,
+          545.805668
+        ],
+        "pretrained_box": [
+          481.12872314453125,
+          492.68988037109375,
+          612.5149536132812,
+          544.9059448242188
+        ],
+        "adapted_box": [
+          484.2591857910156,
+          491.3243408203125,
+          609.6510009765625,
+          544.6080322265625
+        ],
+        "iou_pre_gt": 0.9008905457130942,
+        "iou_adapt_gt": 0.9148035353337012
+      },
+      {
+        "image_id": "b24b3585-221ac8ac.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "3_missed_to_recovered",
+        "pretrained_conf": 0.15200281143188477,
+        "adapted_conf": 0.21632079780101776,
+        "gt_box": [
+          414.668864,
+          490.73846,
+          499.0151047989723,
+          541.963769
+        ],
+        "pretrained_box": null,
+        "adapted_box": [
+          415.44134521484375,
+          489.830810546875,
+          487.36639404296875,
+          540.2664794921875
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": 0.8122092815276968
+      },
+      {
+        "image_id": "b24b3585-221ac8ac.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.791253387928009,
+        "adapted_conf": 0.8943853974342346,
+        "gt_box": [
+          236.660914,
+          474.09023599999995,
+          419.791395,
+          563.734526
+        ],
+        "pretrained_box": [
+          235.809326171875,
+          475.1400146484375,
+          420.25299072265625,
+          561.7406005859375
+        ],
+        "adapted_box": [
+          236.74757385253906,
+          472.2532958984375,
+          417.78857421875,
+          565.0389404296875
+        ],
+        "iou_pre_gt": 0.9594008298191825,
+        "iou_adapt_gt": 0.9554895547083281
+      },
+      {
+        "image_id": "b24b3585-221ac8ac.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.5268628001213074,
+        "adapted_conf": 0.8582870960235596,
+        "gt_box": [
+          812.945646,
+          495.860991,
+          871.85475,
+          545.805668
+        ],
+        "pretrained_box": [
+          814.378662109375,
+          498.1920166015625,
+          875.79541015625,
+          544.8836669921875
+        ],
+        "adapted_box": [
+          810.6631469726562,
+          495.38427734375,
+          875.2971801757812,
+          544.4468994140625
+        ],
+        "iou_pre_gt": 0.8584416176338902,
+        "iou_adapt_gt": 0.8803483145247986
+      },
+      {
+        "image_id": "b24b3585-221ac8ac.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.7729889750480652,
+        "adapted_conf": 0.8171814680099487,
+        "gt_box": [
+          988.3923300000001,
+          503.8432268537768,
+          1062.6562992311488,
+          557.331362
+        ],
+        "pretrained_box": [
+          991.4022216796875,
+          506.183349609375,
+          1061.3853759765625,
+          557.53369140625
+        ],
+        "adapted_box": [
+          990.7364501953125,
+          504.2640380859375,
+          1062.7506103515625,
+          554.7784423828125
+        ],
+        "iou_pre_gt": 0.8979275685862059,
+        "iou_adapt_gt": 0.9134984903707468
+      },
+      {
+        "image_id": "b24b3585-221ac8ac.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Car",
+        "transition_type": "1_correct_to_correct",
+        "pretrained_conf": 0.9076619148254395,
+        "adapted_conf": 0.847747802734375,
+        "gt_box": [
+          1076.755988,
+          497.1416229999999,
+          1279.09596,
+          654.659449
+        ],
+        "pretrained_box": [
+          1073.82666015625,
+          496.291015625,
+          1280.0,
+          657.725830078125
+        ],
+        "adapted_box": [
+          1074.2041015625,
+          497.211669921875,
+          1279.0869140625,
+          656.63134765625
+        ],
+        "iou_pre_gt": 0.9575946029103095,
+        "iou_adapt_gt": 0.9748639506969151
+      },
+      {
+        "image_id": "b24b3585-221ac8ac.jpg",
+        "weather": "clear",
+        "scale_category": "medium",
+        "class_name": "Truck",
+        "transition_type": "7_retained_false_positive",
+        "pretrained_conf": 0.2124549150466919,
+        "adapted_conf": 0.3652965724468231,
+        "gt_box": null,
+        "pretrained_box": [
+          812.9532470703125,
+          495.34521484375,
+          876.4132080078125,
+          544.55322265625
+        ],
+        "adapted_box": [
+          812.7015380859375,
+          489.455810546875,
+          875.3369140625,
+          544.343017578125
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      },
+      {
+        "image_id": "b24b3585-221ac8ac.jpg",
+        "weather": "clear",
+        "scale_category": "large",
+        "class_name": "Truck",
+        "transition_type": "5_additional_false_positive",
+        "pretrained_conf": null,
+        "adapted_conf": 0.7868150472640991,
+        "gt_box": null,
+        "pretrained_box": null,
+        "adapted_box": [
+          1157.52783203125,
+          385.5172119140625,
+          1279.82861328125,
+          542.9002685546875
+        ],
+        "iou_pre_gt": null,
+        "iou_adapt_gt": null
+      }
+    ]
+  }
+}

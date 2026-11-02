@@ -1,0 +1,137 @@
+{
+  "mission": "Mission 9",
+  "created_at": "2026-11-02T10:35:00Z",
+  "split_policy": "Strict sequence-level partition with balanced weather stratification (zero frame leakage)",
+  "historical_cohort": {
+    "name": "BDD100K Group C (Historical Locked Test)",
+    "sample_size": 203,
+    "status": "Retired to historical benchmark (evaluated across Missions 2-8; forbidden from Mission 9 primary evaluation)"
+  },
+  "partitions": {
+    "development_cohort": {
+      "role": "Tracking hyperparameter tuning, temporal confidence calibration, and routing threshold selection",
+      "sequences": [
+        {
+          "sequence_id": "b1e9ee0e-67e26f2e",
+          "title": "Sequence 1 (Rainy Daytime Highway)",
+          "condition": "rainy",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "frames": 203,
+          "boxes": 8719,
+          "tracks": 63
+        },
+        {
+          "sequence_id": "b1d0a191-65deaeef",
+          "title": "Sequence 3 (Snowy Daytime Dense Urban)",
+          "condition": "snowy",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "frames": 202,
+          "boxes": 4199,
+          "tracks": 103
+        },
+        {
+          "sequence_id": "b24071b8-b3ee1196",
+          "title": "Sequence 5 (Overcast Daytime High-Density Urban)",
+          "condition": "overcast",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "frames": 202,
+          "boxes": 5755,
+          "tracks": 310
+        },
+        {
+          "sequence_id": "b2208b0f-2796a692",
+          "title": "Sequence 7 (Clear Daytime Urban Baseline)",
+          "condition": "clear",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "frames": 203,
+          "boxes": 5365,
+          "tracks": 176
+        }
+      ],
+      "total_frames": 810,
+      "total_boxes": 24038,
+      "unique_tracks": 652,
+      "weather_breakdown": {
+        "rainy": 1,
+        "snowy": 1,
+        "overcast": 1,
+        "clear": 1
+      },
+      "scale_breakdown": {
+        "small": 10604,
+        "medium": 9811,
+        "large": 3623
+      }
+    },
+    "locked_test_cohort": {
+      "role": "Single-pass held-out evaluation and sequence-level paired bootstrap validation",
+      "sequences": [
+        {
+          "sequence_id": "b2064e61-2beadd45",
+          "title": "Sequence 2 (Rainy Night City Street)",
+          "condition": "rainy",
+          "timeofday": "night",
+          "scene": "city street",
+          "frames": 203,
+          "boxes": 2857,
+          "tracks": 64
+        },
+        {
+          "sequence_id": "b1d0a191-03dcecc2",
+          "title": "Sequence 4 (Snowy Daytime Residential Arterial)",
+          "condition": "snowy",
+          "timeofday": "daytime",
+          "scene": "residential",
+          "frames": 202,
+          "boxes": 3752,
+          "tracks": 143
+        },
+        {
+          "sequence_id": "b1d968b9-ce42734f",
+          "title": "Sequence 6 (Overcast Dusk Highway Arterial)",
+          "condition": "overcast",
+          "timeofday": "dawn/dusk",
+          "scene": "highway",
+          "frames": 203,
+          "boxes": 4138,
+          "tracks": 154
+        },
+        {
+          "sequence_id": "b1ca2e5d-84cf9134",
+          "title": "Sequence 8 (Clear Night Urban Streetlights Baseline)",
+          "condition": "clear",
+          "timeofday": "night",
+          "scene": "city street",
+          "frames": 203,
+          "boxes": 4505,
+          "tracks": 261
+        }
+      ],
+      "total_frames": 811,
+      "total_boxes": 15252,
+      "unique_tracks": 622,
+      "weather_breakdown": {
+        "rainy": 1,
+        "snowy": 1,
+        "overcast": 1,
+        "clear": 1
+      },
+      "scale_breakdown": {
+        "small": 5143,
+        "medium": 6959,
+        "large": 3150
+      }
+    }
+  },
+  "integrity_verification": {
+    "frame_level_leakage": "0 frames",
+    "sequence_level_leakage": "0 sequences",
+    "group_c_overlap": "0 sequences",
+    "status": "VERIFIED_LOCKED",
+    "manifest_sha256": "15f0340343a450c497302c5f12138cdfc687fc2fc206557d4ed8b1b24fb3b572"
+  }
+}

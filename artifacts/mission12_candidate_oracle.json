@@ -1,0 +1,88 @@
+{
+  "development": {
+    "total_gt_boxes": 6411,
+    "scale_breakdown": {
+      "ultra_small": {
+        "total_gt": 571,
+        "yolo_hit_pct": 0.0,
+        "yolo_uncertain_pct": 0.0,
+        "yolo_miss_pct": 100.0,
+        "miss_count": 571,
+        "oracle_recoverable_count": 498,
+        "oracle_recoverable_pct_of_missed": 87.2
+      },
+      "small": {
+        "total_gt": 1946,
+        "yolo_hit_pct": 1.0,
+        "yolo_uncertain_pct": 7.8,
+        "yolo_miss_pct": 91.2,
+        "miss_count": 1775,
+        "oracle_recoverable_count": 1770,
+        "oracle_recoverable_pct_of_missed": 99.7
+      },
+      "medium": {
+        "total_gt": 2978,
+        "yolo_hit_pct": 15.0,
+        "yolo_uncertain_pct": 26.7,
+        "yolo_miss_pct": 58.2,
+        "miss_count": 1734,
+        "oracle_recoverable_count": 1734,
+        "oracle_recoverable_pct_of_missed": 100.0
+      },
+      "large": {
+        "total_gt": 916,
+        "yolo_hit_pct": 53.8,
+        "yolo_uncertain_pct": 23.3,
+        "yolo_miss_pct": 22.9,
+        "miss_count": 210,
+        "oracle_recoverable_count": 210,
+        "oracle_recoverable_pct_of_missed": 100.0
+      }
+    },
+    "candidate_miss_bottleneck_verified": true,
+    "ultra_small_miss_rate": 100.0
+  },
+  "locked_test": {
+    "total_gt_boxes": 14796,
+    "scale_breakdown": {
+      "ultra_small": {
+        "total_gt": 1282,
+        "yolo_hit_pct": 0.0,
+        "yolo_uncertain_pct": 0.0,
+        "yolo_miss_pct": 100.0,
+        "miss_count": 1282,
+        "oracle_recoverable_count": 1188,
+        "oracle_recoverable_pct_of_missed": 92.7
+      },
+      "small": {
+        "total_gt": 5006,
+        "yolo_hit_pct": 2.7,
+        "yolo_uncertain_pct": 10.7,
+        "yolo_miss_pct": 86.6,
+        "miss_count": 4333,
+        "oracle_recoverable_count": 4329,
+        "oracle_recoverable_pct_of_missed": 99.9
+      },
+      "medium": {
+        "total_gt": 6140,
+        "yolo_hit_pct": 21.5,
+        "yolo_uncertain_pct": 17.1,
+        "yolo_miss_pct": 61.4,
+        "miss_count": 3767,
+        "oracle_recoverable_count": 3767,
+        "oracle_recoverable_pct_of_missed": 100.0
+      },
+      "large": {
+        "total_gt": 2368,
+        "yolo_hit_pct": 70.1,
+        "yolo_uncertain_pct": 10.7,
+        "yolo_miss_pct": 19.3,
+        "miss_count": 456,
+        "oracle_recoverable_count": 456,
+        "oracle_recoverable_pct_of_missed": 100.0
+      }
+    },
+    "candidate_miss_bottleneck_verified": true,
+    "ultra_small_miss_rate": 100.0
+  }
+}

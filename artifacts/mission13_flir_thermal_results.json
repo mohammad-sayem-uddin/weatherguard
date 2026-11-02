@@ -1,0 +1,14 @@
+{
+  "dataset": "FLIR ADAS Thermal Validation",
+  "num_images": 150,
+  "evaluation_type": "Image-level thermal zero-shot evaluation (not continuous video)",
+  "policy": "Policy J (Priority-Gated Best Combination)",
+  "overall_f1": 0.3229,
+  "precision": 0.6686,
+  "recall": 0.2129,
+  "small_f1": 0.1023,
+  "ultra_small_f1": 0.087,
+  "mean_crops_per_image": 1.85,
+  "mean_latency_ms": 151.44,
+  "fps": 6.6
+}

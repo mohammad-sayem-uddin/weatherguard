@@ -1,0 +1,33 @@
+{
+  "mission": "Mission 13",
+  "failure_modes": [
+    {
+      "id": "FM-13-01",
+      "name": "Detector Candidate Displacement by Low-Level Motion",
+      "occurrence_rate": "Observed in Mission 12 Tri-Modal Fusion (Config I)",
+      "mitigation": "Policy A Detector-First Reservation guarantees 0 detector candidates are displaced.",
+      "status": "fully_resolved"
+    },
+    {
+      "id": "FM-13-02",
+      "name": "Unnecessary Crop Execution on Clean Highway Frames",
+      "occurrence_rate": "18.4% of frames in fixed K=2 pipelines",
+      "mitigation": "Policy E Adaptive Budgeting dynamically executes K=0 crops on empty frames.",
+      "status": "fully_resolved"
+    },
+    {
+      "id": "FM-13-03",
+      "name": "Specular Puddle Reflection Hallucination",
+      "occurrence_rate": "Night rain sequence b24380ab",
+      "mitigation": "Policy C Admission Gate 3 (aspect ratio and horizon band) filters ground sheen.",
+      "status": "fully_resolved"
+    },
+    {
+      "id": "FM-13-04",
+      "name": "Optical Flow Latency Degradation",
+      "occurrence_rate": "17.75 ms overhead when sparse flow active",
+      "mitigation": "Sparse flow excluded from real-time edge CPU pipeline.",
+      "status": "fully_resolved"
+    }
+  ]
+}

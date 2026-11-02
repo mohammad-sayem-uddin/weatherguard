@@ -1,0 +1,32 @@
+[
+  {
+    "model": "YOLOv8n Baseline (640)",
+    "resolution": 640,
+    "mean_latency_ms": "61.1",
+    "median_latency_ms": "58.9",
+    "fps": "16.4",
+    "f1": "0.5111",
+    "small_recall": "8.67%",
+    "speedup_vs_frcnn": "20.9x"
+  },
+  {
+    "model": "Scale-Aware YOLOv8n (1280)",
+    "resolution": 1280,
+    "mean_latency_ms": "378.0",
+    "median_latency_ms": "376.9",
+    "fps": "2.6",
+    "f1": "0.5782",
+    "small_recall": "28.69%",
+    "speedup_vs_frcnn": "3.4x"
+  },
+  {
+    "model": "Faster R-CNN ResNet-50 FPN",
+    "resolution": 1333,
+    "mean_latency_ms": "1275.6",
+    "median_latency_ms": "1175.2",
+    "fps": "0.8",
+    "f1": "0.6877",
+    "small_recall": "42.53%",
+    "speedup_vs_frcnn": "1.0x"
+  }
+]

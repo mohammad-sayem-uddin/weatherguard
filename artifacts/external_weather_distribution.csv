@@ -1,0 +1,6 @@
+condition,timeofday,image_count,target_boxes,boxes_per_image
+rainy,daytime,60,711,11.8
+snowy,daytime,60,778,13.0
+foggy,dawn/dusk/daytime/night,13,147,11.3
+overcast,daytime,35,452,12.9
+clear,daytime,35,465,13.3

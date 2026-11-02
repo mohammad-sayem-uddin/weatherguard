@@ -1,0 +1,4 @@
+model,resolution,mean_latency_ms,median_latency_ms,fps,f1,small_recall,speedup_vs_frcnn
+YOLOv8n Baseline (640),640,61.1,58.9,16.4,0.5111,8.67%,20.9x
+Scale-Aware YOLOv8n (1280),1280,378.0,376.9,2.6,0.5782,28.69%,3.4x
+Faster R-CNN ResNet-50 FPN,1333,1275.6,1175.2,0.8,0.6877,42.53%,1.0x

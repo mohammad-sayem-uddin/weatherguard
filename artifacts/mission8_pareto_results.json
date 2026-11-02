@@ -1,0 +1,162 @@
+{
+  "mission": "Mission 8 \u2014 Experiment H: Accuracy\u2013Latency\u2013Memory Pareto Analysis",
+  "cohort": "Group_B_BDD100K_Development",
+  "pareto_frontier": [
+    "Pretrained-YOLOv8n-640px",
+    "Fixed-YOLOv8n-832px",
+    "Pretrained-Faster-RCNN"
+  ],
+  "dominated_systems": {
+    "Fixed-YOLOv8n-1280px": [
+      "Fixed-YOLOv8n-832px"
+    ],
+    "Mission7-Dynamic-Router-640-to-832": [
+      "Fixed-YOLOv8n-832px"
+    ],
+    "FeatureReuse-Neck-Bilinear": [
+      "Pretrained-YOLOv8n-640px",
+      "Fixed-YOLOv8n-832px",
+      "Mission7-Dynamic-Router-640-to-832"
+    ],
+    "FeatureReuse-Backbone-Bilinear": [
+      "Pretrained-YOLOv8n-640px",
+      "Fixed-YOLOv8n-832px",
+      "Mission7-Dynamic-Router-640-to-832"
+    ],
+    "Refined-Residual-DWPW": [
+      "Pretrained-YOLOv8n-640px",
+      "Fixed-YOLOv8n-832px",
+      "Mission7-Dynamic-Router-640-to-832",
+      "FeatureReuse-Neck-Bilinear"
+    ],
+    "Cond-FeatureReuse-Unrefined": [
+      "Pretrained-YOLOv8n-640px"
+    ],
+    "Cond-FeatureReuse-Residual": [
+      "Pretrained-YOLOv8n-640px",
+      "Fixed-YOLOv8n-832px"
+    ]
+  },
+  "all_systems": {
+    "Pretrained-YOLOv8n-640px": {
+      "name": "Pretrained-YOLOv8n-640px",
+      "f1": 0.47798377752027815,
+      "precision": 0.6647864625302176,
+      "recall": 0.373134328358209,
+      "small_recall": 0.08088235294117647,
+      "mean_latency_ms": 36.032551806283664,
+      "fps": 27.75268333411822,
+      "peak_ram_mb": 782.2,
+      "params": 3157200,
+      "type": "Fixed Resolution Baseline"
+    },
+    "Fixed-YOLOv8n-832px": {
+      "name": "Fixed-YOLOv8n-832px",
+      "f1": 0.5343973582828839,
+      "precision": 0.6823612087139845,
+      "recall": 0.4391677973767526,
+      "small_recall": 0.16176470588235295,
+      "mean_latency_ms": 53.37058386875242,
+      "fps": 18.736913249050723,
+      "peak_ram_mb": 810.5,
+      "params": 3157200,
+      "type": "Fixed Resolution Baseline"
+    },
+    "Fixed-YOLOv8n-1280px": {
+      "name": "Fixed-YOLOv8n-1280px",
+      "f1": 0.5189,
+      "precision": 0.5821,
+      "recall": 0.4682,
+      "small_recall": 0.2206,
+      "mean_latency_ms": 185.0,
+      "fps": 5.4,
+      "peak_ram_mb": 945.0,
+      "params": 3157200,
+      "type": "Fixed Resolution Heavy"
+    },
+    "Mission7-Dynamic-Router-640-to-832": {
+      "name": "Mission7-Dynamic-Router-640-to-832",
+      "f1": 0.4937,
+      "precision": 0.6397,
+      "recall": 0.402,
+      "small_recall": 0.136,
+      "mean_latency_ms": 76.1,
+      "fps": 13.1,
+      "peak_ram_mb": 815.0,
+      "params": 3157200,
+      "type": "Full-Frame Dynamic Routing"
+    },
+    "FeatureReuse-Neck-Bilinear": {
+      "name": "FeatureReuse-Neck-Bilinear",
+      "f1": 0.19364419364419364,
+      "precision": 0.2820069204152249,
+      "recall": 0.14744459520578923,
+      "small_recall": 0.007352941176470588,
+      "mean_latency_ms": 80.5612309624621,
+      "fps": 12.41291857203566,
+      "peak_ram_mb": 788.0,
+      "params": 3157200,
+      "type": "Static Feature Reuse"
+    },
+    "FeatureReuse-Backbone-Bilinear": {
+      "name": "FeatureReuse-Backbone-Bilinear",
+      "f1": 0.20477386934673367,
+      "precision": 0.33504624871531347,
+      "recall": 0.14744459520578923,
+      "small_recall": 0.004201680672268907,
+      "mean_latency_ms": 97.58515444366367,
+      "fps": 10.247460340674097,
+      "peak_ram_mb": 792.0,
+      "params": 3157200,
+      "type": "Static Feature Reuse"
+    },
+    "Refined-Residual-DWPW": {
+      "name": "Refined-Residual-DWPW",
+      "f1": 0.16330332194970507,
+      "precision": 0.2603960396039604,
+      "recall": 0.11895070104025328,
+      "small_recall": 0.0021008403361344537,
+      "mean_latency_ms": 81.05375029369952,
+      "fps": 12.337492051589031,
+      "peak_ram_mb": 794.0,
+      "params": 3249040,
+      "type": "Refined Feature Reuse"
+    },
+    "Cond-FeatureReuse-Unrefined": {
+      "name": "Cond-FeatureReuse-Unrefined",
+      "f1": 0.05754669358909642,
+      "precision": 0.06510565391205025,
+      "recall": 0.051560379918588875,
+      "small_recall": 0.0,
+      "mean_latency_ms": 48.72311360005597,
+      "fps": 20.524139902234232,
+      "peak_ram_mb": 790.0,
+      "params": 3157200,
+      "type": "Conditional Feature Reuse"
+    },
+    "Cond-FeatureReuse-Residual": {
+      "name": "Cond-FeatureReuse-Residual",
+      "f1": 0.06898300786203398,
+      "precision": 0.07852193995381063,
+      "recall": 0.06151062867480778,
+      "small_recall": 0.0,
+      "mean_latency_ms": 58.6520344063274,
+      "fps": 17.049706973030755,
+      "peak_ram_mb": 795.0,
+      "params": 3249040,
+      "type": "Conditional Feature Reuse"
+    },
+    "Pretrained-Faster-RCNN": {
+      "name": "Pretrained-Faster-RCNN",
+      "f1": 0.6358,
+      "precision": 0.6283,
+      "recall": 0.6436,
+      "small_recall": 0.4253,
+      "mean_latency_ms": 1275.6,
+      "fps": 0.8,
+      "peak_ram_mb": 1420.0,
+      "params": 41755286,
+      "type": "Heavy Two-Stage Reference"
+    }
+  }
+}

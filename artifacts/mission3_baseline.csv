@@ -1,0 +1,5 @@
+detector,policy,threshold,f1,precision,recall,mAP_50,small_recall,medium_recall,large_recall,latency_ms
+yolov8n,DAWN_selected (0.20),0.2,0.4780,0.6648,0.3731,0.1838,8.09%,50.00%,80.00%,51.7
+yolov8n,Default (0.50),0.5,0.3657,0.9165,0.2284,0.1182,1.05%,25.23%,70.13%,51.7
+fasterrcnn_resnet50_fpn,DAWN_selected (0.60),0.6,0.6565,0.7193,0.6038,0.3285,38.13%,74.19%,83.80%,1153.4
+fasterrcnn_resnet50_fpn,Default (0.50),0.5,0.6499,0.6591,0.6409,0.3459,42.75%,77.31%,86.58%,1153.4

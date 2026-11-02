@@ -1,0 +1,132 @@
+{
+  "mission": "Mission 8 \u2014 Experiment E: Feature Distillation and Teacher Guidance",
+  "teacher": "Pretrained YOLOv8n (832px)",
+  "student": "Pretrained YOLOv8n (640px) + Refinement Modules",
+  "training_subset_size": 40,
+  "distillation_loss": "MultiScaleDistillationLoss (MSE + Cosine Alignment)",
+  "models": {
+    "Residual-DWPW": {
+      "parameters": 91840,
+      "training_time_seconds": 17.215574333000404,
+      "initial_loss": 0.5012914657592773,
+      "final_loss": 0.2804257180541754,
+      "loss_reduction_pct": 44.05934726428452,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_loss": 0.5012914657592773
+        },
+        {
+          "epoch": 2,
+          "mean_loss": 0.3438335441052914
+        },
+        {
+          "epoch": 3,
+          "mean_loss": 0.312495893985033
+        },
+        {
+          "epoch": 4,
+          "mean_loss": 0.2996594924479723
+        },
+        {
+          "epoch": 5,
+          "mean_loss": 0.2923182252794504
+        },
+        {
+          "epoch": 6,
+          "mean_loss": 0.28720443658530714
+        },
+        {
+          "epoch": 7,
+          "mean_loss": 0.283345278725028
+        },
+        {
+          "epoch": 8,
+          "mean_loss": 0.2804257180541754
+        }
+      ]
+    },
+    "P3-Detail": {
+      "parameters": 5376,
+      "training_time_seconds": 9.848477792000267,
+      "initial_loss": 0.33229781687259674,
+      "final_loss": 0.3204523082822561,
+      "loss_reduction_pct": 3.564726576245366,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_loss": 0.33229781687259674
+        },
+        {
+          "epoch": 2,
+          "mean_loss": 0.32645204812288287
+        },
+        {
+          "epoch": 3,
+          "mean_loss": 0.3239462487399578
+        },
+        {
+          "epoch": 4,
+          "mean_loss": 0.3224754724651575
+        },
+        {
+          "epoch": 5,
+          "mean_loss": 0.3215954780578613
+        },
+        {
+          "epoch": 6,
+          "mean_loss": 0.32106049358844757
+        },
+        {
+          "epoch": 7,
+          "mean_loss": 0.3207068793475628
+        },
+        {
+          "epoch": 8,
+          "mean_loss": 0.3204523082822561
+        }
+      ]
+    },
+    "CrossScale-Guidance": {
+      "parameters": 45248,
+      "training_time_seconds": 7.087182332999873,
+      "initial_loss": 0.36666393280029297,
+      "final_loss": 0.340515311807394,
+      "loss_reduction_pct": 7.1314952613954095,
+      "history": [
+        {
+          "epoch": 1,
+          "mean_loss": 0.36666393280029297
+        },
+        {
+          "epoch": 2,
+          "mean_loss": 0.3413862757384777
+        },
+        {
+          "epoch": 3,
+          "mean_loss": 0.341152710467577
+        },
+        {
+          "epoch": 4,
+          "mean_loss": 0.34096545949578283
+        },
+        {
+          "epoch": 5,
+          "mean_loss": 0.34081140980124475
+        },
+        {
+          "epoch": 6,
+          "mean_loss": 0.34069601967930796
+        },
+        {
+          "epoch": 7,
+          "mean_loss": 0.34060171246528625
+        },
+        {
+          "epoch": 8,
+          "mean_loss": 0.340515311807394
+        }
+      ]
+    }
+  }
+}

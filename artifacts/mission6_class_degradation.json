@@ -1,0 +1,745 @@
+{
+  "mission": "Mission 6 \u2014 Experiment C: Catastrophic Forgetting",
+  "dataset_priors": {
+    "dawn": {
+      "total_objects": 7845,
+      "class_proportions": {
+        "Person": 6.080305927342256,
+        "Car": 82.26896112173358,
+        "Truck": 8.234544295729766,
+        "Bus": 2.0522625876354366,
+        "Motorcycle": 1.0325047801147227,
+        "Bicycle": 0.331421287444232
+      },
+      "scale_proportions": {
+        "small": 12.377310388782664,
+        "medium": 47.660930528999366,
+        "large": 39.961759082217974
+      }
+    },
+    "bdd100k": {
+      "total_objects": 123664,
+      "class_proportions": {
+        "Person": 10.856029240522707,
+        "Car": 83.15839694656488,
+        "Truck": 3.4310712899469533,
+        "Bus": 1.3423470047871653,
+        "Motorcycle": 0.371975676025359,
+        "Bicycle": 0.8401798421529305
+      },
+      "scale_proportions": {
+        "small": 42.893647302367704,
+        "medium": 38.940192780437314,
+        "large": 18.166159917194978
+      }
+    }
+  },
+  "group_b_development": {
+    "pretrained": {
+      "Person": {
+        "gt_total": 275,
+        "tp": 93,
+        "fp": 50,
+        "fn": 182,
+        "precision": 0.6503496503496503,
+        "recall": 0.3381818181818182,
+        "f1": 0.4449760765550239,
+        "scale_breakdown": {
+          "small": {
+            "gt": 123,
+            "tp": 3,
+            "recall": 0.024390243902439025
+          },
+          "medium": {
+            "gt": 132,
+            "tp": 74,
+            "recall": 0.5606060606060606
+          },
+          "large": {
+            "gt": 20,
+            "tp": 16,
+            "recall": 0.8
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.5080091857141064,
+        "mean_fp_conf": 0.3152605181932449
+      },
+      "Car": {
+        "gt_total": 1744,
+        "tp": 686,
+        "fp": 280,
+        "fn": 1058,
+        "precision": 0.7101449275362319,
+        "recall": 0.393348623853211,
+        "f1": 0.5062730627306273,
+        "scale_breakdown": {
+          "small": {
+            "gt": 783,
+            "tp": 74,
+            "recall": 0.09450830140485313
+          },
+          "medium": {
+            "gt": 648,
+            "tp": 346,
+            "recall": 0.5339506172839507
+          },
+          "large": {
+            "gt": 313,
+            "tp": 266,
+            "recall": 0.8498402555910544
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.5859764930588511,
+        "mean_fp_conf": 0.30432257210569724
+      },
+      "Truck": {
+        "gt_total": 126,
+        "tp": 30,
+        "fp": 60,
+        "fn": 96,
+        "precision": 0.3333333333333333,
+        "recall": 0.23809523809523808,
+        "f1": 0.2777777777777778,
+        "scale_breakdown": {
+          "small": {
+            "gt": 28,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 55,
+            "tp": 9,
+            "recall": 0.16363636363636364
+          },
+          "large": {
+            "gt": 43,
+            "tp": 21,
+            "recall": 0.4883720930232558
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.4991592104236285,
+        "mean_fp_conf": 0.41143823439876237
+      },
+      "Bus": {
+        "gt_total": 39,
+        "tp": 15,
+        "fp": 26,
+        "fn": 24,
+        "precision": 0.36585365853658536,
+        "recall": 0.38461538461538464,
+        "f1": 0.37499999999999994,
+        "scale_breakdown": {
+          "small": {
+            "gt": 5,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 18,
+            "tp": 3,
+            "recall": 0.16666666666666666
+          },
+          "large": {
+            "gt": 16,
+            "tp": 12,
+            "recall": 0.75
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.5424519807100296,
+        "mean_fp_conf": 0.47521735097353274
+      },
+      "Motorcycle": {
+        "gt_total": 12,
+        "tp": 1,
+        "fp": 0,
+        "fn": 11,
+        "precision": 1.0,
+        "recall": 0.08333333333333333,
+        "f1": 0.15384615384615385,
+        "scale_breakdown": {
+          "small": {
+            "gt": 4,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 5,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "large": {
+            "gt": 3,
+            "tp": 1,
+            "recall": 0.3333333333333333
+          }
+        },
+        "sample_size_underpowered": true,
+        "mean_tp_conf": 0.5644024610519409,
+        "mean_fp_conf": null
+      },
+      "Bicycle": {
+        "gt_total": 15,
+        "tp": 0,
+        "fp": 0,
+        "fn": 15,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "scale_breakdown": {
+          "small": {
+            "gt": 9,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 6,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "large": {
+            "gt": 0,
+            "tp": 0,
+            "recall": 0.0
+          }
+        },
+        "sample_size_underpowered": true,
+        "mean_tp_conf": null,
+        "mean_fp_conf": null
+      }
+    },
+    "fine_tuned": {
+      "Person": {
+        "gt_total": 275,
+        "tp": 52,
+        "fp": 26,
+        "fn": 223,
+        "precision": 0.6666666666666666,
+        "recall": 0.1890909090909091,
+        "f1": 0.29461756373937675,
+        "scale_breakdown": {
+          "small": {
+            "gt": 123,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 132,
+            "tp": 36,
+            "recall": 0.2727272727272727
+          },
+          "large": {
+            "gt": 20,
+            "tp": 16,
+            "recall": 0.8
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.521596398204565,
+        "mean_fp_conf": 0.3564904286311223
+      },
+      "Car": {
+        "gt_total": 1744,
+        "tp": 677,
+        "fp": 352,
+        "fn": 1067,
+        "precision": 0.6579203109815355,
+        "recall": 0.3881880733944954,
+        "f1": 0.4882798413270826,
+        "scale_breakdown": {
+          "small": {
+            "gt": 783,
+            "tp": 33,
+            "recall": 0.0421455938697318
+          },
+          "medium": {
+            "gt": 648,
+            "tp": 357,
+            "recall": 0.5509259259259259
+          },
+          "large": {
+            "gt": 313,
+            "tp": 287,
+            "recall": 0.9169329073482428
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.6726133698154587,
+        "mean_fp_conf": 0.3620431939647956
+      },
+      "Truck": {
+        "gt_total": 126,
+        "tp": 38,
+        "fp": 206,
+        "fn": 88,
+        "precision": 0.1557377049180328,
+        "recall": 0.30158730158730157,
+        "f1": 0.20540540540540542,
+        "scale_breakdown": {
+          "small": {
+            "gt": 28,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 55,
+            "tp": 15,
+            "recall": 0.2727272727272727
+          },
+          "large": {
+            "gt": 43,
+            "tp": 23,
+            "recall": 0.5348837209302325
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.6184534948123129,
+        "mean_fp_conf": 0.4321502513677171
+      },
+      "Bus": {
+        "gt_total": 39,
+        "tp": 2,
+        "fp": 2,
+        "fn": 37,
+        "precision": 0.5,
+        "recall": 0.05128205128205128,
+        "f1": 0.09302325581395347,
+        "scale_breakdown": {
+          "small": {
+            "gt": 5,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 18,
+            "tp": 1,
+            "recall": 0.05555555555555555
+          },
+          "large": {
+            "gt": 16,
+            "tp": 1,
+            "recall": 0.0625
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.3380366563796997,
+        "mean_fp_conf": 0.613711342215538
+      },
+      "Motorcycle": {
+        "gt_total": 12,
+        "tp": 1,
+        "fp": 1,
+        "fn": 11,
+        "precision": 0.5,
+        "recall": 0.08333333333333333,
+        "f1": 0.14285714285714285,
+        "scale_breakdown": {
+          "small": {
+            "gt": 4,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 5,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "large": {
+            "gt": 3,
+            "tp": 1,
+            "recall": 0.3333333333333333
+          }
+        },
+        "sample_size_underpowered": true,
+        "mean_tp_conf": 0.3671818673610687,
+        "mean_fp_conf": 0.26690244674682617
+      },
+      "Bicycle": {
+        "gt_total": 15,
+        "tp": 0,
+        "fp": 0,
+        "fn": 15,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "scale_breakdown": {
+          "small": {
+            "gt": 9,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 6,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "large": {
+            "gt": 0,
+            "tp": 0,
+            "recall": 0.0
+          }
+        },
+        "sample_size_underpowered": true,
+        "mean_tp_conf": null,
+        "mean_fp_conf": null
+      }
+    }
+  },
+  "group_c_locked_test": {
+    "pretrained": {
+      "Person": {
+        "gt_total": 262,
+        "tp": 98,
+        "fp": 51,
+        "fn": 164,
+        "precision": 0.6577181208053692,
+        "recall": 0.37404580152671757,
+        "f1": 0.4768856447688565,
+        "scale_breakdown": {
+          "small": {
+            "gt": 115,
+            "tp": 9,
+            "recall": 0.0782608695652174
+          },
+          "medium": {
+            "gt": 131,
+            "tp": 74,
+            "recall": 0.5648854961832062
+          },
+          "large": {
+            "gt": 16,
+            "tp": 15,
+            "recall": 0.9375
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.5077223948069981,
+        "mean_fp_conf": 0.327595558236627
+      },
+      "Car": {
+        "gt_total": 2107,
+        "tp": 900,
+        "fp": 313,
+        "fn": 1207,
+        "precision": 0.7419620774938169,
+        "recall": 0.42714760322733747,
+        "f1": 0.5421686746987953,
+        "scale_breakdown": {
+          "small": {
+            "gt": 854,
+            "tp": 78,
+            "recall": 0.09133489461358314
+          },
+          "medium": {
+            "gt": 826,
+            "tp": 462,
+            "recall": 0.559322033898305
+          },
+          "large": {
+            "gt": 427,
+            "tp": 360,
+            "recall": 0.8430913348946136
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.5952282653914558,
+        "mean_fp_conf": 0.3100298740707647
+      },
+      "Truck": {
+        "gt_total": 116,
+        "tp": 28,
+        "fp": 92,
+        "fn": 88,
+        "precision": 0.23333333333333334,
+        "recall": 0.2413793103448276,
+        "f1": 0.23728813559322037,
+        "scale_breakdown": {
+          "small": {
+            "gt": 15,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 54,
+            "tp": 8,
+            "recall": 0.14814814814814814
+          },
+          "large": {
+            "gt": 47,
+            "tp": 20,
+            "recall": 0.425531914893617
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.5313493332692555,
+        "mean_fp_conf": 0.4423233604301577
+      },
+      "Bus": {
+        "gt_total": 45,
+        "tp": 11,
+        "fp": 26,
+        "fn": 34,
+        "precision": 0.2972972972972973,
+        "recall": 0.24444444444444444,
+        "f1": 0.2682926829268293,
+        "scale_breakdown": {
+          "small": {
+            "gt": 12,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 13,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "large": {
+            "gt": 20,
+            "tp": 11,
+            "recall": 0.55
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.7181532464244149,
+        "mean_fp_conf": 0.4422240767341394
+      },
+      "Motorcycle": {
+        "gt_total": 7,
+        "tp": 2,
+        "fp": 1,
+        "fn": 5,
+        "precision": 0.6666666666666666,
+        "recall": 0.2857142857142857,
+        "f1": 0.4,
+        "scale_breakdown": {
+          "small": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 4,
+            "tp": 1,
+            "recall": 0.25
+          },
+          "large": {
+            "gt": 1,
+            "tp": 1,
+            "recall": 1.0
+          }
+        },
+        "sample_size_underpowered": true,
+        "mean_tp_conf": 0.6148277521133423,
+        "mean_fp_conf": 0.3480428457260132
+      },
+      "Bicycle": {
+        "gt_total": 16,
+        "tp": 4,
+        "fp": 2,
+        "fn": 12,
+        "precision": 0.6666666666666666,
+        "recall": 0.25,
+        "f1": 0.36363636363636365,
+        "scale_breakdown": {
+          "small": {
+            "gt": 6,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 9,
+            "tp": 3,
+            "recall": 0.3333333333333333
+          },
+          "large": {
+            "gt": 1,
+            "tp": 1,
+            "recall": 1.0
+          }
+        },
+        "sample_size_underpowered": true,
+        "mean_tp_conf": 0.36386924609541893,
+        "mean_fp_conf": 0.2536090984940529
+      }
+    },
+    "fine_tuned": {
+      "Person": {
+        "gt_total": 262,
+        "tp": 50,
+        "fp": 17,
+        "fn": 212,
+        "precision": 0.746268656716418,
+        "recall": 0.19083969465648856,
+        "f1": 0.303951367781155,
+        "scale_breakdown": {
+          "small": {
+            "gt": 115,
+            "tp": 1,
+            "recall": 0.008695652173913044
+          },
+          "medium": {
+            "gt": 131,
+            "tp": 35,
+            "recall": 0.26717557251908397
+          },
+          "large": {
+            "gt": 16,
+            "tp": 14,
+            "recall": 0.875
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.5550998151302338,
+        "mean_fp_conf": 0.3188035488128662
+      },
+      "Car": {
+        "gt_total": 2107,
+        "tp": 901,
+        "fp": 454,
+        "fn": 1206,
+        "precision": 0.6649446494464945,
+        "recall": 0.42762221167536785,
+        "f1": 0.5205083766608897,
+        "scale_breakdown": {
+          "small": {
+            "gt": 854,
+            "tp": 42,
+            "recall": 0.04918032786885246
+          },
+          "medium": {
+            "gt": 826,
+            "tp": 463,
+            "recall": 0.5605326876513317
+          },
+          "large": {
+            "gt": 427,
+            "tp": 396,
+            "recall": 0.927400468384075
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.6781624599083944,
+        "mean_fp_conf": 0.3440427340665578
+      },
+      "Truck": {
+        "gt_total": 116,
+        "tp": 43,
+        "fp": 294,
+        "fn": 73,
+        "precision": 0.12759643916913946,
+        "recall": 0.3706896551724138,
+        "f1": 0.18984547461368653,
+        "scale_breakdown": {
+          "small": {
+            "gt": 15,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 54,
+            "tp": 18,
+            "recall": 0.3333333333333333
+          },
+          "large": {
+            "gt": 47,
+            "tp": 25,
+            "recall": 0.5319148936170213
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": 0.6230173849089201,
+        "mean_fp_conf": 0.41107884069689277
+      },
+      "Bus": {
+        "gt_total": 45,
+        "tp": 0,
+        "fp": 2,
+        "fn": 45,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "scale_breakdown": {
+          "small": {
+            "gt": 12,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 13,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "large": {
+            "gt": 20,
+            "tp": 0,
+            "recall": 0.0
+          }
+        },
+        "sample_size_underpowered": false,
+        "mean_tp_conf": null,
+        "mean_fp_conf": 0.5844159722328186
+      },
+      "Motorcycle": {
+        "gt_total": 7,
+        "tp": 1,
+        "fp": 1,
+        "fn": 6,
+        "precision": 0.5,
+        "recall": 0.14285714285714285,
+        "f1": 0.22222222222222224,
+        "scale_breakdown": {
+          "small": {
+            "gt": 2,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 4,
+            "tp": 1,
+            "recall": 0.25
+          },
+          "large": {
+            "gt": 1,
+            "tp": 0,
+            "recall": 0.0
+          }
+        },
+        "sample_size_underpowered": true,
+        "mean_tp_conf": 0.8992027044296265,
+        "mean_fp_conf": 0.42180758714675903
+      },
+      "Bicycle": {
+        "gt_total": 16,
+        "tp": 0,
+        "fp": 0,
+        "fn": 16,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "scale_breakdown": {
+          "small": {
+            "gt": 6,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "medium": {
+            "gt": 9,
+            "tp": 0,
+            "recall": 0.0
+          },
+          "large": {
+            "gt": 1,
+            "tp": 0,
+            "recall": 0.0
+          }
+        },
+        "sample_size_underpowered": true,
+        "mean_tp_conf": null,
+        "mean_fp_conf": null
+      }
+    }
+  }
+}

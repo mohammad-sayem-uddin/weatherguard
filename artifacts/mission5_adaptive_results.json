@@ -1,0 +1,168 @@
+{
+  "dataset": "BDD100K Development Cohort (Group B, N=160)",
+  "champion_weights": "mission5_b1_photo.pt",
+  "policies": {
+    "Static-640px": {
+      "name": "Static-640px",
+      "weights": "mission5_b1_photo.pt",
+      "f1": 0.43161434977578483,
+      "precision": 0.5674281503316139,
+      "recall": 0.3482587064676617,
+      "tp": 770,
+      "fp": 587,
+      "fn": 1441,
+      "mAP_50": 0.1268834234946243,
+      "small_recall": 0.03466386554621849,
+      "medium_recall": 0.47337962962962965,
+      "large_recall": 0.830379746835443,
+      "mean_latency_ms": 50.26812108753802,
+      "throughput_fps": 19.893323608785334,
+      "savings_vs_1280_pct": 87.43609660235865,
+      "resolution_distribution": {
+        "640px": 160,
+        "832px": 0,
+        "1280px": 0
+      },
+      "resolution_distribution_pct": {
+        "640px": 100.0,
+        "832px": 0.0,
+        "1280px": 0.0
+      }
+    },
+    "Static-832px": {
+      "name": "Static-832px",
+      "weights": "mission5_b1_photo.pt",
+      "f1": 0.4672944769661492,
+      "precision": 0.5343422584400466,
+      "recall": 0.4151967435549525,
+      "tp": 918,
+      "fp": 800,
+      "fn": 1293,
+      "mAP_50": 0.15286206292087187,
+      "small_recall": 0.10609243697478991,
+      "medium_recall": 0.5636574074074074,
+      "large_recall": 0.8354430379746836,
+      "mean_latency_ms": 103.68807033146368,
+      "throughput_fps": 9.64431102636264,
+      "savings_vs_1280_pct": 74.08443222169068,
+      "resolution_distribution": {
+        "640px": 0,
+        "832px": 160,
+        "1280px": 0
+      },
+      "resolution_distribution_pct": {
+        "640px": 0.0,
+        "832px": 100.0,
+        "1280px": 0.0
+      }
+    },
+    "Static-1280px": {
+      "name": "Static-1280px",
+      "weights": "mission5_b1_photo.pt",
+      "f1": 0.4739538855678907,
+      "precision": 0.4488475535786494,
+      "recall": 0.5020352781546812,
+      "tp": 1110,
+      "fp": 1363,
+      "fn": 1101,
+      "mAP_50": 0.1730812922087577,
+      "small_recall": 0.23949579831932774,
+      "medium_recall": 0.6620370370370371,
+      "large_recall": 0.7848101265822784,
+      "mean_latency_ms": 400.09955104378605,
+      "throughput_fps": 2.499377960787969,
+      "savings_vs_1280_pct": 0.0,
+      "resolution_distribution": {
+        "640px": 0,
+        "832px": 0,
+        "1280px": 160
+      },
+      "resolution_distribution_pct": {
+        "640px": 0.0,
+        "832px": 0.0,
+        "1280px": 100.0
+      }
+    },
+    "Adaptive-k1": {
+      "name": "Adaptive-k1",
+      "weights": "mission5_b1_photo.pt",
+      "f1": 0.4613826285135477,
+      "precision": 0.5241657077100115,
+      "recall": 0.4120307553143374,
+      "tp": 911,
+      "fp": 827,
+      "fn": 1300,
+      "mAP_50": 0.14112942555620536,
+      "small_recall": 0.1334033613445378,
+      "medium_recall": 0.5289351851851852,
+      "large_recall": 0.8278481012658228,
+      "mean_latency_ms": 168.25779924411108,
+      "throughput_fps": 5.9432609037586674,
+      "savings_vs_1280_pct": 57.94601648385821,
+      "resolution_distribution": {
+        "640px": 115,
+        "832px": 0,
+        "1280px": 45
+      },
+      "resolution_distribution_pct": {
+        "640px": 71.88,
+        "832px": 0.0,
+        "1280px": 28.12
+      }
+    },
+    "Adaptive-Hierarchical": {
+      "name": "Adaptive-Hierarchical",
+      "weights": "mission5_b1_photo.pt",
+      "f1": 0.4552715654952077,
+      "precision": 0.5533980582524272,
+      "recall": 0.38670284938941657,
+      "tp": 855,
+      "fp": 690,
+      "fn": 1356,
+      "mAP_50": 0.14184994468162332,
+      "small_recall": 0.08403361344537816,
+      "medium_recall": 0.5150462962962963,
+      "large_recall": 0.8354430379746836,
+      "mean_latency_ms": 103.97276849416812,
+      "throughput_fps": 9.61790298058756,
+      "savings_vs_1280_pct": 74.01327539035665,
+      "resolution_distribution": {
+        "640px": 115,
+        "832px": 33,
+        "1280px": 12
+      },
+      "resolution_distribution_pct": {
+        "640px": 71.88,
+        "832px": 20.62,
+        "1280px": 7.5
+      }
+    },
+    "Adaptive-Fast-832": {
+      "name": "Adaptive-Fast-832",
+      "weights": "mission5_b1_photo.pt",
+      "f1": 0.44851133570062823,
+      "precision": 0.5662068965517242,
+      "recall": 0.3713251922207146,
+      "tp": 821,
+      "fp": 629,
+      "fn": 1390,
+      "mAP_50": 0.14049789641732605,
+      "small_recall": 0.06512605042016807,
+      "medium_recall": 0.4965277777777778,
+      "large_recall": 0.8354430379746836,
+      "mean_latency_ms": 80.34608931311595,
+      "throughput_fps": 12.44615647816921,
+      "savings_vs_1280_pct": 79.91847551352961,
+      "resolution_distribution": {
+        "640px": 115,
+        "832px": 45,
+        "1280px": 0
+      },
+      "resolution_distribution_pct": {
+        "640px": 71.88,
+        "832px": 28.12,
+        "1280px": 0.0
+      }
+    }
+  }
+}

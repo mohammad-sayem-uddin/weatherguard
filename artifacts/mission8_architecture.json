@@ -1,0 +1,209 @@
+{
+  "mission": "Mission 8 \u2014 Experiment A: Feature Extraction and Architecture Mapping",
+  "model_architecture": "Ultralytics YOLOv8n (23 layers)",
+  "total_parameters": 3157200,
+  "total_layers": 23,
+  "backbone_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "neck_layers": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "head_layer": 22,
+  "feature_specifications": {
+    "4": {
+      "layer_index": 4,
+      "name": "Backbone P3 (stride 8)",
+      "channels": 64,
+      "stride": 8,
+      "shape_640": [
+        1,
+        64,
+        80,
+        80
+      ],
+      "shape_832": [
+        1,
+        64,
+        104,
+        104
+      ],
+      "memory_kb_640": 1600.0,
+      "memory_kb_832": 2704.0,
+      "spatial_scale_ratio": 1.69
+    },
+    "6": {
+      "layer_index": 6,
+      "name": "Backbone P4 (stride 16)",
+      "channels": 128,
+      "stride": 16,
+      "shape_640": [
+        1,
+        128,
+        40,
+        40
+      ],
+      "shape_832": [
+        1,
+        128,
+        52,
+        52
+      ],
+      "memory_kb_640": 800.0,
+      "memory_kb_832": 1352.0,
+      "spatial_scale_ratio": 1.69
+    },
+    "9": {
+      "layer_index": 9,
+      "name": "Backbone P5 (stride 32, SPPF)",
+      "channels": 256,
+      "stride": 32,
+      "shape_640": [
+        1,
+        256,
+        20,
+        20
+      ],
+      "shape_832": [
+        1,
+        256,
+        26,
+        26
+      ],
+      "memory_kb_640": 400.0,
+      "memory_kb_832": 676.0,
+      "spatial_scale_ratio": 1.69
+    },
+    "15": {
+      "layer_index": 15,
+      "name": "Neck P3 (stride 8, PANet)",
+      "channels": 64,
+      "stride": 8,
+      "shape_640": [
+        1,
+        64,
+        80,
+        80
+      ],
+      "shape_832": [
+        1,
+        64,
+        104,
+        104
+      ],
+      "memory_kb_640": 1600.0,
+      "memory_kb_832": 2704.0,
+      "spatial_scale_ratio": 1.69
+    },
+    "18": {
+      "layer_index": 18,
+      "name": "Neck P4 (stride 16, PANet)",
+      "channels": 128,
+      "stride": 16,
+      "shape_640": [
+        1,
+        128,
+        40,
+        40
+      ],
+      "shape_832": [
+        1,
+        128,
+        52,
+        52
+      ],
+      "memory_kb_640": 800.0,
+      "memory_kb_832": 1352.0,
+      "spatial_scale_ratio": 1.69
+    },
+    "21": {
+      "layer_index": 21,
+      "name": "Neck P5 (stride 32, PANet)",
+      "channels": 256,
+      "stride": 32,
+      "shape_640": [
+        1,
+        256,
+        20,
+        20
+      ],
+      "shape_832": [
+        1,
+        256,
+        26,
+        26
+      ],
+      "memory_kb_640": 400.0,
+      "memory_kb_832": 676.0,
+      "spatial_scale_ratio": 1.69
+    }
+  },
+  "extraction_benchmark": {
+    "dur_no_hook_ms": 78.14743999999337,
+    "dur_with_hook_ms": 74.50300500000594,
+    "overhead_ms": -3.644434999987425,
+    "overhead_percent": -4.663537282843474
+  },
+  "representation_similarity": {
+    "4": {
+      "name": "Backbone P3 (stride 8)",
+      "mean_cosine_similarity": 0.913289612531662,
+      "mean_linear_cka": 0.734904232621193
+    },
+    "6": {
+      "name": "Backbone P4 (stride 16)",
+      "mean_cosine_similarity": 0.8862393140792847,
+      "mean_linear_cka": 0.7760481655597686
+    },
+    "9": {
+      "name": "Backbone P5 (stride 32, SPPF)",
+      "mean_cosine_similarity": 0.902737507224083,
+      "mean_linear_cka": 0.9322035342454911
+    },
+    "15": {
+      "name": "Neck P3 (stride 8, PANet)",
+      "mean_cosine_similarity": 0.9618504405021667,
+      "mean_linear_cka": 0.738803568482399
+    },
+    "18": {
+      "name": "Neck P4 (stride 16, PANet)",
+      "mean_cosine_similarity": 0.9125320225954056,
+      "mean_linear_cka": 0.7646599262952805
+    },
+    "21": {
+      "name": "Neck P5 (stride 32, PANet)",
+      "mean_cosine_similarity": 0.7618084490299225,
+      "mean_linear_cka": 0.7723798632621766
+    }
+  },
+  "spatial_loss_analysis": {
+    "spatial_area_increase_832_vs_640": 1.69,
+    "p3_grid_cells_640_for_16px_object": 4.0,
+    "p3_grid_cells_832_for_16px_object": 6.76,
+    "p4_grid_cells_640_for_16px_object": 1.0,
+    "p4_grid_cells_832_for_16px_object": 1.69,
+    "theoretical_nyquist_frequency_p3": "1 / (2 * 8) = 0.0625 cycles/pixel",
+    "theoretical_nyquist_frequency_p4": "1 / (2 * 16) = 0.03125 cycles/pixel",
+    "information_loss_mechanism": "Downsampling from 832px to 640px attenuates spatial frequencies above the 640px Nyquist cutoff. Bilinear feature upsampling interpolates existing low-frequency representations but cannot mathematically synthesize vanished high-frequency edge gradients without non-linear structural refinement."
+  }
+}

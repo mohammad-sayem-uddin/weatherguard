@@ -1,0 +1,10 @@
+Type,Cause,Count,Percentage_%
+False Negative,extreme_scale_sub16,243,20.79
+False Negative,boundary_truncation,96,8.21
+False Negative,crowding_occlusion,242,20.7
+False Negative,extreme_aspect_ratio,47,4.02
+False Negative,optical_weather_degraded,342,29.26
+False Negative,standard_adverse_miss,199,17.02
+False Positive,class_confusion,246,46.95
+False Positive,low_confidence_boundary,151,28.82
+False Positive,background_structure,127,24.24

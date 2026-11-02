@@ -1,0 +1,51 @@
+{
+  "hardware": "Apple MacBook Air M1, 8-core CPU, 8 GB unified memory",
+  "device": "cpu",
+  "threads": 7,
+  "stages_ms": {
+    "base_640_inference": 38.0,
+    "candidate_generation_and_clustering": 0.35,
+    "crop_extraction_448px": 1.2,
+    "crop_inference_448px": 27.73,
+    "coordinate_restoration": 0.06,
+    "duplicate_safe_nms_merge": 0.42,
+    "bytetrack_association": 0.35
+  },
+  "pipelines": {
+    "yolov8n_640_static": {
+      "latency_ms": 43.19,
+      "fps": 23.15,
+      "peak_ram_mb": 425
+    },
+    "yolov8n_832_static": {
+      "latency_ms": 57.19,
+      "fps": 17.48,
+      "peak_ram_mb": 512
+    },
+    "hold_time_h3_fullframe": {
+      "latency_ms": 46.85,
+      "fps": 21.34,
+      "peak_ram_mb": 518
+    },
+    "roi_individual_crops": {
+      "latency_ms": 55.4,
+      "fps": 18.05,
+      "peak_ram_mb": 490
+    },
+    "roi_clustered_crops": {
+      "latency_ms": 48.95,
+      "fps": 20.43,
+      "peak_ram_mb": 495
+    },
+    "roi_fixed_grid_horizon": {
+      "latency_ms": 50.15,
+      "fps": 19.94,
+      "peak_ram_mb": 492
+    },
+    "weatherguard_roi_decoupled": {
+      "latency_ms": 49.38,
+      "fps": 20.25,
+      "peak_ram_mb": 502
+    }
+  }
+}

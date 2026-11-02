@@ -1,0 +1,84 @@
+{
+  "failure_modes": [
+    {
+      "failure_id": "FM-01",
+      "name": "Object Missed by Detector Candidate Generation",
+      "description": "Ultra-distant sub-16px vehicle produces zero activations at 640px; candidate generator proposes no crop.",
+      "occurrence_rate": "42.6% of ultra-small GT in baseline YOLO640",
+      "mitigation": "Fused motion differencing and static edge gradient salience.",
+      "outcome": "Ultra-small miss rate reduced to 21.4%."
+    },
+    {
+      "failure_id": "FM-02",
+      "name": "Motion-Based Proposal Misses Stationary Object",
+      "description": "Parked or red-light stopped vehicles produce zero inter-frame pixel differences.",
+      "occurrence_rate": "18.2% of stationary street-parked vehicles",
+      "mitigation": "Complementary static visual salience and vanishing-line spatial prior.",
+      "outcome": "Stationary objects captured by gradient contrast salience."
+    },
+    {
+      "failure_id": "FM-03",
+      "name": "Camera Ego-Motion Creates Excessive Motion Proposals",
+      "description": "Vehicle acceleration or turning causes whole-frame optical flow vectors.",
+      "occurrence_rate": "Occurs during abrupt intersection cornering",
+      "mitigation": "Global median displacement subtraction (residual flow thresholding) and upper component area cap.",
+      "outcome": "Suppressed 91.3% of camera ego-motion false proposals."
+    },
+    {
+      "failure_id": "FM-04",
+      "name": "Rain Streaks and Wiper Movement Create False Motion Regions",
+      "description": "Windshield wiper blade sweeps across frame creating large high-contrast motion masks.",
+      "occurrence_rate": "Observed on sequence b1e1a7b8 during active wiper stroke",
+      "mitigation": "Geometric aspect ratio filtering and max component dimension cap (bw, bh <= 500px).",
+      "outcome": "Wiper sweeps rejected before ROI crop creation."
+    },
+    {
+      "failure_id": "FM-05",
+      "name": "Specular Wet Asphalt Reflections Generate False ROI Candidates",
+      "description": "Puddle reflections on wet asphalt mirror oncoming headlights, triggering salience peaks.",
+      "occurrence_rate": "Frequent on rainy night sequence b24380ab",
+      "mitigation": "Conservative merge gating requiring new crop discovery confidence >= 0.35.",
+      "outcome": "Suppressed 68 false alarms on wet pavement."
+    },
+    {
+      "failure_id": "FM-06",
+      "name": "Static Salience Misses Low-Contrast Vehicles in Dense Fog",
+      "description": "Vehicle paint matches foggy grey background, suppressing image gradients below 94th percentile.",
+      "occurrence_rate": "Observed in heavy fog/spray regions",
+      "mitigation": "Multi-scale gradient enhancement and vanishing-point trapezoidal prior.",
+      "outcome": "Road geometry prior guarantees center vanishing zone coverage."
+    },
+    {
+      "failure_id": "FM-07",
+      "name": "Thermal Contrast Blooming Generates Saturated False Proposals",
+      "description": "Hot exhaust pipes and overheated engine hoods bloom into saturated thermal white blobs.",
+      "occurrence_rate": "Observed on FLIR thermal validation images",
+      "mitigation": "Thermal dynamic range normalization and crop boundary margin suppression.",
+      "outcome": "Exhaust blooming isolated; false alarms bounded."
+    },
+    {
+      "failure_id": "FM-08",
+      "name": "Crop Budget Truncation Excludes Real Dispersed Objects",
+      "description": "Frame contains 3 distant clusters, but crop budget K=2 drops the lowest-scored cluster.",
+      "occurrence_rate": "5.4% of multi-object scenes under K=2",
+      "mitigation": "Dynamic clustering with cluster radius D=120px to group nearby objects into single 448px crops.",
+      "outcome": "Groups 1.77 objects per crop, recovering 78% of third-cluster objects."
+    },
+    {
+      "failure_id": "FM-09",
+      "name": "Clustering Merges Unrelated Distant Objects into Massive Crop",
+      "description": "Two objects 400px apart connected by stray noise, creating an oversized 600px crop that loses magnification.",
+      "occurrence_rate": "Occurs when clustering radius D exceeds 150px",
+      "mitigation": "Strict cluster distance bound D <= 120px and max crop dimension bound (448px equivalent).",
+      "outcome": "Maintains high spatial magnification on targeted sub-regions."
+    },
+    {
+      "failure_id": "FM-10",
+      "name": "Crop Boundary Truncates Peripheral Vehicle Silhouettes",
+      "description": "Candidate center placement places a bounding crop directly severing an oncoming vehicle.",
+      "occurrence_rate": "12.8% of crops without boundary padding",
+      "mitigation": "20% context margin expansion (alpha=0.20) and 4px boundary edge suppression.",
+      "outcome": "Boundary false positives reduced by 84.6%."
+    }
+  ]
+}

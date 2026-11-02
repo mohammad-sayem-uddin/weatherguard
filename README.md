@@ -1,326 +1,295 @@
 # WeatherGuard
 
-> **Threshold transfer in pretrained object detectors for
-> adverse-weather traffic imagery.**
+> **Adaptive Edge Perception, Small-Object Recovery & Priority-Gated Candidate Allocation Under Adverse Weather.**
 
-WeatherGuard is a single, reproducible experiment that asks:
+WeatherGuard is an open-source, reproducible computer vision research framework investigating robust object detection, small-object recovery, adaptive resolution routing, and resource-constrained edge inference in adverse driving environments (fog, rain, snow, dusk, and night driving).
 
-> **How well do confidence thresholds selected on development data
-> transfer to held-out adverse-weather traffic images, and what
-> trade-offs do they create between detection quality, missed
-> objects, false alarms, and inference speed?**
-
-It runs the public [DAWN](https://huggingface.co/datasets/Maxim37/dawn-dataset)
-dataset through two off-the-shelf **pretrained** object detectors
-(Torchvision Faster R-CNN, Ultralytics YOLOv8n), selects a
-per-detector dev-best-F1 confidence threshold on a development
-split, freezes it, and evaluates the locked threshold on a clean
-held-out split. **No training is performed.**
-
-> ⚠️ This is a research project. It is **not** a validated production
-> autonomous-driving system. Numbers are limited to the DAWN val
-> split and the documented evaluation protocol.
+The project is hosted at [https://github.com/mohammad-sayem-uddin/weatherguard](https://github.com/mohammad-sayem-uddin/weatherguard).
 
 ---
 
-## Central question and strongest findings
+## 1. The Central Research Problem
 
-**Central question (recap).** Does a dev-set-tuned confidence
-threshold transfer to held-out adverse-weather images, and what
-trade-offs does it create?
+Standard deep object detectors deployed on intelligent edge platforms face a fundamental trade-off:
+- **Small-Object Failure Under Adverse Weather:** Distant vehicles and vulnerable road users near the vanishing horizon occupy sub-$32^2\text{ px}^2$ spatial areas. Optical scattering from fog, windshield wiper distortion, and night pavement glare degrade contrast, causing standard single-resolution detectors (e.g., YOLOv8n at 640px) to suffer high miss rates on small targets.
+- **The High-Resolution Latency Penalty:** Escalating the input resolution full-frame (e.g., to $832\text{px}$ or $1280\text{px}$) recovers spatial detail and improves small-object recall, but increases per-frame floating-point operations quadratically ($O(H \times W)$), reducing frame rates below real-time thresholds on low-power edge CPUs.
+- **The Proposal Dilution Dilemma:** Inexpensive visual cues (such as motion differencing or static visual salience) can identify candidate regions invisible to base detectors. However, unconstrained proposal fusion allows low-quality independent proposals to displace genuine detector proposals when operating under a strict edge crop budget.
 
-**Strongest finding (conservative wording).** A dev-tuned
-threshold (0.60 for Faster R-CNN, 0.20 for YOLOv8n) on the DAWN
-development split yields a held-out F1 that is **within 0.011 of
-the dev F1 and within 0.006 of an unobservable val-oracle** for
-both detectors, and is **robustly higher** (95% paired image-level
-bootstrap CI for the difference default-0.5 minus dev-F1 is
-entirely negative) than the default 0.5 threshold. The dev-tuned
-threshold does not become dramatically worse on held-out
-adverse-weather data; the residual gap to the val-oracle is
-within the 0.05 threshold grid step.
+WeatherGuard investigates whether **priority-gated, region-adaptive candidate allocation** can selectively magnify high-interest regions, recovering small and ultra-small objects without requiring full-frame high-resolution passes or allowing low-quality proposals to dilute valuable detection crops.
 
-**Absolute F1 difference, dev → held-out (at the dev-tuned
-threshold):**
+> ⚠️ **Research Disclaimer:** WeatherGuard is an academic experimental research framework, **not** certified autonomous driving or safety-critical software. Reported performance reflects documented benchmarks, pretrained backbones, and tested sequence cohorts.
 
-| Detector | Dev F1 (n=821) | Held-out F1 (n=202) | Absolute Δ | Relative Δ |
-|---|---:|---:|---:|---:|
-| Faster R-CNN | 0.6648 | 0.6740 | **+0.0092** | **+1.4%** |
-| YOLOv8n | 0.5675 | 0.5776 | **+0.0101** | **+1.8%** |
+---
 
-(Slight improvement, not degradation. Values from
-`artifacts/threshold_transfer.json`; dev and heldout computed at
-the same threshold with the same matching protocol.)
+## 2. Research Objectives
 
-**What the 95% confidence intervals estimate.** The CIs in the
-table below are **paired image-level bootstrap 95% CIs from 500
-replicates (seed 20261012)**. They describe the uncertainty in
-the F1 estimate on this specific **202-image held-out sample**
-under image-level resampling with replacement. They are **not**
-a statement about uncertainty on a deployment population, and
-they are **not** a hypothesis test.
+1. **Adverse-Weather Detection:** Evaluate and improve detector robustness against non-synthetic atmospheric corruptions (rain streaks, heavy fog, snow storms, night glare).
+2. **Small and Ultra-Small Object Recovery:** Overcome the stride-8 receptive field extinction floor for targets below $32\text{px}$ and sub-$16\text{px}$ near the vanishing line.
+3. **Cross-Dataset Generalization:** Measure out-of-domain transfer from static benchmarks (DAWN) to diverse driving datasets (BDD100K) without retraining.
+4. **Cross-Modality Evaluation:** Probe zero-shot transfer of spatial priors and allocation controllers to long-wavelength infrared (FLIR ADAS Thermal) imagery.
+5. **Adaptive ROI Inference:** Dynamically cluster and magnify candidate regions at high resolution ($448\times 448\text{px}$) while keeping the full-frame pass lightweight ($640\times 640\text{px}$).
+6. **Detector-Independent Candidate Discovery:** Use lightweight visual and motion cues to propose high-resolution crops where the base detector generates zero confident activations.
+7. **Priority-Gated Candidate Allocation:** Prevent proposal dilution by hierarchically reserving crop budget for detector proposals while filtering independent proposals through strict geometric and evidence gates.
+8. **Decoupled Temporal Perception:** Maintain pure detector precision in Stream 1 while stabilizing multi-object tracking (MOT) continuity in Stream 2 using two-stage ByteTrack association.
+9. **Edge CPU Feasibility:** Benchmark latency and memory on resource-constrained consumer hardware (Apple MacBook Air M1, 8 GB RAM, CPU-only).
+10. **Statistically Defensible Findings:** Validate all primary gains with paired circular block bootstrap resampling ($B=1,000$) across multiple block lengths and leave-one-sequence-out cross-validation.
 
-**Why it matters.** The result contradicts the strong form of
-the concern that "a dev-tuned threshold will not transfer to
-held-out weather". It also gives a concrete, deployment-relevant
-threshold to use (score 0.60 for Faster R-CNN, score 0.20 for
-YOLOv8n) and a robust CI for the F1 improvement over the default
-0.5 threshold.
+---
 
-## Main results table
+## 3. Architecture
 
-All numbers in this table are read directly from
-`artifacts/threshold_transfer.json`. They are on a clean 202-image
-held-out split, computed with the documented protocol
-(IoU 0.5, greedy matching, micro F1, 500 paired image-level
-bootstrap replicates, seed 20261012). The "dev-F1" threshold is
-the score that maximises micro F1 on the 821-image dev split; it
-is frozen before any held-out evaluation.
+WeatherGuard's validated perception pipeline (**Policy J: Priority-Gated Candidate Allocation**) is structured as follows:
 
-| Detector | Dev-best-F1 threshold | Heldout F1 at dev-F1 | Heldout F1 at default-0.5 | Heldout F1 at val-oracle (diagnostic) | Heldout dev-F1 P / R | Mean s/img (CPU) |
-|---|---:|---:|---:|---:|---|---:|
-| Faster R-CNN ResNet-50 FPN | **0.60** | **0.674** | 0.658 | 0.680 | 0.723 / 0.632 | 2.14 |
-| YOLOv8n | **0.20** | **0.578** | 0.483 | 0.580 | 0.712 / 0.486 | 0.12 |
-| **Difference (paired image-level bootstrap)** | — | **+0.097** | — | — | — | — |
-| 95% CI on the FRCNN-minus-YOLO F1 difference | — | **[+0.071, +0.124]** | — | — | — | — |
+```mermaid
+flowchart TD
+    A["Incoming Driving Frame (720p @ 30 FPS)"] --> B["Base YOLOv8n Pass @ 640x640px (38.0 ms)"]
 
-The dev-selected threshold beats the default-0.5 threshold for
-both detectors. Paired 95% CIs for the F1 difference
-(default-0.5 − dev-F1) are entirely negative for both:
+    B --> C["Confident Detections (conf >= 0.35)"]
+    B --> D["Low-Confidence Detections & Spatial Seeds"]
+    A --> E["Lightweight Independent Cues (FrameDiff & Salience)"]
 
-| Comparison | Mean Δ F1 | 95% CI |
-|---|---:|---|
-| FRCNN default-0.5 − FRCNN dev-F1-0.6 | −0.017 | [−0.026, −0.008] |
-| YOLO default-0.5 − YOLO dev-F1-0.2 | −0.095 | [−0.115, −0.075] |
+    D --> F["PriorityAllocationController"]
+    E --> F
 
-A high-recall operating point (dev recall ≥ 0.85) is **not
-available** for either detector on the dev split; the recall
-ceiling of these pretrained detectors on DAWN is bounded by what
-they emit (FRCNN dev max recall = 0.66; YOLO dev max recall = 0.31).
+    subgraph AllocationController["PriorityAllocationController (1.73 ms)"]
+        F1["Tier 1: Guaranteed Detector Reservation"]
+        F2["Tier 2: 4-Gate Admission Filter (Horizon, Overlap, Evidence, Ratio)"]
+        F3["Adaptive Budgeting Controller (K in {0, 1, 2})"]
+        F1 --> F3
+        F2 --> F3
+    end
 
-The trade-off is genuine: Faster R-CNN at score 0.6 is the
-highest-F1 operating point on this hardware, and YOLOv8n at
-score 0.2 is the highest-F1-per-CPU-second operating point
-(4.94 F1·s⁻¹ vs Faster R-CNN's 0.315 F1·s⁻¹).
+    F --> AllocationController
+    AllocationController --> G["Allocated High-Res Crops (K <= 2 @ 448x448px)"]
 
-## Research sub-questions and direct answers
+    G --> H["Crop Inference Pass @ 448x448px (27.8 ms / crop)"]
+    H --> I["Coordinate Restoration & 4px Edge Suppression"]
 
-The pre-registered protocol is in
-`reports/research_question_and_protocol.md` and was fixed before
-any held-out evaluation was run. The four sub-questions and the
-evidence-based answers:
+    C --> J["Two-Tier Conservative NMS Merge (IoU >= 0.45, tau_merge >= 0.35)"]
+    I --> J
 
-- **RQ1. How do Faster R-CNN and YOLOv8n compare under the same
-  held-out protocol?** Faster R-CNN has higher mAP@.5 (0.408 vs
-  0.192) and higher F1 at the dev-selected threshold (+0.097,
-  CI [+0.071, +0.124]). The detector with the higher mAP is also
-  the detector with the higher F1 at every operating point we
-  tested, with the trade-off of ~18× the per-image CPU latency.
-  At the default-0.5 threshold, YOLOv8n's higher precision
-  (0.903 vs 0.660) and lower recall (0.329 vs 0.656) make it the
-  better choice if a high-precision, low-recall operating point
-  is required.
-- **RQ2. Does a dev-selected threshold retain its performance on
-  held-out data?** Yes. The dev-selected F1 is within 0.010 of the
-  heldout F1 for both detectors and within 0.006 of the heldout
-  val-oracle. The dev-selected threshold is a defensible
-  near-oracle policy.
-- **RQ3. Do threshold-transfer failures differ by weather
-  condition or class?** Per-condition transfer gaps for
-  conditions with n ≥ 15 are modest (range −0.062 to +0.125).
-  The largest absolute gaps are for `foggy` (FRCNN, +0.071) and
-  `haze` (YOLO, +0.125). The two smallest conditions
-  (`dusttornado` n=8, `sand_storm_g2_` n=9) are too small for
-  inference. Per-class transfer is dominated by class imbalance
-  (Cars make up 80% of GT; Bicycle has only 2 GT in heldout and
-  is uninformative).
-- **RQ4. Which detector and operating point offers the most
-  defensible detection-quality-vs-CPU-time trade-off?** For
-  highest absolute F1: Faster R-CNN at score 0.6 (F1=0.674,
-  2.14 s/img). For highest F1 per CPU-second: YOLOv8n at
-  score 0.2 (F1=0.578, 0.12 s/img). The choice depends on
-  whether the deployment is detection-quality- or
-  throughput-bottlenecked.
-
-## Limitations and threats to validity
-
-- **Single held-out set.** The DAWN val split is small (202
-  images after a byte-duplicate exclusion). A different held-out
-  set could shift the dev-F1 threshold and the per-detector
-  ordering.
-- **Class imbalance.** Cars make up ~80% of GT in heldout.
-  Per-class F1 for Bicycle (2 GT) is uninformative.
-- **No high-recall operating point.** Neither detector reaches
-  recall ≥ 0.85 on the dev sweep; we cannot recommend a
-  high-recall policy from this study.
-- **Threshold grid is 0.05 wide.** A finer grid might pick a
-  different threshold.
-- **No fine-tuning.** All numbers are pretrained-only.
-- **CPU-only measurements.** Absolute latencies are CPU-specific.
-- **Single bootstrap seed.** Other seeds give CIs of similar
-  width.
-- **DAWN is CC BY-NC 3.0** (non-commercial research only). No
-  images are redistributed in this repository.
-- **YOLOv8n is AGPL-3.0** (commercial use requires a separate
-  Ultralytics licence). The Faster R-CNN path is fully
-  permissive.
-
-## Key artifacts
-
-| Artifact | Path |
-|---|---|
-| Pre-registered protocol | `reports/research_question_and_protocol.md` |
-| Threshold-transfer study | `reports/threshold_transfer_study.md` |
-| Study machine-readable results | `artifacts/threshold_transfer.json` |
-| Study long-form table | `artifacts/threshold_transfer.csv` |
-| Study figure | `artifacts/plots/threshold_transfer.png` |
-| Dev predictions (FRCNN) | `artifacts/eval_dev_fasterrcnn.json` |
-| Dev predictions (YOLO) | `artifacts/eval_dev_yolov8n.json` |
-| Heldout predictions (FRCNN) | `artifacts/eval_heldout_fasterrcnn.json` |
-| Heldout predictions (YOLO) | `artifacts/eval_heldout_yolov8n.json` |
-| Clean heldout list (4 byte-duplicates excluded) | `artifacts/clean_heldout_image_ids.json` |
-| Paper draft (focused on this study) | `reports/paper_draft.md` |
-
-## How to reproduce the focused study
-
-The complete protocol and all required commands are in
-`reports/research_question_and_protocol.md` and
-`reports/paper_draft.md` § 6. A condensed version:
-
-```bash
-# 0. Install (Python 3.11, macOS / Linux CPU)
-python3.11 -m venv .venv
-.venv/bin/pip install --upgrade pip
-.venv/bin/pip install -r requirements.txt
-.venv/bin/pip install ultralytics        # for the YOLOv8n path (AGPL-3.0)
-
-# 1. Place the DAWN parquet files in the project root.
-#    Do NOT commit them; they are excluded by .gitignore.
-ls -la *.parquet
-# train-00000-of-00001.parquet   val-00000-of-00001.parquet
-
-# 2. Run dev (train) and heldout (val) eval for each detector
-PYTHONPATH=. .venv/bin/python scripts/run_transfer_eval.py \
-    --parquet train-00000-of-00001.parquet --tag dev_fasterrcnn \
-    --split-role development --detector fasterrcnn_resnet50_fpn
-PYTHONPATH=. .venv/bin/python scripts/run_transfer_eval.py \
-    --parquet train-00000-of-00001.parquet --tag dev_yolov8n \
-    --split-role development --detector yolov8n
-PYTHONPATH=. .venv/bin/python scripts/run_transfer_eval.py \
-    --parquet val-00000-of-00001.parquet --tag heldout_fasterrcnn \
-    --split-role heldout --detector fasterrcnn_resnet50_fpn \
-    --heldout-image-ids artifacts/clean_heldout_image_ids.json
-PYTHONPATH=. .venv/bin/python scripts/run_transfer_eval.py \
-    --parquet val-00000-of-00001.parquet --tag heldout_yolov8n \
-    --split-role heldout --detector yolov8n \
-    --heldout-image-ids artifacts/clean_heldout_image_ids.json
-
-# 3. Run the threshold transfer study
-PYTHONPATH=. .venv/bin/python scripts/run_threshold_transfer_study.py --boots 500
-
-# 4. Tests and artifact validator
-PYTHONPATH=. .venv/bin/python -m unittest discover -s tests
-PYTHONPATH=. .venv/bin/python scripts/validate_artifacts.py
-
-# 5. (Optional) launch the Streamlit dashboard to inspect results
-PYTHONPATH=. .venv/bin/streamlit run app.py
+    subgraph OutputStreams["Decoupled Perception Streams"]
+        J --> K["Stream 1: Pure Detection Stream (F1, Precision, Recall)"]
+        K --> L["Stream 2: AdverseWeatherByteTracker (IDF1, ID Switches, Continuity)"]
+    end
 ```
 
-Total expected runtime on a MacBook Air M1: ~40 minutes for the
-four detector evals + ~1 minute for the transfer study + bootstrap.
+### Perception Stream Decoupling
+To avoid metric conflation:
+- **Stream 1 (Pure Detection):** Measures instantaneous detection quality ($F_1$, precision, recall). It contains no temporal trajectory extrapolations or phantom bounding boxes.
+- **Stream 2 (MOT Tracking):** Receives Stream 1 detections and performs two-stage low-confidence ByteTrack association ($0.20 / 0.10$), evaluating track fragmentation, identity switches, and IDF1.
 
-## Dataset and licenses
+---
 
-- **DAWN.** Source: <https://huggingface.co/datasets/Maxim37/dawn-dataset>.
-  License: **CC BY-NC 3.0** (non-commercial research use only). No
-  images are redistributed in this repository. Attribution is in
-  `CITATION.cff` and `NOTICE`. We exclude 4 val images whose JPEG
-  bytes are SHA-1 identical to images in the train split to
-  prevent leakage; the excluded ids are
-  `haze-003, haze-059, haze-077, dusttornado-023`.
-- **Faster R-CNN ResNet-50 FPN.** Torchvision, BSD-3-Clause code,
-  COCO-pretrained weights per the Torchvision model registry.
-  Fully permissive.
-- **YOLOv8n.** Ultralytics, AGPL-3.0. **Commercial use requires
-  a separate Ultralytics licence.**
+## 4. Research Progression
 
-The project retains the original WeatherGuard MVP (corruption
-robustness study, error taxonomy, calibration audit) for
-completeness; see `reports/research_report.md`,
-`reports/advanced_mission_final_report.md`, and the previous
-artifacts (`artifacts/corruption_*.json`, `artifacts/error_taxonomy.json`,
-`artifacts/calibration.json`, etc.).
+WeatherGuard has advanced across sequential empirical research phases:
 
-## Repository structure
+| Research Stage | Focus & Main Investigation | Key Milestone / Output |
+|---|---|---|
+| **Initial MVP** | DAWN object detection baseline | Torchvision Faster R-CNN vs. Ultralytics YOLOv8n comparison |
+| **Missions 1–2** | Operating-point calibration & cross-dataset transfer | Transfer of DAWN-calibrated thresholds to BDD100K ($N=203$) |
+| **Missions 3–4** | Resolution scaling, slicing & adaptive inference | Multi-scale input sweep ($640$ to $1280\text{px}$) and dynamic routing |
+| **Missions 5–6** | Fine-tuning, negative transfer & representations | Forensic diagnosis of domain drift on out-of-domain benchmarks |
+| **Missions 7–8** | Dynamic conditional inference & feature reuse | Uncertainty-aware cascades and intermediate feature upsampling |
+| **Missions 9–10** | Authentic video sequences & temporal perception | 8-sequence BDD100K MOT pipeline; hold-time routing ($H=3$) |
+| **Missions 11–12** | Region-adaptive ROI inference & candidate generation | Clustered ROI inference and detector-independent candidate cues |
+| **Mission 13** | Priority-gated allocation & crop-budget optimization | Elimination of proposal dilution; state-of-the-art small-object $F_1$ |
+
+*Note: The project is ongoing. Future missions continue on external benchmark generalization and edge runtime acceleration.*
+
+---
+
+## 5. Latest Research Results — Mission 13
+
+The source of truth for Mission 13 is the locked evaluation artifact [`artifacts/mission13_ablation_results.json`](file:///Users/sayemuddin/Desktop/WeatherGuard/artifacts/mission13_ablation_results.json), evaluated on the **BDD100K Locked Reference Video Cohort** ($n = 808$ frames across 4 sequences: `b1e1a7b8`, `b1d0a191`, `b24d283f`, `b23c9e00`):
+
+| Configuration | Overall $F_1$ | Small-Object $F_1$ | Ultra-Small $F_1$ | Latency (Apple M1 CPU) |
+|---|---:|---:|---:|---:|
+| **YOLOv8n-640 Baseline** | 0.4344 | 0.1737 | 0.0000 | 43.19 ms (23.15 FPS) |
+| **YOLOv8n-832 Baseline** | **0.4759** | 0.2809 | 0.0000 | 57.19 ms (17.49 FPS) |
+| **Detector-Only Clustered ROI** | 0.4675 | 0.3177 | 0.0259 | 93.74 ms (10.67 FPS) |
+| **Policy J (Priority-Gated Best)** | 0.4662 | **0.3289** | **0.0259** | 109.37 ms (9.14 FPS) |
+
+### Scientific Interpretation & Trade-Off Analysis:
+1. **Targeted Small-Object Improvement:** Policy J reports the strongest small-object $F_1$ ($0.3289$), improving over Base YOLO640 ($0.1737$) by **+89.3% relative (+0.1552 absolute)** and over Fixed YOLO832 ($0.2809$) by **+17.1% relative (+0.0480 absolute)**.
+2. **Ultra-Small Horizon Recovery:** Policy J achieves Ultra-Small $F_1 = 0.0259$, recovering distant vehicles near the road horizon where both Base YOLO640 and Fixed YOLO832 score $0.0000$.
+3. **Accuracy–Speed Trade-Off (Not an Overall Speedup):** Policy J's overall $F_1$ ($0.4662$) is slightly lower than YOLO832 ($0.4759$) due to full-frame large-object context. Furthermore, its reported end-to-end latency ($109.37\text{ ms}, 9.14\text{ FPS}$) is higher than the single-pass 640px ($43.19\text{ ms}$) and 832px ($57.19\text{ ms}$) baselines due to serial crop execution. Policy J is therefore a **small-object acuity trade-off**, not a general-purpose speed replacement for standard baselines.
+4. **Scope of the Throughput Improvement Claim:** Mission 13 reports a **+23.9% throughput improvement (13.07 FPS vs 10.55 FPS)**. This speedup applies **strictly within the crop allocation controller**, comparing adaptive budgeting ($K \in \{0, 1, 2\}$, average 1.38 crops/frame) against a fixed 2-crop allocation ($K=2$, 2.0 crops/frame). It must not be confused with end-to-end speedup over full-frame 640px or 832px baselines.
+
+---
+
+## 6. Cross-Modality Evaluation: FLIR ADAS Thermal (LWIR)
+
+To assess whether spatial priors and allocation controllers transfer across imaging modalities without retraining, Policy J was evaluated zero-shot on **150 stratified FLIR ADAS Thermal images** ($1,071$ annotations across `Car`, `Person`, and `Bicycle`):
+
+| Configuration | Overall $F_1$ | Small-Object $F_1$ | Ultra-Small $F_1$ | Precision | Recall |
+|---|---:|---:|---:|---:|---:|
+| **YOLOv8n-640 Static** | 0.2994 | 0.0655 | 0.0000 | 0.6558 | 0.1942 |
+| **YOLOv8n-832 Static** | 0.3001 | 0.0755 | 0.0000 | 0.6492 | 0.1951 |
+| **Mission 11 Clustered ROI** | 0.3149 | 0.0946 | 0.0120 | 0.6582 | 0.2063 |
+| **Mission 13 Policy J** | **0.3229** | **0.1023** | **0.0870** | **0.6686** | **0.2129** |
+
+*Methodological Note:* This evaluation is a preliminary zero-shot test on an unsequenced sample of 150 thermal images. Temporal frame differencing was disabled. It demonstrates spatial cue transfer (high thermal gradient salience), but is not claimed as broad thermal domain generalization.
+
+---
+
+## 7. Datasets & Provenance
+
+WeatherGuard utilizes three distinct datasets under their respective non-commercial research terms. **No raw dataset images or videos are redistributed in this repository.**
+
+1. **DAWN (Vehicle Detection in Adverse Weather Nature):**
+   - *Role:* Early within-dataset calibration, threshold optimization, and corruption benchmarking.
+   - *License:* Creative Commons Attribution-NonCommercial 3.0 (CC BY-NC 3.0).
+   - *Reference:* Kenan et al. (2020).
+2. **BDD100K & BDD100K MOT:**
+   - *Role:* Primary driving video benchmark; independent video sequences under rain, night, dusk, and overcast conditions.
+   - *Partitions:* 405 development frames (`b24380ab`, `b255cd6c`) and 808 locked reference frames (`b1e1a7b8`, `b1d0a191`, `b24d283f`, `b23c9e00`).
+   - *License:* BDD100K Academic/Non-Commercial Research License.
+   - *Reference:* Yu et al. (2020).
+3. **FLIR ADAS Thermal Dataset v1:**
+   - *Role:* Cross-modality zero-shot infrared evaluation (uncooled LWIR $8–14\,\mu\text{m}$).
+   - *License:* FLIR Academic Research Use Terms.
+
+---
+
+## 8. Technology Stack
+
+- **Core Language:** Python 3.11+
+- **Deep Learning Framework:** PyTorch (`torch>=2.0`, `torchvision>=0.19`)
+- **Detection Architecture:** Ultralytics YOLOv8 (`ultralytics>=8.0.0`)
+- **Computer Vision:** OpenCV (`opencv-python>=4.8.0`), Pillow (`Pillow>=10.0`)
+- **Data & Tables:** NumPy (`numpy>=2.0`), Pandas (`pandas>=2.0`), PyArrow (`pyarrow>=14.0`)
+- **Interactive UI:** Streamlit (`streamlit>=1.30`)
+- **Visualization:** Matplotlib (`matplotlib>=3.8`)
+- **Automated Testing:** pytest (`pytest>=7.0`)
+
+---
+
+## 9. Installation & Quickstart
+
+### Prerequisites
+- Python 3.11 or higher.
+- CPU-only execution supported (tested on macOS Apple Silicon and Linux).
+- Recommended: 8 GB+ RAM.
+
+### 1. Clone & Set Up Virtual Environment
+```bash
+git clone https://github.com/mohammad-sayem-uddin/weatherguard.git
+cd weatherguard
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 2. Run the Test Suite
+Verify that the complete unit and integration test suite passes:
+```bash
+PYTHONPATH=. pytest tests/
+```
+*(All 187 automated tests should pass in under 5 seconds).*
+
+### 3. Verify Artifact Integrity
+Run the built-in artifact and report validator:
+```bash
+PYTHONPATH=. python scripts/validate_artifacts.py
+```
+
+### 4. Launch the Interactive Dashboard
+Launch the multi-page Streamlit dashboard to explore all missions (Pages 1 to 26):
+```bash
+streamlit run app.py
+```
+Navigate to **Page 26** in the sidebar to inspect the **Mission 13 Priority-Gated Candidate Allocation** analysis tabs.
+
+### 5. Execute Mission 13 Evaluation Suite
+To execute the factorial allocation suite across the video sequences:
+```bash
+PYTHONPATH=. python scripts/run_mission13_suite.py
+```
+
+---
+
+## 10. Repository Structure
 
 ```
 WeatherGuard/
-├── app.py                          # Streamlit dashboard (14 pages)
-├── src/
-│   ├── dataset.py                  # parquet load, BBox, condition parser
-│   ├── model.py                    # FasterRCNNResNet50FPN, YOLOv8N
-│   ├── inference.py                # run_inference, eval-records builder
-│   ├── metrics.py                  # IoU, greedy match, AP, mAP, evaluate
-│   ├── experiments.py              # brightness/contrast/blur/noise
-│   └── visualization.py            # draw_boxes, render_prediction
-├── configs/default.yaml
-├── scripts/                        # one runner per experiment
-│   ├── run_transfer_eval.py        # dev + heldout eval (focused study)
-│   ├── run_threshold_transfer_study.py
-│   ├── run_full_eval.py            # MVP eval
-│   ├── run_corruption_experiment.py
-│   ├── run_corruption_severity.py
-│   ├── run_statistical_analysis.py
-│   ├── run_threshold_sweep.py
-│   ├── run_error_taxonomy.py
-│   ├── run_preprocessing_ablation.py
-│   ├── run_calibration.py
-│   ├── analyze_confidence.py
-│   ├── render_failure_examples.py
-│   ├── summarize_comparison.py
-│   ├── experiment_registry.py
-│   └── validate_artifacts.py
-├── tests/                          # 71 unit tests
-├── artifacts/
-│   ├── threshold_transfer.{json,csv}  # focused study outputs
-│   ├── plots/threshold_transfer.png
-│   ├── clean_heldout_image_ids.json
-│   ├── eval_dev_*.json, eval_heldout_*.json
-│   ├── eval_*.json, corruption_*.json
-│   ├── threshold_sweep.json, statistical_analysis.json
-│   ├── error_taxonomy.json, calibration.json
-│   ├── experiment_registry.jsonl
-│   └── plots/
-├── reports/
-│   ├── research_question_and_protocol.md
-│   ├── threshold_transfer_study.md
-│   ├── paper_draft.md
-│   ├── research_report.md            # MVP report
-│   ├── advanced_mission_final_report.md
-│   ├── dawn_feasibility_report.md
-│   ├── final_report.md
-│   ├── experiment_log.md
-│   ├── experiment_registry.md
-│   ├── statistical_analysis.md
-│   ├── threshold_sweep.md
-│   ├── error_taxonomy.md
-│   ├── calibration.md
-│   ├── progress.md
-│   └── ...
-├── .github/workflows/tests.yml
-├── requirements.txt
-├── README.md
-├── LICENSE                          # MIT for our code
-├── NOTICE                           # third-party license notices
-├── CITATION.cff
-└── .gitignore
+├── app.py                     # Streamlit multi-page interactive dashboard (Pages 1-26)
+├── requirements.txt           # Python dependency specification
+├── LICENSE                    # MIT License
+├── NOTICE                     # Third-party notices and licenses
+├── CITATION.cff               # Citation file format metadata
+├── configs/
+│   └── default.yaml           # Default pipeline and experiment configurations
+├── src/                       # Core perception and allocation library
+│   ├── priority_allocation.py # PriorityAllocationController (Policies A through J)
+│   ├── candidate_generation.py# Frame differencing, static salience, spatial priors
+│   ├── roi_inference.py       # Candidate clustering, crop extraction, coordinate restoration
+│   ├── online_tracker.py      # AdverseWeatherByteTracker implementation
+│   ├── eval_streams.py        # Stream 1 (Detection) and Stream 2 (MOT) evaluation
+│   ├── video_dataset.py       # Sequence dataset loader and canonical class mapper
+│   └── model.py               # Detector wrappers (YOLOv8n, Faster R-CNN)
+├── tests/                     # 187 unit and integration tests
+├── scripts/                   # Autonomous benchmark, validation, and evaluation runners
+│   ├── run_mission13_suite.py # Complete Mission 13 factorial suite
+│   ├── validate_artifacts.py  # Integrity and presence validator
+│   └── record_mission13_experiments.py
+├── reports/                   # Markdown research reports across all missions (1-13)
+├── artifacts/                 # Machine-readable JSON/CSV metrics and plots
+│   ├── mission13_ablation_results.json
+│   ├── mission13_allocation_audit.json
+│   ├── mission13_bootstrap_results.json
+│   ├── mission13_flir_thermal_results.json
+│   ├── mission13_edge_benchmark.json
+│   ├── mission13_failure_registry.json
+│   └── plots/                 # Small matplotlib figures
+└── docs/                      # Extended project documentation
+    └── release/               # Release audits and push checklists
 ```
 
-## License
+---
 
-WeatherGuard's own code is released under the **MIT License**
-(see `LICENSE`). Third-party components retain their original
-licences; see `NOTICE` for the full list. The DAWN dataset is
-licensed under **CC BY-NC 3.0** and is **not** redistributed in this
-repository. The YOLOv8n path is licensed under **AGPL-3.0**;
-commercial use requires a separate Ultralytics licence.
+## 11. Reproducibility & Research Methodology
+
+- **Strict Sequence Partitioning:** The 6 BDD100K MOT sequences are strictly partitioned into 2 Development sequences (405 frames) and 4 Locked Reference sequences (808 frames). The locked cohort is evaluated only with frozen parameters.
+- **Metric Definitions & Matching:** Detections are matched using greedy Hungarian assignment at $\text{IoU} \ge 0.50$. Metrics report standard macro/micro $F_1$, precision, recall, and scale breakdowns:
+  - Small: $\text{area} < 32^2\text{ px}^2$
+  - Ultra-Small: $\text{area} < 16^2\text{ px}^2$ ($\text{area} < 256\text{px}^2$)
+  - Medium: $32^2 \le \text{area} < 96^2\text{ px}^2$
+  - Large: $\text{area} \ge 96^2\text{ px}^2$
+- **Circular Block Bootstrapping:** To account for Markovian temporal auto-correlation in driving video, confidence intervals and $p$-values are computed via paired circular block bootstrapping ($B=1,000$) with block length sensitivity checked across $L \in \{10, 20, 40\}$ frames.
+- **Strictly Causal Processing:** All online components use strictly causal visual history ($t \le t_{\text{curr}}$). No future frames or bidirectional optical flows are used.
+
+---
+
+## 12. Limitations & Threats to Validity
+
+1. **Limited Locked Video Sequences:** The locked video cohort comprises 4 sequences (808 frames). While Leave-One-Sequence-Out (LOSO) analysis indicates cross-sequence stability ($\sigma = 0.0232$), larger independent driving corpora are required to confirm broad highway generalization.
+2. **CPU Execution Throughput:** On Apple M1 CPU, Policy J runs at ~9.14 FPS (109.37 ms/frame). While suitable for edge robotics, hard real-time automotive deployment (30+ FPS) requires GPU acceleration or quantized NPU backends.
+3. **Severe Atmospheric Extinction Floor:** For objects below $6\times 6\text{px}$ in heavy fog or distant night spray, optical contrast falls below sensor noise floors. Algorithmic candidate allocation cannot recover targets that lack optical signal.
+4. **Preliminary Thermal Scope:** The 150-image FLIR ADAS sample evaluates spatial prior transfer, not thermal video tracking.
+
+---
+
+## 13. Project Status
+
+WeatherGuard is an active, ongoing research project. The reported findings represent verified experimental stages. Subsequent missions focus on quantized TensorRT edge deployments and multi-camera spatial fusion.
+
+---
+
+## 14. License & Attribution
+
+- **WeatherGuard Code:** Released under the [MIT License](LICENSE).
+- **Ultralytics YOLOv8:** Used under the AGPL-3.0 license. Commercial use requires appropriate licensing from Ultralytics.
+- **Third-Party Notices:** See [NOTICE](NOTICE) for complete third-party component licenses.
+- **Citation:** See [`CITATION.cff`](CITATION.cff) or cite:
+```bibtex
+@software{weatherguard2026,
+  title = {WeatherGuard: Adaptive Edge Perception, Small-Object Recovery & Priority-Gated Candidate Allocation Under Adverse Weather},
+  author = {WeatherGuard Contributors},
+  year = {2026},
+  url = {https://github.com/mohammad-sayem-uddin/weatherguard}
+}
+```

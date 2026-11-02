@@ -1,0 +1,306 @@
+{
+  "cohort": "Group_C_BDD100K_Locked_Test",
+  "n_images": 203,
+  "target_objects": 2553,
+  "results": {
+    "YOLOv8n-640 (Baseline)": {
+      "f1": 0.51115,
+      "precision": 0.68259,
+      "recall": 0.40854,
+      "tp": 1043,
+      "fp": 485,
+      "fn": 1510,
+      "small_recall_%": 8.67,
+      "medium_recall_%": 52.84,
+      "large_recall_%": 79.69,
+      "small_tp": 87,
+      "small_gt": 1004,
+      "latency_ms": 61.14,
+      "p95_latency_ms": 61.14,
+      "fps": 16.36
+    },
+    "YOLOv8n-832": {
+      "f1": 0.56546,
+      "precision": 0.71678,
+      "recall": 0.4669,
+      "tp": 1192,
+      "fp": 471,
+      "fn": 1361,
+      "small_recall_%": 16.33,
+      "medium_recall_%": 58.73,
+      "large_recall_%": 81.84,
+      "small_tp": 164,
+      "small_gt": 1004,
+      "latency_ms": 102.99,
+      "p95_latency_ms": 110.58,
+      "fps": 9.71
+    },
+    "YOLOv8n-1280 (High-Res)": {
+      "f1": 0.57824,
+      "precision": 0.67863,
+      "recall": 0.50372,
+      "tp": 1286,
+      "fp": 609,
+      "fn": 1267,
+      "small_recall_%": 28.69,
+      "medium_recall_%": 61.23,
+      "large_recall_%": 70.9,
+      "small_tp": 288,
+      "small_gt": 1004,
+      "latency_ms": 378.02,
+      "p95_latency_ms": 410.72,
+      "fps": 2.65
+    },
+    "Adaptive Routing (k1)": {
+      "f1": 0.56446,
+      "precision": 0.68453,
+      "recall": 0.48022,
+      "tp": 1226,
+      "fp": 565,
+      "fn": 1327,
+      "small_recall_%": 24.8,
+      "medium_recall_%": 56.99,
+      "large_recall_%": 75.39,
+      "small_tp": 249,
+      "small_gt": 1004,
+      "latency_ms": 265.77,
+      "p95_latency_ms": 463.01,
+      "fps": 3.76
+    },
+    "Adaptive Hierarchical": {
+      "f1": 0.56706,
+      "precision": 0.69388,
+      "recall": 0.47944,
+      "tp": 1224,
+      "fp": 540,
+      "fn": 1329,
+      "small_recall_%": 22.71,
+      "medium_recall_%": 57.57,
+      "large_recall_%": 77.93,
+      "small_tp": 228,
+      "small_gt": 1004,
+      "latency_ms": 208.77,
+      "p95_latency_ms": 458.83,
+      "fps": 4.79
+    },
+    "Faster R-CNN (Reference)": {
+      "f1": 0.68774,
+      "precision": 0.73843,
+      "recall": 0.64356,
+      "tp": 1643,
+      "fp": 582,
+      "fn": 910,
+      "small_recall_%": 42.53,
+      "medium_recall_%": 75.31,
+      "large_recall_%": 84.96,
+      "small_tp": 427,
+      "small_gt": 1004,
+      "latency_ms": 1275.58,
+      "p95_latency_ms": 1275.58,
+      "fps": 0.78
+    }
+  },
+  "weather_stratified": {
+    "clear": {
+      "YOLOv8n-640 (Baseline)": {
+        "n_images": 35,
+        "f1": 0.53836,
+        "small_recall_%": 9.44,
+        "large_recall_%": 82.95
+      },
+      "YOLOv8n-832": {
+        "n_images": 35,
+        "f1": 0.60435,
+        "small_recall_%": 18.33,
+        "large_recall_%": 87.5
+      },
+      "YOLOv8n-1280 (High-Res)": {
+        "n_images": 35,
+        "f1": 0.62864,
+        "small_recall_%": 32.78,
+        "large_recall_%": 79.55
+      },
+      "Adaptive Routing (k1)": {
+        "n_images": 35,
+        "f1": 0.60345,
+        "small_recall_%": 27.22,
+        "large_recall_%": 82.95
+      },
+      "Adaptive Hierarchical": {
+        "n_images": 35,
+        "f1": 0.60175,
+        "small_recall_%": 23.89,
+        "large_recall_%": 82.95
+      },
+      "Faster R-CNN (Reference)": {
+        "n_images": 35,
+        "f1": 0.72666,
+        "small_recall_%": 48.89,
+        "large_recall_%": 86.36
+      }
+    },
+    "overcast": {
+      "YOLOv8n-640 (Baseline)": {
+        "n_images": 35,
+        "f1": 0.53441,
+        "small_recall_%": 12.09,
+        "large_recall_%": 82.22
+      },
+      "YOLOv8n-832": {
+        "n_images": 35,
+        "f1": 0.60132,
+        "small_recall_%": 20.88,
+        "large_recall_%": 86.67
+      },
+      "YOLOv8n-1280 (High-Res)": {
+        "n_images": 35,
+        "f1": 0.62255,
+        "small_recall_%": 34.07,
+        "large_recall_%": 77.78
+      },
+      "Adaptive Routing (k1)": {
+        "n_images": 35,
+        "f1": 0.60126,
+        "small_recall_%": 31.87,
+        "large_recall_%": 78.89
+      },
+      "Adaptive Hierarchical": {
+        "n_images": 35,
+        "f1": 0.60152,
+        "small_recall_%": 30.22,
+        "large_recall_%": 80.0
+      },
+      "Faster R-CNN (Reference)": {
+        "n_images": 35,
+        "f1": 0.71742,
+        "small_recall_%": 50.0,
+        "large_recall_%": 87.78
+      }
+    },
+    "rainy": {
+      "YOLOv8n-640 (Baseline)": {
+        "n_images": 60,
+        "f1": 0.51247,
+        "small_recall_%": 7.78,
+        "large_recall_%": 75.15
+      },
+      "YOLOv8n-832": {
+        "n_images": 60,
+        "f1": 0.55372,
+        "small_recall_%": 16.34,
+        "large_recall_%": 76.97
+      },
+      "YOLOv8n-1280 (High-Res)": {
+        "n_images": 60,
+        "f1": 0.55799,
+        "small_recall_%": 29.96,
+        "large_recall_%": 64.24
+      },
+      "Adaptive Routing (k1)": {
+        "n_images": 60,
+        "f1": 0.55274,
+        "small_recall_%": 25.29,
+        "large_recall_%": 67.88
+      },
+      "Adaptive Hierarchical": {
+        "n_images": 60,
+        "f1": 0.56393,
+        "small_recall_%": 23.74,
+        "large_recall_%": 72.73
+      },
+      "Faster R-CNN (Reference)": {
+        "n_images": 60,
+        "f1": 0.67169,
+        "small_recall_%": 39.69,
+        "large_recall_%": 81.82
+      }
+    },
+    "snowy": {
+      "YOLOv8n-640 (Baseline)": {
+        "n_images": 60,
+        "f1": 0.50124,
+        "small_recall_%": 7.17,
+        "large_recall_%": 82.76
+      },
+      "YOLOv8n-832": {
+        "n_images": 60,
+        "f1": 0.54867,
+        "small_recall_%": 13.4,
+        "large_recall_%": 82.07
+      },
+      "YOLOv8n-1280 (High-Res)": {
+        "n_images": 60,
+        "f1": 0.57121,
+        "small_recall_%": 23.99,
+        "large_recall_%": 73.79
+      },
+      "Adaptive Routing (k1)": {
+        "n_images": 60,
+        "f1": 0.55495,
+        "small_recall_%": 20.25,
+        "large_recall_%": 79.31
+      },
+      "Adaptive Hierarchical": {
+        "n_images": 60,
+        "f1": 0.55016,
+        "small_recall_%": 18.07,
+        "large_recall_%": 80.69
+      },
+      "Faster R-CNN (Reference)": {
+        "n_images": 60,
+        "f1": 0.68531,
+        "small_recall_%": 39.25,
+        "large_recall_%": 87.59
+      }
+    },
+    "foggy": {
+      "YOLOv8n-640 (Baseline)": {
+        "n_images": 13,
+        "f1": 0.39111,
+        "small_recall_%": 7.81,
+        "large_recall_%": 70.83
+      },
+      "YOLOv8n-832": {
+        "n_images": 13,
+        "f1": 0.46696,
+        "small_recall_%": 12.5,
+        "large_recall_%": 75.0
+      },
+      "YOLOv8n-1280 (High-Res)": {
+        "n_images": 13,
+        "f1": 0.38938,
+        "small_recall_%": 20.31,
+        "large_recall_%": 41.67
+      },
+      "Adaptive Routing (k1)": {
+        "n_images": 13,
+        "f1": 0.41558,
+        "small_recall_%": 18.75,
+        "large_recall_%": 62.5
+      },
+      "Adaptive Hierarchical": {
+        "n_images": 13,
+        "f1": 0.43966,
+        "small_recall_%": 17.19,
+        "large_recall_%": 70.83
+      },
+      "Faster R-CNN (Reference)": {
+        "n_images": 13,
+        "f1": 0.55303,
+        "small_recall_%": 31.25,
+        "large_recall_%": 75.0
+      }
+    }
+  },
+  "escalation_rates": {
+    "adaptive_k1": {
+      "640": 94,
+      "1280": 109
+    },
+    "adaptive_hier": {
+      "640": 94,
+      "832": 42,
+      "1280": 67
+    }
+  }
+}

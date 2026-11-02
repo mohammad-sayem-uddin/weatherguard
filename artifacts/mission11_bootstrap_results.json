@@ -1,0 +1,77 @@
+{
+  "Clustered ROI vs Base 640": {
+    "comparison": "Clustered ROI vs Base 640",
+    "mean_delta_f1": 0.0378,
+    "ci_95_f1": [
+      0.0258,
+      0.0491
+    ],
+    "p_value_f1": "< 0.001",
+    "mean_delta_small_f1": 0.1308,
+    "ci_95_small_f1": [
+      0.1107,
+      0.1519
+    ],
+    "p_value_small_f1": "< 0.001"
+  },
+  "Clustered ROI vs Fixed 832": {
+    "comparison": "Clustered ROI vs Fixed 832",
+    "mean_delta_f1": -0.0035,
+    "ci_95_f1": [
+      -0.0109,
+      0.0034
+    ],
+    "p_value_f1": 0.157,
+    "mean_delta_small_f1": 0.042,
+    "ci_95_small_f1": [
+      0.0254,
+      0.0595
+    ],
+    "p_value_small_f1": "< 0.001"
+  },
+  "Clustered ROI vs Hold-Time H=3": {
+    "comparison": "Clustered ROI vs Hold-Time H=3",
+    "mean_delta_f1": 0.0028,
+    "ci_95_f1": [
+      -0.0046,
+      0.01
+    ],
+    "p_value_f1": 0.216,
+    "mean_delta_small_f1": 0.0489,
+    "ci_95_small_f1": [
+      0.0309,
+      0.0693
+    ],
+    "p_value_small_f1": "< 0.001"
+  },
+  "Fixed-Grid vs Base 640": {
+    "comparison": "Fixed-Grid vs Base 640",
+    "mean_delta_f1": -0.004,
+    "ci_95_f1": [
+      -0.0071,
+      -0.0014
+    ],
+    "p_value_f1": 0.002,
+    "mean_delta_small_f1": 0.0009,
+    "ci_95_small_f1": [
+      -0.0006,
+      0.0025
+    ],
+    "p_value_small_f1": 0.13
+  },
+  "Hold-Time + ROI vs Hold-Time H=3": {
+    "comparison": "Hold-Time + ROI vs Hold-Time H=3",
+    "mean_delta_f1": 0.0036,
+    "ci_95_f1": [
+      -0.0039,
+      0.0106
+    ],
+    "p_value_f1": 0.147,
+    "mean_delta_small_f1": 0.0467,
+    "ci_95_small_f1": [
+      0.0313,
+      0.0644
+    ],
+    "p_value_small_f1": "< 0.001"
+  }
+}

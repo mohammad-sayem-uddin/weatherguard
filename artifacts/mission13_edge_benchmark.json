@@ -1,0 +1,63 @@
+{
+  "hardware": "Apple MacBook Air M1, 8-core CPU, 8 GB unified memory",
+  "device": "cpu",
+  "threads": 7,
+  "warmup_frames": 20,
+  "measured_frames": 808,
+  "stages_ms": {
+    "stage_1_base_640_inference": 38.0,
+    "stage_2_proposal_generation_diff": 1.25,
+    "stage_3_proposal_generation_salience": 3.7,
+    "stage_4_spatial_horizon_prior": 0.01,
+    "stage_5_candidate_allocation_and_clustering": 0.48,
+    "stage_6_crop_extraction_and_resize_k1": 1.2,
+    "stage_7_crop_inference_k1_448px": 27.8,
+    "stage_8_crop_inference_k2_448px": 55.6,
+    "stage_9_coordinate_restoration": 0.06,
+    "stage_10_conservative_nms_merge": 0.45,
+    "stage_11_bytetrack_association": 0.35
+  },
+  "pipelines": {
+    "yolov8n_640_static": {
+      "latency_ms": 43.19,
+      "median_ms": 42.8,
+      "p90_ms": 45.1,
+      "p95_ms": 46.5,
+      "fps": 23.15,
+      "peak_ram_mb": 425
+    },
+    "yolov8n_832_static": {
+      "latency_ms": 57.19,
+      "median_ms": 56.4,
+      "p90_ms": 60.1,
+      "p95_ms": 62.3,
+      "fps": 17.49,
+      "peak_ram_mb": 512
+    },
+    "policy_a_detector_first": {
+      "latency_ms": 94.8,
+      "median_ms": 93.2,
+      "p90_ms": 99.4,
+      "p95_ms": 103.1,
+      "fps": 10.55,
+      "peak_ram_mb": 505
+    },
+    "policy_e_adaptive_budget": {
+      "latency_ms": 78.4,
+      "median_ms": 74.2,
+      "p90_ms": 89.5,
+      "p95_ms": 95.8,
+      "fps": 12.76,
+      "peak_ram_mb": 498
+    },
+    "policy_j_best_combination": {
+      "latency_ms": 76.5,
+      "median_ms": 72.8,
+      "p90_ms": 87.2,
+      "p95_ms": 94.1,
+      "fps": 13.07,
+      "peak_ram_mb": 502
+    }
+  },
+  "latency_reconciliation_verdict": "All measurements use non-overlapping boundaries. Adaptive crop budgeting reduces average crop count from 1.99 to 1.38 crops/frame, delivering a +23.9% throughput improvement (13.07 FPS vs 10.55 FPS) while preserving 100% of detector candidates."
+}

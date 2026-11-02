@@ -221,9 +221,15 @@ class YOLOv8N(Detector):
         "scissors", "teddy bear", "hair drier", "toothbrush",
     ]
 
-    def __init__(self, score_threshold: float = 0.0, weights_path: str = "yolov8n.pt"):
+    def __init__(
+        self,
+        score_threshold: float = 0.0,
+        weights_path: str = "yolov8n.pt",
+        imgsz: int = 640,
+    ):
         self.score_threshold = float(score_threshold)
         self.weights_path = weights_path
+        self.imgsz = int(imgsz)
         self.device = "cpu"  # YOLOv8n runs on CPU via Ultralytics in this project
         self._model = None
         self._load_seconds: float = 0.0
@@ -249,8 +255,8 @@ class YOLOv8N(Detector):
         arr = np.asarray(image)
         t0 = time.perf_counter()
         # verbose=False to silence per-image logs. conf=0.0 keeps all scores;
-        # thresholding is applied below.
-        results = self._model.predict(arr, conf=0.0, verbose=False)
+        # thresholding is applied below. imgsz controls the model input resolution.
+        results = self._model.predict(arr, conf=0.0, imgsz=self.imgsz, verbose=False)
         elapsed = time.perf_counter() - t0
         dets: list[Detection] = []
         if not results:

@@ -1,0 +1,195 @@
+{
+  "mission": "Mission 6 \u2014 Understanding Negative Transfer, Representation Drift, Catastrophic Forgetting & Domain Generalization",
+  "status": "IN_PROGRESS",
+  "current_phase": "Phase 8 Experiment G Complete",
+  "preflight_audit": {
+    "models": {
+      "Pretrained-YOLOv8n-640px": {
+        "name": "Pretrained-YOLOv8n-640px",
+        "threshold": 0.2,
+        "f1": 0.5111492281303601,
+        "precision": 0.6825916230366492,
+        "recall": 0.40853897375636505,
+        "tp": 1043,
+        "fp": 485,
+        "fn": 1510,
+        "latency_ms": 61.13824794562694,
+        "fps": 16.35637319684637
+      },
+      "Pretrained-YOLOv8n-832px": {
+        "name": "Pretrained-YOLOv8n-832px",
+        "threshold": 0.2,
+        "f1": 0.5654648956356735,
+        "precision": 0.7167769092002405,
+        "recall": 0.4669016842929886,
+        "tp": 1192,
+        "fp": 471,
+        "fn": 1361,
+        "latency_ms": 102.99434446337747,
+        "fps": 9.709270981918605
+      },
+      "Pretrained-YOLOv8n-1280px": {
+        "name": "Pretrained-YOLOv8n-1280px",
+        "threshold": 0.2,
+        "f1": 0.5782374100719424,
+        "precision": 0.6786279683377309,
+        "recall": 0.5037211124167645,
+        "tp": 1286,
+        "fp": 609,
+        "fn": 1267,
+        "latency_ms": 378.0223216843277,
+        "fps": 2.64534643230688
+      },
+      "Champion-640px": {
+        "name": "Champion-640px",
+        "threshold": 0.2,
+        "f1": 0.4610750695088045,
+        "precision": 0.5643788996029495,
+        "recall": 0.38973756365060713,
+        "tp": 995,
+        "fp": 768,
+        "fn": 1558,
+        "latency_ms": 51.03003203907863,
+        "fps": 19.596303589114022
+      },
+      "Champion-832px": {
+        "name": "Champion-832px",
+        "threshold": 0.2,
+        "f1": 0.507546356188012,
+        "precision": 0.5645083932853717,
+        "recall": 0.46102624363493927,
+        "tp": 1177,
+        "fp": 908,
+        "fn": 1376,
+        "latency_ms": 100.39876576864592,
+        "fps": 9.960281805698209
+      },
+      "Champion-1280px": {
+        "name": "Champion-1280px",
+        "threshold": 0.2,
+        "f1": 0.5011777495923174,
+        "precision": 0.4662845583277141,
+        "recall": 0.5417156286721504,
+        "tp": 1383,
+        "fp": 1583,
+        "fn": 1170,
+        "latency_ms": 392.0569558323389,
+        "fps": 2.5506498102475827
+      },
+      "Champion-Adaptive-k1": {
+        "name": "Champion-Adaptive-k1",
+        "threshold": 0.2,
+        "f1": 0.4825806451612904,
+        "precision": 0.5350500715307582,
+        "recall": 0.4394829612220917,
+        "tp": 1122,
+        "fp": 975,
+        "fn": 1431,
+        "latency_ms": 138.21302627531864,
+        "fps": 7.235208047669923
+      },
+      "Champion-Adaptive-Hierarchical": {
+        "name": "Champion-Adaptive-Hierarchical",
+        "threshold": 0.2,
+        "f1": 0.4765085727009575,
+        "precision": 0.5521155830753354,
+        "recall": 0.4191147669408539,
+        "tp": 1070,
+        "fp": 868,
+        "fn": 1483,
+        "latency_ms": 88.76740355620944,
+        "fps": 11.265396530008656
+      },
+      "Pretrained-Faster-RCNN": {
+        "name": "Pretrained-Faster-RCNN",
+        "threshold": 0.6,
+        "f1": 0.6877354541649225,
+        "precision": 0.7384269662921348,
+        "recall": 0.6435566000783393,
+        "tp": 1643,
+        "fp": 582,
+        "fn": 910,
+        "latency_ms": 1275.5840277294842,
+        "fps": 0.783954626478023
+      }
+    },
+    "latency": {
+      "frcnn_ms": 1275.5840277294842,
+      "pre_640_ms": 61.13824794562694,
+      "champ_640_ms": 51.03003203907863,
+      "champ_hier_ms": 88.76740355620944,
+      "champ_1280_ms": 392.0569558323389,
+      "speedup_champ640_vs_frcnn": 24.99673186081181,
+      "reduction_champ640_vs_frcnn_pct": 95.99947702936426,
+      "speedup_hier_vs_frcnn": 14.369959879718198,
+      "reduction_hier_vs_frcnn_pct": 93.04103833016678,
+      "speedup_hier_vs_1280": 4.416677069799388,
+      "reduction_hier_vs_1280_pct": 77.35854389631838
+    },
+    "bootstrap": {
+      "model_a": "Champion-640px",
+      "model_b": "Pretrained-YOLOv8n-640px",
+      "delta_point": -0.05007415862155562,
+      "seed_20261101": {
+        "mean_delta": -0.05073507633792919,
+        "ci_95": [
+          -0.08128748877537288,
+          -0.017757637396972826
+        ],
+        "p_value": 0.002
+      },
+      "seed_20261102": {
+        "mean_delta": -0.050487720917687495,
+        "ci_95": [
+          -0.08157681645270337,
+          -0.02002672850330843
+        ],
+        "p_value": 0.002
+      },
+      "interpretation": "Dual seeds confirm PRNG stability (numerical audit), not independent model training replications."
+    },
+    "cohorts": {
+      "Group_A_DAWN_Train": {
+        "n_images": 821,
+        "status": "ACTIVE"
+      },
+      "Group_A_DAWN_Val": {
+        "n_images": 206,
+        "status": "ACTIVE"
+      },
+      "Group_B_BDD100K_Development": {
+        "n_images": 160,
+        "status": "ACTIVE"
+      },
+      "Group_C_BDD100K_Locked_Test": {
+        "n_images": 203,
+        "status": "ACTIVE"
+      },
+      "Group_D_BDD100K_Train": {
+        "n_images": 0,
+        "status": "BLOCKED_UNAVAILABLE"
+      }
+    }
+  },
+  "completed_experiments": [
+    "preflight_audit",
+    "experiment_a_prediction_forensics",
+    "experiment_b_representation_drift",
+    "experiment_c_catastrophic_forgetting",
+    "experiment_d_confidence_analysis",
+    "experiment_e_representation_preservation",
+    "experiment_f_model_fusion",
+    "experiment_g_final_generalization"
+  ],
+  "pending_experiments": [
+    "experiment_a_prediction_forensics",
+    "experiment_b_representation_drift",
+    "experiment_c_catastrophic_forgetting",
+    "experiment_d_confidence_analysis",
+    "experiment_e_representation_preservation",
+    "experiment_f_model_fusion",
+    "experiment_g_final_generalization",
+    "statistical_validation",
+    "dashboard_and_synthesis"
+  ]
+}

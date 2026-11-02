@@ -1,0 +1,33 @@
+{
+  "experiment": "Experiment C: Cross-Domain Joint Training",
+  "status": "BLOCKED_UNAVAILABLE",
+  "rationale": "Hardware storage constraints and strict data-leakage prevention",
+  "cohort_audit": {
+    "group_a_dawn": {
+      "train_images": 821,
+      "val_images": 206,
+      "role": "Source domain adverse-weather fine-tuning"
+    },
+    "group_b_bdd100k_dev": {
+      "images": 160,
+      "role": "Target domain validation & hyperparameter selection (strictly disjoint)"
+    },
+    "group_c_bdd100k_test": {
+      "images": 203,
+      "role": "Target domain locked evaluation (strictly isolated until frozen)"
+    },
+    "group_d_bdd100k_train": {
+      "status": "BLOCKED_UNAVAILABLE",
+      "local_images": 0,
+      "required_download_archive_gb": 18.0,
+      "available_disk_gb": 17.76,
+      "risk_assessment": "Using Group B or Group C images for training would induce fatal target-domain test leakage. Downloading full BDD100K 100k-image train set (~18 GB compressed, >50 GB uncompressed) exceeds local storage budget and violates Mission 5 non-negotiable rules."
+    }
+  },
+  "alternative_domain_adaptation": {
+    "method": "Physics-Inspired Synthetic Adverse-Weather Augmentation (Experiment B)",
+    "source_domain": "DAWN (Group A)",
+    "transfer_target": "BDD100K (Group B Dev / Group C Locked Test)",
+    "scientific_justification": "Synthetic weather injection (Koschmieder atmospheric fog, directional rain streaks, defocus blur) exposes the network to continuous distributions of adverse weather degradations without requiring massive supervised external driving datasets."
+  }
+}

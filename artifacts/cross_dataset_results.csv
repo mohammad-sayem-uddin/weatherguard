@@ -1,0 +1,7 @@
+detector,operating_point,threshold,f1,precision,recall,mAP_50,tp,fp,fn,abs_f1_shift,rel_f1_shift_pct
+fasterrcnn_resnet50_fpn,DAWN_selected,0.6,0.6877,0.7384,0.6436,0.3812,1643,582,910,0.0139,2.07%
+fasterrcnn_resnet50_fpn,Default_0.50,0.5,0.6714,0.6710,0.6718,0.4409,1715,841,838,N/A,N/A
+fasterrcnn_resnet50_fpn,Diagnostic_Oracle,0.6,0.6877,0.7384,0.6436,0.3812,1643,582,910,N/A,N/A
+yolov8n,DAWN_selected,0.2,0.5111,0.6826,0.4085,0.2599,1043,485,1510,-0.0670,-11.58%
+yolov8n,Default_0.50,0.5,0.4017,0.9150,0.2573,0.1809,657,61,1896,N/A,N/A
+yolov8n,Diagnostic_Oracle,0.15,0.5124,0.6039,0.4450,0.2710,1136,745,1417,N/A,N/A

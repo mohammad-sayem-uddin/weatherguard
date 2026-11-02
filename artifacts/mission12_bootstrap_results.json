@@ -1,0 +1,65 @@
+{
+  "Fused Proposals vs Detector-Only ROI": {
+    "comparison": "Fused Proposals vs Detector-Only ROI",
+    "mean_delta_f1": -0.0246,
+    "ci_95_f1": [
+      -0.0325,
+      -0.0164
+    ],
+    "p_value_f1": "1.0000",
+    "mean_delta_small_f1": -0.0904,
+    "ci_95_small_f1": [
+      -0.1159,
+      -0.0643
+    ],
+    "p_value_small_f1": "1.0000",
+    "mean_delta_ultra_small_f1": -0.008,
+    "ci_95_ultra_small_f1": [
+      -0.0226,
+      0.0049
+    ],
+    "p_value_ultra_small_f1": "0.8770"
+  },
+  "Fused Proposals vs Fixed 832": {
+    "comparison": "Fused Proposals vs Fixed 832",
+    "mean_delta_f1": -0.0345,
+    "ci_95_f1": [
+      -0.0443,
+      -0.025
+    ],
+    "p_value_f1": "1.0000",
+    "mean_delta_small_f1": -0.0582,
+    "ci_95_small_f1": [
+      -0.09,
+      -0.0255
+    ],
+    "p_value_small_f1": "1.0000",
+    "mean_delta_ultra_small_f1": 0.0093,
+    "ci_95_ultra_small_f1": [
+      0.0,
+      0.025
+    ],
+    "p_value_ultra_small_f1": "0.1370"
+  },
+  "Fused Proposals vs Base 640": {
+    "comparison": "Fused Proposals vs Base 640",
+    "mean_delta_f1": 0.007,
+    "ci_95_f1": [
+      -0.0014,
+      0.0147
+    ],
+    "p_value_f1": "0.0570",
+    "mean_delta_small_f1": 0.0482,
+    "ci_95_small_f1": [
+      0.0354,
+      0.0629
+    ],
+    "p_value_small_f1": "< 0.001",
+    "mean_delta_ultra_small_f1": 0.0098,
+    "ci_95_ultra_small_f1": [
+      0.0,
+      0.0276
+    ],
+    "p_value_ultra_small_f1": "0.1310"
+  }
+}

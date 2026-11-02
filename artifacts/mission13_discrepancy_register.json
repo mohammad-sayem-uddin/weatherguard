@@ -1,0 +1,68 @@
+{
+  "mission": "Mission 13 — Forensic Audit of Mission 12 Discrepancies",
+  "created_at": "2026-11-02T15:45:00Z",
+  "discrepancies": [
+    {
+      "id": "DISC-13-01",
+      "category": "Latency Measurement Inconsistency",
+      "reported_claims": {
+        "factorial_table_latency_ms": {
+          "C_ROI_DetectorOnly": 95.28,
+          "D_ROI_FrameDiffOnly": 98.25,
+          "E_ROI_SparseFlowOnly": 111.46,
+          "F_ROI_StaticSalienceOnly": 106.53,
+          "I_ROI_Detector_Motion_Salience": 116.73,
+          "J_WeatherGuard_UltraSmall_Decoupled": 109.32
+        },
+        "edge_benchmark_latency_ms": 51.60,
+        "edge_benchmark_stages_sum_ms": 72.07
+      },
+      "root_cause": "The factorial table measured actual end-to-end sequence frame wall-clock times across 1,213 frames, which extracted two 448px crops per frame (2 x 27.8 ms = 55.6 ms crop inference) added to base 640px inference (38.0 ms), proposal generation (5.4 ms), PIL crop slicing (2.4 ms), and NMS merging (1.0 ms), totalling ~102.4 ms. In contrast, the 51.60 ms edge benchmark reported an idealized target model assuming a single crop (K=1) without serial forward pass overhead, and its stages table mistakenly omitted the second crop forward pass and summed overlapping pipeline stages.",
+      "reconciliation": "Establish a single authoritative non-overlapping measurement protocol where base inference, proposal generation, crop extraction, crop forward passes (K x single crop ms), coordinate restoration, NMS merging, and online tracking are recorded with rigorous start/stop boundaries and exact crop counts."
+    },
+    {
+      "id": "DISC-13-02",
+      "category": "Oracle Recoverability Interpretation",
+      "reported_claims": {
+        "oracle_recoverability_pct": 92.7,
+        "recoverable_count": 1188,
+        "unrecoverable_count": 94,
+        "total_ultra_small_missed": 1282
+      },
+      "root_cause": "The reported 92.7% oracle figure was calculated using a geometric spatial acuity heuristic (targets with area >= 64 px^2 and width/height >= 8 px, which would reach detectable acuity >= 16 px under 2x optical magnification), rather than executing actual forward passes on ground-truth crops.",
+      "reconciliation": "Properly classify the 92.7% metric as theoretical geometric crop recoverability rather than detector-verified oracle inference, and explicitly document that classification capacity on heavily occluded or severely blurred sub-16px targets remains bounded."
+    },
+    {
+      "id": "DISC-13-03",
+      "category": "Ultra-Small Baseline Miss Rate",
+      "reported_claims": {
+        "yolo640_ultra_small_recall": 0.0000,
+        "yolo832_ultra_small_recall": 0.0000,
+        "ultra_small_scale_definition": "area < 256 px^2 (< 16 px)"
+      },
+      "root_cause": "Verified empirically from raw prediction artifacts. At 640x384 downsampling, sub-16px objects become sub-8px on the detector input, smaller than the stride-8 P3 grid cells, producing zero anchor activations >= 0.20 confidence. At 832px (stride-8 cells ~1.1x object size), IoU with tiny 12-14px GT boxes fails to satisfy the strict IoU >= 0.50 threshold, resulting in 0 True Positives and 1,282 False Negatives.",
+      "reconciliation": "Confirm that zero baseline ultra-small recall is mathematically and empirically genuine for both YOLO640 and YOLO832 on the locked test cohort under canonical COCO evaluation criteria."
+    },
+    {
+      "id": "DISC-13-04",
+      "category": "Config I vs Config J Metric and Latency Equivalence",
+      "reported_claims": {
+        "config_i_detection_metrics": {"f1": 0.4415, "precision": 0.6410, "recall": 0.3367, "small_f1": 0.2223, "ultra_small_f1": 0.0093},
+        "config_j_detection_metrics": {"f1": 0.4415, "precision": 0.6410, "recall": 0.3367, "small_f1": 0.2223, "ultra_small_f1": 0.0093},
+        "latency_diff_ms": "116.73 ms (Config I) vs 109.32 ms (Config J)"
+      },
+      "root_cause": "Config I and Config J executed the identical ProposalFusionController and detection pipeline; Config J additionally evaluated Stream 2 (AdverseWeatherByteTracker) on the output stream. Stream 1 detection metrics are therefore bit-for-bit identical. The 7.41 ms latency difference was due to M1 CPU thread scheduling and thermal dispatch variance across sequential execution passes.",
+      "reconciliation": "Clearly denote that Config J is Config I augmented with the decoupled Stream 2 tracking stream, and report both within the same standardized timing framework."
+    },
+    {
+      "id": "DISC-13-05",
+      "category": "Unit Test Coverage Gaps in Mission 12",
+      "reported_claims": {
+        "unit_test_count": 9,
+        "passing_status": "100% passing"
+      },
+      "root_cause": "The 9 unit tests covered component math (differencing, flow, salience, deduplication, budget clamping), but lacked integration testing for end-to-end crop coordinate round-tripping with real YOLO forward passes, sequence-level temporal continuity across frames, proposal displacement checks, and edge cases (empty proposal frames, single-crop requests).",
+      "reconciliation": "Implement a dedicated Mission 13 test suite (tests/test_mission13_priority_allocation.py) covering candidate representation schema, priority ranking, detector-first preservation, spatial coverage novelty, independent candidate admission, and end-to-end integration."
+    }
+  ]
+}

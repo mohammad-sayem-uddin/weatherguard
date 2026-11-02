@@ -1,0 +1,262 @@
+{
+  "cohort": "Group_B_BDD100K_Development",
+  "n_images": 160,
+  "analysis_640": {
+    "total_gt": 2211,
+    "tp": 825,
+    "fn": 1386,
+    "fp": 416,
+    "miss_rate_overall_%": 62.69,
+    "gt_by_scale": {
+      "sub16": 258,
+      "small16_32": 694,
+      "medium": 864,
+      "large": 395
+    },
+    "fn_by_scale": {
+      "sub16": 258,
+      "small16_32": 617,
+      "medium": 432,
+      "large": 79
+    },
+    "scale_miss_rates_%": {
+      "sub16": 100.0,
+      "small16_32": 88.9,
+      "medium": 50.0,
+      "large": 20.0
+    },
+    "fn_attribution": {
+      "extreme_scale_sub16": {
+        "count": 258,
+        "pct_of_fns": 18.61
+      },
+      "boundary_truncation": {
+        "count": 83,
+        "pct_of_fns": 5.99
+      },
+      "crowding_occlusion": {
+        "count": 327,
+        "pct_of_fns": 23.59
+      },
+      "extreme_aspect_ratio": {
+        "count": 65,
+        "pct_of_fns": 4.69
+      },
+      "optical_weather_degraded": {
+        "count": 389,
+        "pct_of_fns": 28.07
+      },
+      "standard_adverse_miss": {
+        "count": 264,
+        "pct_of_fns": 19.05
+      }
+    },
+    "fp_attribution": {
+      "class_confusion": {
+        "count": 175,
+        "pct_of_fps": 42.07
+      },
+      "low_confidence_boundary": {
+        "count": 151,
+        "pct_of_fps": 36.3
+      },
+      "background_structure": {
+        "count": 90,
+        "pct_of_fps": 21.63
+      }
+    },
+    "class_breakdown": {
+      "Person": {
+        "gt": 275,
+        "tp": 93,
+        "fn": 182,
+        "fp": 50
+      },
+      "Car": {
+        "gt": 1744,
+        "tp": 686,
+        "fn": 1058,
+        "fp": 280
+      },
+      "Truck": {
+        "gt": 126,
+        "tp": 30,
+        "fn": 96,
+        "fp": 60
+      },
+      "Bus": {
+        "gt": 39,
+        "tp": 15,
+        "fn": 24,
+        "fp": 26
+      },
+      "Motorcycle": {
+        "gt": 12,
+        "tp": 1,
+        "fn": 11,
+        "fp": 0
+      },
+      "Bicycle": {
+        "gt": 15,
+        "tp": 0,
+        "fn": 15,
+        "fp": 0
+      }
+    },
+    "weather_breakdown": {
+      "snowy": {
+        "gt": 626,
+        "fn": 387,
+        "small_gt": 241,
+        "small_fn": 224
+      },
+      "rainy": {
+        "gt": 652,
+        "fn": 379,
+        "small_gt": 260,
+        "small_fn": 236
+      },
+      "clear": {
+        "gt": 446,
+        "fn": 293,
+        "small_gt": 217,
+        "small_fn": 200
+      },
+      "overcast": {
+        "gt": 487,
+        "fn": 327,
+        "small_gt": 234,
+        "small_fn": 215
+      }
+    }
+  },
+  "analysis_1280": {
+    "total_gt": 2211,
+    "tp": 1042,
+    "fn": 1169,
+    "fp": 524,
+    "miss_rate_overall_%": 52.87,
+    "gt_by_scale": {
+      "sub16": 258,
+      "small16_32": 694,
+      "medium": 864,
+      "large": 395
+    },
+    "fn_by_scale": {
+      "sub16": 243,
+      "small16_32": 479,
+      "medium": 324,
+      "large": 123
+    },
+    "scale_miss_rates_%": {
+      "sub16": 94.19,
+      "small16_32": 69.02,
+      "medium": 37.5,
+      "large": 31.14
+    },
+    "fn_attribution": {
+      "extreme_scale_sub16": {
+        "count": 243,
+        "pct_of_fns": 20.79
+      },
+      "boundary_truncation": {
+        "count": 96,
+        "pct_of_fns": 8.21
+      },
+      "crowding_occlusion": {
+        "count": 242,
+        "pct_of_fns": 20.7
+      },
+      "extreme_aspect_ratio": {
+        "count": 47,
+        "pct_of_fns": 4.02
+      },
+      "optical_weather_degraded": {
+        "count": 342,
+        "pct_of_fns": 29.26
+      },
+      "standard_adverse_miss": {
+        "count": 199,
+        "pct_of_fns": 17.02
+      }
+    },
+    "fp_attribution": {
+      "class_confusion": {
+        "count": 246,
+        "pct_of_fps": 46.95
+      },
+      "low_confidence_boundary": {
+        "count": 151,
+        "pct_of_fps": 28.82
+      },
+      "background_structure": {
+        "count": 127,
+        "pct_of_fps": 24.24
+      }
+    },
+    "class_breakdown": {
+      "Person": {
+        "gt": 275,
+        "tp": 140,
+        "fn": 135,
+        "fp": 77
+      },
+      "Car": {
+        "gt": 1744,
+        "tp": 843,
+        "fn": 901,
+        "fp": 289
+      },
+      "Truck": {
+        "gt": 126,
+        "tp": 42,
+        "fn": 84,
+        "fp": 124
+      },
+      "Bus": {
+        "gt": 39,
+        "tp": 13,
+        "fn": 26,
+        "fp": 32
+      },
+      "Motorcycle": {
+        "gt": 12,
+        "tp": 2,
+        "fn": 10,
+        "fp": 1
+      },
+      "Bicycle": {
+        "gt": 15,
+        "tp": 2,
+        "fn": 13,
+        "fp": 1
+      }
+    },
+    "weather_breakdown": {
+      "snowy": {
+        "gt": 626,
+        "fn": 336,
+        "small_gt": 241,
+        "small_fn": 191
+      },
+      "rainy": {
+        "gt": 652,
+        "fn": 342,
+        "small_gt": 260,
+        "small_fn": 195
+      },
+      "clear": {
+        "gt": 446,
+        "fn": 240,
+        "small_gt": 217,
+        "small_fn": 174
+      },
+      "overcast": {
+        "gt": 487,
+        "fn": 251,
+        "small_gt": 234,
+        "small_fn": 162
+      }
+    }
+  }
+}

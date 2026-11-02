@@ -1,0 +1,181 @@
+{
+  "dataset": "BDD100K Development Cohort (Group B, N=160)",
+  "evaluations": {
+    "yolov8n_pretrained": {
+      "name": "Pretrained YOLOv8n",
+      "threshold": 0.2,
+      "f1": 0.47798377752027815,
+      "precision": 0.6647864625302176,
+      "recall": 0.373134328358209,
+      "strata": {
+        "sub_16px": {
+          "gt": 258,
+          "tp": 0,
+          "fn": 258,
+          "recall": 0.0,
+          "miss_rate": 1.0
+        },
+        "small_16_32px": {
+          "gt": 694,
+          "tp": 77,
+          "fn": 617,
+          "recall": 0.11095100864553314,
+          "miss_rate": 0.8890489913544669
+        },
+        "medium_32_96px": {
+          "gt": 864,
+          "tp": 432,
+          "fn": 432,
+          "recall": 0.5,
+          "miss_rate": 0.5
+        },
+        "large_ge_96px": {
+          "gt": 395,
+          "tp": 316,
+          "fn": 79,
+          "recall": 0.8,
+          "miss_rate": 0.2
+        },
+        "coco_small_lt_32px": {
+          "gt": 952,
+          "tp": 77,
+          "fn": 875,
+          "recall": 0.08088235294117647,
+          "miss_rate": 0.9191176470588235
+        }
+      }
+    },
+    "faster_rcnn_pretrained": {
+      "name": "Pretrained Faster R-CNN",
+      "threshold": 0.6,
+      "f1": 0.6565035652815343,
+      "precision": 0.7192887931034483,
+      "recall": 0.6037991858887382,
+      "strata": {
+        "sub_16px": {
+          "gt": 258,
+          "tp": 43,
+          "fn": 215,
+          "recall": 0.16666666666666666,
+          "miss_rate": 0.8333333333333334
+        },
+        "small_16_32px": {
+          "gt": 694,
+          "tp": 320,
+          "fn": 374,
+          "recall": 0.4610951008645533,
+          "miss_rate": 0.5389048991354467
+        },
+        "medium_32_96px": {
+          "gt": 864,
+          "tp": 641,
+          "fn": 223,
+          "recall": 0.7418981481481481,
+          "miss_rate": 0.25810185185185186
+        },
+        "large_ge_96px": {
+          "gt": 395,
+          "tp": 331,
+          "fn": 64,
+          "recall": 0.8379746835443038,
+          "miss_rate": 0.1620253164556962
+        },
+        "coco_small_lt_32px": {
+          "gt": 952,
+          "tp": 363,
+          "fn": 589,
+          "recall": 0.38130252100840334,
+          "miss_rate": 0.6186974789915967
+        }
+      }
+    },
+    "yolov8n_dawn_finetuned": {
+      "name": "Fine-Tuned YOLOv8n (mission5_a1_frozen)",
+      "threshold": 0.2,
+      "f1": 0.43086660175267777,
+      "precision": 0.4665260938323669,
+      "recall": 0.40027137042062416,
+      "strata": {
+        "sub_16px": {
+          "gt": 258,
+          "tp": 0,
+          "fn": 258,
+          "recall": 0.0,
+          "miss_rate": 1.0
+        },
+        "small_16_32px": {
+          "gt": 694,
+          "tp": 90,
+          "fn": 604,
+          "recall": 0.12968299711815562,
+          "miss_rate": 0.8703170028818443
+        },
+        "medium_32_96px": {
+          "gt": 864,
+          "tp": 473,
+          "fn": 391,
+          "recall": 0.5474537037037037,
+          "miss_rate": 0.4525462962962963
+        },
+        "large_ge_96px": {
+          "gt": 395,
+          "tp": 322,
+          "fn": 73,
+          "recall": 0.8151898734177215,
+          "miss_rate": 0.1848101265822785
+        },
+        "coco_small_lt_32px": {
+          "gt": 952,
+          "tp": 90,
+          "fn": 862,
+          "recall": 0.09453781512605042,
+          "miss_rate": 0.9054621848739496
+        }
+      }
+    },
+    "yolov8n_weather_augmented": {
+      "name": "Weather-Augmented YOLOv8n (mission5_b1_photo)",
+      "threshold": 0.2,
+      "f1": 0.43161434977578483,
+      "precision": 0.5674281503316139,
+      "recall": 0.3482587064676617,
+      "strata": {
+        "sub_16px": {
+          "gt": 258,
+          "tp": 0,
+          "fn": 258,
+          "recall": 0.0,
+          "miss_rate": 1.0
+        },
+        "small_16_32px": {
+          "gt": 694,
+          "tp": 33,
+          "fn": 661,
+          "recall": 0.04755043227665706,
+          "miss_rate": 0.952449567723343
+        },
+        "medium_32_96px": {
+          "gt": 864,
+          "tp": 409,
+          "fn": 455,
+          "recall": 0.47337962962962965,
+          "miss_rate": 0.5266203703703703
+        },
+        "large_ge_96px": {
+          "gt": 395,
+          "tp": 328,
+          "fn": 67,
+          "recall": 0.830379746835443,
+          "miss_rate": 0.16962025316455695
+        },
+        "coco_small_lt_32px": {
+          "gt": 952,
+          "tp": 33,
+          "fn": 919,
+          "recall": 0.03466386554621849,
+          "miss_rate": 0.9653361344537815
+        }
+      }
+    }
+  }
+}

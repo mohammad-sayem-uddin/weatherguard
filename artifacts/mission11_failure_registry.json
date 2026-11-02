@@ -1,0 +1,45 @@
+{
+  "failure_modes": [
+    {
+      "failure_id": "FM-01",
+      "name": "First-Stage Candidate Miss (Vanishing Point Truncation)",
+      "observed_behavior": "Ultra-distant sub-16px vehicles along vanishing line produce zero activations at 640px; candidate generator proposes no crop.",
+      "affected_sequences": [
+        "b24380ab-6dbeb908",
+        "b1e1a7b8-65ec7612"
+      ],
+      "mitigation": "Fixed-grid horizon strip or hybrid road band prior.",
+      "impact": "Caps candidate-driven ROI small-object recall at 28.5%."
+    },
+    {
+      "failure_id": "FM-02",
+      "name": "Crop Boundary Truncation Artifacts",
+      "observed_behavior": "Vehicles severed in half by crop boundary trigger partial-car false detections.",
+      "affected_sequences": [
+        "b24d283f-33783d1b",
+        "b1d0a191-06deb55d"
+      ],
+      "mitigation": "Boundary margin suppression (margin=4px, conf<0.35).",
+      "impact": "Eliminated 84.6% of boundary false positives."
+    },
+    {
+      "failure_id": "FM-03",
+      "name": "Specular Water Reflection Hallucination",
+      "observed_behavior": "High-magnification crops on wet asphalt magnify puddle reflections into car-like bounding boxes.",
+      "affected_sequences": [
+        "b24380ab-6dbeb908",
+        "b1e1a7b8-65ec7612"
+      ],
+      "mitigation": "Conservative merge requiring new_crop_conf >= 0.35.",
+      "impact": "Suppressed 74 false alarms on wet pavement."
+    },
+    {
+      "failure_id": "FM-04",
+      "name": "Thermal Contrast Inversion & Hot Exhaust Blooming",
+      "observed_behavior": "Hot car exhausts and warm engine hoods bloom into saturated thermal blobs, washing out wheel and windshield contours.",
+      "affected_dataset": "FLIR ADAS Thermal",
+      "mitigation": "Multi-scale feature normalization; thermal class prior.",
+      "impact": "Depresses visible-to-thermal zero-shot transfer precision."
+    }
+  ]
+}

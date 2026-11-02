@@ -1,0 +1,307 @@
+{
+  "fasterrcnn_resnet50_fpn": {
+    "operating_threshold": 0.6,
+    "weather_fp": {
+      "rainy": 171,
+      "snowy": 162,
+      "foggy": 44,
+      "overcast": 104,
+      "clear": 101
+    },
+    "weather_fn": {
+      "rainy": 265,
+      "snowy": 288,
+      "foggy": 74,
+      "overcast": 141,
+      "clear": 142
+    },
+    "weather_tp": {
+      "rainy": 446,
+      "snowy": 490,
+      "foggy": 73,
+      "overcast": 311,
+      "clear": 323
+    },
+    "scale_breakdown": {
+      "small": {
+        "gt": 1004,
+        "tp": 427,
+        "fn": 577,
+        "recall": 0.4252988047808765
+      },
+      "medium": {
+        "gt": 1037,
+        "tp": 781,
+        "fn": 256,
+        "recall": 0.7531340405014465
+      },
+      "large": {
+        "gt": 512,
+        "tp": 435,
+        "fn": 77,
+        "recall": 0.849609375
+      }
+    },
+    "class_fp": {
+      "Car": 397,
+      "Truck": 80,
+      "Bus": 15,
+      "Person": 85,
+      "Bicycle": 5
+    },
+    "class_fn": {
+      "Car": 698,
+      "Bus": 31,
+      "Truck": 67,
+      "Bicycle": 12,
+      "Motorcycle": 5,
+      "Person": 97
+    },
+    "class_tp": {
+      "Car": 1409,
+      "Truck": 49,
+      "Person": 165,
+      "Bus": 14,
+      "Bicycle": 4,
+      "Motorcycle": 2
+    },
+    "top_failure_images": [
+      {
+        "image_id": "b7dc9921-fcfe3332.jpg",
+        "condition": "foggy",
+        "n_fp": 3,
+        "n_fn": 25,
+        "n_gt": 31,
+        "n_pred": 9
+      },
+      {
+        "image_id": "ba4bcdc5-06e22f87.jpg",
+        "condition": "snowy",
+        "n_fp": 6,
+        "n_fn": 18,
+        "n_gt": 31,
+        "n_pred": 19
+      },
+      {
+        "image_id": "b803d91d-17b149ce.jpg",
+        "condition": "snowy",
+        "n_fp": 7,
+        "n_fn": 13,
+        "n_gt": 27,
+        "n_pred": 21
+      },
+      {
+        "image_id": "bb2f678a-92915562.jpg",
+        "condition": "snowy",
+        "n_fp": 6,
+        "n_fn": 12,
+        "n_gt": 20,
+        "n_pred": 14
+      },
+      {
+        "image_id": "be7783b0-b44ff154.jpg",
+        "condition": "snowy",
+        "n_fp": 4,
+        "n_fn": 14,
+        "n_gt": 16,
+        "n_pred": 6
+      },
+      {
+        "image_id": "bb49071c-4b99a704.jpg",
+        "condition": "foggy",
+        "n_fp": 7,
+        "n_fn": 10,
+        "n_gt": 17,
+        "n_pred": 14
+      },
+      {
+        "image_id": "b4b7133e-94c56651.jpg",
+        "condition": "rainy",
+        "n_fp": 10,
+        "n_fn": 6,
+        "n_gt": 21,
+        "n_pred": 25
+      },
+      {
+        "image_id": "c21f174e-c4bbb429.jpg",
+        "condition": "snowy",
+        "n_fp": 4,
+        "n_fn": 12,
+        "n_gt": 21,
+        "n_pred": 13
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "condition": "overcast",
+        "n_fp": 4,
+        "n_fn": 12,
+        "n_gt": 29,
+        "n_pred": 21
+      },
+      {
+        "image_id": "c396e833-ba935f99.jpg",
+        "condition": "overcast",
+        "n_fp": 5,
+        "n_fn": 11,
+        "n_gt": 17,
+        "n_pred": 11
+      }
+    ]
+  },
+  "yolov8n": {
+    "operating_threshold": 0.2,
+    "weather_fp": {
+      "rainy": 154,
+      "snowy": 128,
+      "foggy": 34,
+      "overcast": 91,
+      "clear": 78
+    },
+    "weather_fn": {
+      "rainy": 413,
+      "snowy": 475,
+      "foggy": 103,
+      "overcast": 254,
+      "clear": 265
+    },
+    "weather_tp": {
+      "rainy": 298,
+      "snowy": 303,
+      "foggy": 44,
+      "overcast": 198,
+      "clear": 200
+    },
+    "scale_breakdown": {
+      "small": {
+        "gt": 1004,
+        "tp": 87,
+        "fn": 917,
+        "recall": 0.08665338645418327
+      },
+      "medium": {
+        "gt": 1037,
+        "tp": 548,
+        "fn": 489,
+        "recall": 0.5284474445515911
+      },
+      "large": {
+        "gt": 512,
+        "tp": 408,
+        "fn": 104,
+        "recall": 0.796875
+      }
+    },
+    "class_fp": {
+      "Car": 313,
+      "Truck": 92,
+      "Person": 51,
+      "Bus": 26,
+      "Bicycle": 2,
+      "Motorcycle": 1
+    },
+    "class_fn": {
+      "Car": 1207,
+      "Bus": 34,
+      "Truck": 88,
+      "Bicycle": 12,
+      "Motorcycle": 5,
+      "Person": 164
+    },
+    "class_tp": {
+      "Car": 900,
+      "Person": 98,
+      "Truck": 28,
+      "Bus": 11,
+      "Motorcycle": 2,
+      "Bicycle": 4
+    },
+    "top_failure_images": [
+      {
+        "image_id": "b7dc9921-fcfe3332.jpg",
+        "condition": "foggy",
+        "n_fp": 0,
+        "n_fn": 30,
+        "n_gt": 31,
+        "n_pred": 1
+      },
+      {
+        "image_id": "ba4bcdc5-06e22f87.jpg",
+        "condition": "snowy",
+        "n_fp": 3,
+        "n_fn": 24,
+        "n_gt": 31,
+        "n_pred": 10
+      },
+      {
+        "image_id": "c6758a15-8b8246b8.jpg",
+        "condition": "overcast",
+        "n_fp": 6,
+        "n_fn": 19,
+        "n_gt": 21,
+        "n_pred": 8
+      },
+      {
+        "image_id": "b803d91d-17b149ce.jpg",
+        "condition": "snowy",
+        "n_fp": 6,
+        "n_fn": 17,
+        "n_gt": 27,
+        "n_pred": 16
+      },
+      {
+        "image_id": "b4b7133e-94c56651.jpg",
+        "condition": "rainy",
+        "n_fp": 11,
+        "n_fn": 11,
+        "n_gt": 21,
+        "n_pred": 21
+      },
+      {
+        "image_id": "b1f4491b-cf446195.jpg",
+        "condition": "overcast",
+        "n_fp": 1,
+        "n_fn": 21,
+        "n_gt": 29,
+        "n_pred": 9
+      },
+      {
+        "image_id": "c21f174e-c4bbb429.jpg",
+        "condition": "snowy",
+        "n_fp": 0,
+        "n_fn": 21,
+        "n_gt": 21,
+        "n_pred": 0
+      },
+      {
+        "image_id": "c9aa50be-9e8cd399.jpg",
+        "condition": "clear",
+        "n_fp": 6,
+        "n_fn": 15,
+        "n_gt": 24,
+        "n_pred": 15
+      },
+      {
+        "image_id": "c6a94213-9e85fba1.jpg",
+        "condition": "rainy",
+        "n_fp": 8,
+        "n_fn": 12,
+        "n_gt": 16,
+        "n_pred": 12
+      },
+      {
+        "image_id": "b9d34460-68942f09.jpg",
+        "condition": "foggy",
+        "n_fp": 3,
+        "n_fn": 17,
+        "n_gt": 23,
+        "n_pred": 9
+      }
+    ]
+  },
+  "rendered_qualitative_examples": [
+    "/Users/sayemuddin/Desktop/WeatherGuard/artifacts/qualitative/external/failure_foggy_b7dc9921-fcfe3332.png",
+    "/Users/sayemuddin/Desktop/WeatherGuard/artifacts/qualitative/external/failure_snowy_ba4bcdc5-06e22f87.png",
+    "/Users/sayemuddin/Desktop/WeatherGuard/artifacts/qualitative/external/failure_rainy_b4b7133e-94c56651.png",
+    "/Users/sayemuddin/Desktop/WeatherGuard/artifacts/qualitative/external/failure_overcast_b1f4491b-cf446195.png"
+  ]
+}

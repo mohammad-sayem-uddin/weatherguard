@@ -1,0 +1,909 @@
+{
+  "dataset": "FLIR ADAS Thermal Object Detection (v1)",
+  "source": "FLIR Free Teledyne / HuggingFace Francesco/flir-camera-objects",
+  "modality": "Thermal Long-Wave Infrared (LWIR 8-14um)",
+  "num_sampled_images": 150,
+  "total_gt_boxes": 1071,
+  "manifest": [
+    {
+      "image_id": 358,
+      "width": 640,
+      "height": 640,
+      "gt_count": 22
+    },
+    {
+      "image_id": 1193,
+      "width": 640,
+      "height": 640,
+      "gt_count": 16
+    },
+    {
+      "image_id": 350,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 490,
+      "width": 640,
+      "height": 640,
+      "gt_count": 8
+    },
+    {
+      "image_id": 365,
+      "width": 640,
+      "height": 640,
+      "gt_count": 18
+    },
+    {
+      "image_id": 266,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 758,
+      "width": 640,
+      "height": 640,
+      "gt_count": 7
+    },
+    {
+      "image_id": 1223,
+      "width": 640,
+      "height": 640,
+      "gt_count": 6
+    },
+    {
+      "image_id": 242,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 737,
+      "width": 640,
+      "height": 640,
+      "gt_count": 21
+    },
+    {
+      "image_id": 549,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    },
+    {
+      "image_id": 872,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 1211,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 127,
+      "width": 640,
+      "height": 640,
+      "gt_count": 11
+    },
+    {
+      "image_id": 1311,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 517,
+      "width": 640,
+      "height": 640,
+      "gt_count": 13
+    },
+    {
+      "image_id": 271,
+      "width": 640,
+      "height": 640,
+      "gt_count": 9
+    },
+    {
+      "image_id": 318,
+      "width": 640,
+      "height": 640,
+      "gt_count": 4
+    },
+    {
+      "image_id": 1261,
+      "width": 640,
+      "height": 640,
+      "gt_count": 8
+    },
+    {
+      "image_id": 1300,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 21,
+      "width": 640,
+      "height": 640,
+      "gt_count": 12
+    },
+    {
+      "image_id": 1233,
+      "width": 640,
+      "height": 640,
+      "gt_count": 12
+    },
+    {
+      "image_id": 1088,
+      "width": 640,
+      "height": 640,
+      "gt_count": 15
+    },
+    {
+      "image_id": 1205,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 90,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 1451,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 457,
+      "width": 640,
+      "height": 640,
+      "gt_count": 13
+    },
+    {
+      "image_id": 603,
+      "width": 640,
+      "height": 640,
+      "gt_count": 9
+    },
+    {
+      "image_id": 141,
+      "width": 640,
+      "height": 640,
+      "gt_count": 11
+    },
+    {
+      "image_id": 438,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 895,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 860,
+      "width": 640,
+      "height": 640,
+      "gt_count": 14
+    },
+    {
+      "image_id": 1325,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 1319,
+      "width": 640,
+      "height": 640,
+      "gt_count": 7
+    },
+    {
+      "image_id": 1320,
+      "width": 640,
+      "height": 640,
+      "gt_count": 18
+    },
+    {
+      "image_id": 335,
+      "width": 640,
+      "height": 640,
+      "gt_count": 17
+    },
+    {
+      "image_id": 641,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 1187,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 360,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 836,
+      "width": 640,
+      "height": 640,
+      "gt_count": 7
+    },
+    {
+      "image_id": 510,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 1241,
+      "width": 640,
+      "height": 640,
+      "gt_count": 18
+    },
+    {
+      "image_id": 678,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 869,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 343,
+      "width": 640,
+      "height": 640,
+      "gt_count": 16
+    },
+    {
+      "image_id": 351,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 5,
+      "width": 640,
+      "height": 640,
+      "gt_count": 17
+    },
+    {
+      "image_id": 1309,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 1202,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    },
+    {
+      "image_id": 451,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    },
+    {
+      "image_id": 1081,
+      "width": 640,
+      "height": 640,
+      "gt_count": 9
+    },
+    {
+      "image_id": 323,
+      "width": 640,
+      "height": 640,
+      "gt_count": 11
+    },
+    {
+      "image_id": 642,
+      "width": 640,
+      "height": 640,
+      "gt_count": 9
+    },
+    {
+      "image_id": 573,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 698,
+      "width": 640,
+      "height": 640,
+      "gt_count": 16
+    },
+    {
+      "image_id": 354,
+      "width": 640,
+      "height": 640,
+      "gt_count": 18
+    },
+    {
+      "image_id": 533,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 1049,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 356,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    },
+    {
+      "image_id": 327,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 974,
+      "width": 640,
+      "height": 640,
+      "gt_count": 14
+    },
+    {
+      "image_id": 912,
+      "width": 640,
+      "height": 640,
+      "gt_count": 7
+    },
+    {
+      "image_id": 39,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 1333,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 1303,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 873,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 511,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 116,
+      "width": 640,
+      "height": 640,
+      "gt_count": 4
+    },
+    {
+      "image_id": 193,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 68,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 852,
+      "width": 640,
+      "height": 640,
+      "gt_count": 14
+    },
+    {
+      "image_id": 140,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 1417,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    },
+    {
+      "image_id": 19,
+      "width": 640,
+      "height": 640,
+      "gt_count": 16
+    },
+    {
+      "image_id": 1112,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 1228,
+      "width": 640,
+      "height": 640,
+      "gt_count": 9
+    },
+    {
+      "image_id": 199,
+      "width": 640,
+      "height": 640,
+      "gt_count": 19
+    },
+    {
+      "image_id": 170,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    },
+    {
+      "image_id": 1415,
+      "width": 640,
+      "height": 640,
+      "gt_count": 8
+    },
+    {
+      "image_id": 1,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 30,
+      "width": 640,
+      "height": 640,
+      "gt_count": 29
+    },
+    {
+      "image_id": 309,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 1126,
+      "width": 640,
+      "height": 640,
+      "gt_count": 11
+    },
+    {
+      "image_id": 1152,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 645,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 1188,
+      "width": 640,
+      "height": 640,
+      "gt_count": 15
+    },
+    {
+      "image_id": 1339,
+      "width": 640,
+      "height": 640,
+      "gt_count": 16
+    },
+    {
+      "image_id": 833,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 754,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 627,
+      "width": 640,
+      "height": 640,
+      "gt_count": 12
+    },
+    {
+      "image_id": 592,
+      "width": 640,
+      "height": 640,
+      "gt_count": 18
+    },
+    {
+      "image_id": 1006,
+      "width": 640,
+      "height": 640,
+      "gt_count": 9
+    },
+    {
+      "image_id": 139,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 516,
+      "width": 640,
+      "height": 640,
+      "gt_count": 14
+    },
+    {
+      "image_id": 761,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 1029,
+      "width": 640,
+      "height": 640,
+      "gt_count": 4
+    },
+    {
+      "image_id": 1369,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 1003,
+      "width": 640,
+      "height": 640,
+      "gt_count": 9
+    },
+    {
+      "image_id": 478,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    },
+    {
+      "image_id": 463,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 647,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 981,
+      "width": 640,
+      "height": 640,
+      "gt_count": 16
+    },
+    {
+      "image_id": 492,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 934,
+      "width": 640,
+      "height": 640,
+      "gt_count": 4
+    },
+    {
+      "image_id": 4,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 236,
+      "width": 640,
+      "height": 640,
+      "gt_count": 7
+    },
+    {
+      "image_id": 582,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 834,
+      "width": 640,
+      "height": 640,
+      "gt_count": 8
+    },
+    {
+      "image_id": 384,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 778,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 768,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 176,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 1096,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 1074,
+      "width": 640,
+      "height": 640,
+      "gt_count": 13
+    },
+    {
+      "image_id": 896,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 1445,
+      "width": 640,
+      "height": 640,
+      "gt_count": 12
+    },
+    {
+      "image_id": 1130,
+      "width": 640,
+      "height": 640,
+      "gt_count": 6
+    },
+    {
+      "image_id": 390,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 919,
+      "width": 640,
+      "height": 640,
+      "gt_count": 4
+    },
+    {
+      "image_id": 122,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    },
+    {
+      "image_id": 820,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 722,
+      "width": 640,
+      "height": 640,
+      "gt_count": 16
+    },
+    {
+      "image_id": 903,
+      "width": 640,
+      "height": 640,
+      "gt_count": 7
+    },
+    {
+      "image_id": 877,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 1242,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 755,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 408,
+      "width": 640,
+      "height": 640,
+      "gt_count": 5
+    },
+    {
+      "image_id": 1159,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 1033,
+      "width": 640,
+      "height": 640,
+      "gt_count": 8
+    },
+    {
+      "image_id": 1194,
+      "width": 640,
+      "height": 640,
+      "gt_count": 13
+    },
+    {
+      "image_id": 752,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 634,
+      "width": 640,
+      "height": 640,
+      "gt_count": 4
+    },
+    {
+      "image_id": 817,
+      "width": 640,
+      "height": 640,
+      "gt_count": 2
+    },
+    {
+      "image_id": 1146,
+      "width": 640,
+      "height": 640,
+      "gt_count": 1
+    },
+    {
+      "image_id": 154,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 1132,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 1076,
+      "width": 640,
+      "height": 640,
+      "gt_count": 4
+    },
+    {
+      "image_id": 227,
+      "width": 640,
+      "height": 640,
+      "gt_count": 18
+    },
+    {
+      "image_id": 1301,
+      "width": 640,
+      "height": 640,
+      "gt_count": 14
+    },
+    {
+      "image_id": 664,
+      "width": 640,
+      "height": 640,
+      "gt_count": 12
+    },
+    {
+      "image_id": 186,
+      "width": 640,
+      "height": 640,
+      "gt_count": 12
+    },
+    {
+      "image_id": 135,
+      "width": 640,
+      "height": 640,
+      "gt_count": 8
+    },
+    {
+      "image_id": 804,
+      "width": 640,
+      "height": 640,
+      "gt_count": 6
+    },
+    {
+      "image_id": 849,
+      "width": 640,
+      "height": 640,
+      "gt_count": 10
+    },
+    {
+      "image_id": 1083,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 994,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 596,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 671,
+      "width": 640,
+      "height": 640,
+      "gt_count": 0
+    },
+    {
+      "image_id": 283,
+      "width": 640,
+      "height": 640,
+      "gt_count": 8
+    },
+    {
+      "image_id": 1115,
+      "width": 640,
+      "height": 640,
+      "gt_count": 3
+    }
+  ]
+}

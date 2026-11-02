@@ -1,0 +1,65 @@
+{
+  "mission": "Mission 8 \u2014 Experiment C: Lightweight Feature Refinement",
+  "cohort": "Group_B_BDD100K_Development",
+  "n_images": 160,
+  "systems": {
+    "Residual-DWPW": {
+      "name": "Residual-DWPW",
+      "f1": 0.16330332194970507,
+      "precision": 0.2603960396039604,
+      "recall": 0.11895070104025328,
+      "small_recall": 0.0021008403361344537,
+      "medium_recall": 0.09490740740740741,
+      "large_recall": 0.4531645569620253,
+      "tp": 263,
+      "fp": 747,
+      "fn": 1948,
+      "mean_latency_ms": 81.05375029369952,
+      "p50_latency_ms": 80.81173000027775,
+      "p90_latency_ms": 83.03917920093227,
+      "fps": 12.337492051589031,
+      "delta_f1_vs_unrefined": -0.03034087169448857,
+      "parameters": 91840
+    },
+    "P3-Detail": {
+      "name": "P3-Detail",
+      "f1": 0.13795236622332196,
+      "precision": 0.2181996086105675,
+      "recall": 0.10085933966530981,
+      "small_recall": 0.0021008403361344537,
+      "medium_recall": 0.08217592592592593,
+      "large_recall": 0.379746835443038,
+      "tp": 223,
+      "fp": 799,
+      "fn": 1988,
+      "mean_latency_ms": 71.42124042496789,
+      "p50_latency_ms": 71.22214550054196,
+      "p90_latency_ms": 73.79282590045477,
+      "fps": 14.001437024193907,
+      "delta_f1_vs_unrefined": -0.05569182742087167,
+      "parameters": 5376
+    },
+    "CrossScale-Guidance": {
+      "name": "CrossScale-Guidance",
+      "f1": 0.134942742185082,
+      "precision": 0.21372549019607842,
+      "recall": 0.09859791949344188,
+      "small_recall": 0.0010504201680672268,
+      "medium_recall": 0.0787037037037037,
+      "large_recall": 0.37721518987341773,
+      "tp": 218,
+      "fp": 802,
+      "fn": 1993,
+      "mean_latency_ms": 67.33007104998023,
+      "p50_latency_ms": 66.852270999334,
+      "p90_latency_ms": 68.69723750151024,
+      "fps": 14.852204734162294,
+      "delta_f1_vs_unrefined": -0.058701451459111625,
+      "parameters": 45248
+    }
+  },
+  "baseline_comparison": {
+    "full_640px_f1": 0.47798377752027815,
+    "unrefined_reuse_f1": 0.19364419364419364
+  }
+}

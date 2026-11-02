@@ -1,0 +1,38 @@
+{
+  "fixed_640": {
+    "latency_ms": 61.1,
+    "fps": 16.36,
+    "f1": 0.5111,
+    "small_rec": 8.67
+  },
+  "fixed_832": {
+    "latency_ms": 103.0,
+    "fps": 9.71,
+    "f1": 0.5518,
+    "small_rec": 18.33
+  },
+  "fixed_1280": {
+    "latency_ms": 378.0,
+    "fps": 2.65,
+    "f1": 0.5782,
+    "small_rec": 28.69
+  },
+  "adaptive_k1": {
+    "latency_ms": 265.77,
+    "fps": 3.76,
+    "f1": 0.5645,
+    "small_rec": 24.8
+  },
+  "adaptive_hier": {
+    "latency_ms": 208.77,
+    "fps": 4.79,
+    "f1": 0.5671,
+    "small_rec": 22.71
+  },
+  "faster_rcnn": {
+    "latency_ms": 1275.6,
+    "fps": 0.78,
+    "f1": 0.6877,
+    "small_rec": 42.53
+  }
+}

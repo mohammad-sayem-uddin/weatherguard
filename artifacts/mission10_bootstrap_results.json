@@ -1,0 +1,86 @@
+{
+  "Hold-Time H=3 vs Base 640": {
+    "comparison": "Hold-Time H=3 vs Base 640",
+    "overall_f1_mean_delta": 0.035,
+    "overall_f1_95_ci": [
+      0.028,
+      0.0422
+    ],
+    "overall_p_value": "< 0.001",
+    "small_f1_mean_delta": 0.0819,
+    "small_f1_95_ci": [
+      0.0648,
+      0.0981
+    ],
+    "small_p_value": "< 0.001",
+    "resamples": 1000,
+    "block_length_frames": 20,
+    "seeds": [
+      42,
+      9999
+    ]
+  },
+  "Hold-Time H=3 vs Policy 5a": {
+    "comparison": "Hold-Time H=3 vs Policy 5a",
+    "overall_f1_mean_delta": 0.0084,
+    "overall_f1_95_ci": [
+      0.0057,
+      0.0113
+    ],
+    "overall_p_value": "< 0.001",
+    "small_f1_mean_delta": 0.0149,
+    "small_f1_95_ci": [
+      0.0083,
+      0.0236
+    ],
+    "small_p_value": "< 0.001",
+    "resamples": 1000,
+    "block_length_frames": 20,
+    "seeds": [
+      42,
+      9999
+    ]
+  },
+  "Fixed 832 vs Base 640": {
+    "comparison": "Fixed 832 vs Base 640",
+    "overall_f1_mean_delta": 0.0415,
+    "overall_f1_95_ci": [
+      0.0337,
+      0.0496
+    ],
+    "overall_p_value": "< 0.001",
+    "small_f1_mean_delta": 0.0883,
+    "small_f1_95_ci": [
+      0.073,
+      0.1024
+    ],
+    "small_p_value": "< 0.001",
+    "resamples": 1000,
+    "block_length_frames": 20,
+    "seeds": [
+      42,
+      9999
+    ]
+  },
+  "WeatherGuard-Temporal vs Base 640": {
+    "comparison": "WeatherGuard-Temporal vs Base 640",
+    "overall_f1_mean_delta": 0.0349,
+    "overall_f1_95_ci": [
+      0.0278,
+      0.0417
+    ],
+    "overall_p_value": "< 0.001",
+    "small_f1_mean_delta": 0.0811,
+    "small_f1_95_ci": [
+      0.0648,
+      0.0976
+    ],
+    "small_p_value": "< 0.001",
+    "resamples": 1000,
+    "block_length_frames": 20,
+    "seeds": [
+      42,
+      9999
+    ]
+  }
+}

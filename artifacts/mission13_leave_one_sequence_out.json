@@ -1,0 +1,46 @@
+{
+  "heldout_b1e1a7b8-65ec7612": {
+    "held_out_sequence": "b1e1a7b8-65ec7612",
+    "evaluated_sequences": [
+      "b1d0a191-06deb55d",
+      "b24d283f-33783d1b",
+      "b23c9e00-b425de1b"
+    ],
+    "overall_f1": 0.4763,
+    "small_f1": 0.3463,
+    "ultra_small_f1": 0.0184
+  },
+  "heldout_b1d0a191-06deb55d": {
+    "held_out_sequence": "b1d0a191-06deb55d",
+    "evaluated_sequences": [
+      "b1e1a7b8-65ec7612",
+      "b24d283f-33783d1b",
+      "b23c9e00-b425de1b"
+    ],
+    "overall_f1": 0.4679,
+    "small_f1": 0.3325,
+    "ultra_small_f1": 0.0241
+  },
+  "heldout_b24d283f-33783d1b": {
+    "held_out_sequence": "b24d283f-33783d1b",
+    "evaluated_sequences": [
+      "b1e1a7b8-65ec7612",
+      "b1d0a191-06deb55d",
+      "b23c9e00-b425de1b"
+    ],
+    "overall_f1": 0.4274,
+    "small_f1": 0.1966,
+    "ultra_small_f1": 0.0294
+  },
+  "heldout_b23c9e00-b425de1b": {
+    "held_out_sequence": "b23c9e00-b425de1b",
+    "evaluated_sequences": [
+      "b1e1a7b8-65ec7612",
+      "b1d0a191-06deb55d",
+      "b24d283f-33783d1b"
+    ],
+    "overall_f1": 0.4898,
+    "small_f1": 0.405,
+    "ultra_small_f1": 0.0354
+  }
+}

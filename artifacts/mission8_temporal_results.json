@@ -1,0 +1,84 @@
+{
+  "mission": "Mission 8 \u2014 Experiment F: Temporal Routing Stability",
+  "data_availability_audit": {
+    "group_b": {
+      "total_images": 160,
+      "unique_videos": 148,
+      "singleton_count": 139,
+      "singleton_pct": 86.875,
+      "multi_frame_videos": {
+        "b90327ce": 2,
+        "b9d34460": 4,
+        "bb1b7e42": 2,
+        "c5d864fa": 3,
+        "b1d0a191": 2,
+        "b6579e76": 2,
+        "bfc62f16": 2,
+        "c3593016": 2,
+        "c8d1bc4e": 2
+      },
+      "max_frames_per_video": 4
+    },
+    "group_c": {
+      "total_images": 203,
+      "unique_videos": 197,
+      "singleton_count": 191,
+      "singleton_pct": 94.08866995073892,
+      "multi_frame_videos": {
+        "b266db29": 2,
+        "b26aafd1": 2,
+        "b2e54795": 2,
+        "b4863201": 2,
+        "b9d34460": 2,
+        "c5d864fa": 2
+      },
+      "max_frames_per_video": 2
+    },
+    "status": "BLOCKED_BY_DATASET_STRUCTURE",
+    "reason": "CRITICAL SCIENTIFIC FINDING: The BDD100K 100K object detection dataset consists of independent 10-second keyframes sampled across 100,000 separate vehicular journeys. High-framerate continuous video streams (30 FPS) are part of the separate BDD100K MOT/Tracking challenge, which is outside the frozen detection benchmark. Consequently, sequential multi-frame video evaluation on Group B and Group C is blocked due to the physical absence of continuous video streams. Per protocol Section 7 and Section 8, this limitation is documented honestly without fabricating synthetic video."
+  },
+  "simulation_benchmark": {
+    "Frame-Independent (Policy 5a)": {
+      "method": "frame_independent",
+      "escalation_rate": 0.5,
+      "switching_frequency": 0.10101010101010101,
+      "total_switches": 10,
+      "mean_run_length": 10.0
+    },
+    "Moving Average (W=5)": {
+      "method": "moving_average",
+      "escalation_rate": 0.5,
+      "switching_frequency": 0.06060606060606061,
+      "total_switches": 6,
+      "mean_run_length": 16.666666666666668
+    },
+    "Exponential Moving Avg (alpha=0.35)": {
+      "method": "ema",
+      "escalation_rate": 0.5,
+      "switching_frequency": 0.04040404040404041,
+      "total_switches": 4,
+      "mean_run_length": 25.0
+    },
+    "Hysteresis (tau_high=1.0, tau_low=0.3)": {
+      "method": "hysteresis",
+      "escalation_rate": 0.67,
+      "switching_frequency": 0.04040404040404041,
+      "total_switches": 4,
+      "mean_run_length": 33.5
+    },
+    "Hold-Time Gating (hold=3 frames)": {
+      "method": "hold_time",
+      "escalation_rate": 0.63,
+      "switching_frequency": 0.06060606060606061,
+      "total_switches": 6,
+      "mean_run_length": 21.0
+    }
+  },
+  "step_response_delays": {
+    "Frame-Independent (Policy 5a)": 0,
+    "Moving Average (W=5)": 2,
+    "Exponential Moving Avg (alpha=0.35)": 1,
+    "Hysteresis (tau_high=1.0, tau_low=0.3)": 0,
+    "Hold-Time Gating (hold=3 frames)": 0
+  }
+}

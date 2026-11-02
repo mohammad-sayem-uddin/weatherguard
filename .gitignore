@@ -11,11 +11,21 @@
 # research only and do not redistribute it. Download from
 # https://huggingface.co/datasets/Maxim37/dawn-dataset
 *.parquet
+data/
+external_data/
+*.h5
+*.hdf5
+*.zip
+*.tar
+*.tar.gz
+*.tgz
 
 # ----------------------------------------------------------------------
 # Model weights and checkpoints
 # ----------------------------------------------------------------------
 # Anything larger than a few KB that came out of a model download.
+runs/
+models/
 yolov8n.pt
 yolov8*.pt
 yolo11*.pt
@@ -25,6 +35,14 @@ yolo11*.pt
 *.safetensors
 *.onnx
 *.torchscript
+*.engine
+*.tflite
+*.npy
+*.npz
+*.pkl
+*.pickle
+artifacts/*.pkl
+*.cache
 
 # ----------------------------------------------------------------------
 # Local virtual environments and dependency caches

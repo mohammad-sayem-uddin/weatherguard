@@ -1,0 +1,108 @@
+{
+  "mission": "Mission 10",
+  "created_at": "2026-11-02T12:35:00Z",
+  "split_policy": "Strict sequence-level isolation. Zero frame leakage. Zero sequence leakage.",
+  "historical_cohort_separation": {
+    "group_b_overlap_frames": 0,
+    "group_c_overlap_frames": 0,
+    "mission9_overlap_sequences": 0,
+    "verified": true
+  },
+  "partitions": {
+    "independent_development_cohort": {
+      "num_sequences": 2,
+      "num_frames": 405,
+      "num_boxes": 6411,
+      "sequences": [
+        {
+          "sequence_id": "b24380ab-6dbeb908",
+          "partition": "independent_development_cohort",
+          "weather": "rainy",
+          "timeofday": "night",
+          "scene": "highway",
+          "description": "Rainy Night Highway Spray & Reflections",
+          "num_frames": 202,
+          "num_boxes": 2786,
+          "num_unique_tracks": 115,
+          "fps": 5.0,
+          "duration_seconds": 40.4
+        },
+        {
+          "sequence_id": "b255cd6c-2f889586",
+          "partition": "independent_development_cohort",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "description": "Snowy Daytime City Street & Pedestrians",
+          "num_frames": 203,
+          "num_boxes": 3625,
+          "num_unique_tracks": 105,
+          "fps": 5.0,
+          "duration_seconds": 40.6
+        }
+      ]
+    },
+    "independent_locked_test_cohort": {
+      "num_sequences": 4,
+      "num_frames": 808,
+      "num_boxes": 14848,
+      "sequences": [
+        {
+          "sequence_id": "b1e1a7b8-65ec7612",
+          "partition": "independent_locked_test_cohort",
+          "weather": "rainy",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "description": "Rainy Daytime Highway Wiper Motion & Droplets",
+          "num_frames": 202,
+          "num_boxes": 2485,
+          "num_unique_tracks": 71,
+          "fps": 5.0,
+          "duration_seconds": 40.4
+        },
+        {
+          "sequence_id": "b1d0a191-06deb55d",
+          "partition": "independent_locked_test_cohort",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "description": "Snowy Daytime Dense Urban Traffic",
+          "num_frames": 202,
+          "num_boxes": 3610,
+          "num_unique_tracks": 104,
+          "fps": 5.0,
+          "duration_seconds": 40.4
+        },
+        {
+          "sequence_id": "b24d283f-33783d1b",
+          "partition": "independent_locked_test_cohort",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "description": "Overcast Daytime High-Density Traffic Clutter",
+          "num_frames": 202,
+          "num_boxes": 4323,
+          "num_unique_tracks": 106,
+          "fps": 5.0,
+          "duration_seconds": 40.4
+        },
+        {
+          "sequence_id": "b23c9e00-b425de1b",
+          "partition": "independent_locked_test_cohort",
+          "weather": "clear",
+          "timeofday": "night",
+          "scene": "highway",
+          "description": "Clear Night Highway Baseline",
+          "num_frames": 202,
+          "num_boxes": 4430,
+          "num_unique_tracks": 91,
+          "fps": 5.0,
+          "duration_seconds": 40.4
+        }
+      ]
+    }
+  },
+  "integrity_verification": {
+    "dataset_manifest_sha256": "ef63bba0e6df90eb535ed53f84698ae2b7a34af4b42c07f8123a1ab3c7034bc9"
+  }
+}

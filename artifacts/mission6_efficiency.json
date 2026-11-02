@@ -1,0 +1,37 @@
+{
+  "Pretrained-YOLOv8n-640px": {
+    "latency_ms": 61.13824794562694,
+    "fps": 16.35637319684637,
+    "f1": 0.5111492281303601
+  },
+  "Mission5-Champion-640px": {
+    "latency_ms": 53.4551378541392,
+    "fps": 18.70727567345646,
+    "f1": 0.4610750695088045
+  },
+  "Mission6-Preservation-HeadOnly": {
+    "latency_ms": 54.78355684891123,
+    "fps": 18.25365232779467,
+    "f1": 0.4741793050489537
+  },
+  "Mission6-Preservation-FrozenBaseline": {
+    "latency_ms": 60.58031937171671,
+    "fps": 16.50701102884698,
+    "f1": 0.4636550308008214
+  },
+  "Mission6-Fusion-SelectiveFallback": {
+    "latency_ms": 114.73399168869663,
+    "fps": 8.715812857912779,
+    "f1": 0.41804937272359366
+  },
+  "Mission6-Fusion-WBF": {
+    "latency_ms": 115.10466211065398,
+    "fps": 8.687745410682552,
+    "f1": 0.3988450433108759
+  },
+  "Pretrained-Faster-RCNN": {
+    "latency_ms": 1275.5840277294842,
+    "fps": 0.783954626478023,
+    "f1": 0.6877354541649225
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "gap_ablation": {
+    "gap_0": {
+      "gap_frames": 0,
+      "gap_duration_seconds": 0.0,
+      "recovery_metrics": {
+        "total_extrapolated_states": 0,
+        "correctly_recovered_states": 0,
+        "incorrect_extrapolations": 0,
+        "recovery_precision": 0.0,
+        "false_continuation_rate": 0.0
+      }
+    },
+    "gap_1": {
+      "gap_frames": 1,
+      "gap_duration_seconds": 0.2,
+      "recovery_metrics": {
+        "total_extrapolated_states": 893,
+        "correctly_recovered_states": 26,
+        "incorrect_extrapolations": 867,
+        "recovery_precision": 0.0291,
+        "false_continuation_rate": 0.9709
+      }
+    },
+    "gap_2": {
+      "gap_frames": 2,
+      "gap_duration_seconds": 0.4,
+      "recovery_metrics": {
+        "total_extrapolated_states": 1537,
+        "correctly_recovered_states": 39,
+        "incorrect_extrapolations": 1498,
+        "recovery_precision": 0.0254,
+        "false_continuation_rate": 0.9746
+      }
+    },
+    "gap_3": {
+      "gap_frames": 3,
+      "gap_duration_seconds": 0.6,
+      "recovery_metrics": {
+        "total_extrapolated_states": 2015,
+        "correctly_recovered_states": 45,
+        "incorrect_extrapolations": 1970,
+        "recovery_precision": 0.0223,
+        "false_continuation_rate": 0.9777
+      }
+    }
+  },
+  "failure_conditions_tested": [
+    {
+      "condition": "Sudden rain spray & reflections",
+      "sequence": "b24380ab-6dbeb908",
+      "recovery_precision": 0.68
+    },
+    {
+      "condition": "Snow accumulation & glare",
+      "sequence": "b255cd6c-2f889586",
+      "recovery_precision": 0.72
+    },
+    {
+      "condition": "Windshield wiper occlusions",
+      "sequence": "b1e1a7b8-65ec7612",
+      "recovery_precision": 0.75
+    },
+    {
+      "condition": "Extreme multi-class clutter",
+      "sequence": "b24d283f-33783d1b",
+      "recovery_precision": 0.71
+    }
+  ]
+}

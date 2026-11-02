@@ -1,0 +1,364 @@
+{
+  "mission": "Mission 9",
+  "schema_version": "1.0",
+  "provenance": {
+    "source_dataset": "BDD100K Multi-Object Tracking (MOT 2020) Benchmark",
+    "citation": "Yu et al., BDD100K: A Diverse Driving Video Database with Scalable Annotation Tooling, CVPR 2020",
+    "license": "BSD-3-Clause",
+    "recording_sensor": "Front-facing monocular automotive dashcam (720p 30fps downsampled to 5fps keyframes)",
+    "frame_rate_fps": 5.0,
+    "temporal_resolution_seconds": 0.2,
+    "image_resolution": [
+      1280,
+      720
+    ],
+    "total_sequences": 8,
+    "governance_note": "All 8 sequences are confirmed virgin sequences with zero overlap to historical Group C (N=203) or Group B (N=160)."
+  },
+  "sequences": {
+    "b1e9ee0e-67e26f2e": {
+      "sequence_id": "b1e9ee0e-67e26f2e",
+      "title": "Sequence 1 (Rainy Daytime Highway)",
+      "condition": "rainy",
+      "timeofday": "daytime",
+      "scene": "highway",
+      "duration_seconds": 40.6,
+      "frame_count": 203,
+      "bounding_boxes": 8719,
+      "unique_tracks": 63,
+      "density_boxes_per_frame": 42.95,
+      "class_distribution": {
+        "Car": 7800,
+        "Person": 631,
+        "Truck": 288
+      },
+      "scale_distribution": {
+        "large": 1692,
+        "medium": 2916,
+        "small": 4111
+      },
+      "environmental_challenges": [
+        "heavy rain streaks",
+        "surface wet reflections",
+        "wiper dynamics",
+        "distant vehicle spray"
+      ],
+      "integrity": {
+        "label_sha256": "a28fccf7dee97b652588e5d905e81393c49e1cd72a621374c85a97b64db619b3",
+        "first_frame_file": "b1e9ee0e-67e26f2e-0000001.jpg",
+        "first_frame_sha256": "fd2652fe8912e49581435a82732dcfc1b652097e12df37ec8b6036196916cb27",
+        "last_frame_file": "b1e9ee0e-67e26f2e-0000203.jpg",
+        "last_frame_sha256": "62bfb9ce2d4686338dcb2f5a5d6bba4084213899d07661120c85474db5074565",
+        "dropped_non_canonical_count": 0,
+        "dropped_non_canonical_types": {}
+      }
+    },
+    "b2064e61-2beadd45": {
+      "sequence_id": "b2064e61-2beadd45",
+      "title": "Sequence 2 (Rainy Night City Street)",
+      "condition": "rainy",
+      "timeofday": "night",
+      "scene": "city street",
+      "duration_seconds": 40.6,
+      "frame_count": 203,
+      "bounding_boxes": 2857,
+      "unique_tracks": 64,
+      "density_boxes_per_frame": 14.07,
+      "class_distribution": {
+        "Car": 2509,
+        "Bus": 282,
+        "Truck": 37,
+        "Person": 29
+      },
+      "scale_distribution": {
+        "large": 495,
+        "medium": 1217,
+        "small": 1145
+      },
+      "environmental_challenges": [
+        "severe specular headlight reflections",
+        "low illumination",
+        "glare on wet asphalt",
+        "pedestrian umbrella occlusion"
+      ],
+      "integrity": {
+        "label_sha256": "4e6726fae88dc0cbf279e0b33111a6b2bf88412f3c598a8f6502d24a611b5aed",
+        "first_frame_file": "b2064e61-2beadd45-0000001.jpg",
+        "first_frame_sha256": "bd6f0f19b85d06e63bf8f07ce7ae33ad7fa3164d3d629de7870fd64c4fe34829",
+        "last_frame_file": "b2064e61-2beadd45-0000203.jpg",
+        "last_frame_sha256": "e9319aa8a73e485637e05bf5b17bba5ebb9f557de0da80e609bec702081af7f6",
+        "dropped_non_canonical_count": 0,
+        "dropped_non_canonical_types": {}
+      }
+    },
+    "b1d0a191-65deaeef": {
+      "sequence_id": "b1d0a191-65deaeef",
+      "title": "Sequence 3 (Snowy Daytime Dense Urban)",
+      "condition": "snowy",
+      "timeofday": "daytime",
+      "scene": "city street",
+      "duration_seconds": 40.4,
+      "frame_count": 202,
+      "bounding_boxes": 4199,
+      "unique_tracks": 103,
+      "density_boxes_per_frame": 20.79,
+      "class_distribution": {
+        "Car": 2540,
+        "Truck": 379,
+        "Person": 1147,
+        "Bus": 84,
+        "Bicycle": 49
+      },
+      "scale_distribution": {
+        "medium": 1629,
+        "large": 1232,
+        "small": 1338
+      },
+      "environmental_challenges": [
+        "falling snowflakes",
+        "white-balance color distortion",
+        "snow buildup on vehicle contours",
+        "compacted snow on road"
+      ],
+      "integrity": {
+        "label_sha256": "a4f41cfa44ec672580d4751b46b2ffcd721c55a40c8482dc2ab4aebf5e53b7f4",
+        "first_frame_file": "b1d0a191-65deaeef-0000001.jpg",
+        "first_frame_sha256": "bbcd394e88bf3a759f21267fbb880b34063d07a1eb8aea2db19ab1540f8faef5",
+        "last_frame_file": "b1d0a191-65deaeef-0000202.jpg",
+        "last_frame_sha256": "4634b5dcd86cb72f494a36a9c37a93bfd07755096b1e14847b1db183ebf66a3a",
+        "dropped_non_canonical_count": 140,
+        "dropped_non_canonical_types": {
+          "other vehicle": 140
+        }
+      }
+    },
+    "b1d0a191-03dcecc2": {
+      "sequence_id": "b1d0a191-03dcecc2",
+      "title": "Sequence 4 (Snowy Daytime Residential Arterial)",
+      "condition": "snowy",
+      "timeofday": "daytime",
+      "scene": "residential",
+      "duration_seconds": 40.4,
+      "frame_count": 202,
+      "bounding_boxes": 3752,
+      "unique_tracks": 143,
+      "density_boxes_per_frame": 18.57,
+      "class_distribution": {
+        "Car": 2212,
+        "Person": 1065,
+        "Truck": 331,
+        "Bicycle": 84,
+        "Bus": 60
+      },
+      "scale_distribution": {
+        "large": 761,
+        "medium": 1655,
+        "small": 1336
+      },
+      "environmental_challenges": [
+        "curbside snowbanks occluding wheels",
+        "low sun contrast",
+        "diffuse overcast glare",
+        "pedestrian winter coats"
+      ],
+      "integrity": {
+        "label_sha256": "9c0f06e7cfbdd05c111d5025be64efe74cd2254b30461651d6af40ecf0969801",
+        "first_frame_file": "b1d0a191-03dcecc2-0000001.jpg",
+        "first_frame_sha256": "98a7f06cff6a518cfcc3df16fb0eeb55580a6e9c2d10a1a8c94d52519fd5ed50",
+        "last_frame_file": "b1d0a191-03dcecc2-0000202.jpg",
+        "last_frame_sha256": "deb5be0a4a291e630cb924096327b19308d857f705dc1d219105d575c21671eb",
+        "dropped_non_canonical_count": 0,
+        "dropped_non_canonical_types": {}
+      }
+    },
+    "b24071b8-b3ee1196": {
+      "sequence_id": "b24071b8-b3ee1196",
+      "title": "Sequence 5 (Overcast Daytime High-Density Urban)",
+      "condition": "overcast",
+      "timeofday": "daytime",
+      "scene": "city street",
+      "duration_seconds": 40.4,
+      "frame_count": 202,
+      "bounding_boxes": 5755,
+      "unique_tracks": 310,
+      "density_boxes_per_frame": 28.49,
+      "class_distribution": {
+        "Bicycle": 473,
+        "Person": 3048,
+        "Car": 1919,
+        "Truck": 114,
+        "Bus": 201
+      },
+      "scale_distribution": {
+        "small": 2481,
+        "medium": 2986,
+        "large": 288
+      },
+      "environmental_challenges": [
+        "flat lighting with low contrast",
+        "dense pedestrian clusters",
+        "crossing cyclists",
+        "rapid vehicle occlusions"
+      ],
+      "integrity": {
+        "label_sha256": "fc465163ea42498411ea2e5b0bbf7e64793279776f207d07862ba63f1a885f93",
+        "first_frame_file": "b24071b8-b3ee1196-0000001.jpg",
+        "first_frame_sha256": "68e4e11826d3022c5858b6ff44718909f07b4ba384936ee3f735d33d7112dc95",
+        "last_frame_file": "b24071b8-b3ee1196-0000202.jpg",
+        "last_frame_sha256": "4452048541ed6090e70e1273615f495753ca49ec9a65048be360b0f2f33cf7e8",
+        "dropped_non_canonical_count": 73,
+        "dropped_non_canonical_types": {
+          "other vehicle": 73
+        }
+      }
+    },
+    "b1d968b9-ce42734f": {
+      "sequence_id": "b1d968b9-ce42734f",
+      "title": "Sequence 6 (Overcast Dusk Highway Arterial)",
+      "condition": "overcast",
+      "timeofday": "dawn/dusk",
+      "scene": "highway",
+      "duration_seconds": 40.6,
+      "frame_count": 203,
+      "bounding_boxes": 4138,
+      "unique_tracks": 154,
+      "density_boxes_per_frame": 20.38,
+      "class_distribution": {
+        "Car": 3628,
+        "Bus": 37,
+        "Person": 280,
+        "Bicycle": 3,
+        "Truck": 190
+      },
+      "scale_distribution": {
+        "medium": 1920,
+        "large": 442,
+        "small": 1776
+      },
+      "environmental_challenges": [
+        "transitional twilight lighting",
+        "early headlight bloom",
+        "highway speed motion blur",
+        "tail-light halos"
+      ],
+      "integrity": {
+        "label_sha256": "bbdbbb58b5142f6a7cb19e1889070055ccd5bee9acbe9568794700d2605f1e47",
+        "first_frame_file": "b1d968b9-ce42734f-0000001.jpg",
+        "first_frame_sha256": "bea417ae8b10b6b9fe48e745fed0141ab1f389dcaeaa28cc5ec149f3d11d2912",
+        "last_frame_file": "b1d968b9-ce42734f-0000203.jpg",
+        "last_frame_sha256": "1fc2645f26aa32ef6b1c4aaa7aebab23268c993371837686e1bbd580143a7e26",
+        "dropped_non_canonical_count": 0,
+        "dropped_non_canonical_types": {}
+      }
+    },
+    "b2208b0f-2796a692": {
+      "sequence_id": "b2208b0f-2796a692",
+      "title": "Sequence 7 (Clear Daytime Urban Baseline)",
+      "condition": "clear",
+      "timeofday": "daytime",
+      "scene": "city street",
+      "duration_seconds": 40.6,
+      "frame_count": 203,
+      "bounding_boxes": 5365,
+      "unique_tracks": 176,
+      "density_boxes_per_frame": 26.43,
+      "class_distribution": {
+        "Car": 3250,
+        "Person": 1734,
+        "Truck": 223,
+        "Bicycle": 158
+      },
+      "scale_distribution": {
+        "large": 411,
+        "medium": 2280,
+        "small": 2674
+      },
+      "environmental_challenges": [
+        "sharp direct shadows",
+        "complex urban clutter",
+        "baseline high-visibility traffic flow"
+      ],
+      "integrity": {
+        "label_sha256": "26e392d4b55285fa74c7bbc9ca2f3302701967fc7c13a18f8681c27ca151fe97",
+        "first_frame_file": "b2208b0f-2796a692-0000001.jpg",
+        "first_frame_sha256": "122fed67a6710ec12d3a138b2f02cfb1d2bf17398ac78d7697024ff34d5e9035",
+        "last_frame_file": "b2208b0f-2796a692-0000203.jpg",
+        "last_frame_sha256": "43df8711e5c4795cd3996cc75ea512573fbbc20a0f356291d8bdd8c0e997d2d8",
+        "dropped_non_canonical_count": 94,
+        "dropped_non_canonical_types": {
+          "other vehicle": 94
+        }
+      }
+    },
+    "b1ca2e5d-84cf9134": {
+      "sequence_id": "b1ca2e5d-84cf9134",
+      "title": "Sequence 8 (Clear Night Urban Streetlights Baseline)",
+      "condition": "clear",
+      "timeofday": "night",
+      "scene": "city street",
+      "duration_seconds": 40.6,
+      "frame_count": 203,
+      "bounding_boxes": 4505,
+      "unique_tracks": 261,
+      "density_boxes_per_frame": 22.19,
+      "class_distribution": {
+        "Car": 1356,
+        "Bicycle": 25,
+        "Bus": 34,
+        "Person": 2842,
+        "Truck": 248
+      },
+      "scale_distribution": {
+        "large": 1452,
+        "medium": 2167,
+        "small": 886
+      },
+      "environmental_challenges": [
+        "artificial sodium/LED streetlighting",
+        "headlight cones",
+        "dark background contrast",
+        "dense pedestrian sidewalk traffic"
+      ],
+      "integrity": {
+        "label_sha256": "3670c1528375f80ccb0a1b1bf5daffa576e6980d5051004b16b6685be4ac3c47",
+        "first_frame_file": "b1ca2e5d-84cf9134-0000001.jpg",
+        "first_frame_sha256": "4bf097a1d1282d9dc4debae1593a8f23178fad95f8557a5cddce789d1fd1aa06",
+        "last_frame_file": "b1ca2e5d-84cf9134-0000203.jpg",
+        "last_frame_sha256": "7a867f9c40446b6ed353a9e9ab23c7da223fc5e8454b53b21371a86d2f32ba7e",
+        "dropped_non_canonical_count": 59,
+        "dropped_non_canonical_types": {
+          "other vehicle": 59
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_frames": 1621,
+    "total_boxes": 39290,
+    "total_unique_tracks": 1274,
+    "class_distribution": {
+      "Car": 25214,
+      "Person": 10776,
+      "Truck": 1810,
+      "Bus": 698,
+      "Bicycle": 792
+    },
+    "scale_distribution": {
+      "large": 6773,
+      "medium": 16770,
+      "small": 15747
+    },
+    "weather_distribution": {
+      "rainy": 2,
+      "snowy": 2,
+      "overcast": 2,
+      "clear": 2
+    },
+    "timeofday_distribution": {
+      "daytime": 5,
+      "night": 2,
+      "dawn/dusk": 1
+    },
+    "qc_status": "PASSED"
+  }
+}

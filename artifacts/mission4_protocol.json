@@ -1,0 +1,118 @@
+{
+  "mission": "Mission 4 — Efficient Small-Object Detection, Error Recovery & Adaptive Inference Under Adverse Weather",
+  "created_at": "2026-11-01T13:40:00-05:00",
+  "status": "FROZEN_PREREGISTRATION",
+  "hardware": {
+    "platform": "macOS / Darwin",
+    "processor": "Apple M1 (8 cores)",
+    "ram_gb": 8,
+    "execution_mode": "CPU-only"
+  },
+  "cohorts": {
+    "Group_A": {
+      "name": "DAWN_Development",
+      "n_images": 821,
+      "role": "Prior historical development"
+    },
+    "Group_B": {
+      "name": "BDD100K_Development",
+      "n_images": 160,
+      "role": "Mission 4 algorithm design, routing policy selection, hyperparameter tuning, and threshold search"
+    },
+    "Group_C": {
+      "name": "BDD100K_Locked_Test",
+      "n_images": 203,
+      "role": "Permanently locked external evaluation test cohort (zero leakage, zero tuning)"
+    }
+  },
+  "hypotheses": {
+    "H1": "A detector can identify images that need higher-resolution inference without applying expensive high-resolution processing to every image.",
+    "H2": "Adaptive high-resolution inference can recover a meaningful proportion of small-object misses while using less average computation than always running at 1280px.",
+    "H3": "Targeted crop-based refinement can recover missed small objects more efficiently than processing the entire image at high resolution.",
+    "H4": "Remaining small-object detection errors are influenced by multiple visual factors including sub-pixel scale (<16^2 px^2), severe optical extinction, contrast loss, occlusion, and boundary truncation.",
+    "H5": "An adaptive inference system can improve the accuracy-latency Pareto frontier compared with fixed-resolution YOLOv8n baselines."
+  },
+  "scale_definitions": {
+    "small": {
+      "area_range_px2": [0, 1024],
+      "linear_size_px": [0, 32],
+      "description": "Area below 32x32 pixels in native 1280x720 coordinates"
+    },
+    "medium": {
+      "area_range_px2": [1024, 9216],
+      "linear_size_px": [32, 96],
+      "description": "Area between 32x32 and 96x96 pixels in native 1280x720 coordinates"
+    },
+    "large": {
+      "area_range_px2": [9216, 921600],
+      "linear_size_px": [96, 960],
+      "description": "Area above 96x96 pixels in native 1280x720 coordinates"
+    }
+  },
+  "canonical_classes": [
+    "Car",
+    "Person",
+    "Truck",
+    "Bus",
+    "Motorcycle",
+    "Bicycle"
+  ],
+  "experiments": {
+    "experiment_a": {
+      "name": "Image-Level Adaptive Resolution Routing",
+      "candidate_policies": [
+        "fixed_640",
+        "fixed_832",
+        "fixed_1280",
+        "policy_small_box_trigger",
+        "policy_low_conf_trigger",
+        "policy_two_stage_hierarchical",
+        "policy_density_trigger",
+        "policy_combined_trigger"
+      ],
+      "tuning_cohort": "Group_B",
+      "test_cohort": "Group_C"
+    },
+    "experiment_b": {
+      "name": "Targeted Region Refinement",
+      "max_crops_per_image": 2,
+      "context_margin_ratio": 0.20,
+      "crop_input_resolution": 640,
+      "nms_iou_threshold": 0.50,
+      "tuning_cohort": "Group_B",
+      "test_cohort": "Group_C"
+    },
+    "experiment_c": {
+      "name": "Failure-Cause Analysis",
+      "categories": [
+        "extreme_small_scale_sub16",
+        "heavy_weather_optical_extinction",
+        "low_contrast_glare",
+        "dense_crowding_occlusion",
+        "boundary_truncation",
+        "class_confusion_fp",
+        "structure_reflection_fp"
+      ]
+    },
+    "experiment_d": {
+      "name": "Weather x Scale x Inference Interaction",
+      "weather_strata": ["clear", "overcast", "rainy", "snowy", "foggy"]
+    },
+    "experiment_e": {
+      "name": "Threshold and Routing Policy Optimization",
+      "search_space": {
+        "tau_640": [0.15, 0.20, 0.25],
+        "tau_832": [0.15, 0.20, 0.25],
+        "tau_1280": [0.15, 0.20, 0.25]
+      },
+      "tuning_cohort": "Group_B"
+    },
+    "experiment_f": {
+      "name": "Final Accuracy-Latency Frontier & External Test Validation",
+      "bootstrap_replicates": 1000,
+      "primary_seed": 20261101,
+      "secondary_seed": 20261102,
+      "eval_cohort": "Group_C"
+    }
+  }
+}

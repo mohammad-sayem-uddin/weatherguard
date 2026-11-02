@@ -1,0 +1,82 @@
+{
+  "mission": "Mission 7 \u2014 Experiment F: False-Alarm Suppression",
+  "cohort": "Group_B_BDD100K_Development",
+  "n_images": 160,
+  "strategies_benchmark": [
+    {
+      "name": "Strategy 0: Unsuppressed Baseline",
+      "description": "Standard detections without post-hoc geometric or reflection gating.",
+      "f1": 0.4654442877291961,
+      "delta_f1": 0.0,
+      "precision": 0.618440779610195,
+      "recall": 0.373134328358209,
+      "small_recall": 0.08088235294117647,
+      "tp": 825,
+      "fp": 509,
+      "fn": 1386,
+      "fp_per_image": 3.18125,
+      "fp_reduced": 0,
+      "tp_loss": 0
+    },
+    {
+      "name": "Strategy 1: Aspect Ratio Anomaly Filtering",
+      "description": "Suppresses extreme aspect ratio boxes (w/h < 0.25 or > 4.5) unless confidence >= 0.50.",
+      "f1": 0.4647608264930654,
+      "delta_f1": -0.0006834612361307224,
+      "precision": 0.6210287443267776,
+      "recall": 0.3713251922207146,
+      "small_recall": 0.08088235294117647,
+      "tp": 821,
+      "fp": 501,
+      "fn": 1390,
+      "fp_per_image": 3.13125,
+      "fp_reduced": 8,
+      "tp_loss": 4
+    },
+    {
+      "name": "Strategy 2: Road Surface Reflection Gating",
+      "description": "Suppresses weak Car detections (score < 0.28) in the bottom 20% of the image.",
+      "f1": 0.46480067854113655,
+      "delta_f1": -0.0006436091880595574,
+      "precision": 0.6199095022624435,
+      "recall": 0.37177747625508817,
+      "small_recall": 0.08088235294117647,
+      "tp": 822,
+      "fp": 504,
+      "fn": 1389,
+      "fp_per_image": 3.15,
+      "fp_reduced": 5,
+      "tp_loss": 3
+    },
+    {
+      "name": "Strategy 3: Cross-Resolution Spatial Confirmation",
+      "description": "Requires predictions with score in [0.20, 0.28] to be confirmed by secondary resolution pass.",
+      "f1": 0.46566826787228033,
+      "delta_f1": 0.00022398014308422365,
+      "precision": 0.6204819277108434,
+      "recall": 0.3726820443238354,
+      "small_recall": 0.08088235294117647,
+      "tp": 824,
+      "fp": 504,
+      "fn": 1387,
+      "fp_per_image": 3.15,
+      "fp_reduced": 5,
+      "tp_loss": 1
+    },
+    {
+      "name": "Strategy 4: Combined Adaptive Suppression",
+      "description": "Combines geometric aspect filtering, road reflection gating, and cross-resolution confirmation.",
+      "f1": 0.46407270661743827,
+      "delta_f1": -0.0013715811117578358,
+      "precision": 0.6236641221374046,
+      "recall": 0.36951605608322025,
+      "small_recall": 0.08088235294117647,
+      "tp": 817,
+      "fp": 493,
+      "fn": 1394,
+      "fp_per_image": 3.08125,
+      "fp_reduced": 16,
+      "tp_loss": 8
+    }
+  ]
+}

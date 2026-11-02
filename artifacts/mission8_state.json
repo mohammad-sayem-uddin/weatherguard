@@ -1,0 +1,110 @@
+{
+  "mission": "Mission 8 \u2014 Multi-Scale Feature Reuse, Lightweight Refinement & Temporal Stability",
+  "status": "in_progress",
+  "current_phase": "Phase 10 & 11 Complete",
+  "completed_experiments": [
+    "preflight_audit",
+    "experiment_b",
+    "experiment_c",
+    "experiment_d",
+    "experiment_e",
+    "experiment_f",
+    "experiment_g",
+    "experiment_h",
+    "locked_evaluation"
+  ],
+  "mission7_frozen_hash": "f4e04789c35144175db6b95d23b9da996ada32cd22a8f718630a5baa9710b7ff",
+  "baseline_audit": [
+    {
+      "model": "Pretrained-YOLOv8n-640px",
+      "expected_f1": 0.4974,
+      "actual_f1": 0.497377205531712,
+      "f1_diff": 2.2794468288012126e-05,
+      "expected_lat": 61.1,
+      "actual_lat": 61.138247945626944,
+      "lat_diff": 0.038247945626942226,
+      "fps": 16.356373196846366,
+      "small_recall": 8.665338645418327,
+      "matched": true
+    },
+    {
+      "model": "Dynamic-Router-640-to-832",
+      "expected_f1": 0.527,
+      "actual_f1": 0.5269988412514485,
+      "f1_diff": 1.1587485515551776e-06,
+      "expected_lat": 81.7,
+      "actual_lat": 81.70397974492401,
+      "lat_diff": 0.003979744924009765,
+      "fps": 12.23930588353166,
+      "small_recall": 13.147410358565736,
+      "matched": true
+    },
+    {
+      "model": "Fixed-YOLOv8n-832px",
+      "expected_f1": 0.5442,
+      "actual_f1": 0.5441679981739329,
+      "f1_diff": 3.200182606710733e-05,
+      "expected_lat": 103.0,
+      "actual_lat": 102.9943444633775,
+      "lat_diff": 0.005655536622498403,
+      "fps": 9.709270981918602,
+      "small_recall": 16.334661354581673,
+      "matched": true
+    },
+    {
+      "model": "Fixed-YOLOv8n-1280px",
+      "expected_f1": 0.5449,
+      "actual_f1": 0.5449152542372881,
+      "f1_diff": 1.525423728809816e-05,
+      "expected_lat": 378.0,
+      "actual_lat": 378.02232168432795,
+      "lat_diff": 0.022321684327948788,
+      "fps": 2.6453464323068783,
+      "small_recall": 28.68525896414343,
+      "matched": true
+    }
+  ],
+  "cohort_counts": {
+    "group_b_dev": 160,
+    "group_c_test": 203,
+    "group_b_c_overlap": 0
+  },
+  "temporal_availability": {
+    "is_continuous_video": false,
+    "group_b_unique_videos": 148,
+    "group_b_total_frames": 160,
+    "group_c_unique_videos": 197,
+    "group_c_total_frames": 203,
+    "status": "isolated_keyframes_only"
+  },
+  "checkpoint_audit": {
+    "Pretrained YOLOv8n": {
+      "path": "yolov8n.pt",
+      "exists": true,
+      "size_mb": 6.246372222900391
+    },
+    "Mission 5 Champion": {
+      "path": "models/mission5_b1_photo.pt",
+      "exists": true,
+      "size_mb": 6.203165054321289
+    },
+    "Mission 6 Head-Only": {
+      "path": "models/mission6_e2_head_only.pt",
+      "exists": true,
+      "size_mb": 6.203226089477539
+    },
+    "Mission 6 Frozen-Backbone": {
+      "path": "models/mission5_a1_frozen.pt",
+      "exists": true,
+      "size_mb": 6.203104019165039
+    }
+  },
+  "locked_evaluation": {
+    "frozen_hash": "c36121689c7c466b587a49b2f8c23f359cd8fcb18b52721579420a78ac4dec3f",
+    "n_images": 203,
+    "dynamic_router_f1": 0.5442271880819367,
+    "pretrained_640_f1": 0.5111492281303601,
+    "feature_reuse_f1": 0.16261437908496731,
+    "refined_reuse_f1": 0.1932619482893706
+  }
+}

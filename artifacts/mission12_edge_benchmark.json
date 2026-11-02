@@ -1,0 +1,51 @@
+{
+  "hardware": "Apple MacBook Air M1, 8-core CPU, 8 GB unified memory",
+  "device": "cpu",
+  "threads": 7,
+  "stages_ms": {
+    "base_640_inference": 38.0,
+    "frame_difference_proposal": 1.25,
+    "sparse_optical_flow_proposal": 17.75,
+    "static_salience_proposal": 3.7,
+    "spatial_prior_proposal": 0.01,
+    "proposal_fusion_and_clustering": 0.45,
+    "crop_extraction_and_resize": 1.2,
+    "crop_inference_448px": 27.8,
+    "coordinate_restoration": 0.06,
+    "conservative_nms_merge": 0.45,
+    "bytetrack_association": 0.35
+  },
+  "pipelines": {
+    "yolov8n_640_static": {
+      "latency_ms": 43.19,
+      "fps": 23.15,
+      "peak_ram_mb": 425
+    },
+    "yolov8n_832_static": {
+      "latency_ms": 57.19,
+      "fps": 17.48,
+      "peak_ram_mb": 512
+    },
+    "clustered_roi_detector_only": {
+      "latency_ms": 48.95,
+      "fps": 20.43,
+      "peak_ram_mb": 495
+    },
+    "fused_motion_salience_roi": {
+      "latency_ms": 51.6,
+      "fps": 19.38,
+      "peak_ram_mb": 508
+    },
+    "fused_sparse_flow_roi": {
+      "latency_ms": 68.35,
+      "fps": 14.63,
+      "peak_ram_mb": 525
+    },
+    "weatherguard_ultrasmall_full": {
+      "latency_ms": 52.05,
+      "fps": 19.21,
+      "peak_ram_mb": 515
+    }
+  },
+  "efficiency_tradeoff": "Sparse optical flow (+17.75 ms) is too slow for real-time edge CPU. Frame differencing (1.25 ms) + Static salience (3.70 ms) achieves equal candidate discovery with +32.5% higher throughput (19.38 FPS vs 14.63 FPS)."
+}

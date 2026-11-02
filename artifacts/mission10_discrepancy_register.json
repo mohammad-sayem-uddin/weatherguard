@@ -1,0 +1,597 @@
+{
+  "mission": "Mission 10",
+  "phase": "Phase 0",
+  "discrepancy_register": [
+    {
+      "metric": "Base YOLO640 Locked Test F1",
+      "previously_reported": 0.5694,
+      "independently_recomputed": 0.5093,
+      "source_artifact": "artifacts/mission9_locked_video_results.json",
+      "root_cause": "Number 0.5694 was miscited from historical cross-dataset mAP@0.5 / sequence recall; actual locked test F1 is 0.5093.",
+      "corrective_action": "Locked test benchmark corrected to 0.5093 in all tables and registry.",
+      "affects_conclusions": "No, because all comparisons on locked test are relative to 0.5093."
+    },
+    {
+      "metric": "Fixed YOLO832 Locked Test F1",
+      "previously_reported": 0.6019,
+      "independently_recomputed": 0.5481,
+      "source_artifact": "artifacts/mission9_locked_video_results.json",
+      "root_cause": "Miscited from development subset; actual locked test F1 is 0.5481.",
+      "corrective_action": "Locked test benchmark corrected to 0.5481.",
+      "affects_conclusions": "No. Fixed 832px remains higher than 640px (+0.0388)."
+    },
+    {
+      "metric": "Dynamic Policy 5a Locked Test F1",
+      "previously_reported": 0.5935,
+      "independently_recomputed": 0.5334,
+      "source_artifact": "artifacts/mission9_locked_video_results.json",
+      "root_cause": "Miscited from sequence sub-breakdown; actual locked test F1 is 0.5334.",
+      "corrective_action": "Locked test benchmark corrected to 0.5334.",
+      "affects_conclusions": "No. Policy 5a outperforms Base 640 (+0.0241) on locked test."
+    },
+    {
+      "metric": "Hold-Time Router H=3 Locked Test F1",
+      "previously_reported": 0.5892,
+      "independently_recomputed": 0.5398,
+      "source_artifact": "artifacts/mission9_temporal_routing.json",
+      "root_cause": "Miscited from dev medium-scale F1 slice; actual locked test detector-only F1 is 0.5398.",
+      "corrective_action": "Locked test benchmark corrected to 0.5398.",
+      "affects_conclusions": "Positive. Hold-time router H=3 actually achieves 0.5398, beating Policy 5a (0.5334)."
+    },
+    {
+      "metric": "WeatherGuard-Temporal (Mixed Stream) F1",
+      "previously_reported": 0.5947,
+      "independently_recomputed": 0.4982,
+      "source_artifact": "artifacts/mission9_locked_video_results.json",
+      "root_cause": "Miscited from car-only sub-metric (0.5945); actual mixed-stream detection F1 is 0.4982 due to extrapolation FP pollution.",
+      "corrective_action": "Separate detection evaluation stream from tracking/recovery evaluation stream (Phase 4 requirement).",
+      "affects_conclusions": "YES \u2014 CRITICAL: Proves that extrapolated tracking boxes must NOT be counted as detector outputs."
+    },
+    {
+      "metric": "WeatherGuard-Temporal Small F1",
+      "previously_reported": 0.2295,
+      "independently_recomputed": 0.308,
+      "source_artifact": "artifacts/mission9_locked_video_results.json",
+      "root_cause": "0.2295 was miscited from recall on sequence b24071b8; actual small F1 is 0.3080 (+0.0651 over base 0.2429).",
+      "corrective_action": "Correct small-object F1 to 0.3080 in locked test registry.",
+      "affects_conclusions": "Positive. True small-object F1 gain is even stronger than previously reported."
+    },
+    {
+      "metric": "WeatherGuard-Temporal Flicker Rate",
+      "previously_reported": 0.0595,
+      "independently_recomputed": 0.0633,
+      "source_artifact": "artifacts/mission9_sequence_performance.json",
+      "root_cause": "0.0595 was the overall 8-sequence aggregate flicker rate; on locked test specifically, flicker rate is 0.0633.",
+      "corrective_action": "Distinguish 8-sequence aggregate (0.0595) from 4-sequence locked test (0.0633).",
+      "affects_conclusions": "No. Substantial flicker reduction over base (0.0810) confirmed in both sets."
+    },
+    {
+      "metric": "Hold-Time Router Flicker Rate",
+      "previously_reported": 0.0521,
+      "independently_recomputed": 0.0789,
+      "source_artifact": "artifacts/mission9_temporal_confidence.json",
+      "root_cause": "0.0521 was the grid tuning minimum and sequence b1ca2e5d flicker rate; on locked test average it is 0.0784.",
+      "corrective_action": "Report exact sequence-level and aggregated flicker metrics explicitly.",
+      "affects_conclusions": "No."
+    },
+    {
+      "metric": "Mission 7 vs Mission 2/8 Historical Discrepancy",
+      "previously_reported": "0.4974 vs 0.5111",
+      "independently_recomputed": "0.4974 vs 0.5111",
+      "source_artifact": "artifacts/eval_external_yolov8n.json",
+      "root_cause": "Confirmed 100% mathematically: TP=1043 and FN=1510 are identical. Unfiltered evaluation included 113 non-canonical COCO false positives (traffic lights, umbrellas, stop signs), depressing precision from 0.6826 to 0.6356.",
+      "corrective_action": "Reconciliation verified and permanently logged in audit register.",
+      "affects_conclusions": "No. Canonical target filtering is the methodologically correct standard."
+    }
+  ],
+  "recomputed_locked_test": {
+    "static_yolov8n_640": {
+      "total_frames": 811,
+      "total_gt": 15252,
+      "total_preds": 7252,
+      "tp": 5731,
+      "fp": 1521,
+      "fn": 9521,
+      "precision": 0.7903,
+      "recall": 0.3758,
+      "f1": 0.5093,
+      "temporal_stability": {
+        "mean_track_coverage": 0.2906,
+        "flicker_rate": 0.081,
+        "total_flicker_events": 1155,
+        "mean_dropout_gap_frames": 8.79,
+        "total_dropout_events": 1027
+      },
+      "scale_breakdown": {
+        "small": {
+          "precision": 0.7681,
+          "recall": 0.1443,
+          "f1": 0.2429,
+          "tp": 742,
+          "fp": 224,
+          "fn": 4401
+        },
+        "medium": {
+          "precision": 0.779,
+          "recall": 0.4285,
+          "f1": 0.5529,
+          "tp": 2982,
+          "fp": 846,
+          "fn": 3977
+        },
+        "large": {
+          "precision": 0.8165,
+          "recall": 0.6371,
+          "f1": 0.7158,
+          "tp": 2007,
+          "fp": 451,
+          "fn": 1143
+        }
+      },
+      "class_breakdown": {
+        "Car": {
+          "precision": 0.8413,
+          "recall": 0.5661,
+          "f1": 0.6768,
+          "tp": 5494,
+          "fp": 1036,
+          "fn": 4211
+        },
+        "Person": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 4216
+        },
+        "Truck": {
+          "precision": 0.419,
+          "recall": 0.2407,
+          "f1": 0.3058,
+          "tp": 194,
+          "fp": 269,
+          "fn": 612
+        },
+        "Bus": {
+          "precision": 0.1627,
+          "recall": 0.0993,
+          "f1": 0.1233,
+          "tp": 41,
+          "fp": 211,
+          "fn": 372
+        },
+        "Bicycle": {
+          "precision": 0.6667,
+          "recall": 0.0179,
+          "f1": 0.0348,
+          "tp": 2,
+          "fp": 1,
+          "fn": 110
+        },
+        "Motorcycle": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 4,
+          "fn": 0
+        }
+      }
+    },
+    "static_yolov8n_832": {
+      "total_frames": 811,
+      "total_gt": 15252,
+      "total_preds": 7916,
+      "tp": 6349,
+      "fp": 1567,
+      "fn": 8903,
+      "precision": 0.802,
+      "recall": 0.4163,
+      "f1": 0.5481,
+      "temporal_stability": {
+        "mean_track_coverage": 0.326,
+        "flicker_rate": 0.0799,
+        "total_flicker_events": 1142,
+        "mean_dropout_gap_frames": 8.35,
+        "total_dropout_events": 1005
+      },
+      "scale_breakdown": {
+        "small": {
+          "precision": 0.7559,
+          "recall": 0.1981,
+          "f1": 0.314,
+          "tp": 1019,
+          "fp": 329,
+          "fn": 4124
+        },
+        "medium": {
+          "precision": 0.8106,
+          "recall": 0.4735,
+          "f1": 0.5978,
+          "tp": 3295,
+          "fp": 770,
+          "fn": 3664
+        },
+        "large": {
+          "precision": 0.813,
+          "recall": 0.646,
+          "f1": 0.72,
+          "tp": 2035,
+          "fp": 468,
+          "fn": 1115
+        }
+      },
+      "class_breakdown": {
+        "Car": {
+          "precision": 0.852,
+          "recall": 0.6244,
+          "f1": 0.7207,
+          "tp": 6060,
+          "fp": 1053,
+          "fn": 3645
+        },
+        "Person": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 4216
+        },
+        "Truck": {
+          "precision": 0.4143,
+          "recall": 0.294,
+          "f1": 0.344,
+          "tp": 237,
+          "fp": 335,
+          "fn": 569
+        },
+        "Bus": {
+          "precision": 0.2074,
+          "recall": 0.109,
+          "f1": 0.1429,
+          "tp": 45,
+          "fp": 172,
+          "fn": 368
+        },
+        "Bicycle": {
+          "precision": 0.7778,
+          "recall": 0.0625,
+          "f1": 0.1157,
+          "tp": 7,
+          "fp": 2,
+          "fn": 105
+        },
+        "Motorcycle": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 5,
+          "fn": 0
+        }
+      }
+    },
+    "policy_5a_frame_independent": {
+      "total_frames": 811,
+      "total_gt": 15252,
+      "total_preds": 7607,
+      "tp": 6097,
+      "fp": 1510,
+      "fn": 9155,
+      "precision": 0.8015,
+      "recall": 0.3998,
+      "f1": 0.5334,
+      "temporal_stability": {
+        "mean_track_coverage": 0.3097,
+        "flicker_rate": 0.0842,
+        "total_flicker_events": 1194,
+        "mean_dropout_gap_frames": 8.26,
+        "total_dropout_events": 1039
+      },
+      "scale_breakdown": {
+        "small": {
+          "precision": 0.78,
+          "recall": 0.1861,
+          "f1": 0.3005,
+          "tp": 957,
+          "fp": 270,
+          "fn": 4186
+        },
+        "medium": {
+          "precision": 0.8071,
+          "recall": 0.4521,
+          "f1": 0.5795,
+          "tp": 3146,
+          "fp": 752,
+          "fn": 3813
+        },
+        "large": {
+          "precision": 0.8034,
+          "recall": 0.633,
+          "f1": 0.7081,
+          "tp": 1994,
+          "fp": 488,
+          "fn": 1156
+        }
+      },
+      "class_breakdown": {
+        "Car": {
+          "precision": 0.8554,
+          "recall": 0.6028,
+          "f1": 0.7072,
+          "tp": 5850,
+          "fp": 989,
+          "fn": 3855
+        },
+        "Person": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 4216
+        },
+        "Truck": {
+          "precision": 0.4071,
+          "recall": 0.2556,
+          "f1": 0.314,
+          "tp": 206,
+          "fp": 300,
+          "fn": 600
+        },
+        "Bus": {
+          "precision": 0.1529,
+          "recall": 0.0944,
+          "f1": 0.1168,
+          "tp": 39,
+          "fp": 216,
+          "fn": 374
+        },
+        "Bicycle": {
+          "precision": 0.6667,
+          "recall": 0.0179,
+          "f1": 0.0348,
+          "tp": 2,
+          "fp": 1,
+          "fn": 110
+        },
+        "Motorcycle": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 4,
+          "fn": 0
+        }
+      }
+    },
+    "hold_time_router_h3_detector_only": {
+      "total_frames": 811,
+      "total_gt": 15252,
+      "total_preds": 7709,
+      "tp": 6197,
+      "fp": 1512,
+      "fn": 9055,
+      "precision": 0.8039,
+      "recall": 0.4063,
+      "f1": 0.5398,
+      "temporal_stability": {
+        "mean_track_coverage": 0.3168,
+        "flicker_rate": 0.0789,
+        "total_flicker_events": 1125,
+        "mean_dropout_gap_frames": 8.53,
+        "total_dropout_events": 1003
+      },
+      "scale_breakdown": {
+        "small": {
+          "precision": 0.7723,
+          "recall": 0.1933,
+          "f1": 0.3092,
+          "tp": 994,
+          "fp": 293,
+          "fn": 4149
+        },
+        "medium": {
+          "precision": 0.8128,
+          "recall": 0.4591,
+          "f1": 0.5868,
+          "tp": 3195,
+          "fp": 736,
+          "fn": 3764
+        },
+        "large": {
+          "precision": 0.8061,
+          "recall": 0.6375,
+          "f1": 0.7119,
+          "tp": 2008,
+          "fp": 483,
+          "fn": 1142
+        }
+      },
+      "class_breakdown": {
+        "Car": {
+          "precision": 0.8571,
+          "recall": 0.612,
+          "f1": 0.7141,
+          "tp": 5939,
+          "fp": 990,
+          "fn": 3766
+        },
+        "Person": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 4216
+        },
+        "Truck": {
+          "precision": 0.4149,
+          "recall": 0.2692,
+          "f1": 0.3266,
+          "tp": 217,
+          "fp": 306,
+          "fn": 589
+        },
+        "Bus": {
+          "precision": 0.1554,
+          "recall": 0.0944,
+          "f1": 0.1175,
+          "tp": 39,
+          "fp": 212,
+          "fn": 374
+        },
+        "Bicycle": {
+          "precision": 0.6667,
+          "recall": 0.0179,
+          "f1": 0.0348,
+          "tp": 2,
+          "fp": 1,
+          "fn": 110
+        },
+        "Motorcycle": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 3,
+          "fn": 0
+        }
+      }
+    },
+    "weatherguard_temporal_mixed": {
+      "total_frames": 811,
+      "total_gt": 15252,
+      "total_preds": 10860,
+      "tp": 6504,
+      "fp": 4356,
+      "fn": 8748,
+      "precision": 0.5989,
+      "recall": 0.4264,
+      "f1": 0.4982,
+      "temporal_stability": {
+        "mean_track_coverage": 0.3376,
+        "flicker_rate": 0.0633,
+        "total_flicker_events": 907,
+        "mean_dropout_gap_frames": 9.35,
+        "total_dropout_events": 888
+      },
+      "scale_breakdown": {
+        "small": {
+          "precision": 0.5808,
+          "recall": 0.2096,
+          "f1": 0.308,
+          "tp": 1078,
+          "fp": 778,
+          "fn": 4065
+        },
+        "medium": {
+          "precision": 0.5905,
+          "recall": 0.4797,
+          "f1": 0.5293,
+          "tp": 3338,
+          "fp": 2315,
+          "fn": 3621
+        },
+        "large": {
+          "precision": 0.6231,
+          "recall": 0.6629,
+          "f1": 0.6424,
+          "tp": 2088,
+          "fp": 1263,
+          "fn": 1062
+        }
+      },
+      "class_breakdown": {
+        "Car": {
+          "precision": 0.6365,
+          "recall": 0.6386,
+          "f1": 0.6376,
+          "tp": 6198,
+          "fp": 3540,
+          "fn": 3507
+        },
+        "Person": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 4216
+        },
+        "Truck": {
+          "precision": 0.3529,
+          "recall": 0.3139,
+          "f1": 0.3322,
+          "tp": 253,
+          "fp": 464,
+          "fn": 553
+        },
+        "Bus": {
+          "precision": 0.1282,
+          "recall": 0.1211,
+          "f1": 0.1245,
+          "tp": 50,
+          "fp": 340,
+          "fn": 363
+        },
+        "Bicycle": {
+          "precision": 0.375,
+          "recall": 0.0268,
+          "f1": 0.05,
+          "tp": 3,
+          "fp": 5,
+          "fn": 109
+        },
+        "Motorcycle": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 7,
+          "fn": 0
+        }
+      }
+    },
+    "switches_hold3_per_100f": 4.44
+  },
+  "group_c_historical_audit": {
+    "filtered": {
+      "tp": 1043,
+      "fp": 485,
+      "fn": 1510,
+      "precision": 0.6826,
+      "recall": 0.4085,
+      "f1": 0.5111
+    },
+    "unfiltered": {
+      "tp": 1043,
+      "fp": 598,
+      "fn": 1510,
+      "precision": 0.6356,
+      "recall": 0.4085,
+      "f1": 0.4974
+    },
+    "non_canonical_preds_count": 113,
+    "non_canonical_classes": {
+      "boat": 1,
+      "traffic light": 88,
+      "stop sign": 3,
+      "horse": 2,
+      "umbrella": 3,
+      "clock": 2,
+      "cow": 1,
+      "chair": 1,
+      "train": 2,
+      "refrigerator": 1,
+      "bottle": 1,
+      "backpack": 1,
+      "airplane": 3,
+      "apple": 1,
+      "dog": 1,
+      "suitcase": 2
+    }
+  }
+}

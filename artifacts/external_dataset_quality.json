@@ -1,0 +1,48 @@
+{
+  "total_evaluated_images": 203,
+  "target_condition_counts": {
+    "rainy": 60,
+    "snowy": 60,
+    "foggy": 13,
+    "overcast": 35,
+    "clear": 35
+  },
+  "target_timeofday_counts": {
+    "daytime": 195,
+    "dawn/dusk": 1,
+    "night": 7
+  },
+  "checks": {
+    "image_existence_and_integrity": {
+      "passed": true,
+      "corrupt_or_missing_count": 0,
+      "details": []
+    },
+    "duplicate_detection": {
+      "passed": true,
+      "duplicate_count": 0,
+      "details": []
+    },
+    "dimensions_uniformity": {
+      "passed": true,
+      "dimensions_found": {
+        "1280x720": 203
+      }
+    },
+    "bounding_box_validity": {
+      "passed": true,
+      "invalid_box_count": 0,
+      "details": []
+    },
+    "empty_annotations": {
+      "empty_images_count": 2,
+      "empty_percentage": 0.9852216748768473,
+      "handling": "Preserved to accurately evaluate detector false-positive rate on zero-ground-truth imagery."
+    },
+    "cross_split_contamination": {
+      "passed": true,
+      "source": "BDD100K official validation split (FiftyOne mirror dgural/bdd100k)",
+      "train_leakage_detected": false
+    }
+  }
+}

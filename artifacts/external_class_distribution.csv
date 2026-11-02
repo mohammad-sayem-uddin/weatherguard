@@ -1,0 +1,12 @@
+class_name,count,percentage,status
+Person,262,10.26%,evaluated
+Car,2107,82.53%,evaluated
+Truck,116,4.54%,evaluated
+Bus,45,1.76%,evaluated
+Motorcycle,7,0.27%,evaluated
+Bicycle,16,0.63%,evaluated
+traffic sign,752,N/A,excluded_taxonomy
+traffic light,534,N/A,excluded_taxonomy
+rider,11,N/A,excluded_taxonomy
+other vehicle,5,N/A,excluded_taxonomy
+train,2,N/A,excluded_taxonomy

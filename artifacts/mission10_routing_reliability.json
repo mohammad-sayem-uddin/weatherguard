@@ -1,0 +1,47 @@
+{
+  "H_1": {
+    "hold_frames": 1,
+    "hold_duration_seconds": 0.2,
+    "dev_switches_per_100f": 20.49,
+    "dev_escalation_pct": 45.19,
+    "test_switches_per_100f": 9.9,
+    "test_escalation_pct": 43.81,
+    "onset_delay_frames": 0
+  },
+  "H_2": {
+    "hold_frames": 2,
+    "hold_duration_seconds": 0.4,
+    "dev_switches_per_100f": 15.56,
+    "dev_escalation_pct": 55.31,
+    "test_switches_per_100f": 6.56,
+    "test_escalation_pct": 48.76,
+    "onset_delay_frames": 0
+  },
+  "H_3": {
+    "hold_frames": 3,
+    "hold_duration_seconds": 0.6,
+    "dev_switches_per_100f": 12.35,
+    "dev_escalation_pct": 62.96,
+    "test_switches_per_100f": 5.32,
+    "test_escalation_pct": 51.98,
+    "onset_delay_frames": 0
+  },
+  "H_5": {
+    "hold_frames": 5,
+    "hold_duration_seconds": 1.0,
+    "dev_switches_per_100f": 7.41,
+    "dev_escalation_pct": 73.83,
+    "test_switches_per_100f": 3.84,
+    "test_escalation_pct": 56.68,
+    "onset_delay_frames": 0
+  },
+  "H_8": {
+    "hold_frames": 8,
+    "hold_duration_seconds": 1.6,
+    "dev_switches_per_100f": 3.95,
+    "dev_escalation_pct": 81.23,
+    "test_switches_per_100f": 3.34,
+    "test_escalation_pct": 62.25,
+    "onset_delay_frames": 0
+  }
+}

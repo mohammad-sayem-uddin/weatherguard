@@ -1,0 +1,6 @@
+{
+  "mission": "Mission 8 \u2014 Experiment G: Temporal Detection Consistency",
+  "status": "BLOCKED_NO_VIDEO_DATA",
+  "finding": "Temporal consistency tracking requires continuous multi-frame sequences with persistent object tracks. Because BDD100K detection data contains isolated keyframes with 92.5%-97.0% singleton video distribution, track-level IoU consistency and false-positive persistence cannot be evaluated on Group B/C without violating the non-negotiable instruction against data fabrication. Algorithm is verified in unit tests.",
+  "tracker_architecture": "TemporalConsistencyTracker (IoU matching + EMA confidence momentum + min-hits gating)"
+}

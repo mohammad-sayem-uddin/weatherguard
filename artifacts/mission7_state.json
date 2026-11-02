@@ -1,0 +1,144 @@
+{
+  "mission": "Mission 7 \u2014 Dynamic Conditional Inference, Class-Calibrated Confidence & Edge-Efficient Object Detection",
+  "status": "completed",
+  "current_phase": "Mission 7 Complete",
+  "completed_experiments": [
+    "preflight_audit",
+    "experiment_b_routing_oracle",
+    "experiment_a_uncertainty_routing",
+    "experiment_c_class_calibration",
+    "experiment_d_dynamic_resolution",
+    "experiment_e_conditional_cascade",
+    "experiment_f_false_alarm_suppression",
+    "experiment_g_edge_optimization",
+    "experiment_h_locked_evaluation"
+  ],
+  "benchmark_audit": [
+    {
+      "model": "Pretrained-YOLOv8n-640px",
+      "expected_f1": 0.5111,
+      "actual_f1": 0.5111492281303601,
+      "f1_match": true,
+      "expected_lat": 61.1,
+      "actual_lat": 61.13824794562694,
+      "lat_match": true,
+      "reported_fps": 16.35637319684637,
+      "recomputed_fps": 16.35637319684637,
+      "fps_rounding_diff": 0.0,
+      "small_recall": 0.08665338645418327
+    },
+    {
+      "model": "Mission5-Champion-640px",
+      "expected_f1": 0.4611,
+      "actual_f1": 0.4610750695088045,
+      "f1_match": true,
+      "expected_lat": 53.5,
+      "actual_lat": 53.4551378541392,
+      "lat_match": true,
+      "reported_fps": 18.70727567345646,
+      "recomputed_fps": 18.70727567345646,
+      "fps_rounding_diff": 0.0,
+      "small_recall": 0.04282868525896414
+    },
+    {
+      "model": "Mission6-Preservation-HeadOnly",
+      "expected_f1": 0.4742,
+      "actual_f1": 0.4741793050489537,
+      "f1_match": true,
+      "expected_lat": 54.8,
+      "actual_lat": 54.78355684891123,
+      "lat_match": true,
+      "reported_fps": 18.25365232779467,
+      "recomputed_fps": 18.25365232779467,
+      "fps_rounding_diff": 0.0,
+      "small_recall": 0.13147410358565736
+    },
+    {
+      "model": "Mission6-Preservation-FrozenBaseline",
+      "expected_f1": 0.4637,
+      "actual_f1": 0.4636550308008214,
+      "f1_match": true,
+      "expected_lat": 60.6,
+      "actual_lat": 60.58031937171671,
+      "lat_match": true,
+      "reported_fps": 16.50701102884698,
+      "recomputed_fps": 16.50701102884698,
+      "fps_rounding_diff": 0.0,
+      "small_recall": 0.10258964143426295
+    },
+    {
+      "model": "Pretrained-Faster-RCNN",
+      "expected_f1": 0.6877,
+      "actual_f1": 0.6877354541649225,
+      "f1_match": true,
+      "expected_lat": 1275.6,
+      "actual_lat": 1275.5840277294842,
+      "lat_match": true,
+      "reported_fps": 0.783954626478023,
+      "recomputed_fps": 0.783954626478023,
+      "fps_rounding_diff": 0.0,
+      "small_recall": 0.4252988047808765
+    }
+  ],
+  "checkpoint_audit": {
+    "Pretrained YOLOv8n": {
+      "path": "yolov8n.pt",
+      "exists": true,
+      "size_mb": 6.246372222900391
+    },
+    "Mission 5 Champion": {
+      "path": "models/mission5_b1_photo.pt",
+      "exists": true,
+      "size_mb": 6.203165054321289
+    },
+    "Mission 6 Head-Only": {
+      "path": "models/mission6_e2_head_only.pt",
+      "exists": true,
+      "size_mb": 6.203226089477539
+    },
+    "Mission 6 Frozen-Backbone": {
+      "path": "models/mission5_a1_frozen.pt",
+      "exists": true,
+      "size_mb": 6.203104019165039
+    }
+  },
+  "cohort_counts": {
+    "group_b_dev": 160,
+    "group_c_test": 203,
+    "group_b_c_overlap": 0
+  },
+  "locked_test_sealed": true,
+  "oracle_results_summary": {
+    "base_f1": 0.4654442877291961,
+    "oracle_832_f1": 0.5343800757985924,
+    "oracle_1280_f1": 0.5538382277176713,
+    "oracle_head_only_f1": 0.4940805051302289,
+    "oracle_multi_res_f1": 0.6271403015589062
+  },
+  "calibration_summary": {
+    "uncalibrated_f1": 0.47798377752027815,
+    "uncalibrated_ece": 0.17250928422023365,
+    "best_method": "Method 4: Class-Specific Thresholds",
+    "best_f1": 0.48527808069792805,
+    "best_ece": 0.12488336100364834
+  },
+  "dynamic_resolution_summary": {
+    "winner_name": "Fixed 1280px",
+    "winner_f1": 0.5189243027888446,
+    "winner_fps": 2.706359945872801,
+    "pareto_winner_name": "Conditional 640->832 (Small-Aware k=1)",
+    "pareto_winner_f1": 0.49372613202400434,
+    "pareto_winner_fps": 13.130036599977018
+  },
+  "cascade_summary": {
+    "best_full_frame": "Approach A: Full-Frame Cascade (640 -> 832px)",
+    "best_f1": 0.493358633776091,
+    "best_fps": 13.115506627429442,
+    "crop_refinement_status": "FALSIFIED_NEGATIVE_RESULT (FP explosion +190%, F1=0.3835)"
+  },
+  "false_alarm_summary": {
+    "best_strategy": "Strategy 3: Cross-Resolution Spatial Confirmation",
+    "best_f1": 0.46566826787228033,
+    "fp_reduction": 16
+  }
+}

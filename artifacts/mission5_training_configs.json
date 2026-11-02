@@ -1,0 +1,47 @@
+{
+  "exp_a1_frozen": {
+    "name": "dawn_frozen_backbone",
+    "description": "Freeze layers 0..9 (backbone), train neck + detect head",
+    "base_weights": "yolov8n.pt",
+    "freeze": 10,
+    "lr0": 0.001,
+    "epochs": 5,
+    "batch": 8,
+    "imgsz": 640,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0005,
+    "seed": 20261101,
+    "device": "cpu",
+    "train_dataset": "DAWN Stratified 200 (Group A train)"
+  },
+  "exp_a2_partial": {
+    "name": "dawn_partial_backbone",
+    "description": "Freeze layers 0..4 (shallow backbone), train deep backbone + neck + head",
+    "base_weights": "yolov8n.pt",
+    "freeze": 5,
+    "lr0": 0.001,
+    "epochs": 5,
+    "batch": 8,
+    "imgsz": 640,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0005,
+    "seed": 20261101,
+    "device": "cpu",
+    "train_dataset": "DAWN Stratified 200 (Group A train)"
+  },
+  "exp_a3_full": {
+    "name": "dawn_full_finetuning",
+    "description": "Unfreeze all layers (freeze=0), lower learning rate",
+    "base_weights": "yolov8n.pt",
+    "freeze": 0,
+    "lr0": 0.0005,
+    "epochs": 5,
+    "batch": 8,
+    "imgsz": 640,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0005,
+    "seed": 20261101,
+    "device": "cpu",
+    "train_dataset": "DAWN Stratified 200 (Group A train)"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "mission": "Mission 9",
+  "bootstrap_type": "Paired Circular Temporal Block Bootstrap",
+  "block_size_frames": 20,
+  "block_duration_seconds": 4.0,
+  "iterations": 1000,
+  "dual_seeds": [
+    42,
+    9999
+  ],
+  "total_test_frames": 811,
+  "comparisons": {
+    "weatherguard_vs_static640": {
+      "comparison": "weatherguard_temporal vs static_yolov8n_640",
+      "delta_f1_mean": -0.0115,
+      "delta_f1_95ci": [
+        -0.0309,
+        0.0075
+      ],
+      "delta_small_f1_mean": 0.0643,
+      "delta_small_f1_95ci": [
+        0.0396,
+        0.0888
+      ],
+      "p_value_raw": 0.123,
+      "p_value_formatted": "0.1230",
+      "statistically_significant": false
+    },
+    "policy5a_vs_static640": {
+      "comparison": "policy_5a_frame_independent vs static_yolov8n_640",
+      "delta_f1_mean": 0.0241,
+      "delta_f1_95ci": [
+        0.0155,
+        0.0321
+      ],
+      "delta_small_f1_mean": 0.057,
+      "delta_small_f1_95ci": [
+        0.0344,
+        0.0803
+      ],
+      "p_value_raw": 0.0,
+      "p_value_formatted": "< 0.001",
+      "statistically_significant": true
+    },
+    "static832_vs_static640": {
+      "comparison": "static_yolov8n_832 vs static_yolov8n_640",
+      "delta_f1_mean": 0.0387,
+      "delta_f1_95ci": [
+        0.0306,
+        0.0468
+      ],
+      "delta_small_f1_mean": 0.0707,
+      "delta_small_f1_95ci": [
+        0.0467,
+        0.0943
+      ],
+      "p_value_raw": 0.0,
+      "p_value_formatted": "< 0.001",
+      "statistically_significant": true
+    },
+    "weatherguard_vs_policy5a": {
+      "comparison": "weatherguard_temporal vs policy_5a_frame_independent",
+      "delta_f1_mean": -0.0356,
+      "delta_f1_95ci": [
+        -0.0564,
+        -0.0183
+      ],
+      "delta_small_f1_mean": 0.0073,
+      "delta_small_f1_95ci": [
+        -0.0102,
+        0.0229
+      ],
+      "p_value_raw": 0.0,
+      "p_value_formatted": "< 0.001",
+      "statistically_significant": true
+    }
+  }
+}
