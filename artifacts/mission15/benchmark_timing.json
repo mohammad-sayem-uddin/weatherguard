@@ -1,0 +1,80 @@
+{
+  "hardware_environment": {
+    "processor": "Apple M1 (8 cores: 4 Firestorm @ 3.2 GHz + 4 Icestorm @ 2.06 GHz)",
+    "memory": "8 GB Unified Memory",
+    "operating_system": "macOS 26.6.2 (macOS-26.6.2-arm64-arm-64bit)",
+    "precision": "FP32 (CPU-only, zero GPU / Neural Engine)",
+    "worker_threads": 7
+  },
+  "model_loading": {
+    "model_load_ms": 76.18,
+    "warmup_frames": 10
+  },
+  "stage_micro_benchmarks": {
+    "base_yolo640": {
+      "mean": 37.56,
+      "median": 32.85,
+      "p90": 45.96,
+      "p95": 58.53,
+      "fps": 26.63
+    },
+    "base_yolo832": {
+      "mean": 67.59,
+      "median": 61.95,
+      "p90": 96.48,
+      "p95": 104.35,
+      "fps": 14.8
+    },
+    "temporal_evidence_accumulator": {
+      "mean": 27.36,
+      "median": 22.74,
+      "p90": 33.99,
+      "p95": 47.26,
+      "fps": 36.55
+    },
+    "adaptive_horizon_anchor": {
+      "mean": 17.31,
+      "median": 14.99,
+      "p90": 24.53,
+      "p95": 27.98,
+      "fps": 57.76
+    },
+    "single_crop_inference_448": {
+      "mean": 31.23,
+      "median": 29.08,
+      "p90": 34.87,
+      "p95": 46.57,
+      "fps": 32.02
+    },
+    "two_tier_cross_scale_nms": {
+      "mean": 0.03,
+      "median": 0.03,
+      "p90": 0.03,
+      "p95": 0.03,
+      "fps": 33019.79
+    }
+  },
+  "end_to_end_operational_pipeline": {
+    "policy_k_k2": {
+      "mean": 132.01,
+      "median": 125.22,
+      "p90": 144.58,
+      "p95": 168.3,
+      "fps": 7.58
+    }
+  },
+  "memory_profile": {
+    "start_rss_mb": 161.16,
+    "end_rss_mb": 163.58,
+    "delta_rss_mb": 2.42,
+    "peak_rss_mb": 163.58,
+    "unified_memory_usage_pct": 2.0,
+    "memory_leak_detected": false
+  },
+  "coreml_ane_feasibility": {
+    "evaluated": true,
+    "coremltools_status": "Available via python coremltools compiler",
+    "ane_acceleration_potential": "Estimated 2.5-3.0x speedup for 448x448 crop passes",
+    "current_production_mode": "Pure CPU-only FP32 for maximum hardware portability without CoreML compilation overhead"
+  }
+}
