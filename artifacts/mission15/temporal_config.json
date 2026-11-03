@@ -1,0 +1,53 @@
+{
+  "mission": "Mission 15 \u2014 Temporal Evidence Accumulation",
+  "selected_default_config": {
+    "memory_window_T": 5,
+    "decay_factor": 0.75,
+    "motion_compensation": true,
+    "min_evidence_score": 0.22,
+    "ghost_suppression": true,
+    "ghost_decay_multiplier": 0.35,
+    "min_candidate_size": 6,
+    "max_candidate_size": 36,
+    "max_proposals": 15,
+    "downscale_factor": 2
+  },
+  "window_sweep_results": {
+    "T_3": {
+      "T": 3,
+      "alpha": 0.67,
+      "mean_ms_per_frame": 19.01,
+      "fps": 52.6,
+      "total_proposals": 1485,
+      "proposals_per_frame": 14.85,
+      "mean_proposal_score": 0.7307
+    },
+    "T_5": {
+      "T": 5,
+      "alpha": 0.75,
+      "mean_ms_per_frame": 17.34,
+      "fps": 57.67,
+      "total_proposals": 1485,
+      "proposals_per_frame": 14.85,
+      "mean_proposal_score": 0.6851
+    },
+    "T_8": {
+      "T": 8,
+      "alpha": 0.85,
+      "mean_ms_per_frame": 16.96,
+      "fps": 58.95,
+      "total_proposals": 1485,
+      "proposals_per_frame": 14.85,
+      "mean_proposal_score": 0.5988
+    },
+    "T_10": {
+      "T": 10,
+      "alpha": 0.9,
+      "mean_ms_per_frame": 16.64,
+      "fps": 60.09,
+      "total_proposals": 1390,
+      "proposals_per_frame": 13.9,
+      "mean_proposal_score": 0.5419
+    }
+  }
+}
