@@ -1,0 +1,236 @@
+{
+  "mission": "Mission 15 \u2014 Temporal Evidence Accumulation & Horizon-Anchored Candidate Generation",
+  "created_at": "2026-11-03T12:44:02Z",
+  "description": "Completely unseen BDD100K driving sequences with zero overlap with Missions 9-14",
+  "split_configuration_hash": "0459bd7fa0fe7ed0",
+  "cohorts": {
+    "development_cohort": {
+      "num_sequences": 2,
+      "total_frames": 405,
+      "total_boxes": 3236,
+      "total_small_boxes": 927,
+      "total_ultra_small_boxes": 318,
+      "sequences": [
+        {
+          "sequence_id": "b1d0091f-75824d0d",
+          "title": "Dev Seq 1 (Rainy Daytime Highway)",
+          "weather": "rainy",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "description": "Rainy daytime highway with water spray, wet windshield, and distant vehicles",
+          "frames": 202,
+          "total_boxes": 1995,
+          "ultra_small_boxes": 120,
+          "small_boxes": 620,
+          "medium_boxes": 736,
+          "large_boxes": 519,
+          "categories": {
+            "truck": 400,
+            "car": 1595
+          }
+        },
+        {
+          "sequence_id": "b1e6efc0-2552cc5d",
+          "title": "Dev Seq 2 (Snowy Daytime Highway)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "description": "High-speed snowy daytime highway with road slush, low contrast, and high ultra-small count",
+          "frames": 203,
+          "total_boxes": 1241,
+          "ultra_small_boxes": 198,
+          "small_boxes": 307,
+          "medium_boxes": 405,
+          "large_boxes": 331,
+          "categories": {
+            "car": 1051,
+            "other vehicle": 80,
+            "bus": 7,
+            "truck": 73,
+            "trailer": 27,
+            "pedestrian": 3
+          }
+        }
+      ]
+    },
+    "validation_cohort": {
+      "num_sequences": 2,
+      "total_frames": 406,
+      "total_boxes": 3762,
+      "total_small_boxes": 1206,
+      "total_ultra_small_boxes": 919,
+      "sequences": [
+        {
+          "sequence_id": "b255cd6c-5ccba454",
+          "title": "Val Seq 1 (Snowy Night Highway)",
+          "weather": "snowy",
+          "timeofday": "night",
+          "scene": "highway",
+          "description": "Snowy night highway with headlight glare and reflective snowbanks",
+          "frames": 203,
+          "total_boxes": 1073,
+          "ultra_small_boxes": 187,
+          "small_boxes": 251,
+          "medium_boxes": 423,
+          "large_boxes": 212,
+          "categories": {
+            "car": 1073
+          }
+        },
+        {
+          "sequence_id": "b2408e45-984ba5aa",
+          "title": "Val Seq 2 (Overcast Daytime Highway)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "description": "Overcast daytime highway with dense traffic and distant horizon vanishing point",
+          "frames": 203,
+          "total_boxes": 2689,
+          "ultra_small_boxes": 732,
+          "small_boxes": 955,
+          "medium_boxes": 716,
+          "large_boxes": 286,
+          "categories": {
+            "car": 2406,
+            "other vehicle": 173,
+            "truck": 41,
+            "rider": 49,
+            "train": 20
+          }
+        }
+      ]
+    },
+    "locked_test_cohort": {
+      "num_sequences": 6,
+      "total_frames": 1214,
+      "total_boxes": 14025,
+      "total_small_boxes": 4508,
+      "total_ultra_small_boxes": 1422,
+      "sequences": [
+        {
+          "sequence_id": "b2036451-aa924fd1",
+          "title": "Test Seq 1 (Rainy Dawn/Dusk Residential)",
+          "weather": "rainy",
+          "timeofday": "dawn/dusk",
+          "scene": "residential",
+          "description": "Low-light rainy twilight driving with wet road reflections and parked cars",
+          "frames": 202,
+          "total_boxes": 2254,
+          "ultra_small_boxes": 55,
+          "small_boxes": 478,
+          "medium_boxes": 1219,
+          "large_boxes": 502,
+          "categories": {
+            "car": 2121,
+            "truck": 85,
+            "pedestrian": 14,
+            "bus": 34
+          }
+        },
+        {
+          "sequence_id": "b20eae11-6817ba7a",
+          "title": "Test Seq 2 (Rainy Night City Street)",
+          "weather": "rainy",
+          "timeofday": "night",
+          "scene": "city street",
+          "description": "Rainy night urban traffic with streetlamp glare, headlight blooming, and wet asphalt",
+          "frames": 202,
+          "total_boxes": 1818,
+          "ultra_small_boxes": 16,
+          "small_boxes": 474,
+          "medium_boxes": 895,
+          "large_boxes": 433,
+          "categories": {
+            "car": 1369,
+            "truck": 30,
+            "bus": 31,
+            "pedestrian": 156,
+            "bicycle": 116,
+            "rider": 116
+          }
+        },
+        {
+          "sequence_id": "b242929f-3051abca",
+          "title": "Test Seq 3 (Snowy Daytime Highway)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "description": "Snowy daytime highway with moderate vehicle flow and distant oncoming traffic",
+          "frames": 202,
+          "total_boxes": 2140,
+          "ultra_small_boxes": 154,
+          "small_boxes": 632,
+          "medium_boxes": 720,
+          "large_boxes": 634,
+          "categories": {
+            "truck": 357,
+            "car": 1783
+          }
+        },
+        {
+          "sequence_id": "b1d0a191-5490450b",
+          "title": "Test Seq 4 (Snowy Daytime Residential)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "scene": "residential",
+          "description": "Snowy daytime residential street with roadside snow piles and pedestrian activity",
+          "frames": 204,
+          "total_boxes": 2251,
+          "ultra_small_boxes": 101,
+          "small_boxes": 915,
+          "medium_boxes": 734,
+          "large_boxes": 501,
+          "categories": {
+            "car": 1921,
+            "pedestrian": 238,
+            "bus": 32,
+            "other vehicle": 11,
+            "truck": 49
+          }
+        },
+        {
+          "sequence_id": "b20b9c19-91e01a50",
+          "title": "Test Seq 5 (Overcast Daytime Highway)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "description": "Low-contrast overcast daytime highway with high-density distant traffic",
+          "frames": 202,
+          "total_boxes": 2359,
+          "ultra_small_boxes": 600,
+          "small_boxes": 1062,
+          "medium_boxes": 501,
+          "large_boxes": 196,
+          "categories": {
+            "car": 2181,
+            "truck": 166,
+            "bus": 12
+          }
+        },
+        {
+          "sequence_id": "b1f6c103-b00e8aad",
+          "title": "Test Seq 6 (Clear Night City Street)",
+          "weather": "clear",
+          "timeofday": "night",
+          "scene": "city street",
+          "description": "Clear night urban street with multiple vehicles, tail lights, and distant horizon clutter",
+          "frames": 202,
+          "total_boxes": 3203,
+          "ultra_small_boxes": 496,
+          "small_boxes": 947,
+          "medium_boxes": 1483,
+          "large_boxes": 277,
+          "categories": {
+            "car": 3126,
+            "pedestrian": 77
+          }
+        }
+      ]
+    }
+  },
+  "full_inventory_summary": {
+    "total_val_sequences_inspected": 200,
+    "historical_excluded": 22,
+    "unused_available": 178
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "mission": "Mission 15 \u2014 Temporal Evidence Accumulation & Horizon-Anchored Candidate Generation",
+  "created_at": "2026-11-03T12:44:02Z",
+  "policy": "Strict sequence-level isolation. Zero sequence leakage across missions 9-14.",
+  "total_historical_sequences_excluded": 22,
+  "exclusions": [
+    {
+      "sequence_id": "b1c66a42-6f7d68ca",
+      "reason": "Evaluated in prior Mission 14 as test sequence",
+      "historical_mission": "Mission 14",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 3241
+    },
+    {
+      "sequence_id": "b1ca2e5d-84cf9134",
+      "reason": "Evaluated in prior Mission 9 as test sequence",
+      "historical_mission": "Mission 9",
+      "historical_role": "test",
+      "frames": 203,
+      "total_boxes": 4564
+    },
+    {
+      "sequence_id": "b1d0a191-03dcecc2",
+      "reason": "Evaluated in prior Mission 9 as test sequence",
+      "historical_mission": "Mission 9",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 3752
+    },
+    {
+      "sequence_id": "b1d0a191-06deb55d",
+      "reason": "Evaluated in prior Missions 10-13 as test sequence",
+      "historical_mission": "Missions 10-13",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 3610
+    },
+    {
+      "sequence_id": "b1d0a191-28f0e779",
+      "reason": "Evaluated in prior Mission 14 as test sequence",
+      "historical_mission": "Mission 14",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 2447
+    },
+    {
+      "sequence_id": "b1d0a191-65deaeef",
+      "reason": "Evaluated in prior Mission 9 as dev sequence",
+      "historical_mission": "Mission 9",
+      "historical_role": "dev",
+      "frames": 202,
+      "total_boxes": 4339
+    },
+    {
+      "sequence_id": "b1d0a191-de8948f6",
+      "reason": "Evaluated in prior Mission 14 as test sequence",
+      "historical_mission": "Mission 14",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 3321
+    },
+    {
+      "sequence_id": "b1d968b9-ce42734f",
+      "reason": "Evaluated in prior Mission 9 as test sequence",
+      "historical_mission": "Mission 9",
+      "historical_role": "test",
+      "frames": 203,
+      "total_boxes": 4138
+    },
+    {
+      "sequence_id": "b1e1a7b8-65ec7612",
+      "reason": "Evaluated in prior Missions 10-13 as test sequence",
+      "historical_mission": "Missions 10-13",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 2485
+    },
+    {
+      "sequence_id": "b1e1a7b8-b397c445",
+      "reason": "Evaluated in prior Mission 14 as dev sequence",
+      "historical_mission": "Mission 14",
+      "historical_role": "dev",
+      "frames": 202,
+      "total_boxes": 2173
+    },
+    {
+      "sequence_id": "b1e9ee0e-67e26f2e",
+      "reason": "Evaluated in prior Mission 9 as dev sequence",
+      "historical_mission": "Mission 9",
+      "historical_role": "dev",
+      "frames": 203,
+      "total_boxes": 8719
+    },
+    {
+      "sequence_id": "b1f4491b-cf446195",
+      "reason": "Evaluated in prior Mission 14 as test sequence",
+      "historical_mission": "Mission 14",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 3840
+    },
+    {
+      "sequence_id": "b204a5c1-064b0040",
+      "reason": "Evaluated in prior Mission 14 as dev sequence",
+      "historical_mission": "Mission 14",
+      "historical_role": "dev",
+      "frames": 202,
+      "total_boxes": 2567
+    },
+    {
+      "sequence_id": "b2064e61-2beadd45",
+      "reason": "Evaluated in prior Mission 9 as test sequence",
+      "historical_mission": "Mission 9",
+      "historical_role": "test",
+      "frames": 203,
+      "total_boxes": 2857
+    },
+    {
+      "sequence_id": "b2208b0f-2796a692",
+      "reason": "Evaluated in prior Mission 9 as dev sequence",
+      "historical_mission": "Mission 9",
+      "historical_role": "dev",
+      "frames": 203,
+      "total_boxes": 5459
+    },
+    {
+      "sequence_id": "b23c9e00-b425de1b",
+      "reason": "Evaluated in prior Missions 10-13 as test sequence",
+      "historical_mission": "Missions 10-13",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 4430
+    },
+    {
+      "sequence_id": "b23f7012-fab06dac",
+      "reason": "Evaluated in prior Mission 14 as test sequence",
+      "historical_mission": "Mission 14",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 2199
+    },
+    {
+      "sequence_id": "b24071b8-b3ee1196",
+      "reason": "Evaluated in prior Mission 9 as dev sequence",
+      "historical_mission": "Mission 9",
+      "historical_role": "dev",
+      "frames": 202,
+      "total_boxes": 5828
+    },
+    {
+      "sequence_id": "b24380ab-6dbeb908",
+      "reason": "Evaluated in prior Missions 10-13 as dev sequence",
+      "historical_mission": "Missions 10-13",
+      "historical_role": "dev",
+      "frames": 202,
+      "total_boxes": 2786
+    },
+    {
+      "sequence_id": "b24d283f-33783d1b",
+      "reason": "Evaluated in prior Missions 10-13 as test sequence",
+      "historical_mission": "Missions 10-13",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 4323
+    },
+    {
+      "sequence_id": "b2505382-de5238f0",
+      "reason": "Evaluated in prior Mission 14 as test sequence",
+      "historical_mission": "Mission 14",
+      "historical_role": "test",
+      "frames": 202,
+      "total_boxes": 3524
+    },
+    {
+      "sequence_id": "b255cd6c-2f889586",
+      "reason": "Evaluated in prior Missions 10-13 as dev sequence",
+      "historical_mission": "Missions 10-13",
+      "historical_role": "dev",
+      "frames": 203,
+      "total_boxes": 3625
+    }
+  ]
+}
