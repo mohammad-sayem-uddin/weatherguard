@@ -1,0 +1,96 @@
+{
+  "mission": "Mission 15 \u2014 Temporal Failure Analysis & Diagnostic Taxonomy",
+  "total_eval_frames": 811,
+  "total_ground_truth_targets": 6998,
+  "total_missed_targets": 3778,
+  "overall_miss_rate_pct": 53.99,
+  "taxonomy": {
+    "TF-01_ghost_proposal_persistence": {
+      "name": "Ghost Proposal Persistence",
+      "count": 90,
+      "pct_of_misses": 2.38,
+      "ultra_small_count": 36,
+      "mechanism": "Candidate proposal lingering after target vehicle has turned or departed"
+    },
+    "TF-02_camera_ego_motion_smear": {
+      "name": "Camera Ego-Motion Smear",
+      "count": 321,
+      "pct_of_misses": 8.5,
+      "ultra_small_count": 208,
+      "mechanism": "Subpixel phase correlation error during road bumps, potholes, or rapid turns"
+    },
+    "TF-03_moving_dynamic_background": {
+      "name": "Moving Dynamic Background",
+      "count": 170,
+      "pct_of_misses": 4.5,
+      "ultra_small_count": 34,
+      "mechanism": "Windshield wiper blade sweep or roadside trees in heavy storm creating false motion"
+    },
+    "TF-04_static_clutter_trapping": {
+      "name": "Static Clutter Trapping",
+      "count": 143,
+      "pct_of_misses": 3.79,
+      "ultra_small_count": 42,
+      "mechanism": "Guardrail posts, traffic cones, or road markings triggering candidate thresholds"
+    },
+    "TF-05_sudden_vehicle_cut_in": {
+      "name": "Sudden Vehicle Cut-in",
+      "count": 45,
+      "pct_of_misses": 1.19,
+      "ultra_small_count": 0,
+      "mechanism": "Overtaking vehicle entering frame with high lateral acceleration, violating linear history"
+    },
+    "TF-06_horizon_estimation_error": {
+      "name": "Horizon Estimation Error",
+      "count": 234,
+      "pct_of_misses": 6.19,
+      "ultra_small_count": 198,
+      "mechanism": "Steep road crest or hill causing road convergence to depart from adaptive horizon band"
+    },
+    "TF-07_weather_contrast_extinction": {
+      "name": "Weather Contrast Extinction",
+      "count": 827,
+      "pct_of_misses": 21.89,
+      "ultra_small_count": 454,
+      "mechanism": "Severe snow spray or heavy downpour reducing target signal below sensor SNR floor"
+    },
+    "TF-08_headlight_reflection_blooming": {
+      "name": "Headlight & Reflection Blooming",
+      "count": 60,
+      "pct_of_misses": 1.59,
+      "ultra_small_count": 21,
+      "mechanism": "Night oncoming high-beam saturation obscuring vehicle body geometry"
+    },
+    "TF-09_frame_dropping_discontinuity": {
+      "name": "Frame Dropping Discontinuity",
+      "count": 0,
+      "pct_of_misses": 0.0,
+      "ultra_small_count": 0,
+      "mechanism": "Timestamp discontinuity breaking multi-frame trajectory correlation"
+    },
+    "TF-10_cross_sequence_contamination": {
+      "name": "Cross-Sequence Contamination",
+      "count": 0,
+      "pct_of_misses": 0.0,
+      "ultra_small_count": 0,
+      "mechanism": "State leakage across video sequence boundaries (verified 0.0% by reset guard)"
+    },
+    "TF-11_edge_crop_budget_exhaustion": {
+      "name": "Edge Crop Budget Exhaustion",
+      "count": 1224,
+      "pct_of_misses": 32.4,
+      "ultra_small_count": 489,
+      "mechanism": "Valid candidate discovered, but crop budget (K=2) exhausted by higher-density clusters"
+    },
+    "TF-12_crop_classification_localization_miss": {
+      "name": "Crop Classification / Localization Miss",
+      "count": 664,
+      "pct_of_misses": 17.58,
+      "ultra_small_count": 232,
+      "mechanism": "High-resolution crop successfully placed, but detector failed to achieve IoU >= 0.50"
+    }
+  },
+  "candidate_rejection_audit": {
+    "below_admission_threshold": 807
+  }
+}
