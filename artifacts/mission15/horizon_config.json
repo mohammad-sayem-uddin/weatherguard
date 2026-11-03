@@ -1,0 +1,30 @@
+{
+  "mission": "Mission 15 \u2014 Adaptive Vanishing-Point and Horizon Anchor",
+  "selected_default_config": {
+    "horizon_band_half_height": 45,
+    "min_line_length": 35,
+    "max_line_gap": 15,
+    "canny_thresh1": 50,
+    "canny_thresh2": 150,
+    "ema_beta": 0.85,
+    "min_candidate_size": 6,
+    "max_candidate_size": 32,
+    "max_proposals": 10,
+    "default_vp": [
+      640.0,
+      360.0
+    ]
+  },
+  "benchmark_results": {
+    "sequence_id": "b1d0091f-75824d0d",
+    "num_frames": 100,
+    "mean_ms_per_frame": 11.21,
+    "fps": 89.18,
+    "total_proposals": 962,
+    "proposals_per_frame": 9.62,
+    "mean_vanishing_point": [
+      613.4,
+      384.4
+    ]
+  }
+}
