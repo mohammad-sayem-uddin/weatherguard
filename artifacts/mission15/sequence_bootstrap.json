@@ -1,0 +1,99 @@
+{
+  "mission": "Mission 15 \u2014 Paired Sequence Bootstrap Analysis",
+  "num_bootstrap_replicates": 1000,
+  "sample_size_sequences": 6,
+  "total_evaluation_frames": 1214,
+  "total_ground_truth_boxes": 14025,
+  "tests": {
+    "Policy_K_vs_YOLO640": {
+      "comparison": "Policy_K_vs_YOLO640",
+      "cfg_a": "D_Policy_K",
+      "cfg_b": "A_YOLO640",
+      "small_f1": {
+        "point_estimate_delta": 0.1598,
+        "ci_95": [
+          0.1308,
+          0.1929
+        ],
+        "p_value": 0.0,
+        "sequence_win_rate": "6/6 (wins/losses/ties: 6/0/0)"
+      },
+      "ultra_small_recall": {
+        "point_estimate_delta": 0.1695,
+        "ci_95": [
+          0.0329,
+          0.306
+        ],
+        "p_value": 0.0
+      },
+      "overall_f1": {
+        "point_estimate_delta": 0.0493,
+        "ci_95": [
+          0.0226,
+          0.082
+        ],
+        "p_value": 0.0
+      }
+    },
+    "Policy_K_vs_Policy_J": {
+      "comparison": "Policy_K_vs_Policy_J",
+      "cfg_a": "D_Policy_K",
+      "cfg_b": "C_Policy_J",
+      "small_f1": {
+        "point_estimate_delta": 0.0021,
+        "ci_95": [
+          -0.0303,
+          0.0422
+        ],
+        "p_value": 0.816,
+        "sequence_win_rate": "4/6 (wins/losses/ties: 4/2/0)"
+      },
+      "ultra_small_recall": {
+        "point_estimate_delta": -0.0042,
+        "ci_95": [
+          -0.0139,
+          0.0036
+        ],
+        "p_value": 0.29
+      },
+      "overall_f1": {
+        "point_estimate_delta": 0.0125,
+        "ci_95": [
+          0.0009,
+          0.0226
+        ],
+        "p_value": 0.028
+      }
+    },
+    "Policy_K_vs_YOLO832": {
+      "comparison": "Policy_K_vs_YOLO832",
+      "cfg_a": "D_Policy_K",
+      "cfg_b": "B_YOLO832",
+      "small_f1": {
+        "point_estimate_delta": 0.0693,
+        "ci_95": [
+          0.0559,
+          0.0883
+        ],
+        "p_value": 0.0,
+        "sequence_win_rate": "6/6 (wins/losses/ties: 6/0/0)"
+      },
+      "ultra_small_recall": {
+        "point_estimate_delta": 0.1357,
+        "ci_95": [
+          0.0235,
+          0.2396
+        ],
+        "p_value": 0.0
+      },
+      "overall_f1": {
+        "point_estimate_delta": 0.0047,
+        "ci_95": [
+          -0.0191,
+          0.0301
+        ],
+        "p_value": 0.686
+      }
+    }
+  }
+}
