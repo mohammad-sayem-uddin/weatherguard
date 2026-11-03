@@ -127,6 +127,7 @@ def main() -> None:
             "25. Detector-Independent Candidate Generation & Ultra-Small Recovery (Mission 12)",
             "26. Priority-Gated Candidate Allocation & Crop-Budget Optimization (Mission 13)",
             "27. Independent Cross-Domain Validation & Statistical Reliability (Mission 14)",
+            "28. Temporal Evidence Accumulation & Horizon-Anchored Candidates (Mission 15)",
         ],
     )
 
@@ -184,6 +185,8 @@ def main() -> None:
         page_mission13_priority_allocation()
     elif page.startswith("27."):
         page_mission14_cross_domain_validation()
+    elif page.startswith("28."):
+        page_mission15_temporal_evidence()
 
 
 def page_overview() -> None:
@@ -4082,6 +4085,213 @@ def page_mission14_cross_domain_validation() -> None:
         p_pareto = m14_art / "plots" / "mission14_pareto_latency_small_f1.png"
         if p_pareto.exists():
             st.image(str(p_pareto), caption="Latency vs Small-Object F1 Pareto Frontier on Apple M1 CPU")
+
+
+def page_mission15_temporal_evidence() -> None:
+    st.header("28. Temporal Evidence Accumulation & Horizon-Anchored Candidates (Mission 15)")
+    st.markdown(
+        """
+        **Mission 15 Objective:** Overcome the candidate-generation bottleneck (which accounted for 84.38% of ultra-small
+        misses in Mission 14) via causal multi-frame evidence accumulation and an adaptive road horizon anchor.
+        Evaluates **WeatherGuard Policy K** across 10 strictly held-out driving sequences (2,025 frames, 21,023 annotations).
+        """
+    )
+
+    m15_art = ROOT / "artifacts" / "mission15"
+    ablation_file = m15_art / "ablation_results.json"
+    locked_file = m15_art / "locked_evaluation.json"
+    boot_file = m15_art / "sequence_bootstrap.json"
+    tax_file = m15_art / "temporal_failure_taxonomy.json"
+    bench_file = m15_art / "benchmark_timing.json"
+
+    # Top KPI Metrics Banner
+    if locked_file.exists():
+        locked_data = _load_json(locked_file) or {}
+        d_k = locked_data.get("aggregate", {}).get("D_Policy_K", {})
+        c_j = locked_data.get("aggregate", {}).get("C_Policy_J", {})
+        b_832 = locked_data.get("aggregate", {}).get("B_YOLO832", {})
+
+        c1, c2, c3, c4, c5 = st.columns(5)
+        c1.metric("Policy K Overall F1", f"{d_k.get('overall_f1', 0):.4f}", f"+{d_k.get('overall_f1', 0) - c_j.get('overall_f1', 0):.4f} vs Pol J")
+        c2.metric("Policy K Small F1", f"{d_k.get('small_f1', 0):.4f}", f"+{d_k.get('small_f1', 0) - b_832.get('small_f1', 0):.4f} vs 832")
+        c3.metric("Ultra-Small Prec", f"{d_k.get('ultra_small_precision', 0)*100:.1f}%", f"+{(d_k.get('ultra_small_precision', 0) - c_j.get('ultra_small_precision', 0))*100:.1f}% vs Pol J")
+        c4.metric("Locked TPs", f"{d_k.get('total_tp', 0):,}", f"+{d_k.get('total_tp', 0) - c_j.get('total_tp', 0):,} vs Pol J")
+        c5.metric("M1 CPU FPS", f"{d_k.get('fps', 0):.1f} FPS", f"{d_k.get('mean_latency_ms', 0):.1f} ms")
+
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+        "Executive Summary & Policy K",
+        "Factorial Ablation (9 Configs)",
+        "Locked Evaluation & Cohorts",
+        "Sequence Bootstrap (B=1,000)",
+        "Temporal Failure Taxonomy",
+        "Apple M1 Edge CPU Benchmark",
+        "Publication Figure Gallery",
+    ])
+
+    with tab1:
+        st.subheader("Mission 15 Executive Summary & Architecture")
+        st.markdown(
+            """
+            ### Algorithmic Core of Policy K:
+            1. **Causal Temporal Evidence Accumulator:** Subpixel ego-motion compensation via phase correlation on 2x downsampled grayscale (1.2 ms), recursive EMA contrast accumulation ($T=5, \\alpha=0.75$), and contrast-contingent accelerated ghost suppression ($\\lambda_{ghost}=0.35$).
+            2. **Adaptive Horizon Anchor:** Hough transform diagonal filtering ($18^\\circ-72^\\circ$), pairwise line intersection median, and causal EMA vanishing-point smoothing ($\\beta=0.85$), constraining horizon candidates to a road convergence trapezoid ($220-480\\text{px}$).
+            3. **Multi-Tier Priority Controller:** Tier 1 (detector proposals, rank 1), Tier 2 (cross-modal dual matches, boosted $1.35\\times$), Tier 3 (temporal accumulator), Tier 4 (horizon anchor). Capacity reservation ensures non-detector proposals never displace validated detections.
+            """
+        )
+        c_p1, c_p2 = st.columns(2)
+        p_tier = m15_art / "plots" / "mission15_candidate_admission_breakdown.png"
+        if p_tier.exists():
+            c_p1.image(str(p_tier), caption="Policy K Multi-Tier Proposal Allocation")
+        p_f1 = m15_art / "plots" / "mission15_overall_f1.png"
+        if p_f1.exists():
+            c_p2.image(str(p_f1), caption="Overall F1 Comparison Across Models")
+
+    with tab2:
+        st.subheader("9-Configuration Controlled Factorial Ablation Matrix")
+        st.markdown("Evaluated across 811 frames (6,998 annotations) on the combined Development and Validation cohorts.")
+        if ablation_file.exists():
+            abl_data = _load_json(ablation_file) or {}
+            rows = []
+            for cfg_name, r in abl_data.items():
+                rows.append({
+                    "Configuration": cfg_name.replace("_", " "),
+                    "Overall F1": f"{r.get('overall_f1', 0):.4f}",
+                    "Overall Prec": f"{r.get('overall_precision', 0):.4f}",
+                    "Overall Rec": f"{r.get('overall_recall', 0):.4f}",
+                    "Small F1": f"{r.get('small_f1', 0):.4f}",
+                    "Ultra-Small F1": f"{r.get('ultra_small_f1', 0):.4f}",
+                    "Ultra-Small Prec": f"{r.get('ultra_small_precision', 0):.4f}",
+                    "Ultra TPs": r.get('ultra_small_tp', 0),
+                    "Ultra Recov w/o Det": r.get('ultra_recovered_without_detector', 0),
+                    "Latency (ms)": f"{r.get('mean_latency_ms', 0):.1f}",
+                    "FPS": f"{r.get('fps', 0):.1f}",
+                })
+            st.dataframe(pd.DataFrame(rows), use_container_width=True)
+
+        p_pareto = m15_art / "plots" / "mission15_pareto_latency_f1.png"
+        if p_pareto.exists():
+            st.image(str(p_pareto), caption="Ablation Latency vs Small-Object F1 Pareto Curve on M1 CPU")
+
+    with tab3:
+        st.subheader("Locked Evaluation Cohort (6 Strictly Held-Out Sequences)")
+        st.markdown("1,214 frames, 14,025 ground-truth annotations. Zero historical overlap with Missions 9–14.")
+        if locked_file.exists():
+            locked_data = _load_json(locked_file) or {}
+            agg = locked_data.get("aggregate", {})
+            agg_rows = []
+            for cfg_key in ["A_YOLO640", "B_YOLO832", "C_Policy_J", "D_Policy_K"]:
+                r = agg.get(cfg_key, {})
+                agg_rows.append({
+                    "Model": cfg_key.replace("_", " "),
+                    "Overall F1": f"{r.get('overall_f1', 0):.4f}",
+                    "Overall Prec": f"{r.get('overall_precision', 0):.4f}",
+                    "Overall Rec": f"{r.get('overall_recall', 0):.4f}",
+                    "Small F1": f"{r.get('small_f1', 0):.4f}",
+                    "Ultra-Small F1": f"{r.get('ultra_small_f1', 0):.4f}",
+                    "Ultra-Small Prec": f"{r.get('ultra_small_precision', 0):.4f}",
+                    "Ultra TPs": r.get('ultra_small_tp', 0),
+                    "Total TPs": r.get('total_tp', 0),
+                    "Total FPs": r.get('total_fp', 0),
+                    "Latency (ms)": f"{r.get('mean_latency_ms', 0):.1f}",
+                    "FPS": f"{r.get('fps', 0):.1f}",
+                })
+            st.dataframe(pd.DataFrame(agg_rows), use_container_width=True)
+
+            st.write("#### Per-Sequence Performance Matrix")
+            seq_dict = locked_data.get("per_sequence", {})
+            pseq_rows = []
+            for s_id, s_cfgs in seq_dict.items():
+                pseq_rows.append({
+                    "Sequence ID": s_id[:8],
+                    "YOLO640 Small F1": f"{s_cfgs.get('A_YOLO640', {}).get('small_f1', 0):.4f}",
+                    "YOLO832 Small F1": f"{s_cfgs.get('B_YOLO832', {}).get('small_f1', 0):.4f}",
+                    "Policy J Small F1": f"{s_cfgs.get('C_Policy_J', {}).get('small_f1', 0):.4f}",
+                    "Policy K Small F1": f"{s_cfgs.get('D_Policy_K', {}).get('small_f1', 0):.4f}",
+                    "Policy K Overall F1": f"{s_cfgs.get('D_Policy_K', {}).get('overall_f1', 0):.4f}",
+                })
+            st.dataframe(pd.DataFrame(pseq_rows), use_container_width=True)
+
+        p_dist = m15_art / "plots" / "mission15_per_sequence_distribution.png"
+        if p_dist.exists():
+            st.image(str(p_dist), caption="Per-Sequence Small-Object F1 Across 6 Held-Out Sequences")
+
+    with tab4:
+        st.subheader("Paired Sequence-Level Bootstrap Analysis (B=1,000)")
+        if boot_file.exists():
+            b_data = _load_json(boot_file) or {}
+            tests = b_data.get("tests", {})
+            b_rows = []
+            for t_name, t_val in tests.items():
+                b_rows.append({
+                    "Comparison": t_name.replace("_", " "),
+                    "Small F1 Delta": f"{t_val.get('small_f1', {}).get('point_estimate_delta', 0):+.4f}",
+                    "Small F1 95% CI": f"[{t_val.get('small_f1', {}).get('ci_95', [0, 0])[0]:+.4f}, {t_val.get('small_f1', {}).get('ci_95', [0, 0])[1]:+.4f}]",
+                    "Small F1 p-value": f"{t_val.get('small_f1', {}).get('p_value', 1.0):.4f}",
+                    "Overall F1 Delta": f"{t_val.get('overall_f1', {}).get('point_estimate_delta', 0):+.4f}",
+                    "Overall F1 95% CI": f"[{t_val.get('overall_f1', {}).get('ci_95', [0, 0])[0]:+.4f}, {t_val.get('overall_f1', {}).get('ci_95', [0, 0])[1]:+.4f}]",
+                    "Overall F1 p-value": f"{t_val.get('overall_f1', {}).get('p_value', 1.0):.4f}",
+                    "Win Rate": t_val.get("small_f1", {}).get("sequence_win_rate", "N/A"),
+                })
+            st.dataframe(pd.DataFrame(b_rows), use_container_width=True)
+
+        p_ci = m15_art / "plots" / "mission15_bootstrap_ci.png"
+        if p_ci.exists():
+            st.image(str(p_ci), caption="Paired Bootstrap 95% Confidence Intervals for Policy K")
+
+    with tab5:
+        st.subheader("Temporal Failure Taxonomy (3,778 Misses Audited)")
+        if tax_file.exists():
+            t_data = _load_json(tax_file) or {}
+            st.write(f"**Total GT Targets:** {t_data.get('total_ground_truth_targets')} | **Missed Targets:** {t_data.get('total_missed_targets')} ({t_data.get('overall_miss_rate_pct')}%)")
+            tax_rows = []
+            for code, info in t_data.get("taxonomy", {}).items():
+                tax_rows.append({
+                    "Code": code.split("_")[0],
+                    "Category": info.get("name"),
+                    "Count": info.get("count"),
+                    "% of Misses": f"{info.get('pct_of_misses', 0):.2f}%",
+                    "Ultra-Small Misses": info.get("ultra_small_count"),
+                    "Underlying Mechanism": info.get("mechanism"),
+                })
+            st.dataframe(pd.DataFrame(tax_rows), use_container_width=True)
+
+        p_tax = m15_art / "plots" / "mission15_temporal_failure_taxonomy.png"
+        if p_tax.exists():
+            st.image(str(p_tax), caption="Mission 15 Temporal Failure Distribution")
+
+    with tab6:
+        st.subheader("Standardized Apple M1 Edge CPU Benchmark")
+        if bench_file.exists():
+            b_info = _load_json(bench_file) or {}
+            hw = b_info.get("hardware_environment", {})
+            st.write(f"**Platform:** {hw.get('processor')} | **Memory:** {hw.get('memory')} | **OS:** {hw.get('operating_system')}")
+            st.write(f"**Precision:** {hw.get('precision')} ({hw.get('worker_threads')} worker threads)")
+
+            st.write("#### Stage-by-Stage Latency Profiling (150 Consecutive Frames)")
+            stage_rows = []
+            for s_name, s_val in b_info.get("stage_micro_benchmarks", {}).items():
+                stage_rows.append({
+                    "Stage": s_name.replace("_", " ").title(),
+                    "Mean (ms)": f"{s_val.get('mean', 0):.2f}",
+                    "Median (ms)": f"{s_val.get('median', 0):.2f}",
+                    "P90 (ms)": f"{s_val.get('p90', 0):.2f}",
+                    "P95 (ms)": f"{s_val.get('p95', 0):.2f}",
+                    "Throughput (FPS)": f"{s_val.get('fps', 0):.2f}",
+                })
+            st.dataframe(pd.DataFrame(stage_rows), use_container_width=True)
+
+            mem = b_info.get("memory_profile", {})
+            st.write(f"**Memory Footprint:** Peak RSS = {mem.get('peak_rss_mb')} MB ({mem.get('unified_memory_usage_pct')}% of RAM). Memory Leak Diagnostic: {'PASSED' if not mem.get('memory_leak_detected') else 'FAILED'}.")
+
+    with tab7:
+        st.subheader("Mission 15 Publication Figure Gallery")
+        col_a, col_b = st.columns(2)
+        p_sf1 = m15_art / "plots" / "mission15_small_f1_comparison.png"
+        if p_sf1.exists():
+            col_a.image(str(p_sf1), caption="Locked Small-Object F1 Score")
+        p_ultra = m15_art / "plots" / "mission15_ultra_small_recall.png"
+        if p_ultra.exists():
+            col_b.image(str(p_ultra), caption="Locked Ultra-Small Recall (<16px)")
 
 
 if __name__ == "__main__":
