@@ -1,0 +1,192 @@
+{
+  "mission": "Mission 14 \u2014 Independent Cross-Domain Validation",
+  "created_at": "2026-11-03T11:03:26Z",
+  "description": "Completely unseen BDD100K driving sequences with zero overlap with Missions 9-13",
+  "cohorts": {
+    "development_cohort": {
+      "num_sequences": 2,
+      "total_frames": 404,
+      "total_boxes": 4740,
+      "total_small_boxes": 1952,
+      "total_ultra_small_boxes": 108,
+      "sequences": [
+        {
+          "sequence_id": "b1e1a7b8-b397c445",
+          "title": "Dev Seq 1 (Rainy Daytime City Street)",
+          "weather": "rainy",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "description": "Rainy daytime urban traffic with wet windshield and street reflections",
+          "frames": 202,
+          "total_boxes": 2173,
+          "ultra_small_boxes": 69,
+          "small_boxes": 810,
+          "medium_boxes": 902,
+          "large_boxes": 392,
+          "categories": {
+            "car": 1544,
+            "truck": 449,
+            "bus": 180
+          }
+        },
+        {
+          "sequence_id": "b204a5c1-064b0040",
+          "title": "Dev Seq 2 (Snowy Daytime Urban Arterial)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "description": "Snowy daytime urban street with snowbanks and road slush",
+          "frames": 202,
+          "total_boxes": 2567,
+          "ultra_small_boxes": 39,
+          "small_boxes": 1142,
+          "medium_boxes": 1132,
+          "large_boxes": 254,
+          "categories": {
+            "car": 1857,
+            "pedestrian": 441,
+            "truck": 118,
+            "bus": 151
+          }
+        }
+      ]
+    },
+    "locked_test_cohort": {
+      "num_sequences": 6,
+      "total_frames": 1212,
+      "total_boxes": 18572,
+      "total_small_boxes": 6510,
+      "total_ultra_small_boxes": 2308,
+      "sequences": [
+        {
+          "sequence_id": "b23f7012-fab06dac",
+          "title": "Test Seq 1 (Rainy Night City Street)",
+          "weather": "rainy",
+          "timeofday": "night",
+          "scene": "city street",
+          "description": "Rainy night urban traffic with high glare, wet asphalt, and heavy reflections",
+          "frames": 202,
+          "total_boxes": 2199,
+          "ultra_small_boxes": 168,
+          "small_boxes": 770,
+          "medium_boxes": 877,
+          "large_boxes": 384,
+          "categories": {
+            "car": 1907,
+            "pedestrian": 45,
+            "rider": 8,
+            "bicycle": 8,
+            "truck": 231
+          }
+        },
+        {
+          "sequence_id": "b1d0a191-de8948f6",
+          "title": "Test Seq 2 (Snowy Daytime Highway)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "description": "High-speed snowy highway with roadside snowbanks, spray, and distant vehicles",
+          "frames": 202,
+          "total_boxes": 3321,
+          "ultra_small_boxes": 195,
+          "small_boxes": 845,
+          "medium_boxes": 1349,
+          "large_boxes": 932,
+          "categories": {
+            "pedestrian": 838,
+            "car": 2434,
+            "truck": 30,
+            "rider": 11,
+            "bicycle": 8
+          }
+        },
+        {
+          "sequence_id": "b1d0a191-28f0e779",
+          "title": "Test Seq 3 (Snowy Daytime City Street)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "description": "Dense urban snowy traffic with pedestrian crossings and occluded vehicles",
+          "frames": 202,
+          "total_boxes": 2447,
+          "ultra_small_boxes": 247,
+          "small_boxes": 864,
+          "medium_boxes": 991,
+          "large_boxes": 345,
+          "categories": {
+            "truck": 8,
+            "car": 2385,
+            "other vehicle": 16,
+            "pedestrian": 38
+          }
+        },
+        {
+          "sequence_id": "b1f4491b-cf446195",
+          "title": "Test Seq 4 (Overcast Daytime Highway Arterial)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "scene": "highway",
+          "description": "Low-contrast overcast daytime highway with dense multi-lane traffic",
+          "frames": 202,
+          "total_boxes": 3840,
+          "ultra_small_boxes": 730,
+          "small_boxes": 1567,
+          "medium_boxes": 1401,
+          "large_boxes": 142,
+          "categories": {
+            "truck": 265,
+            "car": 3398,
+            "bus": 138,
+            "pedestrian": 39
+          }
+        },
+        {
+          "sequence_id": "b1c66a42-6f7d68ca",
+          "title": "Test Seq 5 (Overcast Daytime Urban Core)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "scene": "city street",
+          "description": "Overcast daytime urban street with heavy vehicle congestion and distant horizon targets",
+          "frames": 202,
+          "total_boxes": 3241,
+          "ultra_small_boxes": 457,
+          "small_boxes": 1339,
+          "medium_boxes": 1209,
+          "large_boxes": 236,
+          "categories": {
+            "car": 2726,
+            "motorcycle": 119,
+            "truck": 65,
+            "rider": 119,
+            "bus": 21,
+            "pedestrian": 191
+          }
+        },
+        {
+          "sequence_id": "b2505382-de5238f0",
+          "title": "Test Seq 6 (Clear Night City Arterial)",
+          "weather": "clear",
+          "timeofday": "night",
+          "scene": "city street",
+          "description": "Clear night urban high-speed arterial with headlights and distant tail lights",
+          "frames": 202,
+          "total_boxes": 3524,
+          "ultra_small_boxes": 511,
+          "small_boxes": 1125,
+          "medium_boxes": 1750,
+          "large_boxes": 138,
+          "categories": {
+            "pedestrian": 86,
+            "car": 3378,
+            "truck": 60
+          }
+        }
+      ]
+    }
+  },
+  "full_inventory_summary": {
+    "total_val_sequences_inspected": 200,
+    "historical_excluded": 14,
+    "unused_available": 186
+  }
+}

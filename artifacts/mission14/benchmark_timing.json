@@ -1,0 +1,62 @@
+{
+  "hardware": "Apple MacBook Air M1, 8-core CPU (4 Firestorm + 4 Icestorm), 8 GB Unified Memory",
+  "device": "cpu",
+  "num_threads": 7,
+  "precision": "FP32",
+  "stages_ms": {
+    "stage_1_base_640_inference": 31.21,
+    "stage_2_frame_differencing": 0.14,
+    "stage_3_static_salience": 0.24,
+    "stage_4_spatial_horizon_prior": 0.01,
+    "stage_5_candidate_allocation_and_clustering": 0.48,
+    "stage_6_crop_extraction_and_resize_k1": 1.2,
+    "stage_7_crop_inference_1crop_448px": 24.2,
+    "stage_8_crop_inference_2crops_448px": 53.91,
+    "stage_9_coordinate_restoration": 0.06,
+    "stage_10_conservative_nms_merging": 0.45,
+    "stage_11_bytetrack_association": 0.35
+  },
+  "pipelines": {
+    "A_YOLO640_static": {
+      "mean_latency_ms": 41.5,
+      "median_ms": 41.0,
+      "p90_ms": 44.2,
+      "p95_ms": 46.1,
+      "fps": 24.1,
+      "peak_ram_mb": 425
+    },
+    "B_YOLO832_static": {
+      "mean_latency_ms": 87.4,
+      "median_ms": 86.2,
+      "p90_ms": 92.5,
+      "p95_ms": 95.8,
+      "fps": 11.4,
+      "peak_ram_mb": 512
+    },
+    "C_DetectorOnly_ClusteredROI": {
+      "mean_latency_ms": 98.4,
+      "median_ms": 96.5,
+      "p90_ms": 112.0,
+      "p95_ms": 118.5,
+      "fps": 10.16,
+      "peak_ram_mb": 505
+    },
+    "D_HoldTime_H3_Temporal": {
+      "mean_latency_ms": 61.2,
+      "median_ms": 41.5,
+      "p90_ms": 87.4,
+      "p95_ms": 87.4,
+      "fps": 16.34,
+      "peak_ram_mb": 512
+    },
+    "E_PolicyJ_PriorityGated": {
+      "mean_latency_ms": 112.6,
+      "median_ms": 108.4,
+      "p90_ms": 128.0,
+      "p95_ms": 135.2,
+      "fps": 8.88,
+      "peak_ram_mb": 508,
+      "pure_compute_in_memory_ms": 68.07
+    }
+  }
+}

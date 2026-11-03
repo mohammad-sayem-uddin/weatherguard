@@ -1,0 +1,1411 @@
+{
+  "development": {
+    "A_YOLO640_static": {
+      "overall_f1": 0.4623,
+      "precision": 0.6659,
+      "recall": 0.354,
+      "tp": 1678,
+      "fp": 842,
+      "fn": 3062,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.3636,
+          "recall": 0.0377,
+          "f1": 0.0684,
+          "tp": 4,
+          "fp": 7,
+          "fn": 102
+        },
+        "small": {
+          "precision": 0.5461,
+          "recall": 0.2006,
+          "f1": 0.2934,
+          "tp": 391,
+          "fp": 325,
+          "fn": 1558
+        },
+        "medium": {
+          "precision": 0.6597,
+          "recall": 0.3986,
+          "f1": 0.497,
+          "tp": 818,
+          "fp": 422,
+          "fn": 1234
+        },
+        "large": {
+          "precision": 0.8409,
+          "recall": 0.7346,
+          "f1": 0.7841,
+          "tp": 465,
+          "fp": 88,
+          "fn": 168
+        }
+      },
+      "per_sequence": {
+        "b1e1a7b8-b397c445": {
+          "title": "Dev Seq 1 (Rainy Daytime City Street)",
+          "weather": "rainy",
+          "timeofday": "daytime",
+          "overall_f1": 0.4322,
+          "small_f1": 0.1183,
+          "ultra_small_f1": 0.0,
+          "precision": 0.72,
+          "recall": 0.3088,
+          "tp": 671,
+          "fp": 261,
+          "fn": 1502
+        },
+        "b204a5c1-064b0040": {
+          "title": "Dev Seq 2 (Snowy Daytime Urban Arterial)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.4847,
+          "small_f1": 0.3821,
+          "ultra_small_f1": 0.1667,
+          "precision": 0.6341,
+          "recall": 0.3923,
+          "tp": 1007,
+          "fp": 581,
+          "fn": 1560
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.4322,
+          "small_f1": 0.1183,
+          "ultra_small_f1": 0.0,
+          "precision": 0.72,
+          "recall": 0.3088
+        },
+        "snowy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.4847,
+          "small_f1": 0.3821,
+          "ultra_small_f1": 0.1667,
+          "precision": 0.6341,
+          "recall": 0.3923
+        }
+      },
+      "lighting_stratification": {
+        "daytime": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.4623,
+          "small_f1": 0.2934,
+          "ultra_small_f1": 0.0684,
+          "precision": 0.6659,
+          "recall": 0.354
+        }
+      }
+    },
+    "B_YOLO832_static": {
+      "overall_f1": 0.4804,
+      "precision": 0.5798,
+      "recall": 0.4101,
+      "tp": 1944,
+      "fp": 1409,
+      "fn": 2796,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.1455,
+          "recall": 0.0777,
+          "f1": 0.1013,
+          "tp": 8,
+          "fp": 47,
+          "fn": 95
+        },
+        "small": {
+          "precision": 0.4184,
+          "recall": 0.3053,
+          "f1": 0.353,
+          "tp": 600,
+          "fp": 834,
+          "fn": 1365
+        },
+        "medium": {
+          "precision": 0.6687,
+          "recall": 0.4206,
+          "f1": 0.5164,
+          "tp": 858,
+          "fp": 425,
+          "fn": 1182
+        },
+        "large": {
+          "precision": 0.8227,
+          "recall": 0.7563,
+          "f1": 0.7881,
+          "tp": 478,
+          "fp": 103,
+          "fn": 154
+        }
+      },
+      "per_sequence": {
+        "b1e1a7b8-b397c445": {
+          "title": "Dev Seq 1 (Rainy Daytime City Street)",
+          "weather": "rainy",
+          "timeofday": "daytime",
+          "overall_f1": 0.468,
+          "small_f1": 0.1732,
+          "ultra_small_f1": 0.0,
+          "precision": 0.7331,
+          "recall": 0.3438,
+          "tp": 747,
+          "fp": 272,
+          "fn": 1426
+        },
+        "b204a5c1-064b0040": {
+          "title": "Dev Seq 2 (Snowy Daytime Urban Arterial)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.4885,
+          "small_f1": 0.4225,
+          "ultra_small_f1": 0.1778,
+          "precision": 0.5129,
+          "recall": 0.4663,
+          "tp": 1197,
+          "fp": 1137,
+          "fn": 1370
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.468,
+          "small_f1": 0.1732,
+          "ultra_small_f1": 0.0,
+          "precision": 0.7331,
+          "recall": 0.3438
+        },
+        "snowy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.4885,
+          "small_f1": 0.4225,
+          "ultra_small_f1": 0.1778,
+          "precision": 0.5129,
+          "recall": 0.4663
+        }
+      },
+      "lighting_stratification": {
+        "daytime": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.4804,
+          "small_f1": 0.353,
+          "ultra_small_f1": 0.1013,
+          "precision": 0.5798,
+          "recall": 0.4101
+        }
+      }
+    },
+    "C_DetectorOnly_ClusteredROI": {
+      "overall_f1": 0.4651,
+      "precision": 0.5785,
+      "recall": 0.3888,
+      "tp": 1843,
+      "fp": 1343,
+      "fn": 2897,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.1098,
+          "recall": 0.2328,
+          "f1": 0.1492,
+          "tp": 27,
+          "fp": 219,
+          "fn": 89
+        },
+        "small": {
+          "precision": 0.5756,
+          "recall": 0.254,
+          "f1": 0.3524,
+          "tp": 495,
+          "fp": 365,
+          "fn": 1454
+        },
+        "medium": {
+          "precision": 0.59,
+          "recall": 0.4235,
+          "f1": 0.493,
+          "tp": 869,
+          "fp": 604,
+          "fn": 1183
+        },
+        "large": {
+          "precision": 0.7446,
+          "recall": 0.7255,
+          "f1": 0.735,
+          "tp": 452,
+          "fp": 155,
+          "fn": 171
+        }
+      },
+      "per_sequence": {
+        "b1e1a7b8-b397c445": {
+          "title": "Dev Seq 1 (Rainy Daytime City Street)",
+          "weather": "rainy",
+          "timeofday": "daytime",
+          "overall_f1": 0.4482,
+          "small_f1": 0.1828,
+          "ultra_small_f1": 0.0556,
+          "precision": 0.6453,
+          "recall": 0.3433,
+          "tp": 746,
+          "fp": 410,
+          "fn": 1427
+        },
+        "b204a5c1-064b0040": {
+          "title": "Dev Seq 2 (Snowy Daytime Urban Arterial)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.4773,
+          "small_f1": 0.4379,
+          "ultra_small_f1": 0.1724,
+          "precision": 0.5404,
+          "recall": 0.4273,
+          "tp": 1097,
+          "fp": 933,
+          "fn": 1470
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.4482,
+          "small_f1": 0.1828,
+          "ultra_small_f1": 0.0556,
+          "precision": 0.6453,
+          "recall": 0.3433
+        },
+        "snowy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.4773,
+          "small_f1": 0.4379,
+          "ultra_small_f1": 0.1724,
+          "precision": 0.5404,
+          "recall": 0.4273
+        }
+      },
+      "lighting_stratification": {
+        "daytime": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.4651,
+          "small_f1": 0.3524,
+          "ultra_small_f1": 0.1492,
+          "precision": 0.5785,
+          "recall": 0.3888
+        }
+      }
+    },
+    "D_HoldTime_H3_Temporal": {
+      "overall_f1": 0.4731,
+      "precision": 0.5793,
+      "recall": 0.3998,
+      "tp": 1895,
+      "fp": 1376,
+      "fn": 2845,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.1455,
+          "recall": 0.0777,
+          "f1": 0.1013,
+          "tp": 8,
+          "fp": 47,
+          "fn": 95
+        },
+        "small": {
+          "precision": 0.419,
+          "recall": 0.2957,
+          "f1": 0.3467,
+          "tp": 579,
+          "fp": 803,
+          "fn": 1379
+        },
+        "medium": {
+          "precision": 0.6648,
+          "recall": 0.4066,
+          "f1": 0.5046,
+          "tp": 831,
+          "fp": 419,
+          "fn": 1213
+        },
+        "large": {
+          "precision": 0.8168,
+          "recall": 0.7512,
+          "f1": 0.7826,
+          "tp": 477,
+          "fp": 107,
+          "fn": 158
+        }
+      },
+      "per_sequence": {
+        "b1e1a7b8-b397c445": {
+          "title": "Dev Seq 1 (Rainy Daytime City Street)",
+          "weather": "rainy",
+          "timeofday": "daytime",
+          "overall_f1": 0.451,
+          "small_f1": 0.1538,
+          "ultra_small_f1": 0.0,
+          "precision": 0.7302,
+          "recall": 0.3263,
+          "tp": 709,
+          "fp": 262,
+          "fn": 1464
+        },
+        "b204a5c1-064b0040": {
+          "title": "Dev Seq 2 (Snowy Daytime Urban Arterial)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.4874,
+          "small_f1": 0.4204,
+          "ultra_small_f1": 0.1778,
+          "precision": 0.5157,
+          "recall": 0.462,
+          "tp": 1186,
+          "fp": 1114,
+          "fn": 1381
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.451,
+          "small_f1": 0.1538,
+          "ultra_small_f1": 0.0,
+          "precision": 0.7302,
+          "recall": 0.3263
+        },
+        "snowy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.4874,
+          "small_f1": 0.4204,
+          "ultra_small_f1": 0.1778,
+          "precision": 0.5157,
+          "recall": 0.462
+        }
+      },
+      "lighting_stratification": {
+        "daytime": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.4731,
+          "small_f1": 0.3467,
+          "ultra_small_f1": 0.1013,
+          "precision": 0.5793,
+          "recall": 0.3998
+        }
+      }
+    },
+    "E_PolicyJ_PriorityGated": {
+      "overall_f1": 0.4639,
+      "precision": 0.5705,
+      "recall": 0.3909,
+      "tp": 1853,
+      "fp": 1395,
+      "fn": 2887,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.127,
+          "recall": 0.2672,
+          "f1": 0.1722,
+          "tp": 31,
+          "fp": 213,
+          "fn": 85
+        },
+        "small": {
+          "precision": 0.5645,
+          "recall": 0.256,
+          "f1": 0.3523,
+          "tp": 499,
+          "fp": 385,
+          "fn": 1450
+        },
+        "medium": {
+          "precision": 0.5836,
+          "recall": 0.4245,
+          "f1": 0.4915,
+          "tp": 869,
+          "fp": 620,
+          "fn": 1178
+        },
+        "large": {
+          "precision": 0.7195,
+          "recall": 0.7229,
+          "f1": 0.7212,
+          "tp": 454,
+          "fp": 177,
+          "fn": 174
+        }
+      },
+      "per_sequence": {
+        "b1e1a7b8-b397c445": {
+          "title": "Dev Seq 1 (Rainy Daytime City Street)",
+          "weather": "rainy",
+          "timeofday": "daytime",
+          "overall_f1": 0.4448,
+          "small_f1": 0.1888,
+          "ultra_small_f1": 0.08,
+          "precision": 0.6255,
+          "recall": 0.3451,
+          "tp": 750,
+          "fp": 449,
+          "fn": 1423
+        },
+        "b204a5c1-064b0040": {
+          "title": "Dev Seq 2 (Snowy Daytime Urban Arterial)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.4779,
+          "small_f1": 0.4339,
+          "ultra_small_f1": 0.1965,
+          "precision": 0.5383,
+          "recall": 0.4297,
+          "tp": 1103,
+          "fp": 946,
+          "fn": 1464
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.4448,
+          "small_f1": 0.1888,
+          "ultra_small_f1": 0.08,
+          "precision": 0.6255,
+          "recall": 0.3451
+        },
+        "snowy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.4779,
+          "small_f1": 0.4339,
+          "ultra_small_f1": 0.1965,
+          "precision": 0.5383,
+          "recall": 0.4297
+        }
+      },
+      "lighting_stratification": {
+        "daytime": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.4639,
+          "small_f1": 0.3523,
+          "ultra_small_f1": 0.1722,
+          "precision": 0.5705,
+          "recall": 0.3909
+        }
+      }
+    }
+  },
+  "locked_test": {
+    "A_YOLO640_static": {
+      "overall_f1": 0.4468,
+      "precision": 0.6747,
+      "recall": 0.334,
+      "tp": 6198,
+      "fp": 2988,
+      "fn": 12358,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.5,
+          "recall": 0.0009,
+          "f1": 0.0017,
+          "tp": 2,
+          "fp": 2,
+          "fn": 2298
+        },
+        "small": {
+          "precision": 0.5353,
+          "recall": 0.1382,
+          "f1": 0.2197,
+          "tp": 887,
+          "fp": 770,
+          "fn": 5530
+        },
+        "medium": {
+          "precision": 0.6523,
+          "recall": 0.4447,
+          "f1": 0.5289,
+          "tp": 3415,
+          "fp": 1820,
+          "fn": 4264
+        },
+        "large": {
+          "precision": 0.8271,
+          "recall": 0.8769,
+          "f1": 0.8512,
+          "tp": 1894,
+          "fp": 396,
+          "fn": 266
+        }
+      },
+      "per_sequence": {
+        "b23f7012-fab06dac": {
+          "title": "Test Seq 1 (Rainy Night City Street)",
+          "weather": "rainy",
+          "timeofday": "night",
+          "overall_f1": 0.2237,
+          "small_f1": 0.0026,
+          "ultra_small_f1": 0.0,
+          "precision": 0.542,
+          "recall": 0.141,
+          "tp": 310,
+          "fp": 262,
+          "fn": 1889
+        },
+        "b1d0a191-de8948f6": {
+          "title": "Test Seq 2 (Snowy Daytime Highway)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5771,
+          "small_f1": 0.028,
+          "ultra_small_f1": 0.0,
+          "precision": 0.7645,
+          "recall": 0.4634,
+          "tp": 1539,
+          "fp": 474,
+          "fn": 1782
+        },
+        "b1d0a191-28f0e779": {
+          "title": "Test Seq 3 (Snowy Daytime City Street)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5313,
+          "small_f1": 0.2806,
+          "ultra_small_f1": 0.0081,
+          "precision": 0.6616,
+          "recall": 0.4439,
+          "tp": 1079,
+          "fp": 552,
+          "fn": 1352
+        },
+        "b1f4491b-cf446195": {
+          "title": "Test Seq 4 (Overcast Daytime Highway Arterial)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.4882,
+          "small_f1": 0.3589,
+          "ultra_small_f1": 0.0028,
+          "precision": 0.6256,
+          "recall": 0.4003,
+          "tp": 1537,
+          "fp": 920,
+          "fn": 2303
+        },
+        "b1c66a42-6f7d68ca": {
+          "title": "Test Seq 5 (Overcast Daytime Urban Core)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5297,
+          "small_f1": 0.313,
+          "ultra_small_f1": 0.0,
+          "precision": 0.7091,
+          "recall": 0.4227,
+          "tp": 1370,
+          "fp": 562,
+          "fn": 1871
+        },
+        "b2505382-de5238f0": {
+          "title": "Test Seq 6 (Clear Night City Arterial)",
+          "weather": "clear",
+          "timeofday": "night",
+          "overall_f1": 0.1769,
+          "small_f1": 0.0192,
+          "ultra_small_f1": 0.0,
+          "precision": 0.6248,
+          "recall": 0.103,
+          "tp": 363,
+          "fp": 218,
+          "fn": 3161
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.2237,
+          "small_f1": 0.0026,
+          "ultra_small_f1": 0.0,
+          "precision": 0.542,
+          "recall": 0.141
+        },
+        "snowy": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5573,
+          "small_f1": 0.1767,
+          "ultra_small_f1": 0.0045,
+          "precision": 0.7184,
+          "recall": 0.4551
+        },
+        "overcast": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5069,
+          "small_f1": 0.339,
+          "ultra_small_f1": 0.0017,
+          "precision": 0.6623,
+          "recall": 0.4105
+        },
+        "clear": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.1769,
+          "small_f1": 0.0192,
+          "ultra_small_f1": 0.0,
+          "precision": 0.6248,
+          "recall": 0.103
+        }
+      },
+      "lighting_stratification": {
+        "night": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.1958,
+          "small_f1": 0.0125,
+          "ultra_small_f1": 0.0,
+          "precision": 0.5837,
+          "recall": 0.1176
+        },
+        "daytime": {
+          "num_sequences": 4,
+          "total_frames": 808,
+          "overall_f1": 0.5296,
+          "small_f1": 0.2841,
+          "ultra_small_f1": 0.0025,
+          "precision": 0.6878,
+          "recall": 0.4305
+        }
+      }
+    },
+    "B_YOLO832_static": {
+      "overall_f1": 0.491,
+      "precision": 0.6973,
+      "recall": 0.3789,
+      "tp": 7031,
+      "fp": 3052,
+      "fn": 11525,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.6545,
+          "recall": 0.016,
+          "f1": 0.0312,
+          "tp": 36,
+          "fp": 19,
+          "fn": 2220
+        },
+        "small": {
+          "precision": 0.5887,
+          "recall": 0.216,
+          "f1": 0.316,
+          "tp": 1400,
+          "fp": 978,
+          "fn": 5082
+        },
+        "medium": {
+          "precision": 0.6838,
+          "recall": 0.4855,
+          "f1": 0.5678,
+          "tp": 3719,
+          "fp": 1720,
+          "fn": 3941
+        },
+        "large": {
+          "precision": 0.8485,
+          "recall": 0.8693,
+          "f1": 0.8588,
+          "tp": 1876,
+          "fp": 335,
+          "fn": 282
+        }
+      },
+      "per_sequence": {
+        "b23f7012-fab06dac": {
+          "title": "Test Seq 1 (Rainy Night City Street)",
+          "weather": "rainy",
+          "timeofday": "night",
+          "overall_f1": 0.2191,
+          "small_f1": 0.0076,
+          "ultra_small_f1": 0.0,
+          "precision": 0.5152,
+          "recall": 0.1392,
+          "tp": 306,
+          "fp": 288,
+          "fn": 1893
+        },
+        "b1d0a191-de8948f6": {
+          "title": "Test Seq 2 (Snowy Daytime Highway)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.601,
+          "small_f1": 0.0801,
+          "ultra_small_f1": 0.0,
+          "precision": 0.7741,
+          "recall": 0.4911,
+          "tp": 1631,
+          "fp": 476,
+          "fn": 1690
+        },
+        "b1d0a191-28f0e779": {
+          "title": "Test Seq 3 (Snowy Daytime City Street)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5976,
+          "small_f1": 0.4006,
+          "ultra_small_f1": 0.1044,
+          "precision": 0.7207,
+          "recall": 0.5105,
+          "tp": 1241,
+          "fp": 481,
+          "fn": 1190
+        },
+        "b1f4491b-cf446195": {
+          "title": "Test Seq 4 (Overcast Daytime Highway Arterial)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5455,
+          "small_f1": 0.4674,
+          "ultra_small_f1": 0.0284,
+          "precision": 0.658,
+          "recall": 0.4659,
+          "tp": 1789,
+          "fp": 930,
+          "fn": 2051
+        },
+        "b1c66a42-6f7d68ca": {
+          "title": "Test Seq 5 (Overcast Daytime Urban Core)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5862,
+          "small_f1": 0.4261,
+          "ultra_small_f1": 0.0536,
+          "precision": 0.7294,
+          "recall": 0.49,
+          "tp": 1588,
+          "fp": 589,
+          "fn": 1653
+        },
+        "b2505382-de5238f0": {
+          "title": "Test Seq 6 (Clear Night City Arterial)",
+          "weather": "clear",
+          "timeofday": "night",
+          "overall_f1": 0.222,
+          "small_f1": 0.0934,
+          "ultra_small_f1": 0.0,
+          "precision": 0.623,
+          "recall": 0.1351,
+          "tp": 476,
+          "fp": 288,
+          "fn": 3048
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.2191,
+          "small_f1": 0.0076,
+          "ultra_small_f1": 0.0,
+          "precision": 0.5152,
+          "recall": 0.1392
+        },
+        "snowy": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5995,
+          "small_f1": 0.2732,
+          "ultra_small_f1": 0.0586,
+          "precision": 0.7501,
+          "recall": 0.4993
+        },
+        "overcast": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5639,
+          "small_f1": 0.4497,
+          "ultra_small_f1": 0.0387,
+          "precision": 0.6897,
+          "recall": 0.4769
+        },
+        "clear": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.222,
+          "small_f1": 0.0934,
+          "ultra_small_f1": 0.0,
+          "precision": 0.623,
+          "recall": 0.1351
+        }
+      },
+      "lighting_stratification": {
+        "night": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.2209,
+          "small_f1": 0.0596,
+          "ultra_small_f1": 0.0,
+          "precision": 0.5758,
+          "recall": 0.1366
+        },
+        "daytime": {
+          "num_sequences": 4,
+          "total_frames": 808,
+          "overall_f1": 0.5797,
+          "small_f1": 0.3914,
+          "ultra_small_f1": 0.0441,
+          "precision": 0.7162,
+          "recall": 0.4869
+        }
+      }
+    },
+    "C_DetectorOnly_ClusteredROI": {
+      "overall_f1": 0.471,
+      "precision": 0.6297,
+      "recall": 0.3762,
+      "tp": 6980,
+      "fp": 4105,
+      "fn": 11576,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.5189,
+          "recall": 0.0484,
+          "f1": 0.0886,
+          "tp": 110,
+          "fp": 102,
+          "fn": 2162
+        },
+        "small": {
+          "precision": 0.5788,
+          "recall": 0.2144,
+          "f1": 0.3129,
+          "tp": 1385,
+          "fp": 1008,
+          "fn": 5074
+        },
+        "medium": {
+          "precision": 0.6055,
+          "recall": 0.4736,
+          "f1": 0.5315,
+          "tp": 3654,
+          "fp": 2381,
+          "fn": 4061
+        },
+        "large": {
+          "precision": 0.7489,
+          "recall": 0.8678,
+          "f1": 0.804,
+          "tp": 1831,
+          "fp": 614,
+          "fn": 279
+        }
+      },
+      "per_sequence": {
+        "b23f7012-fab06dac": {
+          "title": "Test Seq 1 (Rainy Night City Street)",
+          "weather": "rainy",
+          "timeofday": "night",
+          "overall_f1": 0.2232,
+          "small_f1": 0.0202,
+          "ultra_small_f1": 0.0,
+          "precision": 0.4938,
+          "recall": 0.1442,
+          "tp": 317,
+          "fp": 325,
+          "fn": 1882
+        },
+        "b1d0a191-de8948f6": {
+          "title": "Test Seq 2 (Snowy Daytime Highway)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5658,
+          "small_f1": 0.1033,
+          "ultra_small_f1": 0.0,
+          "precision": 0.6638,
+          "recall": 0.4929,
+          "tp": 1637,
+          "fp": 829,
+          "fn": 1684
+        },
+        "b1d0a191-28f0e779": {
+          "title": "Test Seq 3 (Snowy Daytime City Street)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5751,
+          "small_f1": 0.4122,
+          "ultra_small_f1": 0.3129,
+          "precision": 0.6325,
+          "recall": 0.5274,
+          "tp": 1282,
+          "fp": 745,
+          "fn": 1149
+        },
+        "b1f4491b-cf446195": {
+          "title": "Test Seq 4 (Overcast Daytime Highway Arterial)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5182,
+          "small_f1": 0.4446,
+          "ultra_small_f1": 0.0864,
+          "precision": 0.608,
+          "recall": 0.4516,
+          "tp": 1734,
+          "fp": 1118,
+          "fn": 2106
+        },
+        "b1c66a42-6f7d68ca": {
+          "title": "Test Seq 5 (Overcast Daytime Urban Core)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5677,
+          "small_f1": 0.4477,
+          "ultra_small_f1": 0.0992,
+          "precision": 0.67,
+          "recall": 0.4924,
+          "tp": 1596,
+          "fp": 786,
+          "fn": 1645
+        },
+        "b2505382-de5238f0": {
+          "title": "Test Seq 6 (Clear Night City Arterial)",
+          "weather": "clear",
+          "timeofday": "night",
+          "overall_f1": 0.1953,
+          "small_f1": 0.0408,
+          "ultra_small_f1": 0.0038,
+          "precision": 0.5782,
+          "recall": 0.1175,
+          "tp": 414,
+          "fp": 302,
+          "fn": 3110
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.2232,
+          "small_f1": 0.0202,
+          "ultra_small_f1": 0.0,
+          "precision": 0.4938,
+          "recall": 0.1442
+        },
+        "snowy": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5698,
+          "small_f1": 0.2876,
+          "ultra_small_f1": 0.1947,
+          "precision": 0.6497,
+          "recall": 0.5075
+        },
+        "overcast": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5408,
+          "small_f1": 0.446,
+          "ultra_small_f1": 0.0915,
+          "precision": 0.6362,
+          "recall": 0.4703
+        },
+        "clear": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.1953,
+          "small_f1": 0.0408,
+          "ultra_small_f1": 0.0038,
+          "precision": 0.5782,
+          "recall": 0.1175
+        }
+      },
+      "lighting_stratification": {
+        "night": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.2065,
+          "small_f1": 0.0325,
+          "ultra_small_f1": 0.0029,
+          "precision": 0.5383,
+          "recall": 0.1277
+        },
+        "daytime": {
+          "num_sequences": 4,
+          "total_frames": 808,
+          "overall_f1": 0.554,
+          "small_f1": 0.393,
+          "ultra_small_f1": 0.1217,
+          "precision": 0.6424,
+          "recall": 0.4869
+        }
+      }
+    },
+    "D_HoldTime_H3_Temporal": {
+      "overall_f1": 0.4838,
+      "precision": 0.6987,
+      "recall": 0.37,
+      "tp": 6865,
+      "fp": 2960,
+      "fn": 11691,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.6481,
+          "recall": 0.0155,
+          "f1": 0.0303,
+          "tp": 35,
+          "fp": 19,
+          "fn": 2221
+        },
+        "small": {
+          "precision": 0.5898,
+          "recall": 0.2058,
+          "f1": 0.3052,
+          "tp": 1333,
+          "fp": 927,
+          "fn": 5143
+        },
+        "medium": {
+          "precision": 0.6803,
+          "recall": 0.4697,
+          "f1": 0.5557,
+          "tp": 3596,
+          "fp": 1690,
+          "fn": 4060
+        },
+        "large": {
+          "precision": 0.8544,
+          "recall": 0.8768,
+          "f1": 0.8655,
+          "tp": 1901,
+          "fp": 324,
+          "fn": 267
+        }
+      },
+      "per_sequence": {
+        "b23f7012-fab06dac": {
+          "title": "Test Seq 1 (Rainy Night City Street)",
+          "weather": "rainy",
+          "timeofday": "night",
+          "overall_f1": 0.2233,
+          "small_f1": 0.0026,
+          "ultra_small_f1": 0.0,
+          "precision": 0.5363,
+          "recall": 0.141,
+          "tp": 310,
+          "fp": 268,
+          "fn": 1889
+        },
+        "b1d0a191-de8948f6": {
+          "title": "Test Seq 2 (Snowy Daytime Highway)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5826,
+          "small_f1": 0.0524,
+          "ultra_small_f1": 0.0,
+          "precision": 0.7676,
+          "recall": 0.4694,
+          "tp": 1559,
+          "fp": 472,
+          "fn": 1762
+        },
+        "b1d0a191-28f0e779": {
+          "title": "Test Seq 3 (Snowy Daytime City Street)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5941,
+          "small_f1": 0.392,
+          "ultra_small_f1": 0.0968,
+          "precision": 0.7186,
+          "recall": 0.5064,
+          "tp": 1231,
+          "fp": 482,
+          "fn": 1200
+        },
+        "b1f4491b-cf446195": {
+          "title": "Test Seq 4 (Overcast Daytime Highway Arterial)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5455,
+          "small_f1": 0.4674,
+          "ultra_small_f1": 0.0284,
+          "precision": 0.658,
+          "recall": 0.4659,
+          "tp": 1789,
+          "fp": 930,
+          "fn": 2051
+        },
+        "b1c66a42-6f7d68ca": {
+          "title": "Test Seq 5 (Overcast Daytime Urban Core)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5856,
+          "small_f1": 0.4245,
+          "ultra_small_f1": 0.0536,
+          "precision": 0.7289,
+          "recall": 0.4894,
+          "tp": 1586,
+          "fp": 590,
+          "fn": 1655
+        },
+        "b2505382-de5238f0": {
+          "title": "Test Seq 6 (Clear Night City Arterial)",
+          "weather": "clear",
+          "timeofday": "night",
+          "overall_f1": 0.1888,
+          "small_f1": 0.0261,
+          "ultra_small_f1": 0.0,
+          "precision": 0.6414,
+          "recall": 0.1107,
+          "tp": 390,
+          "fp": 218,
+          "fn": 3134
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.2233,
+          "small_f1": 0.0026,
+          "ultra_small_f1": 0.0,
+          "precision": 0.5363,
+          "recall": 0.141
+        },
+        "snowy": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5876,
+          "small_f1": 0.2583,
+          "ultra_small_f1": 0.0542,
+          "precision": 0.7452,
+          "recall": 0.485
+        },
+        "overcast": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5636,
+          "small_f1": 0.4491,
+          "ultra_small_f1": 0.0387,
+          "precision": 0.6895,
+          "recall": 0.4766
+        },
+        "clear": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.1888,
+          "small_f1": 0.0261,
+          "ultra_small_f1": 0.0,
+          "precision": 0.6414,
+          "recall": 0.1107
+        }
+      },
+      "lighting_stratification": {
+        "night": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.2026,
+          "small_f1": 0.0166,
+          "ultra_small_f1": 0.0,
+          "precision": 0.5902,
+          "recall": 0.1223
+        },
+        "daytime": {
+          "num_sequences": 4,
+          "total_frames": 808,
+          "overall_f1": 0.5742,
+          "small_f1": 0.3866,
+          "ultra_small_f1": 0.0429,
+          "precision": 0.7136,
+          "recall": 0.4804
+        }
+      }
+    },
+    "E_PolicyJ_PriorityGated": {
+      "overall_f1": 0.4723,
+      "precision": 0.6253,
+      "recall": 0.3794,
+      "tp": 7041,
+      "fp": 4219,
+      "fn": 11515,
+      "scale_breakdown": {
+        "ultra_small": {
+          "precision": 0.5472,
+          "recall": 0.051,
+          "f1": 0.0933,
+          "tp": 116,
+          "fp": 96,
+          "fn": 2158
+        },
+        "small": {
+          "precision": 0.5848,
+          "recall": 0.2184,
+          "f1": 0.3181,
+          "tp": 1410,
+          "fp": 1001,
+          "fn": 5045
+        },
+        "medium": {
+          "precision": 0.5997,
+          "recall": 0.4768,
+          "f1": 0.5313,
+          "tp": 3675,
+          "fp": 2453,
+          "fn": 4032
+        },
+        "large": {
+          "precision": 0.7334,
+          "recall": 0.8679,
+          "f1": 0.795,
+          "tp": 1840,
+          "fp": 669,
+          "fn": 280
+        }
+      },
+      "per_sequence": {
+        "b23f7012-fab06dac": {
+          "title": "Test Seq 1 (Rainy Night City Street)",
+          "weather": "rainy",
+          "timeofday": "night",
+          "overall_f1": 0.2228,
+          "small_f1": 0.0203,
+          "ultra_small_f1": 0.0,
+          "precision": 0.47,
+          "recall": 0.146,
+          "tp": 321,
+          "fp": 362,
+          "fn": 1878
+        },
+        "b1d0a191-de8948f6": {
+          "title": "Test Seq 2 (Snowy Daytime Highway)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5639,
+          "small_f1": 0.1054,
+          "ultra_small_f1": 0.0,
+          "precision": 0.6567,
+          "recall": 0.4941,
+          "tp": 1641,
+          "fp": 858,
+          "fn": 1680
+        },
+        "b1d0a191-28f0e779": {
+          "title": "Test Seq 3 (Snowy Daytime City Street)",
+          "weather": "snowy",
+          "timeofday": "daytime",
+          "overall_f1": 0.5826,
+          "small_f1": 0.4272,
+          "ultra_small_f1": 0.3533,
+          "precision": 0.6301,
+          "recall": 0.5418,
+          "tp": 1317,
+          "fp": 773,
+          "fn": 1114
+        },
+        "b1f4491b-cf446195": {
+          "title": "Test Seq 4 (Overcast Daytime Highway Arterial)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5196,
+          "small_f1": 0.4463,
+          "ultra_small_f1": 0.087,
+          "precision": 0.6108,
+          "recall": 0.4521,
+          "tp": 1736,
+          "fp": 1106,
+          "fn": 2104
+        },
+        "b1c66a42-6f7d68ca": {
+          "title": "Test Seq 5 (Overcast Daytime Urban Core)",
+          "weather": "overcast",
+          "timeofday": "daytime",
+          "overall_f1": 0.5652,
+          "small_f1": 0.4523,
+          "ultra_small_f1": 0.0915,
+          "precision": 0.6631,
+          "recall": 0.4924,
+          "tp": 1596,
+          "fp": 811,
+          "fn": 1645
+        },
+        "b2505382-de5238f0": {
+          "title": "Test Seq 6 (Clear Night City Arterial)",
+          "weather": "clear",
+          "timeofday": "night",
+          "overall_f1": 0.2017,
+          "small_f1": 0.0506,
+          "ultra_small_f1": 0.0038,
+          "precision": 0.5819,
+          "recall": 0.122,
+          "tp": 430,
+          "fp": 309,
+          "fn": 3094
+        }
+      },
+      "weather_stratification": {
+        "rainy": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.2228,
+          "small_f1": 0.0203,
+          "ultra_small_f1": 0.0,
+          "precision": 0.47,
+          "recall": 0.146
+        },
+        "snowy": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5721,
+          "small_f1": 0.2985,
+          "ultra_small_f1": 0.2218,
+          "precision": 0.6446,
+          "recall": 0.5143
+        },
+        "overcast": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.5405,
+          "small_f1": 0.449,
+          "ultra_small_f1": 0.0887,
+          "precision": 0.6348,
+          "recall": 0.4706
+        },
+        "clear": {
+          "num_sequences": 1,
+          "total_frames": 202,
+          "overall_f1": 0.2017,
+          "small_f1": 0.0506,
+          "ultra_small_f1": 0.0038,
+          "precision": 0.5819,
+          "recall": 0.122
+        }
+      },
+      "lighting_stratification": {
+        "night": {
+          "num_sequences": 2,
+          "total_frames": 404,
+          "overall_f1": 0.2102,
+          "small_f1": 0.0385,
+          "ultra_small_f1": 0.0029,
+          "precision": 0.5281,
+          "recall": 0.1312
+        },
+        "daytime": {
+          "num_sequences": 4,
+          "total_frames": 808,
+          "overall_f1": 0.5549,
+          "small_f1": 0.3982,
+          "ultra_small_f1": 0.1282,
+          "precision": 0.6394,
+          "recall": 0.4901
+        }
+      }
+    }
+  }
+}

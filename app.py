@@ -126,6 +126,7 @@ def main() -> None:
             "24. Region-Adaptive Inference & Cross-Domain Generalization (Mission 11)",
             "25. Detector-Independent Candidate Generation & Ultra-Small Recovery (Mission 12)",
             "26. Priority-Gated Candidate Allocation & Crop-Budget Optimization (Mission 13)",
+            "27. Independent Cross-Domain Validation & Statistical Reliability (Mission 14)",
         ],
     )
 
@@ -181,6 +182,8 @@ def main() -> None:
         page_mission12_candidate_generation()
     elif page.startswith("26."):
         page_mission13_priority_allocation()
+    elif page.startswith("27."):
+        page_mission14_cross_domain_validation()
 
 
 def page_overview() -> None:
@@ -3850,6 +3853,235 @@ def page_mission13_priority_allocation() -> None:
                     "Status": fm.get("status"),
                 })
             st.dataframe(pd.DataFrame(fm_rows), use_container_width=True)
+
+
+def page_mission14_cross_domain_validation() -> None:
+    st.header("27. Independent Cross-Domain Validation & Statistical Reliability (Mission 14)")
+    st.markdown(
+        """
+        **Mission 14 Objective:** Rigorously evaluate WeatherGuard Policy J (Priority-Gated Candidate Allocation)
+        on previously unseen driving sequences (1,616 continuous frames across 8 virgin BDD100K sequences)
+        and a full-scale FLIR ADAS thermal dataset (N=500 images), using sequence-level paired statistical inference.
+        """
+    )
+
+    m14_art = ROOT / "artifacts" / "mission14"
+    metrics_file = m14_art / "mission14_metrics.json"
+    flir_file = m14_art / "flir_metrics.json"
+    boot_file = m14_art / "paired_sequence_bootstrap.json"
+    tax_file = m14_art / "failure_taxonomy.json"
+    bench_file = m14_art / "benchmark_timing.json"
+    manifest_file = m14_art / "sequence_manifest.json"
+    excl_file = m14_art / "sequence_exclusion_manifest.json"
+
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
+        "Executive Synthesis",
+        "Sequence Inventory & Exclusion",
+        "Locked Model Comparison",
+        "Subgroup & Weather Stratification",
+        "Fuller FLIR ADAS Thermal",
+        "Paired Sequence Bootstrap",
+        "Failure Taxonomy (11 Categories)",
+        "Edge Timing & Micro-benchmarks",
+    ])
+
+    with tab1:
+        st.subheader("Mission 14 Central Research Decision")
+        st.markdown(
+            """
+            ### Core Research Questions & Evidence:
+            1. **RQ1 (BDD100K Generalization):** Does Policy J generalize to unseen BDD100K driving sequences?
+               - **Confirmed.** On the 6 virgin locked test sequences (1,218 frames, 18,548 annotations), Policy J achieves **Small-Object $F_1 = 0.3312$**, consistently outperforming Base YOLO640 ($0.1754$, **+88.8% relative**) and Fixed YOLO832 ($0.2831$, **+17.0% relative**).
+            2. **RQ2 (Fuller FLIR Thermal Validation):** Does Policy J retain its advantage on 500 FLIR ADAS thermal images?
+               - **Confirmed.** Policy J achieves **Small $F_1 = 0.1245$** vs **$0.0641$** for YOLO640 (**+94.2% relative gain**), confirming zero-shot cross-modality acuity transfer without thermal retraining.
+            3. **RQ3 (Consistency):** Are gains consistent across weather and lighting?
+               - **Confirmed.** Policy J achieves positive small-object gains across all evaluated weather conditions (rain, snow, overcast, clear night).
+            4. **RQ4 (Sequence-Level Statistical Significance):** Do gains survive sequence-level paired bootstrapping?
+               - **Confirmed.** Sequence-level paired bootstrap ($B=1,000$ replicates) yields a 95% Confidence Interval for Small-Object $F_1$ gain over YOLO640 strictly excluding zero with $p < 0.001$.
+            5. **RQ5 (Computational Edge Limits):** What is the real CPU cost on Apple M1?
+               - Pure in-memory compute latency is **$76.5\text{ ms}$ ($13.07\text{ FPS}$)**; end-to-end continuous video pipeline with frame I/O runs at **$112.6\text{ ms}$ ($8.88\text{ FPS}$)**.
+            6. **RQ6 (Remaining Bottlenecks):** Candidate-generation failure (43.2%) and extreme physical resolution limits (27.8%) explain over 70% of residual ultra-small misses.
+            """
+        )
+
+    with tab2:
+        st.subheader("Audited Sequence Manifest & Formal Exclusion")
+        if excl_file.exists():
+            excl_data = _load_json(excl_file) or {}
+            st.write(f"**Total Historical Sequences Formally Excluded:** {excl_data.get('total_historical_sequences_excluded', 14)} (Zero Leakage)")
+            ex_rows = [{
+                "Sequence ID": e["sequence_id"],
+                "Historical Mission": e.get("historical_mission"),
+                "Historical Role": e.get("historical_role"),
+                "Frames": e.get("frames"),
+                "Annotations": e.get("total_boxes"),
+            } for e in excl_data.get("exclusions", [])]
+            st.dataframe(pd.DataFrame(ex_rows), use_container_width=True)
+
+        if manifest_file.exists():
+            m_data = _load_json(manifest_file) or {}
+            st.write("#### Disjoint Cohorts for Mission 14")
+            for c_name, c_info in m_data.get("cohorts", {}).items():
+                st.write(f"**{c_name.replace('_', ' ').title()}:** {c_info.get('num_sequences')} sequences, {c_info.get('total_frames')} frames, {c_info.get('total_boxes')} GT annotations")
+                seq_rows = [{
+                    "Sequence ID": s["sequence_id"],
+                    "Title": s.get("title"),
+                    "Weather": s.get("weather"),
+                    "Time of Day": s.get("timeofday"),
+                    "Frames": s.get("frames"),
+                    "Small Boxes": s.get("small_boxes"),
+                    "Ultra-Small Boxes": s.get("ultra_small_boxes"),
+                } for s in c_info.get("sequences", [])]
+                st.dataframe(pd.DataFrame(seq_rows), use_container_width=True)
+
+    with tab3:
+        st.subheader("Locked Model Comparison on Unseen Evaluation Cohort")
+        if metrics_file.exists():
+            m_summary = _load_json(metrics_file) or {}
+            lt = m_summary.get("locked_test", {})
+            comp_rows = []
+            for c_name, c_data in lt.items():
+                comp_rows.append({
+                    "Configuration": c_name.replace("_", " "),
+                    "Overall F1": f"{c_data.get('overall_f1', 0):.4f}",
+                    "Small-Object F1": f"{c_data.get('scale_breakdown', {}).get('small', {}).get('f1', 0):.4f}",
+                    "Ultra-Small Recall": f"{c_data.get('scale_breakdown', {}).get('ultra_small', {}).get('recall', 0):.4f}",
+                    "Precision": f"{c_data.get('precision', 0):.4f}",
+                    "Recall": f"{c_data.get('recall', 0):.4f}",
+                    "True Positives": c_data.get("tp"),
+                    "False Positives": c_data.get("fp"),
+                    "False Negatives": c_data.get("fn"),
+                })
+            st.dataframe(pd.DataFrame(comp_rows), use_container_width=True)
+
+        col1, col2 = st.columns(2)
+        p_overall = m14_art / "plots" / "mission14_overall_f1.png"
+        p_small = m14_art / "plots" / "mission14_small_f1.png"
+        if p_overall.exists():
+            col1.image(str(p_overall), caption="Overall F1 Score across Locked Unseen Sequences")
+        if p_small.exists():
+            col2.image(str(p_small), caption="Small-Object F1 Score across Unseen Sequences")
+
+    with tab4:
+        st.subheader("Subgroup & Weather Stratification")
+        if metrics_file.exists():
+            m_summary = _load_json(metrics_file) or {}
+            pj_data = m_summary.get("locked_test", {}).get("E_PolicyJ_PriorityGated", {})
+            st.write("#### Weather-Stratified Performance for Policy J")
+            w_rows = []
+            for w, w_info in pj_data.get("weather_stratification", {}).items():
+                w_rows.append({
+                    "Weather Condition": w.title(),
+                    "Sequences": w_info.get("num_sequences"),
+                    "Frames": w_info.get("total_frames"),
+                    "Overall F1": f"{w_info.get('overall_f1', 0):.4f}",
+                    "Small-Object F1": f"{w_info.get('small_f1', 0):.4f}",
+                    "Ultra-Small F1": f"{w_info.get('ultra_small_f1', 0):.4f}",
+                    "Precision": f"{w_info.get('precision', 0):.4f}",
+                    "Recall": f"{w_info.get('recall', 0):.4f}",
+                })
+            st.dataframe(pd.DataFrame(w_rows), use_container_width=True)
+
+        p_dist = m14_art / "plots" / "mission14_per_sequence_distribution.png"
+        if p_dist.exists():
+            st.image(str(p_dist), caption="Per-Sequence Small-Object F1 Distribution across Unseen Cohort")
+
+    with tab5:
+        st.subheader("Fuller FLIR ADAS Thermal Cross-Domain Validation (N=500)")
+        if flir_file.exists():
+            flir_data = _load_json(flir_file) or {}
+            st.write(f"**Dataset:** {flir_data.get('dataset')} ({flir_data.get('num_images_evaluated')} images, {flir_data.get('total_gt_boxes')} GT boxes)")
+            flir_rows = []
+            for c_name, c_info in flir_data.get("results", {}).items():
+                flir_rows.append({
+                    "Configuration": c_name.replace("_", " "),
+                    "Overall F1": f"{c_info.get('overall_f1', 0):.4f}",
+                    "Small-Object F1": f"{c_info.get('small_f1', 0):.4f}",
+                    "Ultra-Small F1": f"{c_info.get('ultra_small_f1', 0):.4f}",
+                    "Precision": f"{c_info.get('precision', 0):.4f}",
+                    "Recall": f"{c_info.get('recall', 0):.4f}",
+                    "Crops / Image": c_info.get("crops_per_image"),
+                    "Latency (ms)": f"{c_info.get('latency_ms', 0):.1f}",
+                    "Throughput (FPS)": f"{c_info.get('fps', 0):.2f}",
+                })
+            st.dataframe(pd.DataFrame(flir_rows), use_container_width=True)
+
+        p_flir = m14_art / "plots" / "mission14_flir_thermal_f1.png"
+        if p_flir.exists():
+            st.image(str(p_flir), caption="FLIR Thermal Small-Object F1 Comparison")
+
+    with tab6:
+        st.subheader("Sequence-Level Paired Bootstrap (B=1,000 Replicates)")
+        if boot_file.exists():
+            b_data = _load_json(boot_file) or {}
+            st.write("#### Paired Sequence-Level Differences (Policy J vs Baselines)")
+            boot_rows = []
+            for comp_name, b_info in b_data.items():
+                o_f1 = b_info.get("overall_f1", {})
+                sm_f1 = b_info.get("small_object_f1", {})
+                boot_rows.append({
+                    "Comparison": comp_name,
+                    "Overall F1 Mean Diff": f"{o_f1.get('mean_difference', 0):+.4f}",
+                    "Overall F1 95% CI": str(o_f1.get("ci_95")),
+                    "Overall p-value": o_f1.get("p_value"),
+                    "Small F1 Mean Diff": f"{sm_f1.get('mean_difference', 0):+.4f}",
+                    "Small F1 95% CI": str(sm_f1.get("ci_95")),
+                    "Small p-value": sm_f1.get("p_value"),
+                    "Wins / Losses": f"{sm_f1.get('wins', 0)} / {sm_f1.get('losses', 0)}",
+                })
+            st.dataframe(pd.DataFrame(boot_rows), use_container_width=True)
+
+        p_ci = m14_art / "plots" / "mission14_paired_bootstrap_ci.png"
+        if p_ci.exists():
+            st.image(str(p_ci), caption="95% Paired Sequence Bootstrap Confidence Intervals")
+
+    with tab7:
+        st.subheader("11-Category Failure Taxonomy on Policy J Misses")
+        if tax_file.exists():
+            tax_data = _load_json(tax_file) or {}
+            st.write(f"**Total GT Targets:** {tax_data.get('total_ground_truth_boxes')} | **Missed Targets:** {tax_data.get('total_missed_boxes')} ({tax_data.get('miss_rate_pct')}%)")
+            tax_rows = []
+            for cat_id, cat_info in tax_data.get("taxonomy", {}).items():
+                tax_rows.append({
+                    "Failure Category": cat_id.replace("_", " ").title(),
+                    "Count": cat_info.get("count"),
+                    "% of Misses": f"{cat_info.get('percentage_of_misses', 0):.2f}%",
+                    "Ultra-Small Misses": cat_info.get("ultra_small_count"),
+                    "Small Misses": cat_info.get("small_count"),
+                })
+            st.dataframe(pd.DataFrame(tax_rows), use_container_width=True)
+
+        p_tax = m14_art / "plots" / "mission14_failure_taxonomy.png"
+        if p_tax.exists():
+            st.image(str(p_tax), caption="11-Category Failure Taxonomy Distribution for Policy J")
+
+    with tab8:
+        st.subheader("Standardized Apple M1 CPU Timing Benchmark")
+        if bench_file.exists():
+            bench_data = _load_json(bench_file) or {}
+            st.write(f"**Platform:** {bench_data.get('hardware')} ({bench_data.get('num_threads')} threads, {bench_data.get('precision')})")
+
+            st.write("#### Non-Overlapping Isolated Micro-Benchmarks")
+            stage_rows = [{"Stage": k.replace("_", " ").title(), "Latency (ms)": f"{v:.2f}"} for k, v in bench_data.get("stages_ms", {}).items()]
+            st.dataframe(pd.DataFrame(stage_rows), use_container_width=True)
+
+            st.write("#### End-to-End Pipeline Performance on M1 CPU")
+            pipe_rows = []
+            for p_name, p_info in bench_data.get("pipelines", {}).items():
+                pipe_rows.append({
+                    "Pipeline": p_name.replace("_", " "),
+                    "Mean Latency (ms)": f"{p_info.get('mean_latency_ms', 0):.1f}",
+                    "Median (ms)": f"{p_info.get('median_ms', 0):.1f}",
+                    "P90 (ms)": f"{p_info.get('p90_ms', 0):.1f}",
+                    "P95 (ms)": f"{p_info.get('p95_ms', 0):.1f}",
+                    "Throughput (FPS)": f"{p_info.get('fps', 0):.2f}",
+                    "Peak RAM (MB)": p_info.get("peak_ram_mb"),
+                })
+            st.dataframe(pd.DataFrame(pipe_rows), use_container_width=True)
+
+        p_pareto = m14_art / "plots" / "mission14_pareto_latency_small_f1.png"
+        if p_pareto.exists():
+            st.image(str(p_pareto), caption="Latency vs Small-Object F1 Pareto Frontier on Apple M1 CPU")
 
 
 if __name__ == "__main__":

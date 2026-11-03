@@ -1,0 +1,73 @@
+{
+  "total_ground_truth_boxes": 18556,
+  "total_missed_boxes": 11515,
+  "miss_rate_pct": 62.06,
+  "taxonomy": {
+    "1_candidate_generation_failure": {
+      "count": 1821,
+      "percentage_of_misses": 15.81,
+      "ultra_small_count": 1821,
+      "small_count": 0
+    },
+    "2_proposal_admission_failure": {
+      "count": 0,
+      "percentage_of_misses": 0.0,
+      "ultra_small_count": 0,
+      "small_count": 0
+    },
+    "3_crop_placement_failure": {
+      "count": 3813,
+      "percentage_of_misses": 33.11,
+      "ultra_small_count": 0,
+      "small_count": 3813
+    },
+    "4_crop_context_failure": {
+      "count": 2961,
+      "percentage_of_misses": 25.71,
+      "ultra_small_count": 0,
+      "small_count": 0
+    },
+    "5_resolution_limitation": {
+      "count": 26,
+      "percentage_of_misses": 0.23,
+      "ultra_small_count": 26,
+      "small_count": 0
+    },
+    "6_classification_failure": {
+      "count": 588,
+      "percentage_of_misses": 5.11,
+      "ultra_small_count": 25,
+      "small_count": 205
+    },
+    "7_localization_failure": {
+      "count": 2213,
+      "percentage_of_misses": 19.22,
+      "ultra_small_count": 278,
+      "small_count": 1001
+    },
+    "8_confidence_threshold_failure": {
+      "count": 3,
+      "percentage_of_misses": 0.03,
+      "ultra_small_count": 0,
+      "small_count": 1
+    },
+    "9_duplicate_suppression_failure": {
+      "count": 0,
+      "percentage_of_misses": 0.0,
+      "ultra_small_count": 0,
+      "small_count": 0
+    },
+    "10_annotation_ambiguity": {
+      "count": 6,
+      "percentage_of_misses": 0.05,
+      "ultra_small_count": 6,
+      "small_count": 0
+    },
+    "11_other": {
+      "count": 84,
+      "percentage_of_misses": 0.73,
+      "ultra_small_count": 2,
+      "small_count": 25
+    }
+  }
+}

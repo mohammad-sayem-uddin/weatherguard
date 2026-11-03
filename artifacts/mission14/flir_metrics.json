@@ -1,0 +1,48 @@
+{
+  "dataset": "FLIR ADAS Thermal Object Detection (LWIR 8-14um)",
+  "num_images_evaluated": 500,
+  "total_gt_boxes": 4238,
+  "sampling": "Deterministic stratified sample (seed=42) from 1,452 validation images",
+  "results": {
+    "A_YOLO640": {
+      "overall_f1": 0.3142,
+      "precision": 0.6984,
+      "recall": 0.2027,
+      "small_f1": 0.1083,
+      "ultra_small_f1": 0.0444,
+      "crops_per_image": 0.0,
+      "latency_ms": 49.82,
+      "fps": 20.07
+    },
+    "B_YOLO832": {
+      "overall_f1": 0.307,
+      "precision": 0.6895,
+      "recall": 0.1975,
+      "small_f1": 0.1254,
+      "ultra_small_f1": 0.0243,
+      "crops_per_image": 0.0,
+      "latency_ms": 84.61,
+      "fps": 11.82
+    },
+    "C_DetectorOnly_ClusteredROI": {
+      "overall_f1": 0.3131,
+      "precision": 0.6664,
+      "recall": 0.2046,
+      "small_f1": 0.1087,
+      "ultra_small_f1": 0.0326,
+      "crops_per_image": 0.88,
+      "latency_ms": 73.95,
+      "fps": 13.52
+    },
+    "E_PolicyJ_PriorityGated": {
+      "overall_f1": 0.3185,
+      "precision": 0.6566,
+      "recall": 0.2102,
+      "small_f1": 0.1136,
+      "ultra_small_f1": 0.0326,
+      "crops_per_image": 1.85,
+      "latency_ms": 104.12,
+      "fps": 9.6
+    }
+  }
+}
