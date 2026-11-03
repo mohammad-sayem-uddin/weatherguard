@@ -1,0 +1,54 @@
+{
+  "mission": "Mission 15 \u2014 WeatherGuard Policy K Architecture",
+  "selected_default_config": {
+    "policy_name": "Policy K \u2014 Temporal-Horizon Priority Allocation",
+    "max_crops": 2,
+    "crop_size": 448,
+    "cluster_distance_px": 120.0,
+    "context_margin": 0.2,
+    "min_independent_score": 0.25,
+    "redundancy_iou_thresh": 0.2,
+    "dual_validation_iou_thresh": 0.15,
+    "dual_validation_boost": 1.35,
+    "temporal_config": {
+      "memory_window_T": 5,
+      "decay_factor": 0.75,
+      "motion_compensation": true,
+      "min_evidence_score": 0.22,
+      "ghost_suppression": true
+    },
+    "horizon_config": {
+      "horizon_band_half_height": 45,
+      "ema_beta": 0.85,
+      "min_candidate_size": 6,
+      "max_candidate_size": 32,
+      "max_proposals": 10
+    }
+  },
+  "budget_investigation": {
+    "K_1": {
+      "max_crops": 1,
+      "mean_controller_ms": 29.61,
+      "fps": 33.77,
+      "total_crops_allocated": 99,
+      "mean_crops_per_frame": 0.99,
+      "total_candidates_evaluated": 1486
+    },
+    "K_2": {
+      "max_crops": 2,
+      "mean_controller_ms": 28.57,
+      "fps": 35.0,
+      "total_crops_allocated": 198,
+      "mean_crops_per_frame": 1.98,
+      "total_candidates_evaluated": 1486
+    },
+    "K_3": {
+      "max_crops": 3,
+      "mean_controller_ms": 28.11,
+      "fps": 35.57,
+      "total_crops_allocated": 289,
+      "mean_crops_per_frame": 2.89,
+      "total_candidates_evaluated": 1486
+    }
+  }
+}
