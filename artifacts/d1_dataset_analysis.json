@@ -1,0 +1,24 @@
+{
+  "dataset_name": "WeatherGuard-D1",
+  "status": "NOT_AVAILABLE",
+  "message": "Dataset manifests not found: ingestion_manifest.json, annotation_validation_manifest.json. Awaiting raw synthetic data from Google Flow.",
+  "timestamp": "2026-11-04T20:44:14Z",
+  "target_specification": {
+    "target_images": 2000,
+    "target_conditions": {
+      "day": 600,
+      "night": 500,
+      "rain": 500,
+      "fog": 400
+    },
+    "target_classes": [
+      "truck",
+      "person",
+      "bicycle",
+      "car",
+      "motorcycle",
+      "bus"
+    ],
+    "target_resolution": "1280x720"
+  }
+}
