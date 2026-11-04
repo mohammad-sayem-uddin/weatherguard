@@ -38,6 +38,27 @@ def compute_manifest_hash(split_data: Dict[str, Any]) -> str:
     return hashlib.sha256(canonical_str.encode("utf-8")).hexdigest()
 
 
+class DisjointSetUnion:
+    """Disjoint Set Union (Union-Find) with path compression for transitive clustering."""
+
+    def __init__(self):
+        self.parent: Dict[str, str] = {}
+
+    def find(self, x: str) -> str:
+        if x not in self.parent:
+            self.parent[x] = x
+            return x
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x: str, y: str):
+        rx = self.find(x)
+        ry = self.find(y)
+        if rx != ry:
+            self.parent[rx] = ry
+
+
 class D1SplitGenerator:
     """Partitions D1 images into train, val, and test splits with strict group-level isolation."""
 
@@ -62,7 +83,11 @@ class D1SplitGenerator:
         val_ratio: float = 0.20,
         test_ratio: float = 0.20,
     ) -> Dict[str, Any]:
-        """Generates leakage-safe splits from ingestion manifest records."""
+        """Generates leakage-safe splits from ingestion manifest records.
+
+        Enforces global transitive grouping across both prompt scenario families
+        and perceptual near-duplicates spanning multiple weather conditions.
+        """
         records = ingestion_manifest_data.get("records", [])
         if not records:
             return {
@@ -84,26 +109,46 @@ class D1SplitGenerator:
                 "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             }
 
-        # Step 1: Group by condition, and within condition, group by scenario/family ID
-        rng = random.Random(self.random_seed)
+        total_images = len(accepted_records)
 
-        # Build clusters
-        # If scenario_family_id is missing or trivial, group by perceptual dhash near-duplicates
-        condition_groups: Dict[str, Dict[str, List[Dict[str, Any]]]] = defaultdict(lambda: defaultdict(list))
+        # Step 1: Global Transitive Clustering via Disjoint Set Union (DSU)
+        # Groups images connected by:
+        # 1. Identical scenario_family_id (even across different weather conditions!)
+        # 2. Near-duplicate flags and transitive chains (A ~ B and B ~ C -> {A, B, C})
+        dsu = DisjointSetUnion()
 
         for r in accepted_records:
-            cond = r.get("condition", "day")
-            fam_id = r.get("scenario_family_id") or "fam_default"
-            # If flagged as near-duplicate, append to cluster key
-            flags = r.get("flags", [])
-            for fl in flags:
+            img_id = r["image_id"]
+            dsu.find(img_id)
+
+            # Global scenario family link
+            fam_id = r.get("scenario_family_id")
+            if fam_id and fam_id != "fam_default":
+                dsu.union(img_id, f"scenario_family::{fam_id}")
+
+            # Global near-duplicate links and transitive chains
+            for fl in r.get("flags", []):
                 if "Near-duplicate candidate of:" in fl:
-                    # extract candidate ID to cluster them together
-                    parts = fl.split("Near-duplicate candidate of:")[-1].strip().split(",")
-                    primary_id = parts[0].split("(")[0].strip()
-                    fam_id = f"cluster_{primary_id}"
-                    break
-            condition_groups[cond][fam_id].append(r)
+                    cand_part = fl.split("Near-duplicate candidate of:")[-1]
+                    for candidate in cand_part.split(","):
+                        cand_id = candidate.split("(")[0].strip()
+                        if cand_id:
+                            dsu.union(img_id, cand_id)
+
+        # Step 2: Build atomic connected components
+        clusters: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+        for r in accepted_records:
+            root = dsu.find(r["image_id"])
+            clusters[root].append(r)
+
+        # Sort clusters deterministically: larger clusters first for better bin packing, then deterministic tie-break
+        rng = random.Random(self.random_seed)
+        cluster_list = list(clusters.values())
+        cluster_list.sort(key=lambda c: (-len(c), sorted([r["image_id"] for r in c])[0]))
+
+        target_train = int(round(total_images * train_ratio))
+        target_val = int(round(total_images * val_ratio))
+        target_test = total_images - target_train - target_val
 
         train_ids: List[str] = []
         val_ids: List[str] = []
@@ -115,38 +160,37 @@ class D1SplitGenerator:
             "test": {c: 0 for c in self.conditions},
         }
 
-        # Step 2: Stratified allocation per condition
-        for cond, fam_dict in condition_groups.items():
-            families = list(fam_dict.keys())
-            # Deterministic shuffle
-            rng.shuffle(families)
+        # Step 3: Atomic Group Allocation
+        for cluster in cluster_list:
+            c_count = len(cluster)
+            c_ids = [r["image_id"] for r in cluster]
 
-            total_cond_images = sum(len(fam_dict[f]) for f in families)
-            target_train = int(round(total_cond_images * train_ratio))
-            target_val = int(round(total_cond_images * val_ratio))
+            # Determine best destination split
+            curr_tr = len(train_ids)
+            curr_va = len(val_ids)
+            curr_te = len(test_ids)
 
-            curr_train_cnt = 0
-            curr_val_cnt = 0
+            # Allocate to split with highest remaining capacity relative to target
+            rem_tr = target_train - curr_tr
+            rem_va = target_val - curr_va
+            rem_te = target_test - curr_te
 
-            for f_id in families:
-                f_records = fam_dict[f_id]
-                f_count = len(f_records)
-                f_img_ids = [r["image_id"] for r in f_records]
+            if rem_tr >= rem_va and rem_tr >= rem_te and rem_tr > 0:
+                dest = "train"
+                train_ids.extend(c_ids)
+            elif rem_va >= rem_te and rem_va > 0:
+                dest = "validation"
+                val_ids.extend(c_ids)
+            else:
+                dest = "test"
+                test_ids.extend(c_ids)
 
-                # Greedily allocate the entire family without splitting
-                if curr_train_cnt + f_count <= target_train or (curr_train_cnt < target_train and curr_val_cnt >= target_val):
-                    train_ids.extend(f_img_ids)
-                    curr_train_cnt += f_count
-                    split_summary["train"][cond] = split_summary["train"].get(cond, 0) + f_count
-                elif curr_val_cnt + f_count <= target_val or (curr_val_cnt < target_val):
-                    val_ids.extend(f_img_ids)
-                    curr_val_cnt += f_count
-                    split_summary["validation"][cond] = split_summary["validation"].get(cond, 0) + f_count
-                else:
-                    test_ids.extend(f_img_ids)
-                    split_summary["test"][cond] = split_summary["test"].get(cond, 0) + f_count
+            for r in cluster:
+                cond = r.get("condition", "day")
+                if cond in split_summary[dest]:
+                    split_summary[dest][cond] += 1
 
-        # Step 3: Verification of zero leakage
+        # Step 4: Verification of zero leakage
         s_train = set(train_ids)
         s_val = set(val_ids)
         s_test = set(test_ids)
@@ -158,24 +202,44 @@ class D1SplitGenerator:
         if overlap_tv or overlap_tt or overlap_vt:
             raise RuntimeError(f"Data leakage detected! Overlaps: Train-Val={len(overlap_tv)}, Train-Test={len(overlap_tt)}, Val-Test={len(overlap_vt)}")
 
+        # Verify cluster-level atomic isolation
+        train_roots = {dsu.find(i) for i in train_ids}
+        val_roots = {dsu.find(i) for i in val_ids}
+        test_roots = {dsu.find(i) for i in test_ids}
+
+        c_tv = train_roots.intersection(val_roots)
+        c_tt = train_roots.intersection(test_roots)
+        c_vt = val_roots.intersection(test_roots)
+        if c_tv or c_tt or c_vt:
+            raise RuntimeError(f"Cluster leakage detected! Overlapping cluster roots: TV={len(c_tv)}, TT={len(c_tt)}, VT={len(c_vt)}")
+
+        actual_tr_r = round(len(train_ids) / total_images, 4)
+        actual_va_r = round(len(val_ids) / total_images, 4)
+        actual_te_r = round(len(test_ids) / total_images, 4)
+
         split_manifest = {
             "status": "SPLITS_FROZEN",
             "dataset_name": self.config.get("dataset_name", "WeatherGuard-D1"),
             "dataset_version": self.config.get("dataset_version", "1.0.0-synthetic"),
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "random_seed": self.random_seed,
-            "isolation_rule": "prompt_scenario_family_and_dhash_clustering",
+            "isolation_rule": "global_dsu_transitive_scenario_family_and_dhash_clustering",
             "allocation_ratios": {
-                "train": train_ratio,
-                "validation": val_ratio,
-                "test": test_ratio,
+                "target": {"train": train_ratio, "validation": val_ratio, "test": test_ratio},
+                "actual": {"train": actual_tr_r, "validation": actual_va_r, "test": actual_te_r},
+                "deviation": {
+                    "train": round(actual_tr_r - train_ratio, 4),
+                    "validation": round(actual_va_r - val_ratio, 4),
+                    "test": round(actual_te_r - test_ratio, 4),
+                },
             },
             "summary": {
-                "total_images": len(train_ids) + len(val_ids) + len(test_ids),
+                "total_images": total_images,
                 "train_count": len(train_ids),
                 "validation_count": len(val_ids),
                 "test_count": len(test_ids),
                 "condition_breakdown": split_summary,
+                "total_connected_clusters": len(clusters),
             },
             "train": {
                 "count": len(train_ids),
@@ -191,6 +255,9 @@ class D1SplitGenerator:
                 "locked_status": "FROZEN_INTERNAL_TEST",
             },
         }
+
+        split_manifest["manifest_hash"] = compute_manifest_hash(split_manifest)
+        return split_manifest
 
         split_manifest["manifest_hash"] = compute_manifest_hash(split_manifest)
         return split_manifest

@@ -161,3 +161,109 @@ def test_empty_manifest_handling():
     gen = D1SplitGenerator(config_path=CONFIG_PATH)
     res = gen.generate_splits({"records": []})
     assert res["status"] == "NOT_AVAILABLE"
+
+
+def test_multi_condition_scenario_family_atomic_isolation():
+    """Adversarial check: Same scenario family generated under DAY and RAIN conditions.
+
+    Must NEVER be split across train and test!
+    """
+    gen = D1SplitGenerator(config_path=CONFIG_PATH, random_seed=42)
+
+    mock_records = [
+        # Same prompt family generated across two different conditions
+        {"image_id": "cross_day_1", "condition": "day", "status": "ACCEPTED", "scenario_family_id": "shared_highway_prompt", "flags": []},
+        {"image_id": "cross_day_2", "condition": "day", "status": "ACCEPTED", "scenario_family_id": "shared_highway_prompt", "flags": []},
+        {"image_id": "cross_rain_1", "condition": "rain", "status": "ACCEPTED", "scenario_family_id": "shared_highway_prompt", "flags": []},
+        {"image_id": "cross_rain_2", "condition": "rain", "status": "ACCEPTED", "scenario_family_id": "shared_highway_prompt", "flags": []},
+    ]
+    # Add other filler families
+    for i in range(40):
+        mock_records.append({
+            "image_id": f"filler_{i}",
+            "condition": "day" if i % 2 == 0 else "rain",
+            "status": "ACCEPTED",
+            "scenario_family_id": f"filler_fam_{i // 4}",
+            "flags": [],
+        })
+
+    splits = gen.generate_splits({"records": mock_records})
+    train_ids = set(splits["train"]["image_ids"])
+    val_ids = set(splits["validation"]["image_ids"])
+    test_ids = set(splits["test"]["image_ids"])
+
+    shared_group = {"cross_day_1", "cross_day_2", "cross_rain_1", "cross_rain_2"}
+    in_train = shared_group.issubset(train_ids)
+    in_val = shared_group.issubset(val_ids)
+    in_test = shared_group.issubset(test_ids)
+
+    assert in_train or in_val or in_test, "Multi-condition scenario family was leaked across splits!"
+
+
+def test_transitive_near_duplicate_chain_isolation():
+    """Adversarial check: A ~ B and B ~ C (transitive near-duplicate chain).
+
+    All 3 must be grouped into the exact same split.
+    """
+    gen = D1SplitGenerator(config_path=CONFIG_PATH, random_seed=77)
+
+    mock_records = [
+        {"image_id": "img_A", "condition": "night", "status": "ACCEPTED", "flags": []},
+        {"image_id": "img_B", "condition": "night", "status": "NEAR_DUPLICATE_FLAGGED", "flags": ["Near-duplicate candidate of: img_A(dist=2)"]},
+        {"image_id": "img_C", "condition": "night", "status": "NEAR_DUPLICATE_FLAGGED", "flags": ["Near-duplicate candidate of: img_B(dist=3)"]},
+    ]
+    for i in range(30):
+        mock_records.append({
+            "image_id": f"independent_{i}",
+            "condition": "night",
+            "status": "ACCEPTED",
+            "scenario_family_id": f"indep_{i}",
+            "flags": [],
+        })
+
+    splits = gen.generate_splits({"records": mock_records})
+    train_ids = set(splits["train"]["image_ids"])
+    val_ids = set(splits["validation"]["image_ids"])
+    test_ids = set(splits["test"]["image_ids"])
+
+    chain = {"img_A", "img_B", "img_C"}
+    in_train = chain.issubset(train_ids)
+    in_val = chain.issubset(val_ids)
+    in_test = chain.issubset(test_ids)
+
+    assert in_train or in_val or in_test, "Transitive near-duplicate chain was broken across splits!"
+
+
+def test_large_atomic_group_ratio_deviation_reporting():
+    """Adversarial check: One massive atomic group (30 images) out of 40 total images."""
+    gen = D1SplitGenerator(config_path=CONFIG_PATH, random_seed=42)
+
+    mock_records = []
+    # 30 images in one family
+    for i in range(30):
+        mock_records.append({
+            "image_id": f"big_fam_{i}",
+            "condition": "fog",
+            "status": "ACCEPTED",
+            "scenario_family_id": "massive_cluster",
+            "flags": [],
+        })
+    # 10 separate images
+    for i in range(10):
+        mock_records.append({
+            "image_id": f"small_{i}",
+            "condition": "fog",
+            "status": "ACCEPTED",
+            "scenario_family_id": f"single_{i}",
+            "flags": [],
+        })
+
+    splits = gen.generate_splits({"records": mock_records})
+    assert splits["status"] == "SPLITS_FROZEN"
+    assert "ratios" in splits["allocation_ratios"] or "actual" in splits["allocation_ratios"]
+    # Massive cluster must not be fragmented
+    big_fam = {f"big_fam_{i}" for i in range(30)}
+    train_ids = set(splits["train"]["image_ids"])
+    val_ids = set(splits["validation"]["image_ids"])
+    test_ids = set(splits["test"]["image_ids"])
+    assert big_fam.issubset(train_ids) or big_fam.issubset(val_ids) or big_fam.issubset(test_ids)
