@@ -1,0 +1,60 @@
+{
+  "timestamp": "2026-11-04T18:01:30Z",
+  "mission": "Mission 18 — Research Validation, Dataset Acceptance & Baseline Establishment",
+  "phase": "Phase 5 — WeatherGuard-D1 Dataset Acceptance",
+  "dataset_name": "WeatherGuard-D1",
+  "expected_location": "data/WeatherGuard-D1/",
+  "outcome": "BLOCKED_PENDING_DATA",
+  "reasons": [
+    "Corpus directory 'data/WeatherGuard-D1/' is not present on disk.",
+    "Owner is independently generating 2,000 synthetic photorealistic images via Google Flow and annotations via Gemini Flash.",
+    "Zero synthetic frames or annotations have been fabricated or simulated."
+  ],
+  "acceptance_criteria_framework": {
+    "corpus_specifications": {
+      "target_image_count": 2000,
+      "native_resolution": [1280, 720],
+      "aspect_ratio": "16:9",
+      "color_channels": 3,
+      "temporal_nature": "independent_still_frames",
+      "prohibited_claims": ["temporal_tracking", "flicker_reduction", "video_continuity"]
+    },
+    "condition_quotas": {
+      "day_clear": {"target": 600, "quota_pct": 30.0},
+      "night_low_light": {"target": 500, "quota_pct": 25.0},
+      "rain_downpour": {"target": 500, "quota_pct": 25.0},
+      "dense_fog": {"target": 400, "quota_pct": 20.0}
+    },
+    "canonical_classes": {
+      "0": "truck",
+      "1": "person",
+      "2": "bicycle",
+      "3": "car",
+      "4": "motorcycle",
+      "5": "bus"
+    },
+    "scale_definitions_max_dim_px": {
+      "ultra_small": "< 16 px",
+      "small": "16 to < 32 px",
+      "medium": "32 to < 96 px",
+      "large": ">= 96 px"
+    },
+    "non_negotiable_acceptance_gates": {
+      "image_reference_resolution_min_pct": 100.0,
+      "invalid_class_id_tolerance": 0,
+      "split_leakage_tolerance": 0,
+      "connected_component_fracture_tolerance": 0,
+      "subpixel_dimension_rejection_px": 2.0,
+      "duplicate_box_iou_pruning_threshold": 0.85,
+      "manual_visual_audit_sample_size": 100,
+      "max_acceptable_critical_error_rate_pct": 2.0
+    }
+  },
+  "readiness_status": {
+    "ingestion_pipeline_ready": true,
+    "gemini_validator_ready": true,
+    "leakage_safe_splitter_ready": true,
+    "yolo_label_generator_ready": true,
+    "m1_training_pipeline_ready": true
+  }
+}
