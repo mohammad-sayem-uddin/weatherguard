@@ -128,6 +128,7 @@ def main() -> None:
             "26. Priority-Gated Candidate Allocation & Crop-Budget Optimization (Mission 13)",
             "27. Independent Cross-Domain Validation & Statistical Reliability (Mission 14)",
             "28. Temporal Evidence Accumulation & Horizon-Anchored Candidates (Mission 15)",
+            "29. Synthetic Domain Transfer & WeatherGuard-D1 Infrastructure (Mission 16 Preparation)",
         ],
     )
 
@@ -187,6 +188,8 @@ def main() -> None:
         page_mission14_cross_domain_validation()
     elif page.startswith("28."):
         page_mission15_temporal_evidence()
+    elif page.startswith("29."):
+        page_mission16_preparation()
 
 
 def page_overview() -> None:
@@ -4292,6 +4295,124 @@ def page_mission15_temporal_evidence() -> None:
         p_ultra = m15_art / "plots" / "mission15_ultra_small_recall.png"
         if p_ultra.exists():
             col_b.image(str(p_ultra), caption="Locked Ultra-Small Recall (<16px)")
+
+
+def page_mission16_preparation() -> None:
+    st.header("29. Synthetic Domain Transfer & WeatherGuard-D1 Infrastructure (Mission 16 Preparation)")
+    st.markdown(
+        """
+        **Mission 16 Scientific Objective:** Investigate whether photorealistic synthetic adverse-weather dashcam data
+        (generated via Google Flow with Gemini Flash annotations) can improve small and distant object detection,
+        and determine whether these gains transfer to real-world driving datasets without negative transfer or latency penalties.
+        """
+    )
+
+    d1_cfg_path = ROOT / "configs" / "weatherguard_d1.yaml"
+    d1_analysis_path = ROOT / "artifacts" / "d1_dataset_analysis.json"
+    registry_csv = ROOT / "experiments" / "experiment_registry.csv"
+
+    # Status Banner
+    d1_analysis = _load_json(d1_analysis_path) if d1_analysis_path.exists() else None
+    if not d1_analysis or d1_analysis.get("status") == "NOT_AVAILABLE":
+        st.info(
+            "⏳ **Dataset Status: PENDING INGESTION** — The owner is independently generating 2,000 synthetic photorealistic images "
+            "(Google Flow) and AI-assisted annotations (Gemini Flash). The ingestion, validation, QC triage, and split pipelines "
+            "are fully verified and waiting for data delivery."
+        )
+    else:
+        st.success(
+            f"✅ **Dataset Status: AVAILABLE** — Ingested {d1_analysis.get('image_summary', {}).get('accepted_images', 0):,} "
+            f"images with {d1_analysis.get('object_summary', {}).get('total_valid_objects', 0):,} validated annotations."
+        )
+
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "Dataset Specifications & Quotas",
+        "Gemini Annotation QC & Validator",
+        "Leakage-Safe Splitting Protocol",
+        "Standardized Experiment Matrix (E1–E12)",
+        "Unified Evaluation & CPU Protocols",
+    ])
+
+    with tab1:
+        st.subheader("WeatherGuard-D1 Target Specifications")
+        st.markdown(
+            """
+            - **Target Corpus:** 2,000 synthetic photorealistic dashcam frames.
+            - **Native Resolution:** 1280 × 720 (Strict, zero silent resizing or cropping).
+            - **Temporal Nature:** Independent still images (Non-continuous; temporal tracking claims strictly prohibited).
+            - **Generator:** Google Flow | **Annotator:** Gemini Flash (with independent algorithmic verification).
+            """
+        )
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Day Clear Target", "600 images", "30.0% quota")
+        c2.metric("Night Low-Light", "500 images", "25.0% quota")
+        c3.metric("Rain Downpour", "500 images", "25.0% quota")
+        c4.metric("Dense Fog", "400 images", "20.0% quota")
+
+        st.write("#### Six Detection Classes")
+        st.markdown(
+            "- `0: Truck` | `1: Person` | `2: Bicycle` | `3: Car` | `4: Motorcycle` | `5: Bus`"
+        )
+
+    with tab2:
+        st.subheader("Gemini Flash Annotation Validator & Recalibration")
+        st.markdown(
+            """
+            ### Strict Scientific Verification Rules:
+            1. **Coordinate Conversion:** Input Gemini Flash coordinates $[x_{min}, y_{min}, x_{max}, y_{max}]$ normalized in range $0-1000$ are mapped:
+               $$x_{pixel} = x_{norm} \\times \\frac{1280}{1000}, \\quad y_{pixel} = y_{norm} \\times \\frac{720}{1000}$$
+            2. **Object Size Classification Convention:** Evaluated on $\\max(\\text{width}_{px}, \\text{height}_{px})$:
+               - **Ultra-Small:** $< 16\\text{px}$
+               - **Small:** $16\\text{px}$ to $< 32\\text{px}$
+               - **Medium:** $32\\text{px}$ to $< 96\\text{px}$
+               - **Large:** $\\ge 96\\text{px}$
+            3. **Independent Recalculation:** Gemini's supplied `object_size` field is **never trusted blindly**; every box is mathematically recalculated, and discrepancies are logged.
+            4. **Three-Tier Quality Control Triage:**
+               - **ACCEPTED_STRUCTURAL:** Validated geometry, high confidence.
+               - **NEEDS_VISUAL_REVIEW:** Low confidence ($<0.50$), ultra-small ambiguous ($<8\\text{px}$), size disagreements.
+               - **REJECTED:** Non-positive bounding boxes, out-of-bounds coordinates, duplicate boxes (IoU $\\ge 0.85$).
+            """
+        )
+
+    with tab3:
+        st.subheader("Leakage-Safe Stratified Splitting Protocol")
+        st.markdown(
+            """
+            ### The Synthetic Near-Duplicate Leakage Hazard:
+            Diffusion generators produce identical road geometries, vehicle arrangements, and lighting artifacts across similar text prompt templates and adjacent seeds. Naive random splitting causes severe memorization leakage.
+
+            ### WeatherGuard Split Invariants:
+            - **Prompt / Scenario Family Clustering:** All images generated from the same prompt template or scene description remain in an atomic cluster ($F_k$).
+            - **Perceptual dHash Clustering:** Images with dHash Hamming distance $\\le 4$ are unified into the same cluster.
+            - **Atomic Allocation:** Every cluster is placed wholly into Train, Validation, or Test:
+              $$\\forall F_k: (F_k \\subseteq S_{train}) \\lor (F_k \\subseteq S_{val}) \\lor (F_k \\subseteq S_{test})$$
+            - **Allocation Targets:**
+              - **Train:** 1,200 images (60%) — Parameter learning.
+              - **Validation:** 400 images (20%) — Checkpoint early stopping & threshold tuning.
+              - **Internal Test (Locked):** 400 images (20%) — Held frozen; zero tuning permitted.
+            """
+        )
+
+    with tab4:
+        st.subheader("Standardized Mission 16 Experiment Matrix (E1 to E12)")
+        if registry_csv.exists():
+            reg_df = pd.read_csv(registry_csv)
+            display_cols = ["experiment_id", "status", "research_question", "model_architecture", "pretrained_weights_id", "artifact_locations"]
+            avail_cols = [c for c in display_cols if c in reg_df.columns]
+            st.dataframe(reg_df[avail_cols], use_container_width=True)
+        else:
+            st.info("Experiment registry CSV initializing...")
+
+    with tab5:
+        st.subheader("Unified Evaluation & Apple M1 CPU Execution Protocols")
+        st.markdown(
+            """
+            ### Unified Evaluation Standards (`scripts/evaluate_weatherguard.py`):
+            - **Latency Separation:** Raw detector forward-pass time is explicitly separated from end-to-end pipeline time (including candidate generation and crop NMS).
+            - **Benchmark Comparability:** Standardized FP32 CPU execution on Apple M1 (8 cores, 8 GB RAM) with 4-7 worker threads.
+            - **Separation of Synthetic and Real Benchmark Reporting:** D1 internal test performance and real-world BDD100K/FLIR performance are reported in separate columns, never blended into a single misleading headline metric.
+            """
+        )
 
 
 if __name__ == "__main__":
