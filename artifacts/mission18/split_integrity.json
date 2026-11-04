@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-11-04T17:56:25Z",
+  "mission": "Mission 18 — Research Validation, Dataset Acceptance & Baseline Establishment",
+  "phase": "Phase 3 — Leakage-Safe Dataset Split Verification",
+  "splitter_module": "scripts/create_d1_splits.py",
+  "test_module": "tests/test_mission18_split_integration.py",
+  "dsu_algorithm_verified": {
+    "data_structure": "DisjointSetUnion with path compression",
+    "clustering_invariants": [
+      "Scenario family grouping across all conditions",
+      "Perceptual dHash near-duplicate chains (Hamming distance <= 4)",
+      "Transitive multi-hop chain closure (A -> B -> C -> D)",
+      "Atomic split allocation (clusters never fractured across splits)"
+    ],
+    "adversarial_tests_passed": 4,
+    "leakage_count": 0,
+    "zero_leakage_enforced": true
+  },
+  "allocation_dynamics": {
+    "strategy": "Deterministic bin packing sorted by cluster size descending",
+    "target_ratios": {
+      "train": 0.60,
+      "validation": 0.20,
+      "test": 0.20
+    },
+    "large_cluster_tradeoff": "Zero leakage strictly prioritized over exact percentage ratios",
+    "hash_verification_mechanism": "Ingestion engine calculates perceptual dHash; splitter aggregates via graph connected components"
+  },
+  "real_data_status": {
+    "status": "BLOCKED_PENDING_DATA",
+    "target_corpus_location": "data/WeatherGuard-D1/",
+    "directory_exists": false,
+    "gate_determination": "SPLIT_ENGINE_VERIFIED_LEAKAGE_FREE"
+  }
+}
