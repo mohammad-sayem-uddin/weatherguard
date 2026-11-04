@@ -43,7 +43,8 @@ DEFAULT_D1_CONFIG = ROOT / "configs" / "weatherguard_d1.yaml"
 BASE_WEIGHTS_PATH = ROOT / "models" / "yolov8n.pt" if (ROOT / "models" / "yolov8n.pt").exists() else ROOT / "yolov8n.pt"
 
 CANONICAL_CLASSES = ["truck", "person", "bicycle", "car", "motorcycle", "bus"]
-YOLO_TO_CANONICAL = {
+
+COCO_TO_CANONICAL = {
     0: "person",
     1: "bicycle",
     2: "car",
@@ -51,6 +52,104 @@ YOLO_TO_CANONICAL = {
     5: "bus",
     7: "truck",
 }
+
+D1_TO_CANONICAL = {
+    0: "truck",
+    1: "person",
+    2: "bicycle",
+    3: "car",
+    4: "motorcycle",
+    5: "bus",
+}
+
+# Backward compatibility alias
+YOLO_TO_CANONICAL = dict(COCO_TO_CANONICAL)
+
+
+class ModelClassMappingError(ValueError):
+    """Raised when model class metadata cannot be mapped to the canonical WeatherGuard taxonomy."""
+    pass
+
+
+def resolve_model_class_mapping(
+    model_names: Optional[Dict[Any, str] | List[str]] = None,
+    model_type_hint: Optional[str] = None,
+) -> Dict[int, str]:
+    """Resolves an unambiguous mapping from model output class indices to canonical class names.
+
+    Supports:
+    1. Direct inspection of model.names dictionary or list.
+    2. Explicit model_type_hint ('coco', 'd1', 'weatherguard_d1').
+    3. Rejection of incompatible, unknown, or ambiguous class taxonomies.
+    """
+    if model_type_hint:
+        hint = model_type_hint.lower().strip()
+        if hint in ("coco", "coco80"):
+            return dict(COCO_TO_CANONICAL)
+        elif hint in ("d1", "weatherguard_d1", "custom6"):
+            return dict(D1_TO_CANONICAL)
+        else:
+            raise ModelClassMappingError(f"Unknown model_type_hint: '{model_type_hint}'. Allowed: 'coco', 'd1'.")
+
+    if model_names is None:
+        raise ModelClassMappingError(
+            "Cannot resolve class mapping: neither model.names nor a valid model_type_hint was provided."
+        )
+
+    # Convert list to dict if needed
+    if isinstance(model_names, list):
+        names_dict = {i: str(name) for i, name in enumerate(model_names)}
+    elif isinstance(model_names, dict):
+        names_dict = {int(k): str(v) for k, v in model_names.items()}
+    else:
+        raise ModelClassMappingError(f"Unsupported model_names type: {type(model_names)}")
+
+    if not names_dict:
+        raise ModelClassMappingError("model.names is empty.")
+
+    # Match names against canonical taxonomy (case-insensitive)
+    canonical_lookup = {c.lower(): c for c in CANONICAL_CLASSES}
+    mapping: Dict[int, str] = {}
+
+    for idx, name in names_dict.items():
+        norm_name = str(name).strip().lower()
+        if norm_name in canonical_lookup:
+            mapping[idx] = canonical_lookup[norm_name]
+
+    # Verification: Check if we mapped at least one class
+    if not mapping:
+        sample_names = list(names_dict.values())[:10]
+        raise ModelClassMappingError(
+            f"No canonical driving classes found in model.names: {sample_names}... "
+            f"Expected classes matching {CANONICAL_CLASSES}."
+        )
+
+    # Check for duplicate target mappings
+    targets = list(mapping.values())
+    if len(targets) != len(set(targets)):
+        raise ModelClassMappingError(
+            f"Ambiguous model.names: multiple indices map to the same canonical class ({mapping})."
+        )
+
+    # If the model has 80 classes (standard COCO), verify expected indices
+    if len(names_dict) == 80:
+        for k, v in COCO_TO_CANONICAL.items():
+            if k not in mapping or mapping[k] != v:
+                raise ModelClassMappingError(
+                    f"COCO-80 model has unexpected class names at index {k}: expected '{v}', found '{names_dict.get(k)}'."
+                )
+        return mapping
+
+    # If the model has 6 classes (WeatherGuard-D1), verify all 6 are covered
+    if len(names_dict) == 6:
+        missing = set(CANONICAL_CLASSES) - set(mapping.values())
+        if missing:
+            raise ModelClassMappingError(
+                f"6-class model is missing canonical classes: {missing}. Found: {names_dict}"
+            )
+        return mapping
+
+    return mapping
 
 
 @dataclass
@@ -216,18 +315,28 @@ class WeatherGuardEvaluator:
         imgsz: int = 640,
         conf_thresh: float = 0.20,
         iou_thresh: float = 0.50,
+        model_type_hint: Optional[str] = None,
     ):
         self.weights_path = Path(weights_path)
         self.policy = policy.lower()
         self.imgsz = imgsz
         self.conf_thresh = conf_thresh
         self.iou_thresh = iou_thresh
+        self.model_type_hint = model_type_hint
 
         # Load YOLO model
         if self.weights_path.exists():
             self.model = YOLO(str(self.weights_path))
+            self.class_mapping = resolve_model_class_mapping(
+                model_names=getattr(self.model, "names", None),
+                model_type_hint=self.model_type_hint,
+            )
         else:
             self.model = None
+            self.class_mapping = resolve_model_class_mapping(
+                model_names=None,
+                model_type_hint=self.model_type_hint or "coco",
+            )
 
         # Policy controllers
         self.ctrl_j = None
@@ -277,10 +386,10 @@ class WeatherGuardEvaluator:
             base_boxes: List[DetectionBox] = []
             for b in res.boxes:
                 cls_id = int(b.cls[0])
-                if cls_id in YOLO_TO_CANONICAL:
+                if cls_id in self.class_mapping:
                     xyxy = b.xyxy[0].cpu().numpy()
                     base_boxes.append(DetectionBox(
-                        class_name=YOLO_TO_CANONICAL[cls_id],
+                        class_name=self.class_mapping[cls_id],
                         confidence=float(b.conf[0]),
                         x1=float(xyxy[0]), y1=float(xyxy[1]), x2=float(xyxy[2]), y2=float(xyxy[3]),
                     ))
@@ -308,10 +417,10 @@ class WeatherGuardEvaluator:
                             c_res = self.model(crop_patch, imgsz=448, conf=self.conf_thresh, verbose=False)[0]
                             for cb in c_res.boxes:
                                 ccls = int(cb.cls[0])
-                                if ccls in YOLO_TO_CANONICAL:
+                                if ccls in self.class_mapping:
                                     cxy = cb.xyxy[0].cpu().numpy()
                                     crop_dets.append(DetectionBox(
-                                        class_name=YOLO_TO_CANONICAL[ccls],
+                                        class_name=self.class_mapping[ccls],
                                         confidence=float(cb.conf[0]),
                                         x1=float(cxy[0] + cx1), y1=float(cxy[1] + cy1),
                                         x2=float(cxy[2] + cx1), y2=float(cxy[3] + cy1),
