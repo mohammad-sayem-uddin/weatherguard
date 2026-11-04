@@ -2,6 +2,7 @@
   "total_configs": 12,
   "ready_for_execution": 1,
   "pending_data_ingestion": 10,
+  "pending_weights": 1,
   "configuration_errors": 0,
   "experiments": [
     {
