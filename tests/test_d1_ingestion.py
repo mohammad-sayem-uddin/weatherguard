@@ -164,14 +164,16 @@ def test_directory_ingestion_and_manifest_generation(temp_workspace):
     (source_dir / "day").mkdir(parents=True)
     (source_dir / "rain").mkdir(parents=True)
 
-    # 2 valid day images
-    for i in range(2):
-        arr = np.random.randint(0, 255, (720, 1280, 3), dtype=np.uint8)
-        Image.fromarray(arr).save(source_dir / "day" / f"day_{i}.jpg", "JPEG")
+    # 2 valid day images with distinct gradients (preventing accidental dhash collisions)
+    arr0 = np.tile(np.linspace(0, 255, 1280, dtype=np.uint8), (720, 1))
+    Image.fromarray(np.stack([arr0]*3, axis=-1)).save(source_dir / "day" / "day_0.jpg", "JPEG")
 
-    # 1 valid rain image
-    arr_rain = np.random.randint(0, 255, (720, 1280, 3), dtype=np.uint8)
-    Image.fromarray(arr_rain).save(source_dir / "rain" / "rain_0.png", "PNG")
+    arr1 = np.tile(np.linspace(255, 0, 1280, dtype=np.uint8), (720, 1))
+    Image.fromarray(np.stack([arr1]*3, axis=-1)).save(source_dir / "day" / "day_1.jpg", "JPEG")
+
+    # 1 valid rain image with alternating stripes
+    arr_rain = np.tile((np.arange(1280, dtype=np.uint8) % 2) * 255, (720, 1))
+    Image.fromarray(np.stack([arr_rain]*3, axis=-1)).save(source_dir / "rain" / "rain_0.png", "PNG")
 
     engine = WeatherGuardD1IngestionEngine(config=cfg, target_dir=target_dir)
     res = engine.ingest_directory(raw_source_dir=source_dir, copy_files=True)

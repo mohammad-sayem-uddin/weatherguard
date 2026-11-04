@@ -532,9 +532,9 @@ class WeatherGuardD1AnnotationValidator:
 
 def main():
     parser = argparse.ArgumentParser(description="Validate Gemini Flash JSON annotations and produce YOLO ground truth.")
-    parser.add_argument("--input-dir", type=str, default="data/WeatherGuard-D1/raw_annotations", help="Incoming JSON folder")
-    parser.add_argument("--output-labels", type=str, default="data/WeatherGuard-D1/labels", help="Output YOLO text files folder")
-    parser.add_argument("--manifest", type=str, default="data/WeatherGuard-D1/manifests/annotation_validation_manifest.json")
+    parser.add_argument("--input-dir", "--input_dir", dest="input_dir", type=str, default="data/WeatherGuard-D1/raw_annotations", help="Incoming JSON folder")
+    parser.add_argument("--output-labels", "--output-dir", "--output_dir", dest="output_labels", type=str, default="data/WeatherGuard-D1/labels", help="Output YOLO text files folder")
+    parser.add_argument("--manifest", "--report", "--output-report", dest="manifest", type=str, default="data/WeatherGuard-D1/manifests/annotation_validation_manifest.json", help="Output validation manifest / report")
     parser.add_argument("--config", type=str, default=str(DEFAULT_CONFIG_PATH))
     args = parser.parse_args()
 

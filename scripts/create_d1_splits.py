@@ -205,13 +205,16 @@ class D1SplitGenerator:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate leakage-safe stratified dataset splits for WeatherGuard-D1.")
-    parser.add_argument("--ingestion-manifest", type=str, default="data/WeatherGuard-D1/manifests/ingestion_manifest.json")
-    parser.add_argument("--output-manifest", type=str, default="data/WeatherGuard-D1/manifests/d1_split_manifest.json")
+    parser.add_argument("--ingestion-manifest", "--manifest", dest="ingestion_manifest", type=str, default="data/WeatherGuard-D1/manifests/ingestion_manifest.json")
+    parser.add_argument("--output-manifest", "--output", dest="output_manifest", type=str, default="data/WeatherGuard-D1/manifests/d1_split_manifest.json")
     parser.add_argument("--config", type=str, default=str(DEFAULT_CONFIG_PATH))
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
     ingest_p = Path(args.ingestion_manifest)
+    if not ingest_p.exists() and Path("artifacts/d1_ingestion_manifest.json").exists():
+        ingest_p = Path("artifacts/d1_ingestion_manifest.json")
+
     if not ingest_p.exists():
         print(f"Ingestion manifest {ingest_p} not found. Cannot generate splits. Exiting.")
         return
@@ -222,8 +225,13 @@ def main():
     gen = D1SplitGenerator(config_path=Path(args.config), random_seed=args.seed)
     splits = gen.generate_splits(ingest_data)
     out_p = gen.export_splits(splits, Path(args.output_manifest))
+
+    # Mirror to artifacts/d1_splits_manifest.json for cross-tool compatibility
+    artifact_mirror = ROOT / "artifacts" / "d1_splits_manifest.json"
+    gen.export_splits(splits, artifact_mirror)
+
     print(f"Splits generated: Train={splits['summary']['train_count']}, Val={splits['summary']['validation_count']}, Test={splits['summary']['test_count']}.")
-    print(f"Saved to {out_p} with Hash: {splits.get('manifest_hash')}")
+    print(f"Saved to {out_p} and mirrored to {artifact_mirror} with Hash: {splits.get('manifest_hash')}")
 
 
 if __name__ == "__main__":

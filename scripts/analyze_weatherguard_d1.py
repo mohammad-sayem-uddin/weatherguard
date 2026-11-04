@@ -279,18 +279,26 @@ class D1DatasetAnalyzer:
 
 def main():
     parser = argparse.ArgumentParser(description="Analyze WeatherGuard-D1 dataset statistics.")
-    parser.add_argument("--ingest-manifest", type=str, default="data/WeatherGuard-D1/manifests/ingestion_manifest.json")
-    parser.add_argument("--validation-manifest", type=str, default="data/WeatherGuard-D1/manifests/annotation_validation_manifest.json")
-    parser.add_argument("--output-json", type=str, default="artifacts/d1_dataset_analysis.json")
+    parser.add_argument("--ingest-manifest", "--manifest", "--ingestion-manifest", dest="ingest_manifest", type=str, default="data/WeatherGuard-D1/manifests/ingestion_manifest.json")
+    parser.add_argument("--validation-manifest", "--labels", "--annotation-manifest", dest="validation_manifest", type=str, default="data/WeatherGuard-D1/manifests/annotation_validation_manifest.json")
+    parser.add_argument("--output-json", "--output", dest="output_json", type=str, default="artifacts/d1_dataset_analysis.json")
     parser.add_argument("--output-csv", type=str, default="artifacts/d1_class_distribution.csv")
-    parser.add_argument("--output-report", type=str, default="reports/mission16_preparation/D1_DATASET_ANALYSIS.md")
+    parser.add_argument("--output-report", "--report", dest="output_report", type=str, default="reports/mission16_preparation/D1_DATASET_ANALYSIS.md")
     parser.add_argument("--config", type=str, default=str(DEFAULT_CONFIG_PATH))
     args = parser.parse_args()
 
+    ingest_p = Path(args.ingest_manifest)
+    if not ingest_p.exists() and Path("artifacts/d1_ingestion_manifest.json").exists():
+        ingest_p = Path("artifacts/d1_ingestion_manifest.json")
+
+    val_p = Path(args.validation_manifest)
+    if not val_p.exists() and Path("artifacts/d1_annotation_validation_report.json").exists():
+        val_p = Path("artifacts/d1_annotation_validation_report.json")
+
     analyzer = D1DatasetAnalyzer(config_path=Path(args.config))
     analysis = analyzer.analyze_dataset(
-        ingestion_manifest_path=Path(args.ingest-manifest if hasattr(args, "ingest-manifest") else args.ingest_manifest),
-        validation_manifest_path=Path(args.validation_manifest),
+        ingestion_manifest_path=ingest_p,
+        validation_manifest_path=val_p,
     )
     analyzer.export_reports(
         analysis=analysis,

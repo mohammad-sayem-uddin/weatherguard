@@ -413,10 +413,10 @@ class WeatherGuardD1IngestionEngine:
 
 def main():
     parser = argparse.ArgumentParser(description="Ingest WeatherGuard-D1 images with integrity and duplicate verification.")
-    parser.add_argument("--source-dir", type=str, default="data/WeatherGuard-D1/raw_incoming", help="Path to incoming images")
-    parser.add_argument("--target-dir", type=str, default="data/WeatherGuard-D1", help="Path to dataset root")
+    parser.add_argument("--source-dir", "--input-dir", "--input_dir", dest="source_dir", type=str, default="data/WeatherGuard-D1/raw_incoming", help="Path to incoming images")
+    parser.add_argument("--target-dir", "--output-dir", "--output_dir", dest="target_dir", type=str, default="data/WeatherGuard-D1", help="Path to dataset root")
     parser.add_argument("--config", type=str, default=str(DEFAULT_CONFIG_PATH), help="YAML configuration path")
-    parser.add_argument("--manifest", type=str, default=None, help="Optional generation metadata manifest")
+    parser.add_argument("--manifest", "--manifest-output", "--output-manifest", dest="manifest", type=str, default=None, help="Optional generation metadata or output manifest")
     parser.add_argument("--copy", action="store_true", help="Copy accepted files into structured condition folders")
     args = parser.parse_args()
 

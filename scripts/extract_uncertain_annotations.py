@@ -124,14 +124,19 @@ class UncertaintyExtractor:
 
 def main():
     parser = argparse.ArgumentParser(description="Extract uncertain annotations into review queues.")
-    parser.add_argument("--manifest", type=str, default="data/WeatherGuard-D1/manifests/annotation_validation_manifest.json")
-    parser.add_argument("--output", type=str, default="data/WeatherGuard-D1/quality_control/uncertainty_queue.json")
+    parser.add_argument("--manifest", "--validation-report", "--validation_report", dest="manifest", type=str, default="data/WeatherGuard-D1/manifests/annotation_validation_manifest.json", help="Path to validation report/manifest")
+    parser.add_argument("--output", "--output-dir", "--output_dir", dest="output", type=str, default="data/WeatherGuard-D1/quality_control/uncertainty_queue.json", help="Output path or directory for review queues")
     args = parser.parse_args()
 
     m_path = Path(args.manifest)
     if not m_path.exists():
-        print(f"Validation manifest not found: {m_path}. Exiting.")
-        return
+        # Fallback check under artifacts
+        alt_m = Path("artifacts/d1_annotation_validation_report.json")
+        if alt_m.exists():
+            m_path = alt_m
+        else:
+            print(f"Validation manifest not found: {m_path}. Exiting.")
+            return
 
     with open(m_path) as f:
         data = json.load(f)
@@ -140,7 +145,11 @@ def main():
     triage = extractor.triage_validation_manifest(data)
 
     out_p = Path(args.output)
-    out_p.parent.mkdir(parents=True, exist_ok=True)
+    if out_p.is_dir() or not out_p.suffix:
+        out_p.mkdir(parents=True, exist_ok=True)
+        out_p = out_p / "uncertainty_queue.json"
+    else:
+        out_p.parent.mkdir(parents=True, exist_ok=True)
     with open(out_p, "w") as f:
         json.dump(triage, f, indent=2)
 
