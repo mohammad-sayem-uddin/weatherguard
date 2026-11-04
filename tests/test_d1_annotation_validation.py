@@ -231,3 +231,89 @@ def test_empty_scene_handling():
     assert res.is_empty is True
     assert res.status == "EMPTY_ACCEPTED"
     assert len(res.valid_boxes) == 0
+
+
+def test_gemini_bbox_1000_and_confidence_parsing():
+    validator = WeatherGuardD1AnnotationValidator(config_path=CONFIG_PATH)
+
+    # JSON matching Gemini Flash structured response
+    sample_json = {
+        "image_id": "fog_010",
+        "condition": "fog",
+        "annotations": [
+            {
+                "box_id": "fog_010_b1",
+                "class_id": 0,
+                "class_name": "truck",
+                "bbox_1000": [400, 300, 500, 400],
+                "coordinate_order": "xmin_ymin_xmax_ymax",
+                "annotation_confidence": 0.88,
+                "occlusion": 0.2,
+                "truncation": 0.0,
+                "object_size": "medium",
+            }
+        ]
+    }
+
+    res = validator.validate_single_annotation_json(sample_json)
+    assert res.is_valid is True
+    assert len(res.valid_boxes) == 1
+    b = res.valid_boxes[0]
+    assert b.class_name == "truck"
+    assert b.confidence == 0.88
+    assert b.occlusion == 0.2
+    assert b.x1_px == pytest.approx(512.0)
+    assert b.x2_px == pytest.approx(640.0)
+
+
+def test_gemini_native_box_2d_order():
+    validator = WeatherGuardD1AnnotationValidator(config_path=CONFIG_PATH)
+
+    # Gemini native box_2d is [ymin, xmin, ymax, xmax] in 0..1000
+    sample_json = {
+        "image_id": "night_005",
+        "condition": "night",
+        "annotations": [
+            {
+                "box_id": "night_005_b1",
+                "class_name": "person",
+                "box_2d": [300, 400, 400, 500],  # ymin=300, xmin=400, ymax=400, xmax=500
+                "confidence": 0.92,
+            }
+        ]
+    }
+
+    res = validator.validate_single_annotation_json(sample_json)
+    assert res.is_valid is True
+    assert len(res.valid_boxes) == 1
+    b = res.valid_boxes[0]
+    assert b.class_name == "person"
+    assert b.x1_px == pytest.approx(512.0)  # xmin = 400 * 1280 / 1000 = 512
+    assert b.y1_px == pytest.approx(216.0)  # ymin = 300 * 720 / 1000 = 216
+
+
+def test_pixel_coordinate_schema():
+    validator = WeatherGuardD1AnnotationValidator(config_path=CONFIG_PATH)
+
+    sample_json = {
+        "image_id": "rain_008",
+        "condition": "rain",
+        "annotations": [
+            {
+                "box_id": "b_px",
+                "class_name": "bicycle",
+                "bbox_pixel": [100.0, 200.0, 150.0, 280.0],
+                "annotation_confidence": 0.90,
+            }
+        ]
+    }
+
+    res = validator.validate_single_annotation_json(sample_json)
+    assert res.is_valid is True
+    assert len(res.valid_boxes) == 1
+    b = res.valid_boxes[0]
+    assert b.class_name == "bicycle"
+    assert b.x1_px == pytest.approx(100.0)
+    assert b.y1_px == pytest.approx(200.0)
+    assert b.x2_px == pytest.approx(150.0)
+    assert b.y2_px == pytest.approx(280.0)

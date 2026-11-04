@@ -214,32 +214,88 @@ class WeatherGuardD1AnnotationValidator:
             elif cls_name != VALID_CLASSES[cls_id]:
                 b_flags.append(f"Class mismatch: class_id {cls_id} does not match name '{cls_name}' (expected '{VALID_CLASSES[cls_id]}')")
 
-            # 2. Coordinate Extraction & Validation
-            # Gemini Flash returns [x_min, y_min, x_max, y_max] normalized 0..1000
-            coords = item.get("box_2d") or item.get("bbox") or item.get("coordinates")
+            # 2. Coordinate Extraction & Multi-Schema Adapter
+            # Supported Schemas:
+            # - Canonical Dict: {"x_min", "y_min", "x_max", "y_max"} in [0..1000]
+            # - Gemini bbox_1000 / box_1000: Dict or [xmin, ymin, xmax, ymax] / [ymin, xmin, ymax, xmax]
+            # - Gemini API box_2d: [ymin, xmin, ymax, xmax] in [0..1000]
+            # - Pixel Coords: bbox_pixel / box_pixel: [x1, y1, x2, y2] or dict with x1,y1,x2,y2 in px
             x_min_norm = None
             y_min_norm = None
             x_max_norm = None
             y_max_norm = None
 
-            if isinstance(coords, list) and len(coords) == 4:
-                # Standard format [ymin, xmin, ymax, xmax] or [xmin, ymin, xmax, ymax]
-                # If explicit keys are provided in item:
-                if "x_min" in item and "x_max" in item:
-                    x_min_norm = float(item["x_min"])
-                    y_min_norm = float(item["y_min"])
-                    x_max_norm = float(item["x_max"])
-                    y_max_norm = float(item["y_max"])
-                else:
-                    x_min_norm = float(coords[0])
-                    y_min_norm = float(coords[1])
-                    x_max_norm = float(coords[2])
-                    y_max_norm = float(coords[3])
-            elif all(k in item for k in ("x_min", "y_min", "x_max", "y_max")):
+            # Check explicit coordinate keys first
+            if all(k in item for k in ("x_min", "y_min", "x_max", "y_max")):
                 x_min_norm = float(item["x_min"])
                 y_min_norm = float(item["y_min"])
                 x_max_norm = float(item["x_max"])
                 y_max_norm = float(item["y_max"])
+            elif all(k in item for k in ("xmin", "ymin", "xmax", "ymax")):
+                x_min_norm = float(item["xmin"])
+                y_min_norm = float(item["ymin"])
+                x_max_norm = float(item["xmax"])
+                y_max_norm = float(item["ymax"])
+            elif all(k in item for k in ("ymin", "xmin", "ymax", "xmax")):
+                y_min_norm = float(item["ymin"])
+                x_min_norm = float(item["xmin"])
+                y_max_norm = float(item["ymax"])
+                x_max_norm = float(item["xmax"])
+            elif "bbox_1000" in item:
+                b1000 = item["bbox_1000"]
+                if isinstance(b1000, dict):
+                    if "x_min" in b1000:
+                        x_min_norm = float(b1000["x_min"])
+                        y_min_norm = float(b1000["y_min"])
+                        x_max_norm = float(b1000["x_max"])
+                        y_max_norm = float(b1000["y_max"])
+                    elif "ymin" in b1000:
+                        y_min_norm = float(b1000["ymin"])
+                        x_min_norm = float(b1000["xmin"])
+                        y_max_norm = float(b1000["ymax"])
+                        x_max_norm = float(b1000["xmax"])
+                elif isinstance(b1000, list) and len(b1000) == 4:
+                    order = item.get("coordinate_order", "xmin_ymin_xmax_ymax").lower()
+                    if order in ("ymin_xmin_ymax_xmax", "gemini_native"):
+                        y_min_norm, x_min_norm, y_max_norm, x_max_norm = [float(v) for v in b1000]
+                    else:
+                        x_min_norm, y_min_norm, x_max_norm, y_max_norm = [float(v) for v in b1000]
+            elif "box_2d" in item:
+                b2d = item["box_2d"]
+                if isinstance(b2d, dict):
+                    x_min_norm = float(b2d.get("x_min", b2d.get("xmin", 0)))
+                    y_min_norm = float(b2d.get("y_min", b2d.get("ymin", 0)))
+                    x_max_norm = float(b2d.get("x_max", b2d.get("xmax", 0)))
+                    y_max_norm = float(b2d.get("y_max", b2d.get("ymax", 0)))
+                elif isinstance(b2d, list) and len(b2d) == 4:
+                    order = item.get("coordinate_order", "ymin_xmin_ymax_xmax").lower()
+                    if order in ("xmin_ymin_xmax_ymax", "xyxy"):
+                        x_min_norm, y_min_norm, x_max_norm, y_max_norm = [float(v) for v in b2d]
+                    else:
+                        # Standard Gemini Flash box_2d API format is [ymin, xmin, ymax, xmax]
+                        y_min_norm, x_min_norm, y_max_norm, x_max_norm = [float(v) for v in b2d]
+            elif "bbox_pixel" in item or "box_pixel" in item:
+                bp = item.get("bbox_pixel") or item.get("box_pixel")
+                if isinstance(bp, dict):
+                    x1 = float(bp.get("x1", bp.get("x_min", 0)))
+                    y1 = float(bp.get("y1", bp.get("y_min", 0)))
+                    x2 = float(bp.get("x2", bp.get("x_max", 0)))
+                    y2 = float(bp.get("y2", bp.get("y_max", 0)))
+                elif isinstance(bp, list) and len(bp) == 4:
+                    x1, y1, x2, y2 = [float(v) for v in bp]
+                else:
+                    x1 = y1 = x2 = y2 = 0.0
+                x_min_norm = (x1 / self.img_width) * 1000.0
+                y_min_norm = (y1 / self.img_height) * 1000.0
+                x_max_norm = (x2 / self.img_width) * 1000.0
+                y_max_norm = (y2 / self.img_height) * 1000.0
+            elif "bbox" in item or "coordinates" in item:
+                coords = item.get("bbox") or item.get("coordinates")
+                if isinstance(coords, list) and len(coords) == 4:
+                    x_min_norm = float(coords[0])
+                    y_min_norm = float(coords[1])
+                    x_max_norm = float(coords[2])
+                    y_max_norm = float(coords[3])
             else:
                 b_flags.append("Missing or unparseable bounding box coordinates")
 
@@ -273,6 +329,12 @@ class WeatherGuardD1AnnotationValidator:
             area_px = width_px * height_px
             max_dim_px = max(width_px, height_px)
 
+            # Audit supplied width_px / height_px if provided
+            if "width_px" in item and abs(float(item["width_px"]) - width_px) > 2.0:
+                b_flags.append(f"Supplied width_px {item['width_px']} differed from recalculated {width_px:.1f}px")
+            if "height_px" in item and abs(float(item["height_px"]) - height_px) > 2.0:
+                b_flags.append(f"Supplied height_px {item['height_px']} differed from recalculated {height_px:.1f}px")
+
             if width_px < self.min_dim_px or height_px < self.min_dim_px:
                 b_flags.append(f"Sub-pixel dimensions: {width_px:.1f}x{height_px:.1f} < min {self.min_dim_px}px")
             if area_px < self.min_area_px:
@@ -280,14 +342,19 @@ class WeatherGuardD1AnnotationValidator:
 
             # 3. Object Size Recalculation vs Gemini Supplying
             recalculated_size = classify_object_size(max_dim_px)
-            gemini_size = item.get("object_size")
+            gemini_size = item.get("object_size") or item.get("size")
             size_disagreement = False
             if gemini_size and gemini_size.lower().replace("-", "_") != recalculated_size:
                 size_disagreement = True
                 b_flags.append(f"Gemini object_size '{gemini_size}' disagreed with recalculated '{recalculated_size}'")
 
-            # 4. Confidence
-            conf = float(item.get("confidence", 1.0))
+            # 4. Confidence (supports annotation_confidence, confidence, score)
+            conf_val = item.get("annotation_confidence")
+            if conf_val is None:
+                conf_val = item.get("confidence")
+            if conf_val is None:
+                conf_val = item.get("score", 1.0)
+            conf = float(conf_val)
             if conf < self.min_confidence:
                 b_flags.append(f"Low annotation confidence: {conf:.2f} < threshold {self.min_confidence:.2f}")
 
