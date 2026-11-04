@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-11-04T18:00:25Z",
+  "mission": "Mission 18 — Research Validation, Dataset Acceptance & Baseline Establishment",
+  "phase": "Phase 4 — M1 Training Safety and Pipeline Dry Run",
+  "hardware": {
+    "platform": "Apple Silicon M1 (macOS Darwin 24.3.0)",
+    "architecture": "arm64",
+    "cpu_cores": 8,
+    "total_unified_memory_gb": 8.0,
+    "safe_memory_ceiling_gb": 5.5
+  },
+  "empirical_measurements": {
+    "test_duration_s": 6.19,
+    "start_rss_mb": 238.1,
+    "peak_rss_mb": 1034.2,
+    "net_memory_delta_mb": 796.1,
+    "device_target": "cpu",
+    "training_imgsz": 640,
+    "training_batch_size": 2,
+    "dataloader_workers": 0,
+    "base_weights_overwritten": false,
+    "isolated_checkpoint_saved": true
+  },
+  "training_safeguards_verified": {
+    "all_12_configs_validated": true,
+    "baselines_disabled": ["e1_baseline_yolov8n", "e3_baseline_policy_j", "e5_baseline_policy_k"],
+    "test_split_strictly_excluded_from_yaml": true,
+    "small_object_oversampling_verified": true,
+    "sampling_frequency_change_confirmed": true,
+    "memory_leak_detected": false
+  },
+  "recommended_training_settings_for_m1": {
+    "batch_size": 4,
+    "max_batch_size": 8,
+    "workers": 0,
+    "imgsz": 640,
+    "optimizer": "AdamW",
+    "device": "cpu"
+  },
+  "real_data_training_status": "BLOCKED_PENDING_DATA",
+  "gate_determination": "M1_HARDWARE_APPROVED_FOR_TRAINING"
+}
