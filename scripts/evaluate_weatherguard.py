@@ -176,12 +176,107 @@ def get_object_scale(width: float, height: float) -> str:
         return "large"
 
 
+def compute_ap_101(scores: List[float], tp_flags: List[bool], n_gt: int) -> float:
+    """Computes 101-point interpolated Average Precision (VOC / COCO standard)."""
+    if n_gt == 0:
+        return 0.0
+    if not scores:
+        return 0.0
+    cum_tp = 0
+    cum_fp = 0
+    recalls: List[float] = []
+    precisions: List[float] = []
+    for is_tp in tp_flags:
+        if is_tp:
+            cum_tp += 1
+        else:
+            cum_fp += 1
+        rec = cum_tp / n_gt
+        prec = cum_tp / (cum_tp + cum_fp)
+        recalls.append(rec)
+        precisions.append(prec)
+
+    ap = 0.0
+    for k in range(101):
+        r_target = k / 100.0
+        max_prec = 0.0
+        for rec, prec in zip(recalls, precisions):
+            if rec >= r_target and prec > max_prec:
+                max_prec = prec
+        ap += max_prec / 101.0
+    return round(ap, 4)
+
+
+def compute_map(
+    all_predictions: List[List[DetectionBox]],
+    all_ground_truths: List[List[GroundTruthBox]],
+    target_classes: Sequence[str] = CANONICAL_CLASSES,
+    iou_thresholds: Sequence[float] = (0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95),
+) -> Dict[str, Any]:
+    """Computes genuine confidence-ranked 101-point interpolated mAP across IoU thresholds."""
+    all_iou_maps: List[float] = []
+    map_50_per_class: Dict[str, float] = {}
+
+    for iou_t in iou_thresholds:
+        class_aps: List[float] = []
+        for cls in target_classes:
+            n_gt_class = 0
+            cls_preds: List[Tuple[float, bool]] = []
+
+            for preds, gts in zip(all_predictions, all_ground_truths):
+                matching_gts = [g for g in gts if g.class_name.lower() == cls.lower()]
+                n_gt_class += len(matching_gts)
+
+                matching_preds = [p for p in preds if p.class_name.lower() == cls.lower()]
+                sorted_preds = sorted(matching_preds, key=lambda d: d.confidence, reverse=True)
+
+                matched_gt_indices = set()
+                for p in sorted_preds:
+                    best_iou = 0.0
+                    best_idx = -1
+                    for g_idx, g in enumerate(matching_gts):
+                        if g_idx in matched_gt_indices:
+                            continue
+                        iou = compute_iou((p.x1, p.y1, p.x2, p.y2), (g.x1, g.y1, g.x2, g.y2))
+                        if iou > best_iou:
+                            best_iou = iou
+                            best_idx = g_idx
+
+                    if best_iou >= iou_t and best_idx >= 0:
+                        matched_gt_indices.add(best_idx)
+                        cls_preds.append((p.confidence, True))
+                    else:
+                        cls_preds.append((p.confidence, False))
+
+            cls_preds.sort(key=lambda x: x[0], reverse=True)
+            scores = [x[0] for x in cls_preds]
+            tp_flags = [x[1] for x in cls_preds]
+
+            ap = compute_ap_101(scores, tp_flags, n_gt_class)
+            if n_gt_class > 0:
+                class_aps.append(ap)
+            if round(iou_t, 2) == 0.50:
+                map_50_per_class[cls] = ap
+
+        mean_ap = float(np.mean(class_aps)) if class_aps else 0.0
+        all_iou_maps.append(mean_ap)
+
+    map_50 = all_iou_maps[0] if all_iou_maps else 0.0
+    map_50_95 = float(np.mean(all_iou_maps)) if len(all_iou_maps) > 1 else map_50
+
+    return {
+        "map_50": round(map_50, 4),
+        "map_50_95": round(map_50_95, 4),
+        "per_class_ap_50": map_50_per_class,
+    }
+
+
 def evaluate_predictions(
     all_predictions: List[List[DetectionBox]],
     all_ground_truths: List[List[GroundTruthBox]],
     iou_thresh: float = 0.50,
 ) -> Dict[str, Any]:
-    """Computes comprehensive object-level metrics across all images."""
+    """Computes comprehensive object-level metrics and confidence-ranked mAP across all images."""
     total_tp = 0
     total_fp = 0
     total_fn = 0
@@ -273,6 +368,9 @@ def evaluate_predictions(
             "f1": f, "precision": p, "recall": r,
             "tp": class_counts[cls]["tp"], "fp": class_counts[cls]["fp"], "fn": class_counts[cls]["fn"],
         }
+
+    # Genuine 101-point interpolated mAP calculation
+    out["map"] = compute_map(all_predictions, all_ground_truths, CANONICAL_CLASSES)
 
     return out
 
@@ -366,6 +464,9 @@ class WeatherGuardEvaluator:
                     _ = self.model(img_path, imgsz=self.imgsz, verbose=False)
 
         raw_infer_times: List[float] = []
+        candidate_gen_times: List[float] = []
+        crop_infer_times: List[float] = []
+        postprocess_times: List[float] = []
         pipeline_times: List[float] = []
 
         all_preds: List[List[DetectionBox]] = []
@@ -395,6 +496,9 @@ class WeatherGuardEvaluator:
                     ))
 
             final_dets = base_boxes
+            t_cand_ms = 0.0
+            t_crop_ms = 0.0
+            t_post_ms = 0.0
 
             # Step 2: Policy Refinements (if enabled)
             if self.policy in ("policy_j", "policy_k"):
@@ -403,6 +507,7 @@ class WeatherGuardEvaluator:
                     h, w = img_bgr.shape[:2]
                     crop_dets = []
 
+                    t_cand_start = time.perf_counter()
                     if self.policy == "policy_j" and self.ctrl_j:
                         dec = self.ctrl_j.allocate_crops(img_bgr, detector_boxes=base_boxes)
                         crops = [(int(c.x1), int(c.y1), int(c.x2), int(c.y2)) for c in dec.allocated_crops]
@@ -410,7 +515,9 @@ class WeatherGuardEvaluator:
                         crops, _, _ = self.ctrl_k.process_and_allocate(img_bgr, sequence_id=item.get("sequence_id", "seq_default"), detector_boxes=base_boxes)
                     else:
                         crops = []
+                    t_cand_ms = (time.perf_counter() - t_cand_start) * 1000.0
 
+                    t_crop_start = time.perf_counter()
                     for cx1, cy1, cx2, cy2 in crops:
                         crop_patch = img_bgr[cy1:cy2, cx1:cx2]
                         if crop_patch.shape[0] >= 32 and crop_patch.shape[1] >= 32:
@@ -425,8 +532,15 @@ class WeatherGuardEvaluator:
                                         x1=float(cxy[0] + cx1), y1=float(cxy[1] + cy1),
                                         x2=float(cxy[2] + cx1), y2=float(cxy[3] + cy1),
                                     ))
+                    t_crop_ms = (time.perf_counter() - t_crop_start) * 1000.0
 
+                    t_post_start = time.perf_counter()
                     final_dets = merge_two_tier_nms(base_boxes, crop_dets, iou_thresh=self.iou_thresh)
+                    t_post_ms = (time.perf_counter() - t_post_start) * 1000.0
+
+            candidate_gen_times.append(t_cand_ms)
+            crop_infer_times.append(t_crop_ms)
+            postprocess_times.append(t_post_ms)
 
             pipe_ms = (time.perf_counter() - t_pipe_start) * 1000.0
             pipeline_times.append(pipe_ms)
@@ -440,7 +554,7 @@ class WeatherGuardEvaluator:
         # Latency statistics
         def summarize(arr: List[float]) -> Dict[str, float]:
             if not arr:
-                return {"mean": 0.0, "median": 0.0, "p90": 0.0, "p95": 0.0, "fps": 0.0}
+                return {"mean_ms": 0.0, "median_ms": 0.0, "p90_ms": 0.0, "p95_ms": 0.0, "fps": 0.0}
             a = np.array(arr)
             mean_v = float(np.mean(a))
             return {
@@ -453,6 +567,9 @@ class WeatherGuardEvaluator:
 
         metrics["latency"] = {
             "pure_model_inference": summarize(raw_infer_times),
+            "candidate_generation": summarize(candidate_gen_times),
+            "crop_inference": summarize(crop_infer_times),
+            "postprocessing": summarize(postprocess_times),
             "end_to_end_pipeline": summarize(pipeline_times),
             "measured_images": len(image_records),
             "warmup_images": warmup_frames,

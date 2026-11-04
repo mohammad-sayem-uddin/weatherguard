@@ -11,6 +11,8 @@ from scripts.evaluate_weatherguard import (
     DetectionBox,
     GroundTruthBox,
     WeatherGuardEvaluator,
+    compute_ap_101,
+    compute_map,
     evaluate_predictions,
     get_object_scale,
     merge_two_tier_nms,
@@ -104,3 +106,63 @@ def test_evaluator_uninitialized_weights():
     evaluator = WeatherGuardEvaluator(weights_path=Path("non_existent_weights.pt"))
     res = evaluator.evaluate_image_stream([{"file_path": "dummy.jpg", "gt_boxes": []}])
     assert res["status"] == "MODEL_WEIGHTS_NOT_FOUND"
+
+
+def test_compute_ap_101_perfect_and_zero():
+    # Perfect detector
+    scores = [0.95, 0.85, 0.75]
+    tp_flags = [True, True, True]
+    ap = compute_ap_101(scores, tp_flags, n_gt=3)
+    assert ap == 1.0
+
+    # Zero detector (all false positives)
+    scores = [0.95, 0.85]
+    tp_flags = [False, False]
+    ap_zero = compute_ap_101(scores, tp_flags, n_gt=2)
+    assert ap_zero == 0.0
+
+    # Empty inputs
+    assert compute_ap_101([], [], n_gt=5) == 0.0
+    assert compute_ap_101([0.9], [True], n_gt=0) == 0.0
+
+
+def test_compute_map_multiclass():
+    # Image 1: 1 car TP, 1 person TP
+    # Image 2: 1 car FP, 1 person FN
+    preds = [
+        [
+            DetectionBox(x1=10, y1=10, x2=50, y2=50, confidence=0.9, class_name="car"),
+            DetectionBox(x1=60, y1=60, x2=90, y2=90, confidence=0.85, class_name="person"),
+        ],
+        [
+            DetectionBox(x1=100, y1=100, x2=150, y2=150, confidence=0.7, class_name="car"),
+        ]
+    ]
+    gts = [
+        [
+            GroundTruthBox(x1=12, y1=12, x2=48, y2=48, class_name="car", scale="medium", max_dim=36),
+            GroundTruthBox(x1=62, y1=62, x2=88, y2=88, class_name="person", scale="small", max_dim=26),
+        ],
+        [
+            GroundTruthBox(x1=200, y1=200, x2=250, y2=250, class_name="person", scale="medium", max_dim=50),
+        ]
+    ]
+
+    res = compute_map(preds, gts, target_classes=["car", "person"])
+    assert "map_50" in res
+    assert "map_50_95" in res
+    assert "per_class_ap_50" in res
+    assert res["map_50"] > 0.0
+    assert res["per_class_ap_50"]["car"] > 0.0
+    assert res["per_class_ap_50"]["person"] > 0.0
+
+
+def test_evaluate_predictions_includes_map_and_latency():
+    preds = [[DetectionBox(x1=10, y1=10, x2=50, y2=50, confidence=0.9, class_name="car")]]
+    gts = [[GroundTruthBox(x1=10, y1=10, x2=50, y2=50, class_name="car", scale="medium", max_dim=40)]]
+
+    metrics = evaluate_predictions(preds, gts)
+    assert "map" in metrics
+    assert "map_50" in metrics["map"]
+    assert "map_50_95" in metrics["map"]
+    assert metrics["map"]["map_50"] == 1.0
