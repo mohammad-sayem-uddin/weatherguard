@@ -1,0 +1,104 @@
+# WeatherGuard-D1 Central Dataset Configuration
+# Specification for synthetic photorealistic dashcam evaluation & fine-tuning
+dataset_name: "WeatherGuard-D1"
+dataset_version: "1.0.0-synthetic"
+dataset_type: "synthetic_photorealistic_dashcam"
+generator_tool: "Google Flow"
+annotator_model: "Gemini Flash (AI-assisted)"
+temporal_status: "independent_frames_non_continuous"
+
+# Target Dataset Size & Distributions
+target_total_images: 2000
+
+image_properties:
+  target_width: 1280
+  target_height: 720
+  aspect_ratio: "16:9"
+  channels: 3
+  allowed_formats:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+  color_space: "RGB"
+
+conditions:
+  day:
+    target_count: 600
+    description: "Daylight clear / partly cloudy highway and urban scenes"
+  night:
+    target_count: 500
+    description: "Nighttime low-light, oncoming headlights, street lighting"
+  rain:
+    target_count: 500
+    description: "Rain downpour, wet road reflections, droplet scattering"
+  fog:
+    target_count: 400
+    description: "Dense fog, low contrast, volumetric light scattering"
+
+# Six Detection Classes (Ordered by class_id)
+classes:
+  0: "truck"
+  1: "person"
+  2: "bicycle"
+  3: "car"
+  4: "motorcycle"
+  5: "bus"
+
+# Gemini Flash Annotation Coordinate Conventions
+annotation_conventions:
+  input_format: "gemini_flash_normalized_json"
+  input_coordinate_scale: 1000
+  input_box_format: "[x_min, y_min, x_max, y_max]"
+  conversion_formula:
+    x_pixel: "x_normalized * image_width / 1000"
+    y_pixel: "y_normalized * image_height / 1000"
+  yolo_format: "class_id x_center y_center width height (normalized 0.0 to 1.0)"
+
+# Object Size Classification
+# Convention: max(pixel_width, pixel_height)
+object_size_definitions:
+  classification_rule: "max_pixel_dimension"
+  ultra_small:
+    label: "ultra_small"
+    min_px: 0.0
+    max_px: 16.0  # strictly under 16 px
+  small:
+    label: "small"
+    min_px: 16.0
+    max_px: 32.0  # 16 to under 32 px
+  medium:
+    label: "medium"
+    min_px: 32.0
+    max_px: 96.0  # 32 to under 96 px
+  large:
+    label: "large"
+    min_px: 96.0
+    max_px: 1280.0 # 96 px or larger
+
+# Dataset Split Allocations
+splits:
+  train:
+    target_count: 1200
+    percentage: 0.60
+  validation:
+    target_count: 400
+    percentage: 0.20
+  test:
+    target_count: 400
+    percentage: 0.20
+  random_seed: 42
+  grouping_strategy: "prompt_scenario_family"
+
+# Quality Control Requirements
+quality_control:
+  enforce_exact_resolution: true
+  prevent_silent_resizing: true
+  hash_algorithms:
+    - "sha256"
+    - "dhash"
+  dhash_size: 8
+  near_duplicate_hamming_threshold: 4
+  min_bounding_box_dimension_px: 2.0
+  min_bounding_box_area_px: 4.0
+  min_annotation_confidence: 0.20
+  recalculate_gemini_sizes: true

@@ -13,6 +13,8 @@
 *.parquet
 data/
 external_data/
+WeatherGuard-D1/
+data/WeatherGuard-D1/
 *.h5
 *.hdf5
 *.zip
