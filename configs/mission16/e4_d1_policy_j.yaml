@@ -1,0 +1,24 @@
+# Experiment E4: D1 Fine-Tuned YOLOv8n with Policy J
+experiment_id: "E4_d1_policy_j"
+mission_id: "Mission 16"
+research_question: "Does fine-tuning on synthetic data enhance secondary crop classification under Policy J priority allocation?"
+hypothesis: "D1 fine-tuning will improve crop classification precision by adapting feature heads to low-contrast distant vehicle signatures."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "runs/train_d1/E2_d1_finetune_yolov8n/weights/best.pt"
+training:
+  enabled: false
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  policy: "policy_j"
+  policy_config:
+    max_crops: 2
+    crop_size: 448
+  datasets:
+    - name: "d1"
+      splits: ["validation", "test"]
+    - name: "bdd100k"
+      splits: ["locked"]
+status: "PENDING_E2_TRAINING"

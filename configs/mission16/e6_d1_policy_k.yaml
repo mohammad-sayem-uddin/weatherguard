@@ -1,0 +1,24 @@
+# Experiment E6: D1 Fine-Tuned YOLOv8n with Frozen Policy K
+experiment_id: "E6_d1_policy_k"
+mission_id: "Mission 16"
+research_question: "Does marrying synthetic adverse-weather fine-tuning with Policy K temporal-horizon routing achieve state-of-the-art small-object detection on real driving video?"
+hypothesis: "Combining synthetic domain adaptation with Policy K candidate generation will resolve TF-12 (crop localization misses) while maintaining 9+ FPS."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "runs/train_d1/E2_d1_finetune_yolov8n/weights/best.pt"
+training:
+  enabled: false
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  policy: "policy_k"
+  policy_config:
+    max_crops: 2
+    crop_size: 448
+    temporal_window: 5
+    ghost_decay: 0.35
+  datasets:
+    - name: "bdd100k"
+      splits: ["locked"]
+status: "PENDING_E2_TRAINING"

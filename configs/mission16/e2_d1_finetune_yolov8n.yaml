@@ -1,0 +1,37 @@
+# Experiment E2: YOLOv8n Fine-Tuned on WeatherGuard-D1 (Standard Training)
+experiment_id: "E2_d1_finetune_yolov8n"
+mission_id: "Mission 16"
+research_question: "Does standard fine-tuning on photorealistic synthetic adverse-weather data improve small-object detection on real-world driving scenes?"
+hypothesis: "Fine-tuning on D1 will improve adverse-weather contrast representations, increasing small-object recall on BDD100K by at least +0.03 F1 without precision collapse."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "yolov8n.pt"
+  output_checkpoint: "runs/train_d1/E2_d1_finetune_yolov8n/weights/best.pt"
+  freeze_layers: 0
+training:
+  enabled: true
+  dataset_yaml: "data/WeatherGuard-D1/dataset.yaml"
+  imgsz: 640
+  batch_size: 8
+  epochs: 30
+  patience: 5
+  lr0: 0.001
+  optimizer: "AdamW"
+  weight_decay: 0.0005
+  mosaic: 0.5
+  mixup: 0.0
+  workers: 4
+  seed: 42
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  policy: "raw_detector"
+  datasets:
+    - name: "d1"
+      splits: ["validation", "test"]
+    - name: "bdd100k"
+      splits: ["locked"]
+    - name: "flir"
+      splits: ["thermal_val"]
+status: "PENDING_DATA_INGESTION"

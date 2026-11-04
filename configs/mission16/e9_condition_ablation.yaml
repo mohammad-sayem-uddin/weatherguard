@@ -1,0 +1,26 @@
+# Experiment E9: Condition Ablation Study (Day-Only vs Adverse-Weather Only)
+experiment_id: "E9_condition_ablation"
+mission_id: "Mission 16"
+research_question: "How does training on day-only synthetic data compare to training on adverse-weather-only (night, rain, fog) synthetic data when evaluated on real adverse weather?"
+hypothesis: "Training exclusively on day synthetic data will exhibit severe negative transfer on real rain/fog, whereas adverse-weather-only training will optimize contrast representations."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "yolov8n.pt"
+training:
+  enabled: true
+  dataset_yaml: "data/WeatherGuard-D1/dataset.yaml"
+  condition_subsets:
+    - name: "E9a_day_only"
+      conditions: ["day"]
+    - name: "E9b_adverse_only"
+      conditions: ["night", "rain", "fog"]
+  imgsz: 640
+  batch_size: 8
+  epochs: 30
+  patience: 5
+  seed: 42
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+status: "PENDING_DATA_INGESTION"

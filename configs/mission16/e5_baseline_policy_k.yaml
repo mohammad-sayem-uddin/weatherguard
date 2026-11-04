@@ -1,0 +1,24 @@
+# Experiment E5: Pretrained Baseline YOLOv8n with Frozen Policy K
+experiment_id: "E5_baseline_policy_k"
+mission_id: "Mission 16"
+research_question: "How does Mission 15 Policy K (temporal accumulator + horizon anchor) perform on continuous video benchmarks when using baseline weights?"
+hypothesis: "Frozen Policy K will serve as the reference benchmark for edge-adaptive inference across video cohorts."
+model:
+  architecture: "YOLOv8n"
+  weights: "yolov8n.pt"
+training:
+  enabled: false
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  policy: "policy_k"
+  policy_config:
+    max_crops: 2
+    crop_size: 448
+    temporal_window: 5
+    ghost_decay: 0.35
+  datasets:
+    - name: "bdd100k"
+      splits: ["locked"]
+status: "READY_FOR_EXECUTION"

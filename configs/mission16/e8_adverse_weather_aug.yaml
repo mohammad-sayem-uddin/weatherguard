@@ -1,0 +1,29 @@
+# Experiment E8: D1 Fine-Tuning with Adverse-Weather Targeted Augmentation
+experiment_id: "E8_adverse_weather_aug"
+mission_id: "Mission 16"
+research_question: "Does targeted photometric augmentation (contrast jitter, brightness attenuation, mild blur) improve synthetic-to-real transfer over standard YOLO augmentations?"
+hypothesis: "Simulating physical rain and fog scattering via photometric augmentation will narrow the synthetic-to-real domain gap on BDD100K."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "yolov8n.pt"
+  output_checkpoint: "runs/train_d1/E8_adverse_weather_aug/weights/best.pt"
+training:
+  enabled: true
+  dataset_yaml: "data/WeatherGuard-D1/dataset.yaml"
+  imgsz: 640
+  batch_size: 8
+  epochs: 30
+  patience: 5
+  mosaic: 0.2  # reduced mosaic to prevent unnatural multi-scene artifacts
+  mixup: 0.1   # mild mixup to simulate translucent fog/spray
+  hsv_h: 0.02
+  hsv_s: 0.8
+  hsv_v: 0.5   # higher brightness jitter for nighttime headlights
+  workers: 4
+  seed: 42
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  policy: "raw_detector"
+status: "PENDING_DATA_INGESTION"

@@ -1,0 +1,24 @@
+# Experiment E1: Original Pretrained YOLOv8n Baseline
+experiment_id: "E1_baseline_yolov8n"
+mission_id: "Mission 16"
+research_question: "What is the out-of-the-box baseline detection performance of unmodified pretrained YOLOv8n on D1 synthetic data and real-world benchmarks?"
+hypothesis: "Pretrained YOLOv8n will achieve high precision on medium/large objects but fail severely on small and ultra-small distant objects (<32px)."
+model:
+  architecture: "YOLOv8n"
+  weights: "yolov8n.pt"
+  freeze_layers: 0
+training:
+  enabled: false  # Frozen evaluation baseline
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  policy: "raw_detector"
+  datasets:
+    - name: "d1"
+      splits: ["validation", "test"]
+    - name: "bdd100k"
+      splits: ["locked"]
+    - name: "flir"
+      splits: ["thermal_val"]
+status: "READY_FOR_EXECUTION"

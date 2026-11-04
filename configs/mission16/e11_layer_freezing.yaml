@@ -1,0 +1,28 @@
+# Experiment E11: Layer-Freezing Strategy Ablation
+experiment_id: "E11_layer_freezing"
+mission_id: "Mission 16"
+research_question: "Which layer-freezing depth preserves general feature extractors while adapting detection heads to synthetic adverse weather?"
+hypothesis: "Freezing the first 10 backbone layers (stages 0-4) retains generic low-level edge features while tuning neck/head modules, reducing training compute by 40%."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "yolov8n.pt"
+  freeze_strategies:
+    - name: "E11a_head_only"
+      freeze_layers: 22  # freeze backbone and neck, train detection head only
+    - name: "E11b_backbone_frozen"
+      freeze_layers: 10  # freeze backbone stages 0..4
+    - name: "E11c_full_finetune"
+      freeze_layers: 0   # end-to-end full network fine-tuning
+training:
+  enabled: true
+  dataset_yaml: "data/WeatherGuard-D1/dataset.yaml"
+  imgsz: 640
+  batch_size: 8
+  epochs: 30
+  patience: 5
+  seed: 42
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+status: "PENDING_DATA_INGESTION"

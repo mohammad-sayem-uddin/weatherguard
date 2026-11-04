@@ -1,0 +1,29 @@
+# Experiment E12: Synthetic-Only vs Mixed Synthetic-Real Training
+experiment_id: "E12_synthetic_real_mixed"
+mission_id: "Mission 16"
+research_question: "Does co-training on synthetic WeatherGuard-D1 combined with approved real training sets (BDD100K train split) outperform synthetic-only training?"
+hypothesis: "Co-training acts as a regularizer, preventing diffusion-specific artifact memorization while retaining small-object geometric priors."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "yolov8n.pt"
+  output_checkpoint: "runs/train_d1/E12_synthetic_real_mixed/weights/best.pt"
+training:
+  enabled: true
+  dataset_yaml: "configs/mission16/dataset_d1_plus_real.yaml"
+  imgsz: 640
+  batch_size: 8
+  epochs: 30
+  patience: 5
+  seed: 42
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  datasets:
+    - name: "d1"
+      splits: ["test"]
+    - name: "bdd100k"
+      splits: ["locked"]
+    - name: "flir"
+      splits: ["thermal_val"]
+status: "PENDING_DATA_INGESTION"

@@ -1,0 +1,26 @@
+# Experiment E7: D1 Fine-Tuning with Small-Object-Aware Oversampling
+experiment_id: "E7_small_object_sampling"
+mission_id: "Mission 16"
+research_question: "Does biased oversampling of images rich in ultra-small and small targets (<32px) counteract natural scale imbalance during synthetic training?"
+hypothesis: "Oversampling small-object scenes by 2.0x weight will boost small F1 by +0.04 without degrading medium/large object precision."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "yolov8n.pt"
+  output_checkpoint: "runs/train_d1/E7_small_object_sampling/weights/best.pt"
+training:
+  enabled: true
+  dataset_yaml: "data/WeatherGuard-D1/dataset.yaml"
+  imgsz: 640
+  batch_size: 8
+  epochs: 30
+  patience: 5
+  small_object_oversampling: true
+  oversample_factor: 2.0
+  workers: 4
+  seed: 42
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  policy: "raw_detector"
+status: "PENDING_DATA_INGESTION"

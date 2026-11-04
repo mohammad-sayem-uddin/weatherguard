@@ -1,0 +1,24 @@
+# Experiment E10: Mixed-Condition Balanced Sampling
+experiment_id: "E10_mixed_condition"
+mission_id: "Mission 16"
+research_question: "Does enforcing equal representation of Day, Night, Rain, and Fog in every mini-batch stabilize gradient updates on M1 CPU?"
+hypothesis: "Condition-balanced mini-batch sampling prevents loss spikes driven by daylight high-contrast domination."
+model:
+  architecture: "YOLOv8n"
+  base_weights: "yolov8n.pt"
+  output_checkpoint: "runs/train_d1/E10_mixed_condition/weights/best.pt"
+training:
+  enabled: true
+  dataset_yaml: "data/WeatherGuard-D1/dataset.yaml"
+  imgsz: 640
+  batch_size: 8
+  epochs: 30
+  patience: 5
+  condition_balancing: true
+  workers: 4
+  seed: 42
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+status: "PENDING_DATA_INGESTION"

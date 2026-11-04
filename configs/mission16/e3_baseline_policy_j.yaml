@@ -1,0 +1,24 @@
+# Experiment E3: Pretrained Baseline YOLOv8n with Policy J
+experiment_id: "E3_baseline_policy_j"
+mission_id: "Mission 16"
+research_question: "How does the historical Policy J (salience priority allocation) perform on D1 synthetic data when paired with baseline pretrained YOLOv8n?"
+hypothesis: "Policy J will discover small objects via static visual salience but suffer from proposal dilution on synthetic texture artifacts."
+model:
+  architecture: "YOLOv8n"
+  weights: "yolov8n.pt"
+training:
+  enabled: false
+evaluation:
+  imgsz: 640
+  conf_thresh: 0.20
+  iou_thresh: 0.50
+  policy: "policy_j"
+  policy_config:
+    max_crops: 2
+    crop_size: 448
+  datasets:
+    - name: "d1"
+      splits: ["validation", "test"]
+    - name: "bdd100k"
+      splits: ["locked"]
+status: "READY_FOR_EXECUTION"
