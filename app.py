@@ -4310,6 +4310,7 @@ def page_mission16_preparation() -> None:
     d1_cfg_path = ROOT / "configs" / "weatherguard_d1.yaml"
     d1_analysis_path = ROOT / "artifacts" / "d1_dataset_analysis.json"
     registry_csv = ROOT / "experiments" / "experiment_registry.csv"
+    preflight_json = ROOT / "artifacts" / "mission16_preflight_report.json"
 
     # Status Banner
     d1_analysis = _load_json(d1_analysis_path) if d1_analysis_path.exists() else None
@@ -4324,6 +4325,15 @@ def page_mission16_preparation() -> None:
             f"✅ **Dataset Status: AVAILABLE** — Ingested {d1_analysis.get('image_summary', {}).get('accepted_images', 0):,} "
             f"images with {d1_analysis.get('object_summary', {}).get('total_valid_objects', 0):,} validated annotations."
         )
+
+    # Preflight Verification Banner
+    preflight_data = _load_json(preflight_json) if preflight_json.exists() else None
+    if preflight_data:
+        p_c1, p_c2, p_c3, p_c4 = st.columns(4)
+        p_c1.metric("Scanned Configs", f"{preflight_data.get('total_configs', 12)} Matrix")
+        p_c2.metric("Ready for Run", f"{preflight_data.get('ready_for_execution', 0)} Configs")
+        p_c3.metric("Pending Ingestion", f"{preflight_data.get('pending_data_ingestion', 0)} Configs")
+        p_c4.metric("Config Errors", f"{preflight_data.get('configuration_errors', 0)} Errors")
 
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "Dataset Specifications & Quotas",
@@ -4382,8 +4392,7 @@ def page_mission16_preparation() -> None:
             Diffusion generators produce identical road geometries, vehicle arrangements, and lighting artifacts across similar text prompt templates and adjacent seeds. Naive random splitting causes severe memorization leakage.
 
             ### WeatherGuard Split Invariants:
-            - **Prompt / Scenario Family Clustering:** All images generated from the same prompt template or scene description remain in an atomic cluster ($F_k$).
-            - **Perceptual dHash Clustering:** Images with dHash Hamming distance $\\le 4$ are unified into the same cluster.
+            - **Global Transitive Clustering:** Uses Disjoint Set Union (DSU) to cluster images globally across conditions by prompt scenario family and perceptual dHash chains (Hamming distance $\\le 4$).
             - **Atomic Allocation:** Every cluster is placed wholly into Train, Validation, or Test:
               $$\\forall F_k: (F_k \\subseteq S_{train}) \\lor (F_k \\subseteq S_{val}) \\lor (F_k \\subseteq S_{test})$$
             - **Allocation Targets:**
@@ -4395,7 +4404,23 @@ def page_mission16_preparation() -> None:
 
     with tab4:
         st.subheader("Standardized Mission 16 Experiment Matrix (E1 to E12)")
+        if preflight_data and "experiments" in preflight_data:
+            st.markdown("#### Experiment Preflight Audit & Apple M1 Resource Modeling")
+            exp_rows = []
+            for exp in preflight_data["experiments"]:
+                exp_rows.append({
+                    "Experiment ID": exp.get("experiment_id"),
+                    "Status": exp.get("status"),
+                    "Training": "Yes" if exp.get("training_enabled") else "No",
+                    "Evaluation Policy": exp.get("evaluation_policy"),
+                    "Model": exp.get("model_architecture"),
+                    "Est. RAM (GB)": exp.get("estimated_ram_gb"),
+                    "M1 Safe": "✅ Yes" if exp.get("m1_hardware_safe") else "⚠️ Warning",
+                })
+            st.dataframe(pd.DataFrame(exp_rows), use_container_width=True)
+
         if registry_csv.exists():
+            st.markdown("#### Experiment Registry Database (`experiments/experiment_registry.csv`)")
             reg_df = pd.read_csv(registry_csv)
             display_cols = ["experiment_id", "status", "research_question", "model_architecture", "pretrained_weights_id", "artifact_locations"]
             avail_cols = [c for c in display_cols if c in reg_df.columns]
@@ -4408,8 +4433,15 @@ def page_mission16_preparation() -> None:
         st.markdown(
             """
             ### Unified Evaluation Standards (`scripts/evaluate_weatherguard.py`):
-            - **Latency Separation:** Raw detector forward-pass time is explicitly separated from end-to-end pipeline time (including candidate generation and crop NMS).
-            - **Benchmark Comparability:** Standardized FP32 CPU execution on Apple M1 (8 cores, 8 GB RAM) with 4-7 worker threads.
+            - **Latency Stage Separation:** Raw detector forward-pass time is explicitly separated from end-to-end pipeline time:
+              1. `pure_model_inference`: Base YOLO forward pass duration.
+              2. `candidate_generation`: Saliency / horizon / temporal candidate generation latency.
+              3. `crop_inference`: High-resolution ROI crop batch forward pass.
+              4. `postprocessing`: Two-tier NMS deduplication and bounding box coordinates re-mapping.
+              5. `end_to_end_pipeline`: Wall-clock end-to-end latency per frame.
+            - **101-Point Interpolated mAP:** Evaluates continuous confidence-ranked Average Precision across IoU thresholds $[0.50 : 0.05 : 0.95]$ according to VOC / COCO standards.
+            - **Model-Specific Class Taxonomy Safeguards:** Dynamically maps COCO 80-class models (`COCO_TO_CANONICAL`) vs D1 6-class fine-tuned models (`D1_TO_CANONICAL`) to eliminate class-index inversion.
+            - **Hardware Reproducibility:** Standardized FP32 CPU execution on Apple M1 (8 cores, 8 GB RAM) with 4 worker threads and strict memory ceiling.
             - **Separation of Synthetic and Real Benchmark Reporting:** D1 internal test performance and real-world BDD100K/FLIR performance are reported in separate columns, never blended into a single misleading headline metric.
             """
         )
