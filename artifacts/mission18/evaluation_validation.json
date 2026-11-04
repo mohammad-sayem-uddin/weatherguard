@@ -1,0 +1,112 @@
+{
+  "timestamp": "2026-11-04T17:51:50Z",
+  "mission": "Mission 18 — Research Validation, Dataset Acceptance & Baseline Establishment",
+  "phase": "Phase 1 — Independent Evaluation Pipeline Validation",
+  "status": "VERIFIED_CORRECT",
+  "evaluator_module": "scripts/evaluate_weatherguard.py",
+  "test_module": "tests/test_mission18_evaluation_integration.py",
+  "summary": {
+    "total_test_cases": 7,
+    "passed_test_cases": 7,
+    "failed_test_cases": 0,
+    "mathematical_correctness": true,
+    "one_to_one_matching_enforced": true,
+    "confidence_ranking_verified": true,
+    "boundary_adherence_verified": true,
+    "empty_and_invalid_handling_safe": true
+  },
+  "detailed_validation_cases": {
+    "perfect_detection": {
+      "ground_truth_count": 3,
+      "prediction_count": 3,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "map_50": 1.0,
+      "map_50_95": 1.0,
+      "passed": true
+    },
+    "complete_miss": {
+      "ground_truth_count": 2,
+      "prediction_count": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "map_50": 0.0,
+      "map_50_95": 0.0,
+      "passed": true
+    },
+    "false_positives_and_duplicates": {
+      "ground_truth_count": 1,
+      "prediction_count": 5,
+      "scenarios_tested": [
+        "True positive match",
+        "Duplicate detection on already-matched GT",
+        "Background false positive",
+        "Class confusion (spatial match with wrong class)",
+        "Localization error (IoU < 0.50)"
+      ],
+      "tp": 1,
+      "fp": 4,
+      "fn": 0,
+      "precision": 0.2,
+      "recall": 1.0,
+      "passed": true
+    },
+    "confidence_ranking_impact": {
+      "case_high_conf_tp_first": {
+        "scores": [0.90, 0.20],
+        "tp_flags": [true, false],
+        "ap_50": 1.0
+      },
+      "case_high_conf_fp_first": {
+        "scores": [0.90, 0.20],
+        "tp_flags": [false, true],
+        "ap_50": 0.50
+      },
+      "ranking_sensitivity_verified": true,
+      "passed": true
+    },
+    "iou_boundary_adherence": {
+      "iou_0_4990": {
+        "status": "FP",
+        "matched": false
+      },
+      "iou_0_5000": {
+        "status": "TP",
+        "matched": true
+      },
+      "iou_0_5010": {
+        "status": "TP",
+        "matched": true
+      },
+      "exact_threshold_rule": "best_iou >= iou_thresh",
+      "passed": true
+    },
+    "empty_and_invalid_cases": {
+      "both_empty": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "map_50": 0.0
+      },
+      "zero_area_box": "counted as FP, zero NaN",
+      "inverted_coordinates": "counted as FP, zero NaN",
+      "out_of_vocabulary_class": "counted as FP in overall metrics, no silent class substitution",
+      "passed": true
+    },
+    "map_monotonicity": {
+      "tested_iou_thresholds": [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95],
+      "map_50": 1.0,
+      "map_50_95": 0.65,
+      "monotonic_property": "map_50 >= map_50_95 verified",
+      "passed": true
+    }
+  }
+}
