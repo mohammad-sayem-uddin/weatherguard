@@ -462,35 +462,448 @@ class WeatherGuardEvaluator:
         return metrics
 
 
+def load_dataset_records(
+    dataset_name: str,
+    split: str = "validation",
+    max_samples: Optional[int] = None,
+    allow_locked_test: bool = False,
+) -> List[Dict[str, Any]]:
+    """Loads image paths and ground-truth bounding boxes for a requested dataset and split.
+
+    Strictly enforces locked-test protections during development.
+    """
+    clean_split = split.lower().strip()
+    is_locked = clean_split in ("test", "locked", "frozen_internal_test", "group_c")
+
+    if is_locked and not allow_locked_test:
+        raise PermissionError(
+            f"Access to locked test split '{split}' is forbidden during development. "
+            f"Pass --allow-locked-test explicitly only for formal locked evaluation."
+        )
+
+    records: List[Dict[str, Any]] = []
+
+    if dataset_name == "d1":
+        # Check canonical manifest locations
+        manifest_candidates = [
+            ROOT / "data" / "WeatherGuard-D1" / "manifests" / "d1_split_manifest.json",
+            ROOT / "artifacts" / "d1_splits_manifest.json",
+            ROOT / "artifacts" / "d1_split_manifest.json",
+        ]
+        manifest_p = None
+        for cand in manifest_candidates:
+            if cand.exists():
+                manifest_p = cand
+                break
+
+        if manifest_p is None:
+            raise FileNotFoundError(
+                f"WeatherGuard-D1 split manifest not found in {[str(p) for p in manifest_candidates]}. "
+                f"Awaiting synthetic dataset generation and split generation."
+            )
+
+        with open(manifest_p, "r") as f:
+            manifest_data = json.load(f)
+
+        split_key = "validation" if clean_split in ("val", "validation") else clean_split
+        img_ids = manifest_data.get(split_key, {}).get("image_ids", [])
+        if not img_ids:
+            return []
+
+        img_dir = ROOT / "data" / "WeatherGuard-D1" / "images"
+        lbl_dir = ROOT / "data" / "WeatherGuard-D1" / "labels"
+
+        # Check if actual images are present on disk
+        target_ids = img_ids[:max_samples] if max_samples else img_ids
+        for img_id in target_ids:
+            img_path = None
+            for ext in (".jpg", ".png", ".jpeg"):
+                p = img_dir / f"{img_id}{ext}"
+                if p.exists():
+                    img_path = p
+                    break
+                # Check condition subfolders
+                for cond in ("day", "night", "rain", "fog"):
+                    sub_p = img_dir / cond / f"{img_id}{ext}"
+                    if sub_p.exists():
+                        img_path = sub_p
+                        break
+                if img_path:
+                    break
+
+            if not img_path:
+                continue
+
+            # Load YOLO label txt
+            gt_boxes: List[GroundTruthBox] = []
+            lbl_file = lbl_dir / f"{img_id}.txt"
+            if lbl_file.exists():
+                with open(lbl_file) as lf:
+                    for line in lf:
+                        parts = line.strip().split()
+                        if len(parts) >= 5:
+                            cid = int(parts[0])
+                            xc = float(parts[1]) * 1280.0
+                            yc = float(parts[2]) * 720.0
+                            w = float(parts[3]) * 1280.0
+                            h = float(parts[4]) * 720.0
+                            x1 = xc - w / 2.0
+                            y1 = yc - h / 2.0
+                            x2 = xc + w / 2.0
+                            y2 = yc + h / 2.0
+                            cname = D1_TO_CANONICAL.get(cid, "car")
+                            scale = get_object_scale(w, h)
+                            gt_boxes.append(GroundTruthBox(
+                                class_name=cname,
+                                x1=round(x1, 2), y1=round(y1, 2),
+                                x2=round(x2, 2), y2=round(y2, 2),
+                                scale=scale, max_dim=round(max(w, h), 2),
+                            ))
+
+            records.append({
+                "image_id": img_id,
+                "file_path": str(img_path),
+                "gt_boxes": gt_boxes,
+            })
+
+    elif dataset_name == "bdd100k":
+        samples_path = ROOT / "data" / "bdd100k" / "samples.json"
+        img_dir = ROOT / "data" / "bdd100k" / "images"
+
+        if not samples_path.exists() or not img_dir.exists():
+            raise FileNotFoundError(f"BDD100K data not found at {samples_path} or {img_dir}.")
+
+        with open(samples_path) as f:
+            samples_data = json.load(f)
+
+        bdd_cat_map = {
+            "pedestrian": "person",
+            "car": "car",
+            "truck": "truck",
+            "bus": "bus",
+            "motorcycle": "motorcycle",
+            "bicycle": "bicycle",
+        }
+
+        # Filter split
+        for item in samples_data:
+            img_name = item.get("name")
+            img_file = img_dir / img_name
+            if not img_file.exists():
+                continue
+
+            gt_boxes: List[GroundTruthBox] = []
+            for obj in item.get("labels", []):
+                cat = obj.get("category", "").lower()
+                if cat in bdd_cat_map:
+                    box2d = obj.get("box2d", {})
+                    x1 = float(box2d.get("x1", 0))
+                    y1 = float(box2d.get("y1", 0))
+                    x2 = float(box2d.get("x2", 0))
+                    y2 = float(box2d.get("y2", 0))
+                    w = x2 - x1
+                    h = y2 - y1
+                    scale = get_object_scale(w, h)
+                    gt_boxes.append(GroundTruthBox(
+                        class_name=bdd_cat_map[cat],
+                        x1=x1, y1=y1, x2=x2, y2=y2,
+                        scale=scale, max_dim=max(w, h),
+                    ))
+
+            records.append({
+                "image_id": img_name,
+                "file_path": str(img_file),
+                "gt_boxes": gt_boxes,
+            })
+            if max_samples and len(records) >= max_samples:
+                break
+
+    elif dataset_name == "dawn":
+        val_txt = ROOT / "data" / "dawn_yolo" / "val.txt"
+        lbl_dir = ROOT / "data" / "dawn_yolo" / "labels"
+
+        if not val_txt.exists():
+            raise FileNotFoundError(f"DAWN validation list {val_txt} not found.")
+
+        with open(val_txt) as f:
+            lines = [l.strip() for l in f if l.strip()]
+
+        target_lines = lines[:max_samples] if max_samples else lines
+        for img_p_str in target_lines:
+            img_p = Path(img_p_str)
+            if not img_p.exists():
+                continue
+
+            # Infer width and height from image if needed, or assume default
+            try:
+                with Image.open(img_p) as pil_im:
+                    im_w, im_h = pil_im.size
+            except Exception:
+                im_w, im_h = 1280.0, 720.0
+
+            gt_boxes: List[GroundTruthBox] = []
+            lbl_file = lbl_dir / f"{img_p.stem}.txt"
+            if lbl_file.exists():
+                with open(lbl_file) as lf:
+                    for line in lf:
+                        parts = line.strip().split()
+                        if len(parts) >= 5:
+                            cid = int(parts[0])
+                            xc = float(parts[1]) * im_w
+                            yc = float(parts[2]) * im_h
+                            w = float(parts[3]) * im_w
+                            h = float(parts[4]) * im_h
+                            x1 = xc - w / 2.0
+                            y1 = yc - h / 2.0
+                            x2 = xc + w / 2.0
+                            y2 = yc + h / 2.0
+                            cname = D1_TO_CANONICAL.get(cid, "car")
+                            scale = get_object_scale(w, h)
+                            gt_boxes.append(GroundTruthBox(
+                                class_name=cname,
+                                x1=round(x1, 2), y1=round(y1, 2),
+                                x2=round(x2, 2), y2=round(y2, 2),
+                                scale=scale, max_dim=round(max(w, h), 2),
+                            ))
+
+            records.append({
+                "image_id": img_p.stem,
+                "file_path": str(img_p),
+                "gt_boxes": gt_boxes,
+            })
+
+    elif dataset_name == "flir":
+        flir_p = ROOT / "data" / "flir_thermal" / "validation.parquet"
+        if not flir_p.exists():
+            raise FileNotFoundError(f"FLIR dataset not found at {flir_p}.")
+
+        import pyarrow.parquet as pq
+        table = pq.read_table(flir_p)
+        df = table.to_pandas()
+
+        flir_img_dir = ROOT / "data" / "flir_thermal" / "temp_eval_images"
+        flir_img_dir.mkdir(parents=True, exist_ok=True)
+
+        cat_map = {1: "bicycle", 2: "car", 4: "person"}
+        valid_rows = [row for _, row in df.iterrows() if len(row["objects"]["category"]) > 0]
+        target_rows = valid_rows[:max_samples] if max_samples else valid_rows
+
+        for row in target_rows:
+            image_id = str(row["image_id"])
+            img_file = flir_img_dir / f"flir_{image_id}.jpg"
+            if not img_file.exists():
+                import io
+                img_bytes = row["image"]["bytes"]
+                with open(img_file, "wb") as f:
+                    f.write(img_bytes)
+
+            objs = row["objects"]
+            gt_boxes: List[GroundTruthBox] = []
+            for i in range(len(objs["category"])):
+                cid = int(objs["category"][i])
+                cname = cat_map.get(cid)
+                if cname:
+                    b = objs["bbox"][i]
+                    x1 = float(b[0])
+                    y1 = float(b[1])
+                    w = float(b[2])
+                    h = float(b[3])
+                    x2 = x1 + w
+                    y2 = y1 + h
+                    scale = get_object_scale(w, h)
+                    gt_boxes.append(GroundTruthBox(
+                        class_name=cname,
+                        x1=x1, y1=y1, x2=x2, y2=y2,
+                        scale=scale, max_dim=max(w, h),
+                    ))
+
+            records.append({
+                "image_id": image_id,
+                "file_path": str(img_file),
+                "gt_boxes": gt_boxes,
+            })
+
+    else:
+        raise ValueError(f"Unsupported dataset: '{dataset_name}'. Allowed: 'd1', 'bdd100k', 'dawn', 'flir'.")
+
+    return records
+
+
 def main():
     parser = argparse.ArgumentParser(description="Evaluate WeatherGuard models across datasets and policies.")
+    parser.add_argument("--config", type=str, default=None, help="Path to experiment YAML config (e.g. configs/mission16/e1_baseline_yolov8n.yaml)")
     parser.add_argument("--model", type=str, default=str(BASE_WEIGHTS_PATH), help="Weights checkpoint path")
+    parser.add_argument("--model-type-hint", type=str, default=None, choices=["coco", "d1"], help="Explicit class mapping hint")
     parser.add_argument("--policy", type=str, default="raw_detector", choices=["raw_detector", "policy_j", "policy_k"])
     parser.add_argument("--dataset", type=str, default="d1", choices=["d1", "bdd100k", "dawn", "flir"])
-    parser.add_argument("--split", type=str, default="validation", choices=["train", "validation", "test", "locked"])
+    parser.add_argument("--split", type=str, default="validation", choices=["train", "validation", "val", "test", "locked"])
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--conf", type=float, default=0.20)
     parser.add_argument("--iou", type=float, default=0.50)
+    parser.add_argument("--max-samples", type=int, default=None, help="Maximum number of images to evaluate (for fast profiling/dry-run)")
+    parser.add_argument("--dry-run", action="store_true", help="Perform preflight check without executing full inference")
+    parser.add_argument("--allow-locked-test", action="store_true", help="Permit evaluating on locked test split (formal evaluations only)")
     parser.add_argument("--output", type=str, default="artifacts/evaluation_summary.json")
+    parser.add_argument("--update-registry", type=str, default=None, help="Experiment ID to update in experiment_registry.csv/json")
     args = parser.parse_args()
 
+    # Load from config if provided
+    exp_id = args.update_registry
+    weights_path = Path(args.model)
+    policy = args.policy
+    imgsz = args.imgsz
+    conf_thresh = args.conf
+    iou_thresh = args.iou
+    dataset_name = args.dataset
+    split = args.split
+
+    if args.config:
+        cfg_path = Path(args.config)
+        if not cfg_path.exists():
+            raise FileNotFoundError(f"Experiment config not found: {cfg_path}")
+        with open(cfg_path) as f:
+            cfg = yaml.safe_load(f)
+
+        exp_id = cfg.get("experiment_id", exp_id)
+        model_sec = cfg.get("model", {})
+        eval_sec = cfg.get("evaluation", {})
+
+        if "weights" in model_sec:
+            weights_path = ROOT / model_sec["weights"] if not Path(model_sec["weights"]).is_absolute() else Path(model_sec["weights"])
+        elif "output_checkpoint" in model_sec:
+            weights_path = ROOT / model_sec["output_checkpoint"] if not Path(model_sec["output_checkpoint"]).is_absolute() else Path(model_sec["output_checkpoint"])
+
+        policy = eval_sec.get("policy", policy)
+        imgsz = eval_sec.get("imgsz", imgsz)
+        conf_thresh = eval_sec.get("conf_thresh", conf_thresh)
+        iou_thresh = eval_sec.get("iou_thresh", iou_thresh)
+
+        # Detect dataset from config if specified
+        if "datasets" in eval_sec and isinstance(eval_sec["datasets"], list) and len(eval_sec["datasets"]) > 0:
+            first_d = eval_sec["datasets"][0]
+            if isinstance(first_d, dict):
+                dataset_name = first_d.get("name", dataset_name)
+                d_splits = first_d.get("splits", [split])
+                # Default to validation during development
+                split = "validation" if "validation" in d_splits else d_splits[0]
+
+    # Preflight / Dry-run handling
+    if args.dry_run:
+        preflight_info = {
+            "status": "PREFLIGHT_VERIFIED",
+            "experiment_id": exp_id or "ad_hoc_eval",
+            "model_weights": str(weights_path),
+            "weights_exist": weights_path.exists(),
+            "policy": policy,
+            "dataset": dataset_name,
+            "split": split,
+            "imgsz": imgsz,
+            "conf_thresh": conf_thresh,
+            "iou_thresh": iou_thresh,
+            "hardware": platform.processor(),
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        }
+        print(f"Preflight evaluation verified for {exp_id or 'eval'} ({dataset_name} / {split}).")
+        out_p = Path(args.output)
+        out_p.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_p, "w") as f:
+            json.dump(preflight_info, f, indent=2)
+        return
+
+    # Initialize evaluator
     evaluator = WeatherGuardEvaluator(
-        weights_path=Path(args.model),
-        policy=args.policy,
-        imgsz=args.imgsz,
-        conf_thresh=args.conf,
-        iou_thresh=args.iou,
+        weights_path=weights_path,
+        policy=policy,
+        imgsz=imgsz,
+        conf_thresh=conf_thresh,
+        iou_thresh=iou_thresh,
+        model_type_hint=args.model_type_hint,
     )
 
-    print(f"Unified evaluation interface configured for {args.dataset} ({args.split}) with policy {args.policy} at {args.imgsz}px.")
-    # Check if dataset is D1 and present
-    if args.dataset == "d1":
-        manifest_p = ROOT / "data" / "WeatherGuard-D1" / "manifests" / "d1_split_manifest.json"
-        if not manifest_p.exists():
-            print(f"Dataset manifest {manifest_p} not found. WeatherGuard-D1 is awaiting synthetic generation.")
-            return
+    print(f"Evaluating {weights_path.name} on {dataset_name} ({split}) using {policy}...")
 
-    print("Evaluation interface ready.")
+    try:
+        records = load_dataset_records(
+            dataset_name=dataset_name,
+            split=split,
+            max_samples=args.max_samples,
+            allow_locked_test=args.allow_locked_test,
+        )
+    except FileNotFoundError as e:
+        print(f"Dataset notice: {e}")
+        status_info = {
+            "status": "DATASET_NOT_INGESTED",
+            "dataset": dataset_name,
+            "split": split,
+            "message": str(e),
+        }
+        out_p = Path(args.output)
+        out_p.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_p, "w") as f:
+            json.dump(status_info, f, indent=2)
+        return
+    except PermissionError as e:
+        print(f"Locked-test protection triggered: {e}")
+        raise
+
+    if not records:
+        print(f"No records available to evaluate for {dataset_name} ({split}).")
+        status_info = {
+            "status": "NO_RECORDS_AVAILABLE",
+            "dataset": dataset_name,
+            "split": split,
+            "message": "Zero records loaded for evaluation.",
+        }
+        out_p = Path(args.output)
+        out_p.parent.mkdir(parents=True, exist_ok=True)
+        with open(out_p, "w") as f:
+            json.dump(status_info, f, indent=2)
+        return
+
+    print(f"Running inference over {len(records)} images...")
+    results = evaluator.evaluate_image_stream(records)
+
+    # Attach metadata
+    results["metadata"] = {
+        "experiment_id": exp_id or "untracked_eval",
+        "dataset": dataset_name,
+        "split": split,
+        "weights": str(weights_path),
+        "policy": policy,
+        "imgsz": imgsz,
+        "conf_thresh": conf_thresh,
+        "iou_thresh": iou_thresh,
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+
+    # Save output JSON
+    out_p = Path(args.output)
+    out_p.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_p, "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"Evaluation results successfully saved to {out_p}")
+
+    # Display summary
+    overall = results.get("overall", {})
+    lat = results.get("latency", {}).get("end_to_end_pipeline", {})
+    print(f"Results: Overall F1={overall.get('f1', 0.0):.4f} (Prec={overall.get('precision', 0.0):.4f}, Rec={overall.get('recall', 0.0):.4f}) | Mean Latency={lat.get('mean_ms', 0.0)}ms ({lat.get('fps', 0.0)} FPS)")
+
+    # Update experiment registry if requested
+    if exp_id:
+        from scripts.manage_experiment_registry import ExperimentRegistry
+        registry = ExperimentRegistry()
+        rec_data = {
+            "experiment_id": exp_id,
+            "overall_f1": overall.get("f1", ""),
+            "small_f1": results.get("by_scale", {}).get("small", {}).get("f1", ""),
+            "ultra_small_f1": results.get("by_scale", {}).get("ultra_small", {}).get("f1", ""),
+            "mean_latency_ms": lat.get("mean_ms", ""),
+            "fps": lat.get("fps", ""),
+            "status": "COMPLETED",
+            "artifact_locations": str(out_p),
+        }
+        registry.upsert_experiment(rec_data)
+        print(f"Registry updated for {exp_id}.")
 
 
 if __name__ == "__main__":
