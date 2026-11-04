@@ -1,0 +1,231 @@
+{
+  "total_configs": 12,
+  "ready_for_execution": 1,
+  "pending_data_ingestion": 10,
+  "configuration_errors": 0,
+  "experiments": [
+    {
+      "experiment_id": "E10_mixed_condition",
+      "config_file": "configs/mission16/e10_mixed_condition.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": true,
+      "evaluation_policy": "raw_detector",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "WeatherGuard-D1 dataset not yet ingested (manifests/splits missing)."
+      ],
+      "estimated_ram_gb": 3.24,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E11_layer_freezing",
+      "config_file": "configs/mission16/e11_layer_freezing.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": true,
+      "evaluation_policy": "raw_detector",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "WeatherGuard-D1 dataset not yet ingested (manifests/splits missing)."
+      ],
+      "estimated_ram_gb": 3.24,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E12_synthetic_real_mixed",
+      "config_file": "configs/mission16/e12_synthetic_real_mixed.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": true,
+      "evaluation_policy": "raw_detector",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "WeatherGuard-D1 dataset not yet ingested (manifests/splits missing).",
+        "D1 evaluation requested but split manifest is absent."
+      ],
+      "estimated_ram_gb": 3.24,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E1_baseline_yolov8n",
+      "config_file": "configs/mission16/e1_baseline_yolov8n.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": false,
+      "evaluation_policy": "raw_detector",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "D1 evaluation requested but split manifest is absent."
+      ],
+      "estimated_ram_gb": 2.34,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E2_d1_finetune_yolov8n",
+      "config_file": "configs/mission16/e2_d1_finetune_yolov8n.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": true,
+      "evaluation_policy": "raw_detector",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "WeatherGuard-D1 dataset not yet ingested (manifests/splits missing).",
+        "D1 evaluation requested but split manifest is absent."
+      ],
+      "estimated_ram_gb": 3.24,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E3_baseline_policy_j",
+      "config_file": "configs/mission16/e3_baseline_policy_j.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": false,
+      "evaluation_policy": "policy_j",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "D1 evaluation requested but split manifest is absent."
+      ],
+      "estimated_ram_gb": 2.84,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E4_d1_policy_j",
+      "config_file": "configs/mission16/e4_d1_policy_j.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "runs/train_d1/E2_d1_finetune_yolov8n/weights/best.pt",
+      "weights_exist": false,
+      "training_enabled": false,
+      "evaluation_policy": "policy_j",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "Model weights file 'runs/train_d1/E2_d1_finetune_yolov8n/weights/best.pt' not found on disk.",
+        "D1 evaluation requested but split manifest is absent."
+      ],
+      "estimated_ram_gb": 2.84,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E5_baseline_policy_k",
+      "config_file": "configs/mission16/e5_baseline_policy_k.yaml",
+      "status": "READY_FOR_EXECUTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": false,
+      "evaluation_policy": "policy_k",
+      "dataset_dependencies_met": true,
+      "missing_dependencies": [],
+      "estimated_ram_gb": 2.84,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E6_d1_policy_k",
+      "config_file": "configs/mission16/e6_d1_policy_k.yaml",
+      "status": "PENDING_WEIGHTS",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "runs/train_d1/E2_d1_finetune_yolov8n/weights/best.pt",
+      "weights_exist": false,
+      "training_enabled": false,
+      "evaluation_policy": "policy_k",
+      "dataset_dependencies_met": true,
+      "missing_dependencies": [
+        "Model weights file 'runs/train_d1/E2_d1_finetune_yolov8n/weights/best.pt' not found on disk."
+      ],
+      "estimated_ram_gb": 2.84,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E7_small_object_sampling",
+      "config_file": "configs/mission16/e7_small_object_sampling.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": true,
+      "evaluation_policy": "raw_detector",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "WeatherGuard-D1 dataset not yet ingested (manifests/splits missing)."
+      ],
+      "estimated_ram_gb": 3.24,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E8_adverse_weather_aug",
+      "config_file": "configs/mission16/e8_adverse_weather_aug.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": true,
+      "evaluation_policy": "raw_detector",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "WeatherGuard-D1 dataset not yet ingested (manifests/splits missing)."
+      ],
+      "estimated_ram_gb": 3.24,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "experiment_id": "E9_condition_ablation",
+      "config_file": "configs/mission16/e9_condition_ablation.yaml",
+      "status": "PENDING_DATA_INGESTION",
+      "model_architecture": "YOLOv8n",
+      "weights_path": "yolov8n.pt",
+      "weights_exist": true,
+      "training_enabled": true,
+      "evaluation_policy": "raw_detector",
+      "dataset_dependencies_met": false,
+      "missing_dependencies": [
+        "WeatherGuard-D1 dataset not yet ingested (manifests/splits missing)."
+      ],
+      "estimated_ram_gb": 3.24,
+      "m1_hardware_safe": true,
+      "warnings": [],
+      "errors": []
+    }
+  ],
+  "system_profile": {
+    "platform": "Apple Silicon M1 (macOS Darwin)",
+    "memory_limit_gb": 8.0,
+    "max_safe_ram_footprint_gb": 5.5,
+    "execution_target": "CPU-only"
+  }
+}
