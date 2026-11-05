@@ -1,0 +1,124 @@
+{
+  "dataset_name": "WeatherGuard V2 Leakage-Resistant Splits",
+  "total_corpus_images": 1000,
+  "total_independent_sources": 13,
+  "cross_split_near_duplicate_count": 0,
+  "cross_split_leakage_violations": [],
+  "split_summary": {
+    "train": {
+      "total_images": 667,
+      "percentage": 66.7,
+      "independent_real_world_frames": 381,
+      "augmented_derivative_frames": 286,
+      "root_sequences": [
+        "bdd_video_b1d0a191",
+        "bdd_video_b1e1a7b8",
+        "bdd_video_b23c9e00",
+        "dawn_overcast",
+        "dawn_sandstorm"
+      ],
+      "total_annotated_objects": 9168,
+      "class_distribution": {
+        "car": 7374,
+        "bus": 135,
+        "person": 1154,
+        "truck": 407,
+        "motorcycle": 18,
+        "bicycle": 80
+      },
+      "scale_distribution": {
+        "large": 2348,
+        "medium": 4593,
+        "small": 2008,
+        "ultra_small": 219
+      },
+      "weather_distribution": {
+        "clear": 149,
+        "dense_fog": 143,
+        "heavy_rain": 143,
+        "night": 138,
+        "sandstorm": 49,
+        "overcast": 45
+      },
+      "lighting_distribution": {
+        "low_light": 286,
+        "daylight": 243,
+        "night": 138
+      }
+    },
+    "val": {
+      "total_images": 173,
+      "percentage": 17.3,
+      "independent_real_world_frames": 159,
+      "augmented_derivative_frames": 14,
+      "root_sequences": [
+        "bdd_video_b1c66a42",
+        "bdd_video_b1f4491b",
+        "bdd_video_b24380ab",
+        "dawn_rain"
+      ],
+      "total_annotated_objects": 2347,
+      "class_distribution": {
+        "car": 2099,
+        "truck": 85,
+        "bus": 35,
+        "motorcycle": 31,
+        "person": 97
+      },
+      "scale_distribution": {
+        "large": 495,
+        "medium": 1002,
+        "small": 687,
+        "ultra_small": 163
+      },
+      "weather_distribution": {
+        "clear": 114,
+        "rain": 45,
+        "dense_fog": 7,
+        "heavy_rain": 7
+      },
+      "lighting_distribution": {
+        "daylight": 159,
+        "low_light": 14
+      }
+    },
+    "test": {
+      "total_images": 160,
+      "percentage": 16.0,
+      "independent_real_world_frames": 160,
+      "augmented_derivative_frames": 0,
+      "root_sequences": [
+        "bdd_video_b24d283f",
+        "bdd_video_b255cd6c",
+        "dawn_dense_fog",
+        "dawn_snow"
+      ],
+      "total_annotated_objects": 2323,
+      "class_distribution": {
+        "car": 1753,
+        "person": 211,
+        "motorcycle": 2,
+        "bus": 99,
+        "truck": 230,
+        "bicycle": 28
+      },
+      "scale_distribution": {
+        "large": 579,
+        "medium": 1044,
+        "small": 616,
+        "ultra_small": 84
+      },
+      "weather_distribution": {
+        "rain": 51,
+        "snow": 47,
+        "night": 43,
+        "dense_fog": 19
+      },
+      "lighting_distribution": {
+        "low_light": 70,
+        "daylight": 47,
+        "night": 43
+      }
+    }
+  }
+}
