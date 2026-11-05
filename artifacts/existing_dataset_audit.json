@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-11-05T05:41:00Z",
+  "mission": "Master Autonomous Mission \u2014 Phase 2: Existing Dataset Audit",
+  "dawn": {
+    "dataset_name": "DAWN (Vehicle Detection in Adverse Weather Nature)",
+    "source_category": "Public Real-World Dataset",
+    "reference": "Kenan et al. (2020), CC BY-NC 3.0",
+    "total_images": 206,
+    "splits": {
+      "train": 0,
+      "validation": 206
+    },
+    "resolutions": [
+      "1024x682",
+      "1024x688",
+      "1200x674",
+      "1200x800",
+      "1200x900"
+    ],
+    "weather_distribution": {
+      "fog": 19,
+      "rain": 46,
+      "snow": 47,
+      "sand": 49,
+      "other": 45
+    },
+    "class_distribution": {
+      "truck": 115,
+      "person": 111,
+      "bicycle": 2,
+      "car": 1161,
+      "motorcycle": 15,
+      "bus": 34
+    },
+    "scale_distribution": {
+      "ultra_small": 6,
+      "small": 113,
+      "medium": 574,
+      "large": 745
+    }
+  },
+  "flir": {
+    "dataset_name": "FLIR ADAS Thermal Dataset v1",
+    "source_category": "Public Real-World Dataset",
+    "sensor_modality": "Thermal Long-Wave Infrared (LWIR 8-14 um)",
+    "reference": "Teledyne FLIR Academic Research Terms",
+    "total_images": 1452,
+    "native_resolution": "640x512",
+    "class_distribution": {
+      "car": 6512,
+      "person": 3696,
+      "bicycle": 613
+    },
+    "scale_distribution": {
+      "ultra_small": 377,
+      "small": 3255,
+      "medium": 5666,
+      "large": 1561
+    }
+  },
+  "bdd100k": {
+    "dataset_name": "BDD100K Adverse Weather MOT Video Cohort",
+    "source_category": "Public Real-World Driving Video",
+    "reference": "Yu et al. (2020), Academic Research License",
+    "total_video_frames": 363,
+    "sequences_count": 1,
+    "sequence_frames": {
+      "images": 363
+    },
+    "native_resolution": "1280x720 (16:9)",
+    "cohort_roles": {
+      "development_sequences": [
+        "b24380ab",
+        "b255cd6c"
+      ],
+      "locked_reference_sequences": [
+        "b1e1a7b8",
+        "b1d0a191",
+        "b24d283f",
+        "b23c9e00"
+      ]
+    }
+  }
+}

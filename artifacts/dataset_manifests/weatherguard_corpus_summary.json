@@ -1,0 +1,32 @@
+{
+  "dataset_name": "WeatherGuard Expanded Road Perception Corpus (WeatherGuard-Curated)",
+  "total_images": 1000,
+  "source_category_breakdown": {
+    "public_real_world": 700,
+    "augmented_real_world": 300
+  },
+  "weather_condition_breakdown": {
+    "clear": 263,
+    "night": 181,
+    "dense_fog": 169,
+    "heavy_rain": 150,
+    "rain": 96,
+    "sandstorm": 49,
+    "snow": 47,
+    "overcast": 45
+  },
+  "lighting_condition_breakdown": {
+    "daylight": 449,
+    "low_light": 370,
+    "night": 181
+  },
+  "total_valid_objects": 13838,
+  "scale_distribution": {
+    "ultra_small": 464,
+    "small": 3311,
+    "medium": 6637,
+    "large": 3426
+  },
+  "manual_review_queue_count": 352,
+  "unique_dhash_count": 912
+}
