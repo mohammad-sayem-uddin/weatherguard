@@ -1,0 +1,73 @@
+{
+  "vision": {
+    "ultralytics_validator_macro": {
+      "precision": 0.2517,
+      "recall": 0.344,
+      "mAP50": 0.2074,
+      "mAP50_95": 0.1095
+    },
+    "fine_grained_operational_micro": {
+      "fine_tuned": {
+        "tp": 874,
+        "fp": 344,
+        "fn": 1449,
+        "gt": 2323,
+        "recall": 0.3762,
+        "precision": 0.7176,
+        "f1": 0.4936
+      },
+      "zero_shot": {
+        "tp": 879,
+        "fp": 208,
+        "fn": 1444,
+        "gt": 2323,
+        "recall": 0.3784,
+        "precision": 0.8086,
+        "f1": 0.5155
+      }
+    },
+    "reconciliation_explanation": "The report value of 0.3762 is the empirical micro-averaged recall (874 TP / 2323 GT) evaluated at the operational threshold conf=0.25, IoU=0.50. The JSON overall value of 0.3440 is the unweighted class-averaged macro-recall reported directly by Ultralytics model.val(). Both are valid under their respective definitions.",
+    "dense_fog_analysis": {
+      "zero_shot_recall": 0.43,
+      "fine_tuned_recall": 0.63,
+      "percentage_point_improvement": 20.0,
+      "relative_improvement_pct": 46.51,
+      "zero_shot_f1": 0.5584,
+      "fine_tuned_f1": 0.7,
+      "f1_percentage_point_delta": 14.16
+    }
+  },
+  "audio": {
+    "confusion_matrix": {
+      "tn": 139,
+      "fp": 11,
+      "fn": 11,
+      "tp": 139
+    },
+    "calculated_metrics": {
+      "accuracy": 0.9267,
+      "precision": 0.9267,
+      "recall": 0.9267,
+      "f1": 0.9267,
+      "fpr": 0.0733,
+      "fnr": 0.0733
+    },
+    "reported_metrics": {
+      "accuracy": 0.9267,
+      "precision": 0.9267,
+      "recall": 0.9267,
+      "f1": 0.9267,
+      "fpr": 0.0733,
+      "fnr": 0.0733
+    },
+    "test_provenance": {
+      "total_samples": 300,
+      "unique_roots": 207,
+      "breakdown": {
+        "augmented_real_world": 262,
+        "owner_collected_real_world": 38
+      }
+    },
+    "root_vs_speaker_analysis": "Audio root_source identifies independent parent recordings/utterances (745 roots total, 207 roots in test set). However, roots do NOT imply 745 distinct human speakers; multiple parent recordings share underlying neural voice engines or speakers. Cross-split isolation is guaranteed at the recording level (zero exact recording leakage), but not at the speaker level."
+  }
+}
