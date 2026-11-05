@@ -1,0 +1,164 @@
+{
+  "audit_name": "Mission 21 Forensic Methodological & Metric Audit",
+  "investigation_scope": {
+    "total_reported_trials": 450,
+    "unique_visual_frames_available": 160,
+    "unique_visual_frames_used": 160,
+    "unique_audio_clips_used": 162
+  },
+  "sample_pairing_and_cooccurrence_findings": {
+    "nature_of_trials": "CONSTRUCTED_SYNTHETIC_SCENARIO_PAIRINGS",
+    "are_trials_independent_observations": false,
+    "are_trials_simultaneous_recordings": false,
+    "frame_recycling": {
+      "max_reuse_per_frame": 5,
+      "average_reuse_per_frame": 2.81,
+      "frames_reused_multiple_times": 140,
+      "dawn_snow_47_frames_usage_count": 4
+    },
+    "audio_clip_recycling": {
+      "max_reuse_per_audio_clip": 6,
+      "small_pool_bottleneck": "In specialized noise conditions (e.g. drone_propeller negative with 9 clips), identical audio clips were repeated up to 3 times in a single 47-trial scenario."
+    }
+  },
+  "ground_truth_assignment_forensics": {
+    "total_positive_trials": 315,
+    "phantom_person_trials": 143,
+    "phantom_person_percentage_of_positives": 45.4,
+    "silent_person_trials": 86,
+    "silent_person_percentage_of_positives": 27.3,
+    "critical_methodological_insight": "In 143 out of 315 positive trials (45.4%), ground truth was set to True solely because a positive audio clip was attached, even though the image contained NO visible person. Consequently, Vision-Only was scored as a False Negative (miss) on frames where there was no visual target to detect. This accounted for 143 of the 208 reported Vision-Only misses (68.75%), artificially depressing Vision-Only recall to 33.97% and exaggerating the perceived gain of multi-modal fusion."
+  },
+  "per_scenario_audit": {
+    "Daylight_Clear": {
+      "sample_count": 47,
+      "visual_root_source": [
+        "dawn_snow"
+      ],
+      "target_noise_condition": "clean_speech",
+      "positive_audio_pool_size": 88,
+      "negative_audio_pool_size": 112,
+      "ground_truth_positives": 31,
+      "phantom_person_trials": 17,
+      "silent_person_trials": 7,
+      "audio_pool_exhaustion_cycles": 0.53
+    },
+    "Nighttime": {
+      "sample_count": 43,
+      "visual_root_source": [
+        "bdd_video_b255cd6c"
+      ],
+      "target_noise_condition": "clean_speech",
+      "positive_audio_pool_size": 88,
+      "negative_audio_pool_size": 112,
+      "ground_truth_positives": 42,
+      "phantom_person_trials": 2,
+      "silent_person_trials": 20,
+      "audio_pool_exhaustion_cycles": 0.49
+    },
+    "Dense_Fog": {
+      "sample_count": 19,
+      "visual_root_source": [
+        "dawn_dense_fog"
+      ],
+      "target_noise_condition": "clean_speech",
+      "positive_audio_pool_size": 88,
+      "negative_audio_pool_size": 112,
+      "ground_truth_positives": 11,
+      "phantom_person_trials": 8,
+      "silent_person_trials": 1,
+      "audio_pool_exhaustion_cycles": 0.22
+    },
+    "Heavy_Rain": {
+      "sample_count": 51,
+      "visual_root_source": [
+        "bdd_video_b24d283f"
+      ],
+      "target_noise_condition": "heavy_rain",
+      "positive_audio_pool_size": 16,
+      "negative_audio_pool_size": 9,
+      "ground_truth_positives": 32,
+      "phantom_person_trials": 21,
+      "silent_person_trials": 6,
+      "audio_pool_exhaustion_cycles": 3.19
+    },
+    "Low_Visual_Resolution": {
+      "sample_count": 47,
+      "visual_root_source": [
+        "dawn_snow"
+      ],
+      "target_noise_condition": "clean_speech",
+      "positive_audio_pool_size": 88,
+      "negative_audio_pool_size": 112,
+      "ground_truth_positives": 31,
+      "phantom_person_trials": 17,
+      "silent_person_trials": 7,
+      "audio_pool_exhaustion_cycles": 0.53
+    },
+    "Distant_Visual_Targets": {
+      "sample_count": 98,
+      "visual_root_source": [
+        "dawn_snow",
+        "bdd_video_b24d283f",
+        "bdd_video_b255cd6c"
+      ],
+      "target_noise_condition": "clean_speech",
+      "positive_audio_pool_size": 88,
+      "negative_audio_pool_size": 112,
+      "ground_truth_positives": 74,
+      "phantom_person_trials": 23,
+      "silent_person_trials": 25,
+      "audio_pool_exhaustion_cycles": 1.11
+    },
+    "Strong_Wind": {
+      "sample_count": 47,
+      "visual_root_source": [
+        "dawn_snow"
+      ],
+      "target_noise_condition": "strong_wind",
+      "positive_audio_pool_size": 18,
+      "negative_audio_pool_size": 11,
+      "ground_truth_positives": 31,
+      "phantom_person_trials": 17,
+      "silent_person_trials": 7,
+      "audio_pool_exhaustion_cycles": 2.61
+    },
+    "Drone_Rotor_Noise": {
+      "sample_count": 47,
+      "visual_root_source": [
+        "dawn_snow"
+      ],
+      "target_noise_condition": "drone_propeller",
+      "positive_audio_pool_size": 16,
+      "negative_audio_pool_size": 9,
+      "ground_truth_positives": 31,
+      "phantom_person_trials": 17,
+      "silent_person_trials": 7,
+      "audio_pool_exhaustion_cycles": 2.94
+    },
+    "Flood_Water_Noise": {
+      "sample_count": 51,
+      "visual_root_source": [
+        "bdd_video_b24d283f"
+      ],
+      "target_noise_condition": "flood_water",
+      "positive_audio_pool_size": 12,
+      "negative_audio_pool_size": 9,
+      "ground_truth_positives": 32,
+      "phantom_person_trials": 21,
+      "silent_person_trials": 6,
+      "audio_pool_exhaustion_cycles": 4.25
+    }
+  },
+  "threshold_tuning_leakage_audit": {
+    "audio_threshold": 0.54,
+    "audio_threshold_origin": "Tuned in Mission 20 on the locked test set (audio_gpu_runner.py eval_ds).",
+    "status": "TEST_SET_TUNING_LEAKAGE",
+    "correction_required": "Calibrate audio and fusion thresholds strictly on Train and Validation splits only."
+  },
+  "statistical_reporting_forensics": {
+    "reported_cohens_d": 3.436,
+    "reported_p_value": "< 0.001",
+    "defect": "Cohen's d was calculated on the distribution of bootstrap resampled F1 values rather than on independent per-trial observations. Because bootstrap standard deviation decreases with sample size, the resulting ratio is a bootstrap z-statistic, not Cohen's d. Furthermore, p < 0.001 was asserted merely because 0 was outside a 95% bootstrap CI, and resampling was performed on only 4 sequences."
+  }
+}
