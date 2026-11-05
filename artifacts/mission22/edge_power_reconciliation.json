@@ -1,0 +1,60 @@
+{
+  "experiment_name": "Mission 22 Edge Power and Flight Endurance Reconciliation",
+  "benchmark_measurements": {
+    "platform": "Apple MacBook Air M1 (8-core ARM, 3.2 GHz, 8 GB Unified Memory)",
+    "vision_yolov8n_latency_ms": 51.46,
+    "vision_yolov8n_fps": 19.4,
+    "audio_standard_cnn_latency_ms": 1.39,
+    "audio_lightweight_cnn_latency_ms": 0.98,
+    "measurement_status": "DIRECTLY_BENCHMARKED_ON_LOCAL_HARDWARE"
+  },
+  "engineering_projections_unmeasured": {
+    "Raspberry_Pi_5": {
+      "platform": "Broadcom BCM2712 Quad Cortex-A76 (2.4 GHz)",
+      "vision_yolov8n_fp32_ms": 234.3,
+      "vision_yolov8n_int8_projected_ms": 78.0,
+      "audio_lightweight_cnn_ms": 4.61,
+      "status": "ENGINEERING_PROJECTION_UNMEASURED"
+    },
+    "Raspberry_Pi_4B": {
+      "platform": "Broadcom BCM2711 Quad Cortex-A72 (1.5 GHz)",
+      "vision_yolov8n_fp32_ms": 540.7,
+      "vision_yolov8n_int8_projected_ms": 185.0,
+      "audio_lightweight_cnn_ms": 10.64,
+      "status": "ENGINEERING_PROJECTION_UNMEASURED"
+    },
+    "NVIDIA_Tesla_T4": {
+      "platform": "NVIDIA Tesla T4 (Kaggle Cloud, 16 GB VRAM)",
+      "vision_yolov8n_fp16_ms": 3.8,
+      "audio_standard_cnn_ms": 0.15,
+      "status": "CLOUD_BENCHMARKED_CONFIRMED"
+    }
+  },
+  "power_and_endurance_reconciliation": {
+    "active_duty_cycle_fraction_d": 0.13,
+    "continuous_active_compute_power_w": 18.5,
+    "standby_acoustic_compute_power_w": 2.8,
+    "weighted_average_compute_power_w": 4.84,
+    "formula_applied": "P_average = P_standby * (1 - d) + P_active * d",
+    "case_a_dedicated_compute_auxiliary_battery": {
+      "usable_battery_energy_wh": 5.920000000000001,
+      "continuous_vision_endurance_minutes": 19.2,
+      "duty_cycled_endurance_minutes": 73.4,
+      "endurance_extension_ratio": 3.82,
+      "scientific_status": "MATHEMATICALLY_VERIFIED_FOR_COMPUTE_PAYLOAD_ONLY"
+    },
+    "case_b_full_uav_flight_battery_with_propulsion": {
+      "propulsion_hover_power_w": 180.0,
+      "flight_controller_avionics_w": 5.0,
+      "total_uav_power_continuous_w": 203.5,
+      "total_uav_power_duty_cycled_w": 189.84,
+      "usable_flight_battery_energy_wh": 59.2,
+      "total_flight_time_continuous_minutes": 17.5,
+      "total_flight_time_duty_cycled_minutes": 18.7,
+      "flight_endurance_extension_ratio": 1.07,
+      "flight_endurance_gain_percent": 6.86,
+      "scientific_status": "GOVERNED_BY_PROPULSION_PHYSICS"
+    },
+    "critical_forensic_reconciliation": "The 3.8x endurance extension reported in Mission 21 mathematically applies ONLY to the isolated compute payload (or a dedicated compute auxiliary battery). It DOES NOT extend total drone flight endurance by 3.8x. When factoring in multirotor hover propulsion (~180 W for a 1.5 kg UAV), reducing compute power from 18.5 W to 4.84 W yields an overall flight time extension of ~7.2% (~17.5 min to ~18.7 min). Claiming that duty-cycling extended total drone flight endurance from 18 to 68 minutes without physical power measurements was an invalid extrapolation."
+  }
+}
