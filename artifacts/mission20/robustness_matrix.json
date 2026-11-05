@@ -1,0 +1,153 @@
+{
+  "analysis_name": "Mission 20 Independent Robustness & Sensor Complementarity Matrix",
+  "vision_robustness": {
+    "environmental_generalization": {
+      "dense_fog": {
+        "images": 19,
+        "total_gt": 100,
+        "zero_shot_recall": 0.43,
+        "zero_shot_f1": 0.5584,
+        "fine_tuned_recall": 0.63,
+        "fine_tuned_f1": 0.7,
+        "delta_recall_pct": 20.0,
+        "delta_f1_pct": 14.16
+      },
+      "snow": {
+        "images": 47,
+        "total_gt": 348,
+        "zero_shot_recall": 0.5833,
+        "zero_shot_f1": 0.6591,
+        "fine_tuned_recall": 0.6264,
+        "fine_tuned_f1": 0.6888,
+        "delta_recall_pct": 4.31,
+        "delta_f1_pct": 2.97
+      },
+      "rain": {
+        "images": 51,
+        "total_gt": 1084,
+        "zero_shot_recall": 0.3524,
+        "zero_shot_f1": 0.5036,
+        "fine_tuned_recall": 0.3755,
+        "fine_tuned_f1": 0.5056,
+        "delta_recall_pct": 2.31,
+        "delta_f1_pct": 0.2
+      },
+      "night": {
+        "images": 43,
+        "total_gt": 791,
+        "zero_shot_recall": 0.3173,
+        "zero_shot_f1": 0.447,
+        "fine_tuned_recall": 0.2351,
+        "fine_tuned_f1": 0.3327,
+        "delta_recall_pct": -8.22,
+        "delta_f1_pct": -11.43
+      }
+    },
+    "scale_tier_generalization": {
+      "ultra_small": {
+        "total_gt": 84,
+        "zero_shot_recall": 0.0,
+        "zero_shot_f1": 0.0,
+        "fine_tuned_recall": 0.0,
+        "fine_tuned_f1": 0.0,
+        "relative_gain_recall_pct": 0.0
+      },
+      "small": {
+        "total_gt": 616,
+        "zero_shot_recall": 0.1023,
+        "zero_shot_f1": 0.1829,
+        "fine_tuned_recall": 0.1461,
+        "fine_tuned_f1": 0.2344,
+        "relative_gain_recall_pct": 42.8
+      },
+      "medium": {
+        "total_gt": 1044,
+        "zero_shot_recall": 0.3822,
+        "zero_shot_f1": 0.5196,
+        "fine_tuned_recall": 0.3716,
+        "fine_tuned_f1": 0.4874,
+        "relative_gain_recall_pct": -2.8
+      },
+      "large": {
+        "total_gt": 579,
+        "zero_shot_recall": 0.7202,
+        "zero_shot_f1": 0.7575,
+        "fine_tuned_recall": 0.6839,
+        "fine_tuned_f1": 0.722,
+        "relative_gain_recall_pct": -5.0
+      }
+    },
+    "overall_test_map50": 0.2074,
+    "overall_test_map50_95": 0.1095
+  },
+  "audio_robustness": {
+    "noise_breakdown": {
+      "clean_speech": {
+        "samples": 200,
+        "accuracy": 0.95,
+        "f1": 0.9438
+      },
+      "drone_propeller": {
+        "samples": 25,
+        "accuracy": 0.88,
+        "f1": 0.9032
+      },
+      "flood_water": {
+        "samples": 21,
+        "accuracy": 0.9048,
+        "f1": 0.9091
+      },
+      "heavy_rain": {
+        "samples": 25,
+        "accuracy": 0.84,
+        "f1": 0.875
+      },
+      "strong_wind": {
+        "samples": 29,
+        "accuracy": 0.8966,
+        "f1": 0.9189
+      }
+    },
+    "snr_breakdown": {
+      "0.0": {
+        "samples": 25,
+        "accuracy": 0.8,
+        "f1": 0.8148
+      },
+      "5.0": {
+        "samples": 21,
+        "accuracy": 0.9524,
+        "f1": 0.9655
+      },
+      "10.0": {
+        "samples": 22,
+        "accuracy": 0.9545,
+        "f1": 0.963
+      },
+      "15.0": {
+        "samples": 13,
+        "accuracy": 0.6923,
+        "f1": 0.7143
+      },
+      "20.0": {
+        "samples": 19,
+        "accuracy": 0.9474,
+        "f1": 0.96
+      },
+      "inf": {
+        "samples": 200,
+        "accuracy": 0.95,
+        "f1": 0.9438
+      }
+    },
+    "overall_test_accuracy": 0.9267,
+    "overall_test_f1": 0.9267,
+    "overall_test_roc_auc": 0.9706,
+    "calibrated_threshold": 0.54
+  },
+  "multi_modal_insights": {
+    "night_cross_modal_gain": "Vision F1 severely drops to 0.3327 at night; Audio operates invariant to ambient lighting.",
+    "ultra_small_acoustic_cueing": "Sub-16px visual targets have 0.0% single-frame recall; acoustic distress triggers drone search trajectory prior to visual acquisition.",
+    "heavy_rain_rotor_wash_resilience": "Heavy rain and rotor wash reduce audio accuracy to 84-88%; visual detection maintains 0.5056 F1 under rain."
+  }
+}
