@@ -1,0 +1,101 @@
+{
+  "dataset_name": "WeatherGuard Adverse-Weather Road Perception Corpus (V2)",
+  "audit_timestamp": "2026-11-05T11:21:41.134632",
+  "total_manifest_images": 1000,
+  "total_images_verified_on_disk": 1000,
+  "total_annotated_boxes_verified": 13838,
+  "missing_images_count": 0,
+  "missing_labels_count": 0,
+  "dimension_mismatch_count": 0,
+  "coordinate_error_count": 0,
+  "invalid_class_count": 0,
+  "sha256_mismatch_count": 0,
+  "canonical_classes": [
+    "truck",
+    "person",
+    "bicycle",
+    "car",
+    "motorcycle",
+    "bus"
+  ],
+  "class_distribution": {
+    "car": 11226,
+    "bus": 269,
+    "person": 1462,
+    "truck": 722,
+    "motorcycle": 51,
+    "bicycle": 108
+  },
+  "scale_distribution": {
+    "large": 3422,
+    "medium": 6639,
+    "small": 3311,
+    "ultra_small": 466
+  },
+  "source_provenance_breakdown": {
+    "public_real_world": 700,
+    "augmented_real_world": 300
+  },
+  "weather_condition_breakdown": {
+    "overcast": 45,
+    "dense_fog": 169,
+    "rain": 96,
+    "sandstorm": 49,
+    "snow": 47,
+    "night": 181,
+    "clear": 263,
+    "heavy_rain": 150
+  },
+  "lighting_condition_breakdown": {
+    "daylight": 449,
+    "low_light": 370,
+    "night": 181
+  },
+  "near_duplicate_analysis": {
+    "identical_dhash_count": 121,
+    "near_duplicate_pairs_hamming_le_4": 1036,
+    "sample_near_duplicates": [
+      {
+        "img1": "wg_dawn_dusttornado-014.jpg",
+        "img2": "wg_dawn_sand_storm_g2_-028.jpg",
+        "hamming_distance": 3
+      },
+      {
+        "img1": "wg_dawn_dusttornado-014.jpg",
+        "img2": "aug_fog_wg_dawn_dusttornado-014.jpg",
+        "hamming_distance": 4
+      },
+      {
+        "img1": "wg_dawn_dusttornado-017.jpg",
+        "img2": "aug_rain_wg_dawn_dusttornado-017.jpg",
+        "hamming_distance": 1
+      },
+      {
+        "img1": "wg_dawn_dusttornado-019.jpg",
+        "img2": "aug_fog_wg_dawn_dusttornado-019.jpg",
+        "hamming_distance": 4
+      },
+      {
+        "img1": "wg_dawn_dusttornado-022.jpg",
+        "img2": "aug_fog_wg_dawn_dusttornado-022.jpg",
+        "hamming_distance": 1
+      }
+    ]
+  },
+  "manual_review_queue": {
+    "total_flagged_boxes": 352,
+    "reasons": {
+      "ultra_small_sub_12px_verification": 352
+    }
+  },
+  "augmentation_lineage": {
+    "total_augmented_frames": 300,
+    "parent_traceability_verified": true
+  },
+  "dataset_yaml_alignment": {
+    "config_path": "/Users/sayemuddin/Desktop/WeatherGuard/configs/weatherguard_v2.yaml",
+    "exists": true,
+    "classes_match": true
+  },
+  "acceptance_status": "ACCEPTED"
+}

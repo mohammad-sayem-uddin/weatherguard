@@ -1,0 +1,21 @@
+# WeatherGuard V2 Dataset Configuration (1,000 Curated Frames)
+# Paths are relative to root or set dynamically during training
+path: data/weatherguard_corpus
+train: images/train
+val: images/val
+test: images/test
+
+# Classes (Canonical Order 0-5)
+names:
+  0: truck
+  1: person
+  2: bicycle
+  3: car
+  4: motorcycle
+  5: bus
+
+# Object Scale Definitions (max pixel dimension)
+# ultra_small: < 16 px
+# small: 16 - 32 px
+# medium: 32 - 96 px
+# large: >= 96 px
