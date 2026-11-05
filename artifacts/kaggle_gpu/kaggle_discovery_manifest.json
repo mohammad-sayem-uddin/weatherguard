@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-11-05T05:37:30Z",
+  "project": "WeatherGuard & Multimodal Research Portfolio",
+  "phase": "Phase 0 — Kaggle MCP Infrastructure Discovery",
+  "authentication": {
+    "status": "AUTHENTICATED",
+    "authenticated_user": "Allfaz",
+    "username": "allfaz",
+    "credential_source": "~/.kaggle/access_token",
+    "mcp_server": "kaggle"
+  },
+  "compute_capabilities": {
+    "gpu_acceleration_supported": true,
+    "preferred_accelerator": "NVIDIA Tesla T4",
+    "machine_shape_identifier": "NvidiaTeslaT4",
+    "gpu_memory_gb": 16.0,
+    "gpu_memory_mb": 15360,
+    "tpu_supported": true,
+    "cpu_fallback_supported": true
+  },
+  "quotas_and_runtime_limits": {
+    "weekly_gpu_quota_total_hours": 30.0,
+    "weekly_gpu_quota_total_seconds": 108000,
+    "weekly_gpu_quota_used_seconds": 15675.094,
+    "weekly_gpu_quota_used_hours": 4.35,
+    "weekly_gpu_quota_remaining_hours": 25.65,
+    "weekly_gpu_quota_remaining_seconds": 92324.906,
+    "weekly_tpu_quota_total_hours": 20.0,
+    "weekly_tpu_quota_used_hours": 0.0,
+    "quota_refresh_timestamp": "2026-11-07T00:00:00Z",
+    "max_batch_session_duration_seconds": 32400,
+    "max_batch_session_duration_hours": 9.0
+  },
+  "execution_features": {
+    "notebook_creation_supported": true,
+    "notebook_save_and_run_all_supported": true,
+    "interactive_session_supported": true,
+    "internet_access_supported": true,
+    "can_clone_github_repositories": true,
+    "can_install_custom_pip_packages": true,
+    "dataset_upload_download_supported": true,
+    "output_download_and_sync_supported": true
+  },
+  "execution_protocols": {
+    "weatherguard_repository": "https://github.com/mohammad-sayem-uddin/weatherguard",
+    "local_workspace": "/Users/sayemuddin/Desktop/WeatherGuard",
+    "role_of_local_m1": "Development, preprocessing, small-object sampling, annotation validation, Streamlit UI, light testing",
+    "role_of_kaggle_t4": "Computationally expensive deep learning model training, full-frame high-resolution evaluation, large batch inference"
+  },
+  "status": "APPROVED_FOR_GPU_TRAINING"
+}
