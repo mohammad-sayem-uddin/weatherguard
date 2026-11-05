@@ -1,0 +1,72 @@
+{
+  "experiment_name": "Mission 21 Edge Deployment Feasibility & Scheduling Audit",
+  "model_footprints": {
+    "vision_yolov8n": {
+      "parameters": 3139218,
+      "disk_size_mb": 6.19,
+      "ram_fp32_mb": 11.98
+    },
+    "audio_standard_cnn": {
+      "parameters": 1076417,
+      "disk_size_mb": 4.12,
+      "ram_fp32_mb": 4.11
+    },
+    "audio_lightweight_separable_cnn": {
+      "parameters": 6705,
+      "disk_size_mb": 0.04,
+      "ram_fp32_mb": 0.03,
+      "footprint_reduction_ratio": 160.5
+    }
+  },
+  "hardware_benchmark_table": {
+    "Apple_M1_CPU": {
+      "platform": "Apple MacBook Air M1 (8-core, 3.2 GHz ARM)",
+      "vision_yolov8n_ms": 45.06,
+      "vision_fps": 22.2,
+      "audio_standard_cnn_ms": 1.29,
+      "audio_lightweight_cnn_ms": 0.89,
+      "audio_int8_cnn_ms": 1.46,
+      "status": "BENCHMARKED_CONFIRMED"
+    },
+    "NVIDIA_Tesla_T4_GPU": {
+      "platform": "NVIDIA Tesla T4 (Kaggle Cloud, 16 GB VRAM)",
+      "vision_yolov8n_ms": 3.8,
+      "vision_fps": 263.2,
+      "audio_standard_cnn_ms": 0.15,
+      "audio_lightweight_cnn_ms": 0.08,
+      "status": "BENCHMARKED_CONFIRMED"
+    },
+    "Raspberry_Pi_5": {
+      "platform": "Broadcom BCM2712 Quad Cortex-A76 (2.4 GHz, 8 GB RAM)",
+      "vision_yolov8n_ms": 234.3,
+      "vision_fps": 4.3,
+      "vision_int8_ncnn_projected_ms": 78.0,
+      "vision_int8_ncnn_fps": 12.8,
+      "audio_lightweight_cnn_ms": 4.61,
+      "status": "ENGINEERING_PROJECTION"
+    },
+    "Raspberry_Pi_4B": {
+      "platform": "Broadcom BCM2711 Quad Cortex-A72 (1.5 GHz, 4 GB RAM)",
+      "vision_yolov8n_ms": 540.7,
+      "vision_fps": 1.8,
+      "vision_int8_ncnn_projected_ms": 185.0,
+      "vision_int8_ncnn_fps": 5.4,
+      "audio_lightweight_cnn_ms": 10.64,
+      "status": "ENGINEERING_PROJECTION"
+    }
+  },
+  "scheduling_and_power_analysis": {
+    "continuous_30fps_vision_power_w": 18.5,
+    "acoustic_monitoring_power_w": 1.2,
+    "acoustic_triggered_duty_cycle": {
+      "standby_visual_fps": 2.0,
+      "acoustic_scan_hz": 10.0,
+      "active_tracking_visual_fps": 25.0,
+      "power_standby_w": 2.8,
+      "power_active_w": 18.5,
+      "battery_life_extension_ratio": 3.8,
+      "operational_mechanism": "Drone cruises in low-power acoustic surveillance mode with camera sampling at 2 FPS (reducing compute load by 93%). Upon verified emergency vocalization ('\u09ac\u09be\u0981\u099a\u09be\u0993'), the flight controller triggers camera burst mode (25 FPS) and engages local spiral tracking. This extends mission endurance from 18 minutes to ~68 minutes on a standard 4S LiPo battery."
+    },
+    "drone_deployment_qualification": "Cautionary Rule Enforced: Real-time autonomous drone flight must not be claimed until end-to-end hardware-in-the-loop (HITL) flight test establishes vibration tolerance, wind gusts, and onboard power stability."
+  }
+}
