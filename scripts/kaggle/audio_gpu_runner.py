@@ -47,6 +47,94 @@ logger = logging.getLogger("Audio-KaggleGPU")
 SEED = 42
 
 
+class SyntheticSpectrogramDataset(Dataset):
+    """Generates synthetic Log-Mel spectrogram tensors for testing GPU training."""
+
+    def __init__(self, num_samples: int = 200, n_mels: int = 64, n_frames: int = 126, seed: int = 42) -> None:
+        np.random.seed(seed)
+        self.features = np.random.randn(num_samples, 1, n_mels, n_frames).astype(np.float32)
+        # Class 1 has slightly elevated energy in low mels (simulating distress cry formants)
+        self.labels = np.random.randint(0, 2, size=(num_samples,)).astype(np.float32)
+        for i in range(num_samples):
+            if self.labels[i] == 1.0:
+                self.features[i, 0, :20, :] += 1.5
+
+    def __len__(self) -> int:
+        return len(self.labels)
+
+    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor]:
+        return torch.tensor(self.features[idx]), torch.tensor(self.labels[idx])
+
+
+def train_audio_classifier(
+    epochs: int = 5,
+    batch_size: int = 32,
+    lr: float = 0.001,
+    output_dir: str = "/kaggle/working/artifacts/audio_gpu",
+) -> Dict[str, Any]:
+    """Trains AudioBaselinePyTorchCNN with GPU acceleration and returns evaluation metrics."""
+    set_reproducibility(SEED)
+    out_p = Path(output_dir)
+    out_p.mkdir(parents=True, exist_ok=True)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    logger.info("Training AudioBaselinePyTorchCNN on device: %s", device)
+
+    train_ds = SyntheticSpectrogramDataset(num_samples=300, seed=SEED)
+    val_ds = SyntheticSpectrogramDataset(num_samples=100, seed=SEED + 1)
+
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_ds, batch_size=batch_size, shuffle=False)
+
+    model = AudioBaselinePyTorchCNN().to(device)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
+    criterion = nn.BCEWithLogitsLoss()
+
+    history = []
+    start_time = time.perf_counter()
+
+    for epoch in range(1, epochs + 1):
+        model.train()
+        train_loss = 0.0
+        for features, labels in train_loader:
+            features = features.to(device)
+            labels = labels.to(device)
+            optimizer.zero_grad()
+            logits = model(features)
+            loss = criterion(logits, labels)
+            loss.backward()
+            optimizer.step()
+            train_loss += loss.item() * len(labels)
+
+        train_loss /= len(train_ds)
+        val_metrics = evaluate_audio_model(model, val_loader, device)
+        val_metrics["epoch"] = epoch
+        val_metrics["train_loss"] = round(train_loss, 4)
+        history.append(val_metrics)
+        logger.info("Epoch %d/%d — Train Loss: %.4f | Val F1: %.4f | Val AUC: %.4f",
+                    epoch, epochs, train_loss, val_metrics["f1"], val_metrics["roc_auc"])
+
+    elapsed = time.perf_counter() - start_time
+    best_weights_path = out_p / "audio_best_weights.pt"
+    torch.save(model.state_dict(), best_weights_path)
+
+    final_metrics = evaluate_audio_model(model, val_loader, device)
+    summary = {
+        "status": "COMPLETED",
+        "device": str(device),
+        "training_time_seconds": round(elapsed, 2),
+        "epochs": epochs,
+        "history": history,
+        "final_metrics": final_metrics,
+        "best_weights": str(best_weights_path),
+    }
+
+    metrics_json_path = out_p / "audio_gpu_training_metrics.json"
+    metrics_json_path.write_text(json.dumps(summary, indent=2))
+    logger.info("Audio training summary saved to %s", metrics_json_path)
+    return summary
+
+
 def set_reproducibility(seed: int = SEED) -> None:
     """Sets deterministic seeds across Python, NumPy, PyTorch, and CUDA."""
     os.environ["PYTHONHASHSEED"] = str(seed)
