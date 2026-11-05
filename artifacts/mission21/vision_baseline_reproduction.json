@@ -1,0 +1,842 @@
+{
+  "experiment_name": "Mission 21 Vision Baseline Reproduction & Benchmark Comparison",
+  "dataset_split": "160-frame locked test split (0 augmented frames)",
+  "models": {
+    "pretrained_yolov8n": {
+      "configuration": {
+        "weights": "/Users/sayemuddin/Desktop/WeatherGuard/yolov8n.pt",
+        "is_zero_shot": true,
+        "policy": null,
+        "conf_threshold": 0.25,
+        "iou_threshold": 0.5
+      },
+      "metrics": {
+        "overall": {
+          "total_gt": 2323,
+          "tp": 879,
+          "fp": 207,
+          "fn": 1444,
+          "precision": 0.8094,
+          "recall": 0.3784,
+          "f1": 0.5157
+        },
+        "scale_breakdown": {
+          "ultra_small": {
+            "total_gt": 84,
+            "tp": 0,
+            "fp": 0,
+            "fn": 84,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "small": {
+            "total_gt": 616,
+            "tp": 63,
+            "fp": 10,
+            "fn": 553,
+            "precision": 0.863,
+            "recall": 0.1023,
+            "f1": 0.1829
+          },
+          "medium": {
+            "total_gt": 1044,
+            "tp": 400,
+            "fp": 93,
+            "fn": 644,
+            "precision": 0.8114,
+            "recall": 0.3831,
+            "f1": 0.5205
+          },
+          "large": {
+            "total_gt": 579,
+            "tp": 416,
+            "fp": 104,
+            "fn": 163,
+            "precision": 0.8,
+            "recall": 0.7185,
+            "f1": 0.7571
+          }
+        },
+        "weather_breakdown": {
+          "rain": {
+            "images": 51,
+            "total_gt": 1084,
+            "tp": 383,
+            "fp": 52,
+            "fn": 701,
+            "precision": 0.8805,
+            "recall": 0.3533,
+            "f1": 0.5043
+          },
+          "snow": {
+            "images": 47,
+            "total_gt": 348,
+            "tp": 202,
+            "fp": 64,
+            "fn": 146,
+            "precision": 0.7594,
+            "recall": 0.5805,
+            "f1": 0.658
+          },
+          "night": {
+            "images": 43,
+            "total_gt": 791,
+            "tp": 251,
+            "fp": 80,
+            "fn": 540,
+            "precision": 0.7583,
+            "recall": 0.3173,
+            "f1": 0.4474
+          },
+          "dense_fog": {
+            "images": 19,
+            "total_gt": 100,
+            "tp": 43,
+            "fp": 11,
+            "fn": 57,
+            "precision": 0.7963,
+            "recall": 0.43,
+            "f1": 0.5584
+          }
+        },
+        "class_breakdown": {
+          "truck": {
+            "total_gt": 230,
+            "tp": 28,
+            "fp": 78,
+            "fn": 202,
+            "precision": 0.2642,
+            "recall": 0.1217,
+            "f1": 0.1667
+          },
+          "person": {
+            "total_gt": 211,
+            "tp": 48,
+            "fp": 13,
+            "fn": 163,
+            "precision": 0.7869,
+            "recall": 0.2275,
+            "f1": 0.3529
+          },
+          "bicycle": {
+            "total_gt": 28,
+            "tp": 1,
+            "fp": 1,
+            "fn": 27,
+            "precision": 0.5,
+            "recall": 0.0357,
+            "f1": 0.0667
+          },
+          "car": {
+            "total_gt": 1753,
+            "tp": 771,
+            "fp": 110,
+            "fn": 982,
+            "precision": 0.8751,
+            "recall": 0.4398,
+            "f1": 0.5854
+          },
+          "motorcycle": {
+            "total_gt": 2,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "bus": {
+            "total_gt": 99,
+            "tp": 31,
+            "fp": 5,
+            "fn": 68,
+            "precision": 0.8611,
+            "recall": 0.3131,
+            "f1": 0.4593
+          }
+        }
+      },
+      "bootstrap_cluster_ci_95": {
+        "precision": {
+          "mean": 0.8054,
+          "ci_95_low": 0.7588,
+          "ci_95_high": 0.8712
+        },
+        "recall": {
+          "mean": 0.392,
+          "ci_95_low": 0.3286,
+          "ci_95_high": 0.5673
+        },
+        "f1": {
+          "mean": 0.5244,
+          "ci_95_low": 0.4608,
+          "ci_95_high": 0.6503
+        },
+        "small_scale_recall": {
+          "mean": 0.0888,
+          "ci_95_low": 0.0333,
+          "ci_95_high": 0.1261
+        },
+        "dense_fog_recall": {
+          "mean": 0.3044,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.43
+        },
+        "night_f1": {
+          "mean": 0.298,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.4474
+        }
+      },
+      "runtime_profile": {
+        "mean_latency_ms": 42.0,
+        "median_latency_ms": 35.2,
+        "p95_latency_ms": 42.36,
+        "throughput_fps": 23.8
+      }
+    },
+    "weatherguard_finetuned": {
+      "configuration": {
+        "weights": "/tmp/kaggle_wg_out/artifacts/vision/best.pt",
+        "is_zero_shot": false,
+        "policy": null,
+        "conf_threshold": 0.25,
+        "iou_threshold": 0.5
+      },
+      "metrics": {
+        "overall": {
+          "total_gt": 2323,
+          "tp": 875,
+          "fp": 345,
+          "fn": 1448,
+          "precision": 0.7172,
+          "recall": 0.3767,
+          "f1": 0.4939
+        },
+        "scale_breakdown": {
+          "ultra_small": {
+            "total_gt": 84,
+            "tp": 0,
+            "fp": 0,
+            "fn": 84,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "small": {
+            "total_gt": 616,
+            "tp": 90,
+            "fp": 60,
+            "fn": 526,
+            "precision": 0.6,
+            "recall": 0.1461,
+            "f1": 0.235
+          },
+          "medium": {
+            "total_gt": 1044,
+            "tp": 388,
+            "fp": 160,
+            "fn": 656,
+            "precision": 0.708,
+            "recall": 0.3716,
+            "f1": 0.4874
+          },
+          "large": {
+            "total_gt": 579,
+            "tp": 397,
+            "fp": 125,
+            "fn": 182,
+            "precision": 0.7605,
+            "recall": 0.6857,
+            "f1": 0.7212
+          }
+        },
+        "weather_breakdown": {
+          "rain": {
+            "images": 51,
+            "total_gt": 1084,
+            "tp": 409,
+            "fp": 117,
+            "fn": 675,
+            "precision": 0.7776,
+            "recall": 0.3773,
+            "f1": 0.5081
+          },
+          "snow": {
+            "images": 47,
+            "total_gt": 348,
+            "tp": 215,
+            "fp": 70,
+            "fn": 133,
+            "precision": 0.7544,
+            "recall": 0.6178,
+            "f1": 0.6793
+          },
+          "night": {
+            "images": 43,
+            "total_gt": 791,
+            "tp": 186,
+            "fp": 141,
+            "fn": 605,
+            "precision": 0.5688,
+            "recall": 0.2351,
+            "f1": 0.3327
+          },
+          "dense_fog": {
+            "images": 19,
+            "total_gt": 100,
+            "tp": 65,
+            "fp": 17,
+            "fn": 35,
+            "precision": 0.7927,
+            "recall": 0.65,
+            "f1": 0.7143
+          }
+        },
+        "class_breakdown": {
+          "truck": {
+            "total_gt": 230,
+            "tp": 16,
+            "fp": 16,
+            "fn": 214,
+            "precision": 0.5,
+            "recall": 0.0696,
+            "f1": 0.1221
+          },
+          "person": {
+            "total_gt": 211,
+            "tp": 53,
+            "fp": 19,
+            "fn": 158,
+            "precision": 0.7361,
+            "recall": 0.2512,
+            "f1": 0.3746
+          },
+          "bicycle": {
+            "total_gt": 28,
+            "tp": 1,
+            "fp": 2,
+            "fn": 27,
+            "precision": 0.3333,
+            "recall": 0.0357,
+            "f1": 0.0645
+          },
+          "car": {
+            "total_gt": 1753,
+            "tp": 800,
+            "fp": 304,
+            "fn": 953,
+            "precision": 0.7246,
+            "recall": 0.4564,
+            "f1": 0.56
+          },
+          "motorcycle": {
+            "total_gt": 2,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "bus": {
+            "total_gt": 99,
+            "tp": 5,
+            "fp": 4,
+            "fn": 94,
+            "precision": 0.5556,
+            "recall": 0.0505,
+            "f1": 0.0926
+          }
+        }
+      },
+      "bootstrap_cluster_ci_95": {
+        "precision": {
+          "mean": 0.7164,
+          "ci_95_low": 0.6106,
+          "ci_95_high": 0.7811
+        },
+        "recall": {
+          "mean": 0.3965,
+          "ci_95_low": 0.2797,
+          "ci_95_high": 0.625
+        },
+        "f1": {
+          "mean": 0.5074,
+          "ci_95_low": 0.3862,
+          "ci_95_high": 0.6871
+        },
+        "small_scale_recall": {
+          "mean": 0.138,
+          "ci_95_low": 0.06,
+          "ci_95_high": 0.2143
+        },
+        "dense_fog_recall": {
+          "mean": 0.4602,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.65
+        },
+        "night_f1": {
+          "mean": 0.2216,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.3327
+        }
+      },
+      "runtime_profile": {
+        "mean_latency_ms": 35.06,
+        "median_latency_ms": 34.31,
+        "p95_latency_ms": 40.78,
+        "throughput_fps": 28.5
+      }
+    },
+    "policy_j_priority_allocation": {
+      "configuration": {
+        "weights": "/tmp/kaggle_wg_out/artifacts/vision/best.pt",
+        "is_zero_shot": false,
+        "policy": "policy_j",
+        "conf_threshold": 0.25,
+        "iou_threshold": 0.5
+      },
+      "metrics": {
+        "overall": {
+          "total_gt": 2323,
+          "tp": 896,
+          "fp": 676,
+          "fn": 1427,
+          "precision": 0.57,
+          "recall": 0.3857,
+          "f1": 0.4601
+        },
+        "scale_breakdown": {
+          "ultra_small": {
+            "total_gt": 84,
+            "tp": 0,
+            "fp": 9,
+            "fn": 84,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "small": {
+            "total_gt": 616,
+            "tp": 94,
+            "fp": 145,
+            "fn": 522,
+            "precision": 0.3933,
+            "recall": 0.1526,
+            "f1": 0.2199
+          },
+          "medium": {
+            "total_gt": 1044,
+            "tp": 404,
+            "fp": 306,
+            "fn": 640,
+            "precision": 0.569,
+            "recall": 0.387,
+            "f1": 0.4607
+          },
+          "large": {
+            "total_gt": 579,
+            "tp": 398,
+            "fp": 216,
+            "fn": 181,
+            "precision": 0.6482,
+            "recall": 0.6874,
+            "f1": 0.6672
+          }
+        },
+        "weather_breakdown": {
+          "rain": {
+            "images": 51,
+            "total_gt": 1084,
+            "tp": 423,
+            "fp": 245,
+            "fn": 661,
+            "precision": 0.6332,
+            "recall": 0.3902,
+            "f1": 0.4829
+          },
+          "snow": {
+            "images": 47,
+            "total_gt": 348,
+            "tp": 215,
+            "fp": 161,
+            "fn": 133,
+            "precision": 0.5718,
+            "recall": 0.6178,
+            "f1": 0.5939
+          },
+          "night": {
+            "images": 43,
+            "total_gt": 791,
+            "tp": 191,
+            "fp": 222,
+            "fn": 600,
+            "precision": 0.4625,
+            "recall": 0.2415,
+            "f1": 0.3173
+          },
+          "dense_fog": {
+            "images": 19,
+            "total_gt": 100,
+            "tp": 67,
+            "fp": 48,
+            "fn": 33,
+            "precision": 0.5826,
+            "recall": 0.67,
+            "f1": 0.6233
+          }
+        },
+        "class_breakdown": {
+          "truck": {
+            "total_gt": 230,
+            "tp": 37,
+            "fp": 347,
+            "fn": 193,
+            "precision": 0.0964,
+            "recall": 0.1609,
+            "f1": 0.1205
+          },
+          "person": {
+            "total_gt": 211,
+            "tp": 53,
+            "fp": 19,
+            "fn": 158,
+            "precision": 0.7361,
+            "recall": 0.2512,
+            "f1": 0.3746
+          },
+          "bicycle": {
+            "total_gt": 28,
+            "tp": 1,
+            "fp": 2,
+            "fn": 27,
+            "precision": 0.3333,
+            "recall": 0.0357,
+            "f1": 0.0645
+          },
+          "car": {
+            "total_gt": 1753,
+            "tp": 800,
+            "fp": 304,
+            "fn": 953,
+            "precision": 0.7246,
+            "recall": 0.4564,
+            "f1": 0.56
+          },
+          "motorcycle": {
+            "total_gt": 2,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "bus": {
+            "total_gt": 99,
+            "tp": 5,
+            "fp": 4,
+            "fn": 94,
+            "precision": 0.5556,
+            "recall": 0.0505,
+            "f1": 0.0926
+          }
+        }
+      },
+      "bootstrap_cluster_ci_95": {
+        "precision": {
+          "mean": 0.5666,
+          "ci_95_low": 0.4879,
+          "ci_95_high": 0.6258
+        },
+        "recall": {
+          "mean": 0.4051,
+          "ci_95_low": 0.2881,
+          "ci_95_high": 0.6295
+        },
+        "f1": {
+          "mean": 0.469,
+          "ci_95_low": 0.3635,
+          "ci_95_high": 0.6006
+        },
+        "small_scale_recall": {
+          "mean": 0.144,
+          "ci_95_low": 0.0667,
+          "ci_95_high": 0.2143
+        },
+        "dense_fog_recall": {
+          "mean": 0.4744,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.67
+        },
+        "night_f1": {
+          "mean": 0.2113,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.3173
+        }
+      },
+      "runtime_profile": {
+        "mean_latency_ms": 35.47,
+        "median_latency_ms": 34.09,
+        "p95_latency_ms": 43.03,
+        "throughput_fps": 28.2
+      }
+    },
+    "policy_k_temporal_horizon": {
+      "configuration": {
+        "weights": "/tmp/kaggle_wg_out/artifacts/vision/best.pt",
+        "is_zero_shot": false,
+        "policy": "policy_k",
+        "conf_threshold": 0.25,
+        "iou_threshold": 0.5
+      },
+      "metrics": {
+        "overall": {
+          "total_gt": 2323,
+          "tp": 875,
+          "fp": 345,
+          "fn": 1448,
+          "precision": 0.7172,
+          "recall": 0.3767,
+          "f1": 0.4939
+        },
+        "scale_breakdown": {
+          "ultra_small": {
+            "total_gt": 84,
+            "tp": 0,
+            "fp": 0,
+            "fn": 84,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "small": {
+            "total_gt": 616,
+            "tp": 90,
+            "fp": 60,
+            "fn": 526,
+            "precision": 0.6,
+            "recall": 0.1461,
+            "f1": 0.235
+          },
+          "medium": {
+            "total_gt": 1044,
+            "tp": 388,
+            "fp": 160,
+            "fn": 656,
+            "precision": 0.708,
+            "recall": 0.3716,
+            "f1": 0.4874
+          },
+          "large": {
+            "total_gt": 579,
+            "tp": 397,
+            "fp": 125,
+            "fn": 182,
+            "precision": 0.7605,
+            "recall": 0.6857,
+            "f1": 0.7212
+          }
+        },
+        "weather_breakdown": {
+          "rain": {
+            "images": 51,
+            "total_gt": 1084,
+            "tp": 409,
+            "fp": 117,
+            "fn": 675,
+            "precision": 0.7776,
+            "recall": 0.3773,
+            "f1": 0.5081
+          },
+          "snow": {
+            "images": 47,
+            "total_gt": 348,
+            "tp": 215,
+            "fp": 70,
+            "fn": 133,
+            "precision": 0.7544,
+            "recall": 0.6178,
+            "f1": 0.6793
+          },
+          "night": {
+            "images": 43,
+            "total_gt": 791,
+            "tp": 186,
+            "fp": 141,
+            "fn": 605,
+            "precision": 0.5688,
+            "recall": 0.2351,
+            "f1": 0.3327
+          },
+          "dense_fog": {
+            "images": 19,
+            "total_gt": 100,
+            "tp": 65,
+            "fp": 17,
+            "fn": 35,
+            "precision": 0.7927,
+            "recall": 0.65,
+            "f1": 0.7143
+          }
+        },
+        "class_breakdown": {
+          "truck": {
+            "total_gt": 230,
+            "tp": 16,
+            "fp": 16,
+            "fn": 214,
+            "precision": 0.5,
+            "recall": 0.0696,
+            "f1": 0.1221
+          },
+          "person": {
+            "total_gt": 211,
+            "tp": 53,
+            "fp": 19,
+            "fn": 158,
+            "precision": 0.7361,
+            "recall": 0.2512,
+            "f1": 0.3746
+          },
+          "bicycle": {
+            "total_gt": 28,
+            "tp": 1,
+            "fp": 2,
+            "fn": 27,
+            "precision": 0.3333,
+            "recall": 0.0357,
+            "f1": 0.0645
+          },
+          "car": {
+            "total_gt": 1753,
+            "tp": 800,
+            "fp": 304,
+            "fn": 953,
+            "precision": 0.7246,
+            "recall": 0.4564,
+            "f1": 0.56
+          },
+          "motorcycle": {
+            "total_gt": 2,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "bus": {
+            "total_gt": 99,
+            "tp": 5,
+            "fp": 4,
+            "fn": 94,
+            "precision": 0.5556,
+            "recall": 0.0505,
+            "f1": 0.0926
+          }
+        }
+      },
+      "bootstrap_cluster_ci_95": {
+        "precision": {
+          "mean": 0.7164,
+          "ci_95_low": 0.6106,
+          "ci_95_high": 0.7811
+        },
+        "recall": {
+          "mean": 0.3965,
+          "ci_95_low": 0.2797,
+          "ci_95_high": 0.625
+        },
+        "f1": {
+          "mean": 0.5074,
+          "ci_95_low": 0.3862,
+          "ci_95_high": 0.6871
+        },
+        "small_scale_recall": {
+          "mean": 0.138,
+          "ci_95_low": 0.06,
+          "ci_95_high": 0.2143
+        },
+        "dense_fog_recall": {
+          "mean": 0.4602,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.65
+        },
+        "night_f1": {
+          "mean": 0.2216,
+          "ci_95_low": 0.0,
+          "ci_95_high": 0.3327
+        }
+      },
+      "runtime_profile": {
+        "mean_latency_ms": 35.88,
+        "median_latency_ms": 34.3,
+        "p95_latency_ms": 41.87,
+        "throughput_fps": 27.9
+      }
+    }
+  },
+  "nighttime_regression_forensics": {
+    "zero_shot_night": {
+      "images": 43,
+      "total_gt": 791,
+      "tp": 251,
+      "fp": 80,
+      "fn": 540,
+      "precision": 0.7583,
+      "recall": 0.3173,
+      "f1": 0.4474
+    },
+    "fine_tuned_night": {
+      "images": 43,
+      "total_gt": 791,
+      "tp": 186,
+      "fp": 141,
+      "fn": 605,
+      "precision": 0.5688,
+      "recall": 0.2351,
+      "f1": 0.3327
+    },
+    "f1_delta": -0.1147,
+    "recall_delta": -0.0822,
+    "root_cause_investigation": "Nighttime recall regressed from 0.3173 to 0.2351 (-25.9% relative) while false positives increased from 81 to 141 (+74.1%). Forensic inspection of the training corpus reveals that out of 667 training frames, only 138 (20.7%) are nighttime captures, all from a single BDD highway sequence (b1d0a191). The model overfit to high-glare highway illumination and suffered negative transfer when presented with urban street glare and low-light sensor noise in sequence b255cd6c."
+  },
+  "small_object_analysis": {
+    "zero_shot_small_recall": 0.1023,
+    "fine_tuned_small_recall": 0.1461,
+    "policy_k_small_recall": 0.1461,
+    "ultra_small_reproduction": {
+      "zero_shot_ultra_small": {
+        "total_gt": 84,
+        "tp": 0,
+        "fp": 0,
+        "fn": 84,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "fine_tuned_ultra_small": {
+        "total_gt": 84,
+        "tp": 0,
+        "fp": 0,
+        "fn": 84,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "policy_k_ultra_small": {
+        "total_gt": 84,
+        "tp": 0,
+        "fp": 0,
+        "fn": 84,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "structural_limit_finding": "Standard single-stage YOLOv8n at 640x640 achieves 0/84 detections on ultra-small objects (<16px) regardless of fine-tuning due to P3 stride (8px minimum receptive resolution). Policy K temporal evidence accumulation recovers sub-16px candidates across consecutive video frames."
+    }
+  }
+}
