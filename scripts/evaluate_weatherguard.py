@@ -62,6 +62,15 @@ D1_TO_CANONICAL = {
     5: "bus",
 }
 
+DAWN_TO_CANONICAL = {
+    0: "person",
+    1: "bicycle",
+    2: "car",
+    3: "motorcycle",
+    4: "bus",
+    5: "truck",
+}
+
 # Backward compatibility alias
 YOLO_TO_CANONICAL = dict(COCO_TO_CANONICAL)
 
@@ -760,6 +769,10 @@ def load_dataset_records(
 
             gt_boxes: List[GroundTruthBox] = []
             lbl_file = lbl_dir / f"{img_p.stem}.txt"
+            if not lbl_file.exists():
+                lbl_file = lbl_dir / "val" / f"{img_p.stem}.txt"
+            if not lbl_file.exists():
+                lbl_file = lbl_dir / "train" / f"{img_p.stem}.txt"
             if lbl_file.exists():
                 with open(lbl_file) as lf:
                     for line in lf:
@@ -774,7 +787,7 @@ def load_dataset_records(
                             y1 = yc - h / 2.0
                             x2 = xc + w / 2.0
                             y2 = yc + h / 2.0
-                            cname = D1_TO_CANONICAL.get(cid, "car")
+                            cname = DAWN_TO_CANONICAL.get(cid, "car")
                             scale = get_object_scale(w, h)
                             gt_boxes.append(GroundTruthBox(
                                 class_name=cname,
