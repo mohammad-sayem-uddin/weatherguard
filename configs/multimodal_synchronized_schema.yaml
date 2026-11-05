@@ -1,0 +1,79 @@
+# WeatherGuard + Rescue Drone
+# Synchronized Multi-Modal Audio-Visual Dataset Collection & Annotation Schema
+# Version: 1.0.0 (Mission 22 - Phase 5)
+
+schema_version: "1.0.0"
+dataset_name: "WeatherGuard-AV-Sync"
+objective: "Standardized hardware-synchronized audiovisual search-and-rescue corpus"
+
+hardware_synchronization:
+  clock_reference: "GPS_PTP_IEEE1588"
+  maximum_inter_sensor_drift_ms: 5.0
+  camera_spec:
+    sensor: "Sony IMX477 / global shutter preferred"
+    resolution: "1920x1080"
+    frame_rate_fps: 30.0
+    color_space: "RGB"
+    exposure_mode: "auto_with_logged_parameters"
+  microphone_spec:
+    type: "Digital I2S MEMS array / calibrated reference mic"
+    sample_rate_hz: 16000
+    bit_depth: 16
+    channels: 1  # Baseline mono; 4-channel array optional
+    frequency_response_hz: "50-8000"
+
+metadata_columns:
+  - name: "recording_session_id"
+    type: "string"
+    description: "Unique identifier for continuous take (e.g., SESS_20261105_001)"
+  - name: "frame_id"
+    type: "string"
+    description: "Unique frame identifier (e.g., SESS_001_F000142.jpg)"
+  - name: "audio_segment_id"
+    type: "string"
+    description: "Paired audio clip identifier (e.g., SESS_001_A000142.wav)"
+  - name: "frame_timestamp_utc_ns"
+    type: "integer"
+    description: "Nanosecond UTC timestamp at middle of frame exposure"
+  - name: "audio_start_timestamp_utc_ns"
+    type: "integer"
+    description: "Nanosecond UTC timestamp at start of audio buffer"
+  - name: "sync_offset_ms"
+    type: "float"
+    description: "Measured time delta between audio start and visual frame trigger (|offset| <= 5 ms)"
+  - name: "camera_id"
+    type: "string"
+    description: "Hardware identifier of camera"
+  - name: "microphone_id"
+    type: "string"
+    description: "Hardware identifier of microphone"
+  - name: "environmental_weather"
+    type: "enum"
+    options: ["clear_day", "night_low_light", "dense_fog", "heavy_rain", "snow", "sandstorm"]
+  - name: "acoustic_noise_type"
+    type: "enum"
+    options: ["ambient_quiet", "drone_rotor_wash", "strong_wind", "rain_splatter", "flood_water", "crowd_babble"]
+  - name: "measured_distance_meters"
+    type: "float"
+    description: "Laser rangefinder / GNSS ground-truth distance to victim (-1.0 if unmeasured)"
+  - name: "ground_truth_visible_person"
+    type: "boolean"
+    description: "True if >= 1 human is visually identifiable in frame"
+  - name: "ground_truth_distress_audio"
+    type: "boolean"
+    description: "True if emergency distress cry occurs in paired audio segment"
+  - name: "audio_visual_identity_link"
+    type: "enum"
+    options: ["same_individual", "different_individual", "visual_person_silent", "audio_person_occluded", "no_persons"]
+  - name: "associated_bounding_box_index"
+    type: "integer"
+    description: "0-indexed index of person bounding box corresponding to voice (-1 if unassociated)"
+  - name: "annotation_confidence"
+    type: "enum"
+    options: ["definitive", "probable", "ambiguous"]
+  - name: "data_provenance_tier"
+    type: "enum"
+    options: ["field_physical_synchronized", "controlled_staged_synchronized", "synthetic_simulation_pairing"]
+  - name: "ethics_consent_id"
+    type: "string"
+    description: "Signed participant human-subject ethics consent form reference"
