@@ -1,0 +1,589 @@
+{
+  "experiment_name": "Mission 21 Controlled Multi-Modal Search-and-Rescue Experiments",
+  "simulation_protocol_disclosure": "Independent visual test frames from WeatherGuard and acoustic test recordings from Rescue Drone were assembled into paired environmental scenarios. Asynchronous cross-modal samples are evaluated as scenario-level co-occurrences, strictly disclosing that no physical simultaneous video-audio drone recording was performed.",
+  "approaches": {
+    "A": "Vision-Only Decision Baseline",
+    "B": "Audio-Only Distress Detection Baseline",
+    "C": "Adaptive Uncertainty-Aware Multi-Modal Decision Fusion"
+  },
+  "scenario_results": {
+    "Daylight_Clear": {
+      "A_vision_only": {
+        "samples": 47,
+        "accuracy": 0.6596,
+        "precision": 1.0,
+        "recall": 0.4839,
+        "f1": 0.6522,
+        "detection_probability": 0.4839,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.5161,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4306,
+        "confusion_matrix": {
+          "tn": 16,
+          "fp": 0,
+          "fn": 16,
+          "tp": 15
+        }
+      },
+      "B_audio_only": {
+        "samples": 47,
+        "accuracy": 0.7872,
+        "precision": 0.9565,
+        "recall": 0.7097,
+        "f1": 0.8148,
+        "detection_probability": 0.7097,
+        "false_alarm_rate": 0.0625,
+        "miss_rate": 0.2903,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.3597,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 1,
+          "fn": 9,
+          "tp": 22
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 47,
+        "accuracy": 0.9149,
+        "precision": 0.9655,
+        "recall": 0.9032,
+        "f1": 0.9333,
+        "detection_probability": 0.9032,
+        "false_alarm_rate": 0.0625,
+        "miss_rate": 0.0968,
+        "abstention_rate": 0.0213,
+        "expected_calibration_error": 0.4946,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 1,
+          "fn": 3,
+          "tp": 28
+        }
+      }
+    },
+    "Nighttime": {
+      "A_vision_only": {
+        "samples": 43,
+        "accuracy": 0.4419,
+        "precision": 0.95,
+        "recall": 0.4524,
+        "f1": 0.6129,
+        "detection_probability": 0.4524,
+        "false_alarm_rate": 1.0,
+        "miss_rate": 0.5476,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.2152,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 1,
+          "fn": 23,
+          "tp": 19
+        }
+      },
+      "B_audio_only": {
+        "samples": 43,
+        "accuracy": 0.5116,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "detection_probability": 0.5,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.5,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.0871,
+        "confusion_matrix": {
+          "tn": 1,
+          "fp": 0,
+          "fn": 21,
+          "tp": 21
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 43,
+        "accuracy": 0.6279,
+        "precision": 0.9643,
+        "recall": 0.6429,
+        "f1": 0.7714,
+        "detection_probability": 0.6429,
+        "false_alarm_rate": 1.0,
+        "miss_rate": 0.3571,
+        "abstention_rate": 0.093,
+        "expected_calibration_error": 0.1483,
+        "confusion_matrix": {
+          "tn": 0,
+          "fp": 1,
+          "fn": 15,
+          "tp": 27
+        }
+      }
+    },
+    "Dense_Fog": {
+      "A_vision_only": {
+        "samples": 19,
+        "accuracy": 0.5789,
+        "precision": 1.0,
+        "recall": 0.2727,
+        "f1": 0.4286,
+        "detection_probability": 0.2727,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.7273,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4727,
+        "confusion_matrix": {
+          "tn": 8,
+          "fp": 0,
+          "fn": 8,
+          "tp": 3
+        }
+      },
+      "B_audio_only": {
+        "samples": 19,
+        "accuracy": 0.8421,
+        "precision": 0.9,
+        "recall": 0.8182,
+        "f1": 0.8571,
+        "detection_probability": 0.8182,
+        "false_alarm_rate": 0.125,
+        "miss_rate": 0.1818,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4168,
+        "confusion_matrix": {
+          "tn": 7,
+          "fp": 1,
+          "fn": 2,
+          "tp": 9
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 19,
+        "accuracy": 0.8947,
+        "precision": 0.9091,
+        "recall": 0.9091,
+        "f1": 0.9091,
+        "detection_probability": 0.9091,
+        "false_alarm_rate": 0.125,
+        "miss_rate": 0.0909,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4694,
+        "confusion_matrix": {
+          "tn": 7,
+          "fp": 1,
+          "fn": 1,
+          "tp": 10
+        }
+      }
+    },
+    "Heavy_Rain": {
+      "A_vision_only": {
+        "samples": 51,
+        "accuracy": 0.4118,
+        "precision": 1.0,
+        "recall": 0.0625,
+        "f1": 0.1176,
+        "detection_probability": 0.0625,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.9375,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.3578,
+        "confusion_matrix": {
+          "tn": 19,
+          "fp": 0,
+          "fn": 30,
+          "tp": 2
+        }
+      },
+      "B_audio_only": {
+        "samples": 51,
+        "accuracy": 0.7647,
+        "precision": 0.8571,
+        "recall": 0.75,
+        "f1": 0.8,
+        "detection_probability": 0.75,
+        "false_alarm_rate": 0.2105,
+        "miss_rate": 0.25,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.3329,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 4,
+          "fn": 8,
+          "tp": 24
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 51,
+        "accuracy": 0.7647,
+        "precision": 0.8571,
+        "recall": 0.75,
+        "f1": 0.8,
+        "detection_probability": 0.75,
+        "false_alarm_rate": 0.2105,
+        "miss_rate": 0.25,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4504,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 4,
+          "fn": 8,
+          "tp": 24
+        }
+      }
+    },
+    "Low_Visual_Resolution": {
+      "A_vision_only": {
+        "samples": 47,
+        "accuracy": 0.6596,
+        "precision": 1.0,
+        "recall": 0.4839,
+        "f1": 0.6522,
+        "detection_probability": 0.4839,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.5161,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4354,
+        "confusion_matrix": {
+          "tn": 16,
+          "fp": 0,
+          "fn": 16,
+          "tp": 15
+        }
+      },
+      "B_audio_only": {
+        "samples": 47,
+        "accuracy": 0.7872,
+        "precision": 0.9565,
+        "recall": 0.7097,
+        "f1": 0.8148,
+        "detection_probability": 0.7097,
+        "false_alarm_rate": 0.0625,
+        "miss_rate": 0.2903,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.3597,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 1,
+          "fn": 9,
+          "tp": 22
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 47,
+        "accuracy": 0.9362,
+        "precision": 0.9667,
+        "recall": 0.9355,
+        "f1": 0.9508,
+        "detection_probability": 0.9355,
+        "false_alarm_rate": 0.0625,
+        "miss_rate": 0.0645,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4955,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 1,
+          "fn": 2,
+          "tp": 29
+        }
+      }
+    },
+    "Distant_Visual_Targets": {
+      "A_vision_only": {
+        "samples": 98,
+        "accuracy": 0.4388,
+        "precision": 0.913,
+        "recall": 0.2838,
+        "f1": 0.433,
+        "detection_probability": 0.2838,
+        "false_alarm_rate": 0.0833,
+        "miss_rate": 0.7162,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.2734,
+        "confusion_matrix": {
+          "tn": 22,
+          "fp": 2,
+          "fn": 53,
+          "tp": 21
+        }
+      },
+      "B_audio_only": {
+        "samples": 98,
+        "accuracy": 0.7245,
+        "precision": 0.9796,
+        "recall": 0.6486,
+        "f1": 0.7805,
+        "detection_probability": 0.6486,
+        "false_alarm_rate": 0.0417,
+        "miss_rate": 0.3514,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.2538,
+        "confusion_matrix": {
+          "tn": 23,
+          "fp": 1,
+          "fn": 26,
+          "tp": 48
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 98,
+        "accuracy": 0.7959,
+        "precision": 0.9821,
+        "recall": 0.7432,
+        "f1": 0.8462,
+        "detection_probability": 0.7432,
+        "false_alarm_rate": 0.0417,
+        "miss_rate": 0.2568,
+        "abstention_rate": 0.0306,
+        "expected_calibration_error": 0.4031,
+        "confusion_matrix": {
+          "tn": 23,
+          "fp": 1,
+          "fn": 19,
+          "tp": 55
+        }
+      }
+    },
+    "Strong_Wind": {
+      "A_vision_only": {
+        "samples": 47,
+        "accuracy": 0.6596,
+        "precision": 1.0,
+        "recall": 0.4839,
+        "f1": 0.6522,
+        "detection_probability": 0.4839,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.5161,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4306,
+        "confusion_matrix": {
+          "tn": 16,
+          "fp": 0,
+          "fn": 16,
+          "tp": 15
+        }
+      },
+      "B_audio_only": {
+        "samples": 47,
+        "accuracy": 0.8511,
+        "precision": 0.9286,
+        "recall": 0.8387,
+        "f1": 0.8814,
+        "detection_probability": 0.8387,
+        "false_alarm_rate": 0.125,
+        "miss_rate": 0.1613,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.2888,
+        "confusion_matrix": {
+          "tn": 14,
+          "fp": 2,
+          "fn": 5,
+          "tp": 26
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 47,
+        "accuracy": 0.9574,
+        "precision": 0.9394,
+        "recall": 1.0,
+        "f1": 0.9688,
+        "detection_probability": 1.0,
+        "false_alarm_rate": 0.125,
+        "miss_rate": 0.0,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4715,
+        "confusion_matrix": {
+          "tn": 14,
+          "fp": 2,
+          "fn": 0,
+          "tp": 31
+        }
+      }
+    },
+    "Drone_Rotor_Noise": {
+      "A_vision_only": {
+        "samples": 47,
+        "accuracy": 0.6596,
+        "precision": 1.0,
+        "recall": 0.4839,
+        "f1": 0.6522,
+        "detection_probability": 0.4839,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.5161,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4306,
+        "confusion_matrix": {
+          "tn": 16,
+          "fp": 0,
+          "fn": 16,
+          "tp": 15
+        }
+      },
+      "B_audio_only": {
+        "samples": 47,
+        "accuracy": 0.8723,
+        "precision": 0.963,
+        "recall": 0.8387,
+        "f1": 0.8966,
+        "detection_probability": 0.8387,
+        "false_alarm_rate": 0.0625,
+        "miss_rate": 0.1613,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.3207,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 1,
+          "fn": 5,
+          "tp": 26
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 47,
+        "accuracy": 0.9574,
+        "precision": 0.9677,
+        "recall": 0.9677,
+        "f1": 0.9677,
+        "detection_probability": 0.9677,
+        "false_alarm_rate": 0.0625,
+        "miss_rate": 0.0323,
+        "abstention_rate": 0.0213,
+        "expected_calibration_error": 0.4786,
+        "confusion_matrix": {
+          "tn": 15,
+          "fp": 1,
+          "fn": 1,
+          "tp": 30
+        }
+      }
+    },
+    "Flood_Water_Noise": {
+      "A_vision_only": {
+        "samples": 51,
+        "accuracy": 0.4118,
+        "precision": 1.0,
+        "recall": 0.0625,
+        "f1": 0.1176,
+        "detection_probability": 0.0625,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.9375,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.3578,
+        "confusion_matrix": {
+          "tn": 19,
+          "fp": 0,
+          "fn": 30,
+          "tp": 2
+        }
+      },
+      "B_audio_only": {
+        "samples": 51,
+        "accuracy": 0.7059,
+        "precision": 1.0,
+        "recall": 0.5312,
+        "f1": 0.6939,
+        "detection_probability": 0.5312,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.4688,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.372,
+        "confusion_matrix": {
+          "tn": 19,
+          "fp": 0,
+          "fn": 15,
+          "tp": 17
+        }
+      },
+      "C_combined_fusion": {
+        "samples": 51,
+        "accuracy": 0.7059,
+        "precision": 1.0,
+        "recall": 0.5312,
+        "f1": 0.6939,
+        "detection_probability": 0.5312,
+        "false_alarm_rate": 0.0,
+        "miss_rate": 0.4688,
+        "abstention_rate": 0.0,
+        "expected_calibration_error": 0.4858,
+        "confusion_matrix": {
+          "tn": 19,
+          "fp": 0,
+          "fn": 15,
+          "tp": 17
+        }
+      }
+    }
+  },
+  "cross_scenario_comparison": {
+    "Daylight_Clear": {
+      "vision_f1": 0.6522,
+      "audio_f1": 0.8148,
+      "fusion_f1": 0.9333,
+      "fusion_gain_over_vision": 0.2811,
+      "fusion_gain_over_audio": 0.1185,
+      "abstention_rate": 0.0213
+    },
+    "Nighttime": {
+      "vision_f1": 0.6129,
+      "audio_f1": 0.6667,
+      "fusion_f1": 0.7714,
+      "fusion_gain_over_vision": 0.1585,
+      "fusion_gain_over_audio": 0.1047,
+      "abstention_rate": 0.093
+    },
+    "Dense_Fog": {
+      "vision_f1": 0.4286,
+      "audio_f1": 0.8571,
+      "fusion_f1": 0.9091,
+      "fusion_gain_over_vision": 0.4805,
+      "fusion_gain_over_audio": 0.052,
+      "abstention_rate": 0.0
+    },
+    "Heavy_Rain": {
+      "vision_f1": 0.1176,
+      "audio_f1": 0.8,
+      "fusion_f1": 0.8,
+      "fusion_gain_over_vision": 0.6824,
+      "fusion_gain_over_audio": 0.0,
+      "abstention_rate": 0.0
+    },
+    "Low_Visual_Resolution": {
+      "vision_f1": 0.6522,
+      "audio_f1": 0.8148,
+      "fusion_f1": 0.9508,
+      "fusion_gain_over_vision": 0.2986,
+      "fusion_gain_over_audio": 0.136,
+      "abstention_rate": 0.0
+    },
+    "Distant_Visual_Targets": {
+      "vision_f1": 0.433,
+      "audio_f1": 0.7805,
+      "fusion_f1": 0.8462,
+      "fusion_gain_over_vision": 0.4132,
+      "fusion_gain_over_audio": 0.0657,
+      "abstention_rate": 0.0306
+    },
+    "Strong_Wind": {
+      "vision_f1": 0.6522,
+      "audio_f1": 0.8814,
+      "fusion_f1": 0.9688,
+      "fusion_gain_over_vision": 0.3166,
+      "fusion_gain_over_audio": 0.0874,
+      "abstention_rate": 0.0
+    },
+    "Drone_Rotor_Noise": {
+      "vision_f1": 0.6522,
+      "audio_f1": 0.8966,
+      "fusion_f1": 0.9677,
+      "fusion_gain_over_vision": 0.3155,
+      "fusion_gain_over_audio": 0.0711,
+      "abstention_rate": 0.0213
+    },
+    "Flood_Water_Noise": {
+      "vision_f1": 0.1176,
+      "audio_f1": 0.6939,
+      "fusion_f1": 0.6939,
+      "fusion_gain_over_vision": 0.5763,
+      "fusion_gain_over_audio": 0.0,
+      "abstention_rate": 0.0
+    }
+  }
+}
