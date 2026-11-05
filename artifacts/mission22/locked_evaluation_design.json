@@ -1,0 +1,66 @@
+{
+  "protocol_name": "Mission 22 Locked Synchronized Audiovisual Evaluation Protocol",
+  "version": "1.0.0",
+  "objective": "Standardized, leak-free evaluation design for future synchronized UAV search-and-rescue benchmarks",
+  "split_partitioning_rules": {
+    "speaker_isolation": "Strict speaker-level clustering. If multiple recordings contain the same human speaker or voice engine, all recordings for that speaker must reside in exactly one split.",
+    "session_isolation": "Strict flight-sequence and recording-session isolation. Zero cross-split session overlap.",
+    "geographical_isolation": "Different geographical disaster sites partitioned across splits to test domain generalization.",
+    "split_ratios": {
+      "train": 0.60,
+      "validation_calibration": 0.20,
+      "locked_test": 0.20
+    },
+    "minimum_test_requirements": {
+      "min_independent_human_speakers": 30,
+      "min_independent_flight_sequences": 20,
+      "min_synchronized_trials": 1000,
+      "test_set_access_rule": "Locked test data must NEVER be accessed during hyperparameter tuning, threshold sweeping, or feature selection."
+    }
+  },
+  "benchmarked_paradigms": [
+    "1. Vision-Only Baseline (YOLOv8n / RT-DETR)",
+    "2. Audio-Only Baseline (Audio Spectrogram 2D CNN)",
+    "3. Simple Heuristic OR (Alert if either triggers)",
+    "4. Simple Heuristic AND (Alert only if both trigger)",
+    "5. Confidence-Weighted Average Fusion",
+    "6. Adaptive Uncertainty-Aware Fusion Engine (Proposed)"
+  ],
+  "standardized_evaluation_tasks": [
+    {
+      "task_id": "TASK_1_BIMODAL_CORROBORATION",
+      "target_definition": "Ground truth is positive ONLY if BOTH visible person AND distress cry co-occur.",
+      "evaluates": "Sensor agreement and false alarm immunity."
+    },
+    {
+      "task_id": "TASK_2_COMPLEMENTARY_RESCUE_TRIGGER",
+      "target_definition": "Ground truth is positive if EITHER visual victim OR acoustic distress is present.",
+      "evaluates": "Rescue coverage and sensor complementarity."
+    },
+    {
+      "task_id": "TASK_3_OPTICAL_PERSON_DETECTION",
+      "target_definition": "Ground truth is positive if human is visible in camera frame, regardless of acoustic state.",
+      "evaluates": "Optical detector robustness under adverse weather."
+    },
+    {
+      "task_id": "TASK_4_ACOUSTIC_DISTRESS_DETECTION",
+      "target_definition": "Ground truth is positive if distress cry is vocalized, regardless of optical visibility.",
+      "evaluates": "Acoustic keyword spotting under propeller and wind wash."
+    }
+  ],
+  "statistical_reporting_standards": {
+    "primary_hypothesis_test": "McNemar exact paired binomial test on matched trial predictions",
+    "multiple_comparisons_control": "Holm-Bonferroni step-down correction at FWER alpha = 0.05",
+    "bootstrap_methodology": "Two-level hierarchical cluster bootstrap (resampling flight sessions and speakers, B = 5,000)",
+    "effect_size_metrics": [
+      "McNemar Odds Ratio (b / c)",
+      "Cohen's g ((b / (b + c)) - 0.5)",
+      "Empirical percentile 95% Confidence Intervals for Delta-F1"
+    ],
+    "prohibited_practices": [
+      "Do NOT calculate Cohen's d on bootstrap resample distributions",
+      "Do NOT assert p < 0.001 based solely on confidence intervals excluding zero",
+      "Do NOT evaluate single-modality baselines against composite multi-modal ground truth without task disaggregation"
+    ]
+  }
+}
