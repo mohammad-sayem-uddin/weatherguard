@@ -1,0 +1,219 @@
+{
+  "experiment_id": "audio_gpu_real_distress_benchmark",
+  "dataset_dir": "/kaggle/input/rescue-drone-audio-1500",
+  "gpu_profile": {
+    "platform": "Kaggle Cloud",
+    "cuda_available": true,
+    "device_name": "Tesla T4",
+    "gpu_memory_gb": 14.56,
+    "pytorch_version": "2.11.0+cu130",
+    "cuda_version": "13.0",
+    "is_nvidia_t4": true,
+    "timestamp": "2026-11-05T16:55:43Z"
+  },
+  "training": {
+    "epochs": 15,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "training_time_seconds": 133.69,
+    "best_checkpoint": "/kaggle/working/artifacts/audio_gpu/audio_best_weights.pt",
+    "calibrated_threshold": 0.54
+  },
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.3957,
+      "train_accuracy": 0.8256,
+      "val_accuracy": 0.58,
+      "val_f1": 0.7042,
+      "val_roc_auc": 0.9562
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.1968,
+      "train_accuracy": 0.96,
+      "val_accuracy": 0.88,
+      "val_f1": 0.8909,
+      "val_roc_auc": 0.9652
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.1337,
+      "train_accuracy": 0.9733,
+      "val_accuracy": 0.93,
+      "val_f1": 0.9302,
+      "val_roc_auc": 0.9721
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.0843,
+      "train_accuracy": 0.9856,
+      "val_accuracy": 0.9267,
+      "val_f1": 0.9276,
+      "val_roc_auc": 0.9756
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.0481,
+      "train_accuracy": 0.9967,
+      "val_accuracy": 0.93,
+      "val_f1": 0.9302,
+      "val_roc_auc": 0.972
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.0423,
+      "train_accuracy": 0.9967,
+      "val_accuracy": 0.9133,
+      "val_f1": 0.9103,
+      "val_roc_auc": 0.9766
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.0482,
+      "train_accuracy": 0.9911,
+      "val_accuracy": 0.8833,
+      "val_f1": 0.8805,
+      "val_roc_auc": 0.9493
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.0401,
+      "train_accuracy": 0.9967,
+      "val_accuracy": 0.93,
+      "val_f1": 0.932,
+      "val_roc_auc": 0.9775
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.0199,
+      "train_accuracy": 0.9978,
+      "val_accuracy": 0.9267,
+      "val_f1": 0.9272,
+      "val_roc_auc": 0.974
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.0229,
+      "train_accuracy": 0.9967,
+      "val_accuracy": 0.9033,
+      "val_f1": 0.9043,
+      "val_roc_auc": 0.9708
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.0273,
+      "train_accuracy": 0.9967,
+      "val_accuracy": 0.93,
+      "val_f1": 0.9307,
+      "val_roc_auc": 0.9749
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.0192,
+      "train_accuracy": 1.0,
+      "val_accuracy": 0.9167,
+      "val_f1": 0.9164,
+      "val_roc_auc": 0.9712
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.0212,
+      "train_accuracy": 0.9978,
+      "val_accuracy": 0.9167,
+      "val_f1": 0.9164,
+      "val_roc_auc": 0.9722
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.0168,
+      "train_accuracy": 1.0,
+      "val_accuracy": 0.9233,
+      "val_f1": 0.9231,
+      "val_roc_auc": 0.9726
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.0151,
+      "train_accuracy": 1.0,
+      "val_accuracy": 0.9167,
+      "val_f1": 0.9175,
+      "val_roc_auc": 0.9732
+    }
+  ],
+  "locked_test_metrics": {
+    "threshold": 0.54,
+    "accuracy": 0.9267,
+    "precision": 0.9267,
+    "recall": 0.9267,
+    "f1": 0.9267,
+    "roc_auc": 0.9706,
+    "fpr": 0.0733,
+    "fnr": 0.0733,
+    "confusion_matrix": {
+      "tn": 139,
+      "fp": 11,
+      "fn": 11,
+      "tp": 139
+    },
+    "noise_breakdown": {
+      "clean_speech": {
+        "samples": 200,
+        "accuracy": 0.95,
+        "f1": 0.9438
+      },
+      "drone_propeller": {
+        "samples": 25,
+        "accuracy": 0.88,
+        "f1": 0.9032
+      },
+      "flood_water": {
+        "samples": 21,
+        "accuracy": 0.9048,
+        "f1": 0.9091
+      },
+      "heavy_rain": {
+        "samples": 25,
+        "accuracy": 0.84,
+        "f1": 0.875
+      },
+      "strong_wind": {
+        "samples": 29,
+        "accuracy": 0.8966,
+        "f1": 0.9189
+      }
+    },
+    "snr_breakdown": {
+      "0.0": {
+        "samples": 25,
+        "accuracy": 0.8,
+        "f1": 0.8148
+      },
+      "5.0": {
+        "samples": 21,
+        "accuracy": 0.9524,
+        "f1": 0.9655
+      },
+      "10.0": {
+        "samples": 22,
+        "accuracy": 0.9545,
+        "f1": 0.963
+      },
+      "15.0": {
+        "samples": 13,
+        "accuracy": 0.6923,
+        "f1": 0.7143
+      },
+      "20.0": {
+        "samples": 19,
+        "accuracy": 0.9474,
+        "f1": 0.96
+      },
+      "inf": {
+        "samples": 200,
+        "accuracy": 0.95,
+        "f1": 0.9438
+      }
+    }
+  }
+}

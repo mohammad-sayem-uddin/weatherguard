@@ -88,7 +88,6 @@ def generate_weatherguard_notebook() -> str:
             "        print(f'  {split}: {img_cnt} images, {lbl_cnt} labels')",
         ]),
         make_code_cell([
-            "# Write out standalone runner module to ensure exact version control",
             "from pathlib import Path",
             f"runner_content = {repr(runner_code)}",
             "Path('/kaggle/working/weatherguard_gpu_runner.py').write_text(runner_content)",
@@ -99,7 +98,6 @@ def generate_weatherguard_notebook() -> str:
             "sys.path.insert(0, '/kaggle/working')",
             "from weatherguard_gpu_runner import run_full_vision_benchmark",
             "",
-            "# Execute end-to-end real dataset training and independent test evaluation",
             "benchmark_results = run_full_vision_benchmark(",
             "    data_yaml='/kaggle/input/weatherguard-v2-corpus/data.yaml',",
             "    weights_path='yolov8n.pt',",
@@ -122,38 +120,67 @@ def generate_weatherguard_notebook() -> str:
 
 
 def generate_audio_notebook() -> str:
+    runner_py_path = Path(__file__).resolve().parent / "audio_gpu_runner.py"
+    runner_code = runner_py_path.read_text()
+
     cells = [
         make_markdown_cell([
-            "# Audio Emergency Vocalization Classification — Cloud GPU Harness",
+            "# Rescue Drone Mission 20 — Real Bengali Audio Distress Classification",
             "**Platform**: Kaggle NVIDIA Tesla T4 GPU Runtime (16 GB VRAM)",
-            "**Project Owner**: Mohammad Sayem Uddin",
-            "**Task**: Bengali Distress Cry ('bachao' / বাঁচাও) vs Normal Speech & Hard Negatives",
+            "**Dataset**: `allfaz/rescue-drone-audio-1500` (1,500 Calibrated 16 kHz WAVs)",
+            "**Splits**: Train (900 samples), Val (300 samples), Locked Test (300 samples)",
+            "**Task**: Bengali Distress Cry ('bachao' / বাঁচাও) vs Normal Bengali Conversational Speech",
+            "**Committer**: Mohammad Sayem Uddin <sayemwork41@gmail.com>",
         ]),
         make_code_cell([
             "!nvidia-smi",
             "import torch",
+            "print('PyTorch Version:', torch.__version__)",
             "print('CUDA Available:', torch.cuda.is_available())",
             "if torch.cuda.is_available():",
             "    print('GPU Device:', torch.cuda.get_device_name(0))",
+            "    print('VRAM (GB):', round(torch.cuda.get_device_properties(0).total_memory / (1024**3), 2))",
         ]),
         make_code_cell([
-            "!git clone https://github.com/mohammad-sayem-uddin/weatherguard.git /kaggle/working/weatherguard",
-            "%cd /kaggle/working/weatherguard",
-            "!pip install -q torchaudio librosa soundfile scikit-learn",
+            "!pip install -q scikit-learn pandas numpy",
+        ]),
+        make_code_cell([
+            "import os, pandas as pd",
+            "from pathlib import Path",
+            "dataset_path = Path('/kaggle/input/rescue-drone-audio-1500')",
+            "print('Dataset directory exists:', dataset_path.exists())",
+            "if dataset_path.exists():",
+            "    manifest_p = dataset_path / 'manifest.csv'",
+            "    df = pd.read_csv(manifest_p)",
+            "    print(f'Total manifest rows: {len(df)}')",
+            "    print('Split counts:', dict(df['split'].value_counts()))",
+            "    pos_wavs = len(list((dataset_path / 'audio' / 'positive').glob('*.wav')))",
+            "    neg_wavs = len(list((dataset_path / 'audio' / 'negative').glob('*.wav')))",
+            "    print(f'WAV files found on disk: {pos_wavs} positive, {neg_wavs} negative')",
+        ]),
+        make_code_cell([
+            "from pathlib import Path",
+            f"runner_content = {repr(runner_code)}",
+            "Path('/kaggle/working/audio_gpu_runner.py').write_text(runner_content)",
+            "print('Runner written to /kaggle/working/audio_gpu_runner.py')",
         ]),
         make_code_cell([
             "import sys",
-            "sys.path.insert(0, '/kaggle/working/weatherguard')",
-            "from scripts.kaggle.audio_gpu_runner import train_audio_classifier",
+            "sys.path.insert(0, '/kaggle/working')",
+            "from audio_gpu_runner import train_real_audio_classifier",
             "",
-            "# Execute Audio 2D CNN Spectrogram Training on Tesla T4",
-            "audio_results = train_audio_classifier(",
-            "    epochs=5,",
+            "# Execute end-to-end real audio dataset training and independent test evaluation",
+            "audio_results = train_real_audio_classifier(",
+            "    dataset_dir='/kaggle/input/rescue-drone-audio-1500',",
+            "    epochs=15,",
             "    batch_size=32,",
             "    lr=0.001,",
             "    output_dir='/kaggle/working/artifacts/audio_gpu',",
             ")",
-            "print('Audio Training Results:', audio_results)",
+            "",
+            "print('--- AUDIO BENCHMARK COMPLETE ---')",
+            "print('Calibrated Decision Threshold (tau*):', audio_results['training']['calibrated_threshold'])",
+            "print('Locked Test Metrics:', audio_results['locked_test_metrics'])",
         ]),
     ]
     return create_kaggle_notebook_json(cells)
