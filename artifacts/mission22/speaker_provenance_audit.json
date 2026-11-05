@@ -1,0 +1,184 @@
+{
+  "audit_name": "Mission 22 Audio Speaker and Source Provenance Audit",
+  "dataset_composition": {
+    "total_samples": 1500,
+    "unique_parent_recordings": 745,
+    "speech_modalities": {
+      "human_speech": 823,
+      "synthetic_speech": 677
+    },
+    "source_type_distribution": {
+      "test": {
+        "owner_field_recording": {
+          "positive_distress": 35
+        },
+        "public_common_voice": {
+          "negative_nondistress": 55
+        },
+        "synthetic_tts": {
+          "negative_nondistress": 95,
+          "positive_distress": 115
+        }
+      },
+      "train": {
+        "owner_field_recording": {
+          "positive_distress": 339
+        },
+        "public_common_voice": {
+          "negative_nondistress": 307
+        },
+        "synthetic_tts": {
+          "negative_nondistress": 143,
+          "positive_distress": 111
+        }
+      },
+      "val": {
+        "owner_field_recording": {
+          "positive_distress": 34
+        },
+        "public_common_voice": {
+          "negative_nondistress": 53
+        },
+        "synthetic_tts": {
+          "negative_nondistress": 97,
+          "positive_distress": 116
+        }
+      }
+    }
+  },
+  "overlap_analysis": {
+    "parent_recording_overlap": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0,
+      "status": "PASSED_ZERO_LEAKAGE"
+    },
+    "speaker_overlap": {
+      "train_test_total_speakers_shared": 11,
+      "synthetic_voices_shared": [
+        "Piya",
+        "bn-BD-NabanitaNeural",
+        "bn-BD-PradeepNeural",
+        "bn-IN-BashkarNeural",
+        "bn-IN-TanishaaNeural",
+        "gTTS_bn_standard"
+      ],
+      "human_distress_speakers_shared": [
+        "pos_spk_clip_f01_c02",
+        "pos_spk_clip_f02_c07",
+        "pos_spk_clip_f03_c09",
+        "pos_spk_wa_2026-09-06_s8_s1",
+        "pos_spk_wa_2026-09-06_s9_s2"
+      ],
+      "human_distress_speakers_unseen_in_test": [
+        "pos_spk_wa_2026-09-01_s2_early"
+      ],
+      "common_voice_neg_speakers_shared": [],
+      "common_voice_neg_speakers_unseen_in_test": [
+        "06bb7",
+        "06ea3",
+        "08458",
+        "1652d",
+        "194f5",
+        "1f974",
+        "22096",
+        "24aed",
+        "28bb3",
+        "29089",
+        "2909b",
+        "29d44",
+        "29f8c",
+        "2d78f",
+        "37d7e",
+        "3bb15",
+        "3fae0",
+        "3fce2",
+        "4164f",
+        "430b2",
+        "43199",
+        "49543",
+        "4f450",
+        "5354e",
+        "54cdd",
+        "5639c",
+        "61820",
+        "66b3c",
+        "68549",
+        "69d9a",
+        "6aac8",
+        "717bb",
+        "778c0"
+      ]
+    },
+    "session_overlap": {
+      "train_test_sessions_shared": 6
+    }
+  },
+  "critical_speaker_generalization_verdict": {
+    "mission21_claim": "33 human speakers in the test set are completely novel and unseen, establishing speaker-independent generalization.",
+    "forensic_verification_status": "UNCONFIRMED_MISATTRIBUTED",
+    "explanation": "Of the 34 human speakers in the test set that were not in train, exactly 33 are NEGATIVE-CLASS speakers from Mozilla Common Voice (ordinary speech). Only ONE speaker (pos_spk_wa_2026-09-01_s2_early) represented an unseen human distress vocalization. All other positive test cries were produced by speakers or neural TTS engines already seen in the training set. Therefore, true speaker-independent generalization on emergency distress cries was tested on only 1 human speaker and cannot be claimed as confirmed."
+  },
+  "evaluation_by_provenance_subset": {
+    "authentic_field_only": {
+      "samples": 38,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "confusion_matrix": {
+        "tn": 34,
+        "fp": 0,
+        "fn": 0,
+        "tp": 4
+      }
+    },
+    "augmented_only": {
+      "samples": 262,
+      "accuracy": 0.916,
+      "precision": 0.9247,
+      "recall": 0.9247,
+      "f1": 0.9247,
+      "false_positive_rate": 0.0948,
+      "false_negative_rate": 0.0753,
+      "confusion_matrix": {
+        "tn": 105,
+        "fp": 11,
+        "fn": 11,
+        "tp": 135
+      }
+    },
+    "combined_locked_test": {
+      "samples": 300,
+      "accuracy": 0.9267,
+      "precision": 0.9267,
+      "recall": 0.9267,
+      "f1": 0.9267,
+      "false_positive_rate": 0.0733,
+      "false_negative_rate": 0.0733,
+      "confusion_matrix": {
+        "tn": 139,
+        "fp": 11,
+        "fn": 11,
+        "tp": 139
+      }
+    },
+    "unseen_speakers_subset": {
+      "samples": 62,
+      "accuracy": 0.9355,
+      "precision": 0.7143,
+      "recall": 0.7143,
+      "f1": 0.7143,
+      "false_positive_rate": 0.0364,
+      "false_negative_rate": 0.2857,
+      "confusion_matrix": {
+        "tn": 53,
+        "fp": 2,
+        "fn": 2,
+        "tp": 5
+      }
+    }
+  }
+}
