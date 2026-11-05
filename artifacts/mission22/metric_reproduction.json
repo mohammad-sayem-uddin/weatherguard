@@ -1,0 +1,458 @@
+{
+  "audit_name": "Mission 22 Metric Reproduction and Verification Ledger",
+  "checkpoint_and_data_hashes": {
+    "vision_split_manifest": "c292dd407a43e6e617809cbf639b719cb7313e1c216d9ef75e47f711de27fe0b",
+    "audio_split_manifest": "87e40725436f6cad375e209fb686bc2b1791c6ab74d6d709668363bde916786c",
+    "vision_weights_best_pt": "c9536f115869226ce4d2f73a4b926583b8f78d9600bffe2c3803e807aac49306",
+    "audio_weights_best_pt": "1a8023b4b09e7c30407e6d5e89c4e11785d62d4db02e9624e18938616dac312e"
+  },
+  "vision_baselines_reproduction": {
+    "pretrained_yolov8n": {
+      "model_identifier": "pretrained_yolov8n",
+      "dataset_split": "WeatherGuard V2 Locked Test Split (160 frames, 4 sequences)",
+      "operational_thresholds": "conf=0.25, IoU=0.50",
+      "sample_count": 160,
+      "independent_sequences": 4,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "small_object_recall": null,
+      "ultra_small_recall": null,
+      "dense_fog_f1": null,
+      "nighttime_f1": null,
+      "status": "REPRODUCED_CONFIRMED"
+    },
+    "weatherguard_finetuned": {
+      "model_identifier": "weatherguard_finetuned",
+      "dataset_split": "WeatherGuard V2 Locked Test Split (160 frames, 4 sequences)",
+      "operational_thresholds": "conf=0.25, IoU=0.50",
+      "sample_count": 160,
+      "independent_sequences": 4,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "small_object_recall": null,
+      "ultra_small_recall": null,
+      "dense_fog_f1": null,
+      "nighttime_f1": null,
+      "status": "REPRODUCED_CONFIRMED"
+    },
+    "policy_j_priority_allocation": {
+      "model_identifier": "policy_j_priority_allocation",
+      "dataset_split": "WeatherGuard V2 Locked Test Split (160 frames, 4 sequences)",
+      "operational_thresholds": "conf=0.25, IoU=0.50",
+      "sample_count": 160,
+      "independent_sequences": 4,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "small_object_recall": null,
+      "ultra_small_recall": null,
+      "dense_fog_f1": null,
+      "nighttime_f1": null,
+      "status": "REPRODUCED_CONFIRMED"
+    },
+    "policy_k_temporal_horizon": {
+      "model_identifier": "policy_k_temporal_horizon",
+      "dataset_split": "WeatherGuard V2 Locked Test Split (160 frames, 4 sequences)",
+      "operational_thresholds": "conf=0.25, IoU=0.50",
+      "sample_count": 160,
+      "independent_sequences": 4,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "small_object_recall": null,
+      "ultra_small_recall": null,
+      "dense_fog_f1": null,
+      "nighttime_f1": null,
+      "status": "REPRODUCED_CONFIRMED"
+    }
+  },
+  "audio_baselines_reproduction": {
+    "model_architecture": "AudioBaselinePyTorchCNN (1,076,417 params)",
+    "checkpoint_sha256": "1a8023b4b09e7c30407e6d5e89c4e11785d62d4db02e9624e18938616dac312e",
+    "dataset_split": "Rescue Drone V2 Locked Test Split (300 clips, 207 parents)",
+    "decision_threshold": 0.54,
+    "sample_count": 300,
+    "independent_parent_sources": 207,
+    "confusion_matrix": {
+      "tn": 139,
+      "fp": 11,
+      "fn": 11,
+      "tp": 139
+    },
+    "accuracy": 0.9267,
+    "precision": 0.9267,
+    "recall": 0.9267,
+    "f1": 0.9267,
+    "false_alarm_rate": 0.0733,
+    "miss_rate": 0.0733,
+    "published_vs_reproduced_match": true
+  },
+  "scenarios_reproduction": {
+    "Daylight_Clear": {
+      "scenario": "Daylight_Clear",
+      "sample_count": 47,
+      "vision_f1": 0.6522,
+      "audio_f1": 0.8148,
+      "fusion_f1": 0.9333,
+      "vision_confusion": {
+        "tn": 16,
+        "fp": 0,
+        "fn": 16,
+        "tp": 15
+      },
+      "audio_confusion": {
+        "tn": 15,
+        "fp": 1,
+        "fn": 9,
+        "tp": 22
+      },
+      "fusion_confusion": {
+        "tn": 15,
+        "fp": 1,
+        "fn": 3,
+        "tp": 28
+      },
+      "fusion_gain_over_vision": 0.2811,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    },
+    "Nighttime": {
+      "scenario": "Nighttime",
+      "sample_count": 43,
+      "vision_f1": 0.6129,
+      "audio_f1": 0.6667,
+      "fusion_f1": 0.7714,
+      "vision_confusion": {
+        "tn": 0,
+        "fp": 1,
+        "fn": 23,
+        "tp": 19
+      },
+      "audio_confusion": {
+        "tn": 1,
+        "fp": 0,
+        "fn": 21,
+        "tp": 21
+      },
+      "fusion_confusion": {
+        "tn": 0,
+        "fp": 1,
+        "fn": 15,
+        "tp": 27
+      },
+      "fusion_gain_over_vision": 0.1585,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    },
+    "Dense_Fog": {
+      "scenario": "Dense_Fog",
+      "sample_count": 19,
+      "vision_f1": 0.4286,
+      "audio_f1": 0.8571,
+      "fusion_f1": 0.9091,
+      "vision_confusion": {
+        "tn": 8,
+        "fp": 0,
+        "fn": 8,
+        "tp": 3
+      },
+      "audio_confusion": {
+        "tn": 7,
+        "fp": 1,
+        "fn": 2,
+        "tp": 9
+      },
+      "fusion_confusion": {
+        "tn": 7,
+        "fp": 1,
+        "fn": 1,
+        "tp": 10
+      },
+      "fusion_gain_over_vision": 0.4805,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    },
+    "Heavy_Rain": {
+      "scenario": "Heavy_Rain",
+      "sample_count": 51,
+      "vision_f1": 0.1176,
+      "audio_f1": 0.8,
+      "fusion_f1": 0.8,
+      "vision_confusion": {
+        "tn": 19,
+        "fp": 0,
+        "fn": 30,
+        "tp": 2
+      },
+      "audio_confusion": {
+        "tn": 15,
+        "fp": 4,
+        "fn": 8,
+        "tp": 24
+      },
+      "fusion_confusion": {
+        "tn": 15,
+        "fp": 4,
+        "fn": 8,
+        "tp": 24
+      },
+      "fusion_gain_over_vision": 0.6824,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    },
+    "Low_Visual_Resolution": {
+      "scenario": "Low_Visual_Resolution",
+      "sample_count": 47,
+      "vision_f1": 0.6522,
+      "audio_f1": 0.8148,
+      "fusion_f1": 0.9508,
+      "vision_confusion": {
+        "tn": 16,
+        "fp": 0,
+        "fn": 16,
+        "tp": 15
+      },
+      "audio_confusion": {
+        "tn": 15,
+        "fp": 1,
+        "fn": 9,
+        "tp": 22
+      },
+      "fusion_confusion": {
+        "tn": 15,
+        "fp": 1,
+        "fn": 2,
+        "tp": 29
+      },
+      "fusion_gain_over_vision": 0.2986,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    },
+    "Distant_Visual_Targets": {
+      "scenario": "Distant_Visual_Targets",
+      "sample_count": 98,
+      "vision_f1": 0.433,
+      "audio_f1": 0.7805,
+      "fusion_f1": 0.8462,
+      "vision_confusion": {
+        "tn": 22,
+        "fp": 2,
+        "fn": 53,
+        "tp": 21
+      },
+      "audio_confusion": {
+        "tn": 23,
+        "fp": 1,
+        "fn": 26,
+        "tp": 48
+      },
+      "fusion_confusion": {
+        "tn": 23,
+        "fp": 1,
+        "fn": 19,
+        "tp": 55
+      },
+      "fusion_gain_over_vision": 0.4132,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    },
+    "Strong_Wind": {
+      "scenario": "Strong_Wind",
+      "sample_count": 47,
+      "vision_f1": 0.6522,
+      "audio_f1": 0.8814,
+      "fusion_f1": 0.9688,
+      "vision_confusion": {
+        "tn": 16,
+        "fp": 0,
+        "fn": 16,
+        "tp": 15
+      },
+      "audio_confusion": {
+        "tn": 14,
+        "fp": 2,
+        "fn": 5,
+        "tp": 26
+      },
+      "fusion_confusion": {
+        "tn": 14,
+        "fp": 2,
+        "fn": 0,
+        "tp": 31
+      },
+      "fusion_gain_over_vision": 0.3166,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    },
+    "Drone_Rotor_Noise": {
+      "scenario": "Drone_Rotor_Noise",
+      "sample_count": 47,
+      "vision_f1": 0.6522,
+      "audio_f1": 0.8966,
+      "fusion_f1": 0.9677,
+      "vision_confusion": {
+        "tn": 16,
+        "fp": 0,
+        "fn": 16,
+        "tp": 15
+      },
+      "audio_confusion": {
+        "tn": 15,
+        "fp": 1,
+        "fn": 5,
+        "tp": 26
+      },
+      "fusion_confusion": {
+        "tn": 15,
+        "fp": 1,
+        "fn": 1,
+        "tp": 30
+      },
+      "fusion_gain_over_vision": 0.3155,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    },
+    "Flood_Water_Noise": {
+      "scenario": "Flood_Water_Noise",
+      "sample_count": 51,
+      "vision_f1": 0.1176,
+      "audio_f1": 0.6939,
+      "fusion_f1": 0.6939,
+      "vision_confusion": {
+        "tn": 19,
+        "fp": 0,
+        "fn": 30,
+        "tp": 2
+      },
+      "audio_confusion": {
+        "tn": 19,
+        "fp": 0,
+        "fn": 15,
+        "tp": 17
+      },
+      "fusion_confusion": {
+        "tn": 19,
+        "fp": 0,
+        "fn": 15,
+        "tp": 17
+      },
+      "fusion_gain_over_vision": 0.5763,
+      "status": "REPRODUCED_CONFIRMED_AS_SIMULATION"
+    }
+  },
+  "ablation_reproduction": {
+    "vision_only": {
+      "paradigm": "vision_only",
+      "sample_count": 450,
+      "accuracy": 0.5311,
+      "precision": 0.9727,
+      "recall": 0.3397,
+      "f1": 0.5035,
+      "false_alarm_rate": 0.0222,
+      "miss_rate": 0.6603,
+      "confusion_matrix": {
+        "tn": 132,
+        "fp": 3,
+        "fn": 208,
+        "tp": 107
+      },
+      "status": "REPRODUCED_CONFIRMED"
+    },
+    "audio_only": {
+      "paradigm": "audio_only",
+      "sample_count": 450,
+      "accuracy": 0.7533,
+      "precision": 0.9513,
+      "recall": 0.6825,
+      "f1": 0.7948,
+      "false_alarm_rate": 0.0815,
+      "miss_rate": 0.3175,
+      "confusion_matrix": {
+        "tn": 124,
+        "fp": 11,
+        "fn": 100,
+        "tp": 215
+      },
+      "status": "REPRODUCED_CONFIRMED"
+    },
+    "simple_or": {
+      "paradigm": "simple_or",
+      "sample_count": 450,
+      "accuracy": 0.8422,
+      "precision": 0.9485,
+      "recall": 0.819,
+      "f1": 0.879,
+      "false_alarm_rate": 0.1037,
+      "miss_rate": 0.181,
+      "confusion_matrix": {
+        "tn": 121,
+        "fp": 14,
+        "fn": 57,
+        "tp": 258
+      },
+      "status": "REPRODUCED_CONFIRMED"
+    },
+    "simple_and": {
+      "paradigm": "simple_and",
+      "sample_count": 450,
+      "accuracy": 0.4422,
+      "precision": 1.0,
+      "recall": 0.2032,
+      "f1": 0.3377,
+      "false_alarm_rate": 0.0,
+      "miss_rate": 0.7968,
+      "confusion_matrix": {
+        "tn": 135,
+        "fp": 0,
+        "fn": 251,
+        "tp": 64
+      },
+      "status": "REPRODUCED_CONFIRMED"
+    },
+    "confidence_weighted": {
+      "paradigm": "confidence_weighted",
+      "sample_count": 450,
+      "accuracy": 0.7689,
+      "precision": 0.9689,
+      "recall": 0.6921,
+      "f1": 0.8074,
+      "false_alarm_rate": 0.0519,
+      "miss_rate": 0.3079,
+      "confusion_matrix": {
+        "tn": 128,
+        "fp": 7,
+        "fn": 97,
+        "tp": 218
+      },
+      "status": "REPRODUCED_CONFIRMED"
+    },
+    "adaptive_fusion": {
+      "paradigm": "adaptive_fusion",
+      "sample_count": 450,
+      "accuracy": 0.8311,
+      "precision": 0.9544,
+      "recall": 0.7968,
+      "f1": 0.8685,
+      "false_alarm_rate": 0.0889,
+      "miss_rate": 0.2032,
+      "confusion_matrix": {
+        "tn": 123,
+        "fp": 12,
+        "fn": 64,
+        "tp": 251
+      },
+      "status": "REPRODUCED_CONFIRMED"
+    }
+  },
+  "numerical_inconsistencies_investigated": [
+    {
+      "issue": "Vision recall in Mission 20 report was 0.3762 vs JSON 0.3440",
+      "finding": "Ultralytics macro-class average (0.3440) vs empirical detection micro-average (874/2323 = 0.3762).",
+      "resolution": "RESOLVED_DISAMBIGUATED"
+    },
+    {
+      "issue": "Vision recall in Mission 21 ablation was 0.3397 (miss rate 66.03%)",
+      "finding": "Artificially depressed by 143 phantom-person trials where audio distress was forced into empty images.",
+      "resolution": "IDENTIFIED_AS_METHODOLOGICAL_ARTIFACT"
+    },
+    {
+      "issue": "Cohen's d = 3.436",
+      "finding": "Calculated on 500 bootstrap F1 differences rather than per-trial observations. Reflects bootstrap z-ratio.",
+      "resolution": "DOWNGRADED_AS_STATISTICALLY_INVALID"
+    }
+  ]
+}
