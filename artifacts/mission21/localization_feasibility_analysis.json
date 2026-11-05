@@ -1,0 +1,41 @@
+{
+  "hardware_audit": {
+    "total_audio_samples_audited": 1500,
+    "mono_channel_samples": 1500,
+    "multi_channel_samples": 0,
+    "mono_percentage": 100.0,
+    "sample_rates_hz": [
+      16000
+    ],
+    "spatial_data_status": "MONO_ONLY_NO_SPATIAL_METRICS"
+  },
+  "theoretical_engineering_analysis": {
+    "mono_vs_multichannel": "A single microphone capture scalar pressure p(t) carries omnidirectional energy with zero spatial phase information. Localization in 2D or 3D is mathematically underdetermined from a single static observation.",
+    "tdoa_mathematical_formulation": {
+      "algorithm": "Generalized Cross-Correlation with Phase Transform (GCC-PHAT)",
+      "formula": "R_ij^PHAT(tau) = Integral [ (X_i(f) * X_j*(f)) / |X_i(f) * X_j*(f)| * exp(j*2*pi*f*tau) ] df",
+      "minimum_microphones_required": {
+        "2d_bearing_azimuth": 3,
+        "3d_bearing_azimuth_elevation": 4,
+        "3d_range_and_bearing": "4+ non-coplanar microphones with high SNR (>10 dB)"
+      },
+      "array_baseline_distance": "15 cm to 25 cm (constrained by UAV motor arm spacing)"
+    },
+    "drone_rotor_noise_interference": {
+      "blade_pass_frequency_bpf": "BPF = (Blades * RPM) / 60 (typically 120-400 Hz)",
+      "rotor_harmonics": "Harmonic series up to 2.5 kHz overlapping Bengali vocal formants (F1, F2: 300-2200 Hz)",
+      "required_mitigation": "Adaptive MVDR (Minimum Variance Distortionless Response) spatial filtering with fixed notch filters on rotor harmonics"
+    },
+    "environmental_reverberation": {
+      "adverse_weather_effects": "Dense fog causes acoustic attenuation at high frequencies (>4 kHz). Heavy rain droplet impact creates random impulsive wideband noise. Dense tree canopies in disaster zones introduce multipath reverberation (RT60 > 0.4s) that broadens GCC-PHAT correlation peaks, increasing angular error."
+    }
+  },
+  "operational_rescue_integration": {
+    "current_capability": "Omnidirectional Acoustic Trigger: Distress vocalization triggers UAV to suspend transit and initiate localized optical spiral search.",
+    "future_hardware_roadmap": {
+      "phase_1_sensor": "4-channel MEMS microphone array (I2S interface) mounted on vibration-isolated dampeners below drone fuselage.",
+      "phase_2_dsp": "On-chip FPGA or microcontroller executing real-time GCC-PHAT and Steered Response Power (SRP-PHAT).",
+      "phase_3_guidance": "Autonomous flight controller orienting gimbal/camera directly along estimated acoustic bearing (+/- 12 degrees)."
+    }
+  }
+}
