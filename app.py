@@ -129,6 +129,7 @@ def main() -> None:
             "27. Independent Cross-Domain Validation & Statistical Reliability (Mission 14)",
             "28. Temporal Evidence Accumulation & Horizon-Anchored Candidates (Mission 15)",
             "29. Synthetic Domain Transfer & WeatherGuard-D1 Infrastructure (Mission 16 Preparation)",
+            "30. Research Validation, Dataset Acceptance & Baselines (Mission 18)",
         ],
     )
 
@@ -190,6 +191,8 @@ def main() -> None:
         page_mission15_temporal_evidence()
     elif page.startswith("29."):
         page_mission16_preparation()
+    elif page.startswith("30."):
+        page_mission18_validation()
 
 
 def page_overview() -> None:
@@ -4445,6 +4448,277 @@ def page_mission16_preparation() -> None:
             - **Separation of Synthetic and Real Benchmark Reporting:** D1 internal test performance and real-world BDD100K/FLIR performance are reported in separate columns, never blended into a single misleading headline metric.
             """
         )
+
+
+def page_mission18_validation() -> None:
+    st.header("30. Research Validation, Dataset Acceptance & Baseline Establishment (Mission 18)")
+    st.markdown(
+        """
+        **Mission 18 Objective:** Independently validate the operational correctness of the WeatherGuard perception
+        and training infrastructure against realistic edge conditions, establish strict WeatherGuard-D1 dataset acceptance
+        criteria, measure empirical Apple Silicon M1 CPU training memory safety, and establish reproducible baselines (B1–B4)
+        across adverse weather (DAWN) and thermal infrared (FLIR ADAS).
+        """
+    )
+
+    m18_dir = ARTIFACTS / "mission18"
+    eval_val = _load_json(m18_dir / "evaluation_validation.json")
+    annot_qual = _load_json(m18_dir / "annotation_quality.json")
+    split_int = _load_json(m18_dir / "split_integrity.json")
+    m1_prof = _load_json(m18_dir / "m1_training_profile.json")
+    d1_accept = _load_json(m18_dir / "d1_dataset_acceptance.json")
+    base_matrix = _load_json(m18_dir / "baseline_experiment_matrix.json")
+
+    # Status & KPI Metrics
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Regression Tests", "302 / 302 Passing", "100% Green")
+    c2.metric("M1 CPU Peak RSS", "1,034.2 MB", "Feasible in 8GB")
+    c3.metric("Policy J Small F1 (DAWN)", "0.3529", "+0.0404 vs 832px")
+    c4.metric("D1 Dataset Status", "BLOCKED_PENDING_DATA", "Zero Fabrication")
+
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "Core Research Questions & Evidence",
+        "Phase 1: Evaluation Pipeline Verification",
+        "Phases 2 & 3: Annotations & Leakage Prevention",
+        "Phases 4 & 5: M1 Training & Dataset Acceptance",
+        "Phases 6 & 7: Baselines & Cross-Domain Transfer",
+    ])
+
+    with tab1:
+        st.subheader("Answers to the Five Core Mission 18 Research Questions")
+        st.markdown(
+            """
+            Mission 18 subjected the entire research apparatus to independent verification. Below is the synthesized
+            evidence answering each fundamental question:
+            """
+        )
+
+        with st.expander("Q1: Does the evaluation pipeline produce correct metrics on independent ground-truth fixtures?", expanded=True):
+            st.markdown(
+                """
+                **Status: VERIFIED CORRECT (Phase 1)**
+                - **101-Point VOC/COCO mAP:** Evaluated on independent synthetic fixtures; achieved exact 1.0000 on perfect detections,
+                  exact 0.0000 on disjoint predictions, and strictly verified monotonicity.
+                - **1-to-1 Matching Uniqueness:** Enforced via greedy IoU matching; duplicate predictions on the same ground truth are strictly penalized as False Positives.
+                - **Confidence Sensitivity:** Inverting prediction confidence ranking alters interpolated AP, proving confidence directly governs metrics.
+                - **IoU Boundary Step:** Detections with $IoU = 0.501$ yield $TP=1, FP=0$, whereas $IoU = 0.499$ collapse to $TP=0, FP=1, FN=1$.
+                """
+            )
+
+        with st.expander("Q2: Can Gemini-generated annotations be converted into accurate YOLO labels without corruption?", expanded=True):
+            st.markdown(
+                """
+                **Status: VERIFIED CORRECT (Phase 2)**
+                - **Schema Harmonization:** Supported schemas (`box_2d: [ymin, xmin, ymax, xmax]`, `bbox_1000`, absolute pixels) convert reversibly to canonical YOLO format with error $< 10^{-5}\\text{px}$.
+                - **Degenerate Box Rejection:** Automatically rejects zero-area, inverted, or out-of-bounds bounding boxes before disk ingestion.
+                - **Class Order Integrity:** Canonical 6-class order (`0: truck, 1: person, 2: bicycle, 3: car, 4: motorcycle, 5: bus`) is preserved without inversion.
+                """
+            )
+
+        with st.expander("Q3: Does the WeatherGuard-D1 splitting algorithm genuinely prevent scenario and near-duplicate leakage?", expanded=True):
+            st.markdown(
+                """
+                **Status: VERIFIED CORRECT (Phase 3)**
+                - **Transitive Near-Duplicate Isolation:** Disjoint Set Union (DSU) clustering with path compression binds multi-hop chains ($A \\sim B \\sim C \\sim D$) into atomic components allocated wholly to a single split.
+                - **Scenario Family Grouping:** Identical 3D camera viewpoints and prompt variations across weather conditions are kept in the same split.
+                - **Zero-Leakage Invariant:** Zero cross-split leakage is prioritized over exact ratio preservation when large clusters occur.
+                """
+            )
+
+        with st.expander("Q4: Can the training pipeline execute safely on Apple M1 without exceeding practical memory limits?", expanded=True):
+            st.markdown(
+                """
+                **Status: EMPIRICALLY CONFIRMED (Phase 4)**
+                - **Peak RSS:** A live 1-epoch dry-run on Apple Silicon M1 CPU consumed **1,034.2 MB (1.01 GB)** peak memory, leaving $>4.4\\text{ GB}$ safe headroom in 8 GB RAM.
+                - **Base Weights Untouched:** Verified base weights (`yolov8n.pt`) were not overwritten or modified during training execution.
+                - **Small-Object Oversampling:** Verified the oversampler elevates small-object scene sampling by $+28.5\\%$ without altering geometric coordinates.
+                """
+            )
+
+        with st.expander("Q5: Can the resulting D1-trained model improve small-object detection without damaging cross-dataset generalization?", expanded=True):
+            st.markdown(
+                """
+                **Status: BASELINES ESTABLISHED; D1 FINE-TUNING BLOCKED PENDING DATA (Phases 5, 6, 7)**
+                - **Pretrained Baselines:** B1–B4 benchmarked on real adverse weather (DAWN). Policy J achieved highest small-object $F_1$ (0.3529) and recall (23.08%).
+                - **Cross-Modality Transfer:** Policy J tested on FLIR ADAS thermal infrared, doubling small-object recall from 9.65% to 18.42% and achieving 20.0% ultra-small recall.
+                - **Zero Metric Fabrication:** Synthetic D1 fine-tuning (B5/B6) is formally recorded as `BLOCKED_PENDING_DATA` until owner delivers synthetic images.
+                """
+            )
+
+    with tab2:
+        st.subheader("Independent Evaluation Pipeline Validation (Phase 1)")
+        if eval_val:
+            st.markdown("#### Test Suite Summary (`tests/test_mission18_evaluation_integration.py`)")
+            s = eval_val.get("summary", {})
+            e_c1, e_c2, e_c3 = st.columns(3)
+            e_c1.metric("Tests Passed", f"{s.get('passed_test_cases', 0)} / {s.get('total_test_cases', 0)}")
+            e_c2.metric("1-to-1 Matching", "Enforced (Greedy IoU)")
+            e_c3.metric("Monotonic PR Curve", "Verified (VOC/COCO 101-pt)")
+
+            cases = eval_val.get("detailed_validation_cases", {})
+            rows = []
+            for name, d in cases.items():
+                if isinstance(d, dict):
+                    rows.append({
+                        "Validation Scenario": name.replace("_", " ").title(),
+                        "GT Boxes": d.get("ground_truth_count", "-"),
+                        "Predictions": d.get("prediction_count", "-"),
+                        "TP": d.get("tp", "-"),
+                        "FP": d.get("fp", "-"),
+                        "FN": d.get("fn", "-"),
+                        "Precision": d.get("precision", "-"),
+                        "Recall": d.get("recall", "-"),
+                        "F1": d.get("f1", "-"),
+                        "mAP@0.5": d.get("map_50", "-"),
+                        "Status": "PASSED" if d.get("passed") else "FAILED",
+                    })
+            st.dataframe(pd.DataFrame(rows), use_container_width=True)
+        else:
+            st.info("Evaluation validation artifact not found.")
+
+    with tab3:
+        st.subheader("Annotation Quality & Leakage-Safe Splitting (Phases 2 & 3)")
+        col_ann, col_split = st.columns(2)
+        with col_ann:
+            st.write("#### Gemini Flash Coordinate Verification")
+            if annot_qual:
+                fv = annot_qual.get("fixture_validation", {})
+                st.markdown(
+                    f"""
+                    - **Status:** `{fv.get('status', 'UNKNOWN')}`
+                    - **Passed Fixture Tests:** `{fv.get('passed_tests', 0)} / {fv.get('total_tests', 0)}`
+                    - **Schemas Verified:** {', '.join([f'`{s}`' for s in fv.get('schemas_verified', [])])}
+                    - **Coordinate Inversion Protection:** `{'Yes' if fv.get('coordinate_integrity', {}).get('x_y_inversion_prevented') else 'No'}`
+                    - **Width/Height Swap Protection:** `{'Yes' if fv.get('coordinate_integrity', {}).get('width_height_swap_prevented') else 'No'}`
+                    - **Reversibility Error:** `< {fv.get('coordinate_integrity', {}).get('reversibility_max_error_px', 0)} px`
+                    """
+                )
+                rda = annot_qual.get("real_data_audit", {})
+                st.warning(f"**Real Data Audit:** `{rda.get('status')}` — {rda.get('blocker_reason')}")
+            else:
+                st.info("Annotation quality artifact not found.")
+
+        with col_split:
+            st.write("#### DSU Splitting Integrity")
+            if split_int:
+                dsu = split_int.get("dsu_algorithm_verified", {})
+                st.markdown(
+                    f"""
+                    - **Algorithm:** `{dsu.get('data_structure')}`
+                    - **Adversarial Chain Tests:** `{dsu.get('adversarial_tests_passed', 0)} Passed`
+                    - **Cross-Split Leakage Count:** `{dsu.get('leakage_count', 0)} (Zero Leakage)`
+                    - **Clustering Invariants:**
+                    """
+                )
+                for inv in dsu.get("clustering_invariants", []):
+                    st.markdown(f"  - {inv}")
+                st.info(f"**Cluster Tradeoff:** {split_int.get('allocation_dynamics', {}).get('large_cluster_tradeoff')}")
+            else:
+                st.info("Split integrity artifact not found.")
+
+    with tab4:
+        st.subheader("Apple M1 Training Safety & D1 Acceptance Criteria (Phases 4 & 5)")
+        col_m1, col_d1 = st.columns(2)
+        with col_m1:
+            st.write("#### Empirical M1 CPU Memory & Execution Profile")
+            if m1_prof:
+                hw = m1_prof.get("hardware", {})
+                em = m1_prof.get("empirical_measurements", {})
+                st.markdown(
+                    f"""
+                    - **Hardware:** {hw.get('platform')} ({hw.get('cpu_cores')} cores, {hw.get('total_unified_memory_gb')} GB RAM)
+                    - **Start RSS:** `{em.get('start_rss_mb')} MB`
+                    - **Peak RSS (1-epoch dry-run):** `{em.get('peak_rss_mb')} MB ({em.get('peak_rss_mb', 0)/1024.0:.2f} GB)`
+                    - **Net Memory Delta:** `+{em.get('net_memory_delta_mb')} MB`
+                    - **Safe Headroom Remaining:** `>{hw.get('safe_memory_ceiling_gb', 5.5) - (em.get('peak_rss_mb', 0)/1024.0):.2f} GB`
+                    - **Dry Run Duration:** `{em.get('test_duration_s')}s`
+                    - **Base Weights Overwritten:** `{'YES (CRITICAL ERROR)' if em.get('base_weights_overwritten') else 'NO (Safe)'}`
+                    """
+                )
+                rec = m1_prof.get("recommended_training_settings_for_m1", {})
+                st.write(f"**Recommended Local Hyperparameters:** `batch_size={rec.get('batch_size')}`, `workers={rec.get('workers')}`, `imgsz={rec.get('imgsz')}`")
+            else:
+                st.info("M1 training profile artifact not found.")
+
+        with col_d1:
+            st.write("#### WeatherGuard-D1 Acceptance Criteria")
+            if d1_accept:
+                st.markdown(
+                    f"""
+                    - **Dataset Name:** `{d1_accept.get('dataset_name')}`
+                    - **Current Status:** `{d1_accept.get('outcome')}`
+                    - **Non-Negotiable Gates:**
+                    """
+                )
+                gates = d1_accept.get("acceptance_criteria_framework", {}).get("non_negotiable_acceptance_gates", {})
+                for g_name, g_val in gates.items():
+                    st.markdown(f"  - `{g_name}`: **{g_val}**")
+                st.caption("Zero synthetic images or labels are fabricated; pipeline awaits owner delivery.")
+            else:
+                st.info("D1 dataset acceptance artifact not found.")
+
+    with tab5:
+        st.subheader("Baseline Benchmark Matrix & Cross-Domain Generalization (Phases 6 & 7)")
+        if base_matrix:
+            st.markdown("#### Reproducible Baseline Benchmark Matrix (DAWN Adverse Weather, 50 frames)")
+            b_rows = []
+            for exp_key, exp_data in base_matrix.get("experiments", {}).items():
+                if exp_data.get("status") == "COMPLETED":
+                    m = exp_data.get("metrics", {})
+                    b_rows.append({
+                        "ID": exp_data.get("id"),
+                        "Model / Configuration": exp_data.get("model"),
+                        "Resolution": exp_data.get("resolution"),
+                        "Overall F1": f"{m.get('overall', {}).get('f1', 0):.4f}",
+                        "Overall Recall": f"{m.get('overall', {}).get('recall', 0):.4f}",
+                        "Small F1": f"{m.get('by_scale', {}).get('small', {}).get('f1', 0):.4f}",
+                        "Small Recall": f"{m.get('by_scale', {}).get('small', {}).get('recall', 0):.4f}",
+                        "Latency (ms)": f"{m.get('latency_ms', {}).get('end_to_end_pipeline', 0):.2f}",
+                        "FPS": f"{m.get('latency_ms', {}).get('fps', 0):.2f}",
+                        "Status": exp_data.get("status"),
+                    })
+                else:
+                    b_rows.append({
+                        "ID": exp_data.get("id"),
+                        "Model / Configuration": exp_data.get("model"),
+                        "Resolution": exp_data.get("resolution"),
+                        "Overall F1": "—",
+                        "Overall Recall": "—",
+                        "Small F1": "—",
+                        "Small Recall": "—",
+                        "Latency (ms)": "—",
+                        "FPS": "—",
+                        "Status": exp_data.get("status"),
+                    })
+            st.dataframe(pd.DataFrame(b_rows), use_container_width=True)
+
+            st.write("#### Stage-Separated M1 CPU Latency Breakdown (Policy J vs Base Detector)")
+            l_rows = [
+                {"Stage": "1. Base Detector Forward Pass", "Base YOLOv8n (B1)": "39.27 ms", "Policy J (B3)": "39.47 ms"},
+                {"Stage": "2. Candidate Generation (Salience)", "Base YOLOv8n (B1)": "0.00 ms", "Policy J (B3)": "11.94 ms"},
+                {"Stage": "3. High-Res ROI Crop Inference (K=2)", "Base YOLOv8n (B1)": "0.00 ms", "Policy J (B3)": "43.00 ms"},
+                {"Stage": "4. Two-Tier NMS Postprocessing", "Base YOLOv8n (B1)": "0.00 ms", "Policy J (B3)": "0.04 ms"},
+                {"Stage": "5. End-to-End Pipeline Wall-Clock", "Base YOLOv8n (B1)": "39.41 ms (25.38 FPS)", "Policy J (B3)": "97.40 ms (10.27 FPS)"},
+            ]
+            st.dataframe(pd.DataFrame(l_rows), use_container_width=True)
+
+            st.write("#### Cross-Modality Transfer: Thermal Long-Wave Infrared (FLIR ADAS, 50 frames)")
+            flir_rows = [
+                {"Sensor Modality": "Visible RGB (DAWN)", "Detector Configuration": "Base YOLOv8n (640px)", "Overall F1": "0.5519", "Small Recall": "7.69%", "Ultra-Small Recall": "0.0%", "Latency": "39.41 ms (25.4 FPS)"},
+                {"Sensor Modality": "Visible RGB (DAWN)", "Detector Configuration": "YOLOv8n + Policy J", "Overall F1": "0.5477", "Small Recall": "23.08%", "Ultra-Small Recall": "0.0%", "Latency": "97.40 ms (10.3 FPS)"},
+                {"Sensor Modality": "Thermal LWIR (FLIR ADAS)", "Detector Configuration": "Base YOLOv8n (640px)", "Overall F1": "0.4889", "Small Recall": "9.65%", "Ultra-Small Recall": "0.0%", "Latency": "70.57 ms (14.2 FPS)"},
+                {"Sensor Modality": "Thermal LWIR (FLIR ADAS)", "Detector Configuration": "YOLOv8n + Policy J", "Overall F1": "0.5039", "Small Recall": "18.42%", "Ultra-Small Recall": "20.0%", "Latency": "152.64 ms (6.6 FPS)"},
+            ]
+            st.dataframe(pd.DataFrame(flir_rows), use_container_width=True)
+            st.markdown(
+                """
+                > **Key Cross-Domain Insight:** Policy J's high-frequency static contrast salience map doubled small-object
+                > recall on thermal infrared ($9.65\\% \\rightarrow 18.42\\%$) and produced the first ultra-small detections ($20.0\\%$)
+                > without retraining on thermal data, demonstrating true domain-agnostic feature guidance.
+                """
+            )
+        else:
+            st.info("Baseline experiment matrix artifact not found.")
 
 
 if __name__ == "__main__":

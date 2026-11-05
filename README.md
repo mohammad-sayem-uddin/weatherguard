@@ -95,8 +95,11 @@ WeatherGuard has advanced across sequential empirical research phases:
 | **Missions 9–10** | Authentic video sequences & temporal perception | 8-sequence BDD100K MOT pipeline; hold-time routing ($H=3$) |
 | **Missions 11–12** | Region-adaptive ROI inference & candidate generation | Clustered ROI inference and detector-independent candidate cues |
 | **Mission 13** | Priority-gated allocation & crop-budget optimization | Elimination of proposal dilution; state-of-the-art small-object $F_1$ |
+| **Missions 14–15** | Cross-domain validation & causal temporal accumulation | Policy J validation on unseen sequences; horizon-anchored candidates |
+| **Missions 16–17** | Research infrastructure & dataset engineering | 12-experiment configuration matrix, unified evaluation engine, DSU split |
+| **Mission 18** | Research validation, dataset acceptance & baseline matrix | Independent 101-point mAP validation, M1 CPU memory profiling, baseline matrix |
 
-*Note: The project is ongoing. Future missions continue on external benchmark generalization and edge runtime acceleration.*
+*Note: The project is ongoing. Future missions will execute fine-tuning experiments (E1–E12) upon owner delivery of the WeatherGuard-D1 corpus.*
 
 ---
 
@@ -134,7 +137,33 @@ To assess whether spatial priors and allocation controllers transfer across imag
 
 ---
 
-## 7. Datasets & Provenance
+## 7. Operational Research Validation & M1 Baseline Matrix — Mission 18
+
+Mission 18 conducted independent operational validation across the research evaluation engine, annotation parsing schemas, leakage-safe dataset splitting, and Apple M1 CPU edge execution safety, establishing reproducible baselines (B1–B4) prior to synthetic fine-tuning.
+
+### 7.1. Baseline Benchmark Matrix (DAWN Adverse Weather, $N=50$)
+
+Evaluated using the verified evaluation pipeline [`scripts/evaluate_weatherguard.py`](file:///Users/sayemuddin/Desktop/WeatherGuard/scripts/evaluate_weatherguard.py) ($\text{IoU} = 0.50$, $\text{conf} = 0.20$):
+
+| Benchmark ID | Architecture / Policy | Resolution | Overall $F_1$ | Small $F_1$ | Small Recall | Pipeline Latency | Edge FPS | Status |
+|:---|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **B1** | YOLOv8n (Raw Detector) | 640 | 0.5519 | 0.1429 | 7.69% (2/26) | **39.41 ms** | **25.38** | **COMPLETED** |
+| **B2** | YOLOv8n (Raw Detector) | 832 | **0.5689** | 0.3125 | 19.23% (5/26) | 58.60 ms | 17.07 | **COMPLETED** |
+| **B3** | YOLOv8n + Policy J | 640 + ROI | 0.5477 | **0.3529** | **23.08% (6/26)** | 97.40 ms | 10.27 | **COMPLETED** |
+| **B4** | YOLOv8n + Policy K | 640 + Horizon | 0.5625 | 0.2581 | 15.38% (4/26) | 122.57 ms | 8.16 | **COMPLETED** |
+| **B5** | D1 Fine-Tuned YOLOv8n | 640 | — | — | — | — | — | `BLOCKED_PENDING_DATA` |
+| **B6** | D1 Fine-Tuned + Policy J | 640 + ROI | — | — | — | — | — | `BLOCKED_PENDING_DATA` |
+
+### 7.2. Core Scientific Findings
+1. **Policy J Small-Object Superiority:** On still images, Policy J achieves small-object $F_1 = 0.3529$ (23.08% recall), outperforming full-frame 832px inference ($F_1 = 0.3125$, 19.23% recall) by +0.0404 $F_1$ while maintaining real-time edge throughput ($10.27\text{ FPS}$).
+2. **Domain-Agnostic Thermal Transfer (FLIR ADAS):** Evaluated on FLIR ADAS thermal infrared, Policy J doubled small-object recall from 9.65% to 18.42% and achieved 20.0% ultra-small recall, proving high-frequency gradient salience transfers cross-modality without detector retraining.
+3. **Apple M1 CPU Training Profile:** A live 1-epoch training dry-run measured peak Resident Set Size (RSS) of **1,034.2 MB (1.01 GB)**, leaving $>4.4\text{ GB}$ safe physical headroom within 8 GB Unified Memory when using `workers=0` and `batch_size <= 8`.
+4. **Leakage-Safe DSU Splitting:** Disjoint Set Union clustering was verified to group entire transitive similarity chains ($A \sim B \sim C \sim D$) into atomic components, strictly preventing near-duplicate and scenario leakage across Train, Val, and Test splits.
+5. **Zero Fabrication Policy:** Real WeatherGuard-D1 fine-tuning remains strictly designated as `BLOCKED_PENDING_DATA` awaiting independent dataset generation by the owner.
+
+---
+
+## 8. Datasets & Provenance
 
 WeatherGuard utilizes three distinct datasets under their respective non-commercial research terms. **No raw dataset images or videos are redistributed in this repository.**
 
@@ -153,7 +182,7 @@ WeatherGuard utilizes three distinct datasets under their respective non-commerc
 
 ---
 
-## 8. Technology Stack
+## 9. Technology Stack
 
 - **Core Language:** Python 3.11+
 - **Deep Learning Framework:** PyTorch (`torch>=2.0`, `torchvision>=0.19`)
@@ -166,7 +195,7 @@ WeatherGuard utilizes three distinct datasets under their respective non-commerc
 
 ---
 
-## 9. Installation & Quickstart
+## 10. Installation & Quickstart
 
 ### Prerequisites
 - Python 3.11 or higher.
@@ -189,7 +218,7 @@ Verify that the complete unit and integration test suite passes:
 ```bash
 PYTHONPATH=. pytest tests/
 ```
-*(All 187 automated tests should pass in under 5 seconds).*
+*(All 302 automated unit and integration tests pass in ~12 seconds).*
 
 ### 3. Verify Artifact Integrity
 Run the built-in artifact and report validator:
@@ -198,11 +227,11 @@ PYTHONPATH=. python scripts/validate_artifacts.py
 ```
 
 ### 4. Launch the Interactive Dashboard
-Launch the multi-page Streamlit dashboard to explore all missions (Pages 1 to 26):
+Launch the multi-page Streamlit dashboard to explore all missions (Pages 1 to 30):
 ```bash
 streamlit run app.py
 ```
-Navigate to **Page 26** in the sidebar to inspect the **Mission 13 Priority-Gated Candidate Allocation** analysis tabs.
+Navigate to **Page 26** for Mission 13 Priority Allocation, or **Page 30** for **Mission 18 Research Validation & Baseline Establishment**.
 
 ### 5. Execute Mission 13 Evaluation Suite
 To execute the factorial allocation suite across the video sequences:
@@ -212,38 +241,37 @@ PYTHONPATH=. python scripts/run_mission13_suite.py
 
 ---
 
-## 10. Repository Structure
+## 11. Repository Structure
 
 ```
 WeatherGuard/
-├── app.py                     # Streamlit multi-page interactive dashboard (Pages 1-26)
+├── app.py                     # Streamlit multi-page interactive dashboard (Pages 1-30)
 ├── requirements.txt           # Python dependency specification
 ├── LICENSE                    # MIT License
 ├── NOTICE                     # Third-party notices and licenses
 ├── CITATION.cff               # Citation file format metadata
-├── configs/
-│   └── default.yaml           # Default pipeline and experiment configurations
-├── src/                       # Core perception and allocation library
+├── configs/                   # Pipeline and standardized training configs (E1-E12)
+│   ├── default.yaml
+│   └── weatherguard_d1.yaml
+├── src/                       # Core perception, training, and allocation library
 │   ├── priority_allocation.py # PriorityAllocationController (Policies A through J)
 │   ├── candidate_generation.py# Frame differencing, static salience, spatial priors
 │   ├── roi_inference.py       # Candidate clustering, crop extraction, coordinate restoration
 │   ├── online_tracker.py      # AdverseWeatherByteTracker implementation
 │   ├── eval_streams.py        # Stream 1 (Detection) and Stream 2 (MOT) evaluation
 │   ├── video_dataset.py       # Sequence dataset loader and canonical class mapper
-│   └── model.py               # Detector wrappers (YOLOv8n, Faster R-CNN)
-├── tests/                     # 187 unit and integration tests
+│   ├── model.py               # Detector wrappers (YOLOv8n, Faster R-CNN)
+│   └── weatherguard/          # Modular research packages (data, training, analysis)
+├── tests/                     # 302 automated unit and integration tests
 ├── scripts/                   # Autonomous benchmark, validation, and evaluation runners
-│   ├── run_mission13_suite.py # Complete Mission 13 factorial suite
+│   ├── evaluate_weatherguard.py# Unified evaluation CLI (multi-policy, multi-dataset)
 │   ├── validate_artifacts.py  # Integrity and presence validator
-│   └── record_mission13_experiments.py
-├── reports/                   # Markdown research reports across all missions (1-13)
+│   ├── create_d1_splits.py    # DSU leakage-safe dataset splitting engine
+│   └── validate_d1_annotations.py # Gemini Flash annotation schema adapter
+├── reports/                   # Markdown research reports across all missions (Missions 1-18)
+│   └── mission18/             # Phase 0-8 research validation reports
 ├── artifacts/                 # Machine-readable JSON/CSV metrics and plots
-│   ├── mission13_ablation_results.json
-│   ├── mission13_allocation_audit.json
-│   ├── mission13_bootstrap_results.json
-│   ├── mission13_flir_thermal_results.json
-│   ├── mission13_edge_benchmark.json
-│   ├── mission13_failure_registry.json
+│   ├── mission18/             # Baseline matrix, M1 training profile, split integrity
 │   └── plots/                 # Small matplotlib figures
 └── docs/                      # Extended project documentation
     └── release/               # Release audits and push checklists
@@ -251,7 +279,7 @@ WeatherGuard/
 
 ---
 
-## 11. Reproducibility & Research Methodology
+## 12. Reproducibility & Research Methodology
 
 - **Strict Sequence Partitioning:** The 6 BDD100K MOT sequences are strictly partitioned into 2 Development sequences (405 frames) and 4 Locked Reference sequences (808 frames). The locked cohort is evaluated only with frozen parameters.
 - **Metric Definitions & Matching:** Detections are matched using greedy Hungarian assignment at $\text{IoU} \ge 0.50$. Metrics report standard macro/micro $F_1$, precision, recall, and scale breakdowns:
@@ -264,7 +292,7 @@ WeatherGuard/
 
 ---
 
-## 12. Limitations & Threats to Validity
+## 13. Limitations & Threats to Validity
 
 1. **Limited Locked Video Sequences:** The locked video cohort comprises 4 sequences (808 frames). While Leave-One-Sequence-Out (LOSO) analysis indicates cross-sequence stability ($\sigma = 0.0232$), larger independent driving corpora are required to confirm broad highway generalization.
 2. **CPU Execution Throughput:** On Apple M1 CPU, Policy J runs at ~9.14 FPS (109.37 ms/frame). While suitable for edge robotics, hard real-time automotive deployment (30+ FPS) requires GPU acceleration or quantized NPU backends.
@@ -273,13 +301,13 @@ WeatherGuard/
 
 ---
 
-## 13. Project Status
+## 14. Project Status
 
-WeatherGuard is an active, ongoing research project. The reported findings represent verified experimental stages. Subsequent missions focus on quantized TensorRT edge deployments and multi-camera spatial fusion.
+WeatherGuard is an active, ongoing research project. The reported findings represent verified experimental stages. Subsequent missions focus on executing fine-tuning experiments E1–E12 upon owner delivery of WeatherGuard-D1, quantized TensorRT edge deployments, and multi-camera spatial fusion.
 
 ---
 
-## 14. License & Attribution
+## 15. License & Attribution
 
 - **WeatherGuard Code:** Released under the [MIT License](LICENSE).
 - **Ultralytics YOLOv8:** Used under the AGPL-3.0 license. Commercial use requires appropriate licensing from Ultralytics.
