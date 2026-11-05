@@ -1,0 +1,136 @@
+{
+  "audit_name": "Mission 21 Dataset Independence & Speaker Provenance Audit",
+  "vision_audit": {
+    "total_images": 1000,
+    "total_unique_sequences": 13,
+    "split_sequence_distribution": {
+      "train": {
+        "sequence_count": 5,
+        "sequences": [
+          "bdd_video_b1d0a191",
+          "bdd_video_b1e1a7b8",
+          "bdd_video_b23c9e00",
+          "dawn_overcast",
+          "dawn_sandstorm"
+        ],
+        "frame_count": 667,
+        "authentic_real_frames": 667,
+        "augmented_frames": 0
+      },
+      "val": {
+        "sequence_count": 4,
+        "sequences": [
+          "bdd_video_b1c66a42",
+          "bdd_video_b1f4491b",
+          "bdd_video_b24380ab",
+          "dawn_rain"
+        ],
+        "frame_count": 173,
+        "authentic_real_frames": 173,
+        "augmented_frames": 0
+      },
+      "test": {
+        "sequence_count": 4,
+        "sequences": [
+          "bdd_video_b24d283f",
+          "bdd_video_b255cd6c",
+          "dawn_dense_fog",
+          "dawn_snow"
+        ],
+        "frame_count": 160,
+        "authentic_real_frames": 160,
+        "augmented_frames": 0
+      }
+    },
+    "sequence_level_isolation_verified": true,
+    "cross_split_sequence_leakage_violations": {
+      "train_val_overlap": [],
+      "train_test_overlap": [],
+      "val_test_overlap": []
+    },
+    "locked_test_real_world_purity": {
+      "total_test_frames": 160,
+      "authentic_camera_frames": 160,
+      "augmented_frames": 0,
+      "purity_percentage": 100.0
+    }
+  },
+  "audio_audit": {
+    "total_audio_samples": 1500,
+    "total_unique_recording_roots": 745,
+    "root_recording_isolation": {
+      "train_roots": 331,
+      "val_roots": 207,
+      "test_roots": 207,
+      "cross_split_root_violations": {
+        "train_val_root_overlap": 0,
+        "train_test_root_overlap": 0,
+        "val_test_root_overlap": 0
+      },
+      "derivative_leakage_count": 0,
+      "status": "PASSED_ZERO_LEAKAGE"
+    },
+    "speaker_provenance_analysis": {
+      "speaker_coverage_rate": "1500 / 1500 (100%)",
+      "neural_voice_identities": [
+        "voice:Piya",
+        "voice:bn-BD-NabanitaNeural",
+        "voice:bn-BD-PradeepNeural",
+        "voice:bn-IN-BashkarNeural",
+        "voice:bn-IN-TanishaaNeural",
+        "voice:gTTS_bn_standard"
+      ],
+      "human_speakers_in_test": 39,
+      "shared_human_speakers_train_test": [
+        "inv_spk:pos_spk_clip_f01_c02",
+        "inv_spk:pos_spk_clip_f02_c07",
+        "inv_spk:pos_spk_clip_f03_c09",
+        "inv_spk:pos_spk_wa_2026-09-06_s8_s1",
+        "inv_spk:pos_spk_wa_2026-09-06_s9_s2"
+      ],
+      "unseen_human_speakers_in_test": [
+        "inv_spk:06bb7",
+        "inv_spk:06ea3",
+        "inv_spk:08458",
+        "inv_spk:1652d",
+        "inv_spk:194f5",
+        "inv_spk:1f974",
+        "inv_spk:22096",
+        "inv_spk:24aed",
+        "inv_spk:28bb3",
+        "inv_spk:29089",
+        "inv_spk:2909b",
+        "inv_spk:29d44",
+        "inv_spk:29f8c",
+        "inv_spk:2d78f",
+        "inv_spk:37d7e",
+        "inv_spk:3bb15",
+        "inv_spk:3fae0",
+        "inv_spk:3fce2",
+        "inv_spk:4164f",
+        "inv_spk:430b2",
+        "inv_spk:43199",
+        "inv_spk:49543",
+        "inv_spk:4f450",
+        "inv_spk:5354e",
+        "inv_spk:54cdd",
+        "inv_spk:5639c",
+        "inv_spk:61820",
+        "inv_spk:66b3c",
+        "inv_spk:68549",
+        "inv_spk:69d9a",
+        "inv_spk:6aac8",
+        "inv_spk:717bb",
+        "inv_spk:778c0",
+        "inv_spk:pos_spk_wa_2026-09-01_s2_early"
+      ],
+      "findings": "While root recordings are strictly isolated with 0 cross-split leakage, underlying voice profiles are shared between splits. Specifically, 6 neural synthesizer voices and 5 human speakers span multiple recording sessions across train and test. 33 human speakers in the test set are completely novel and unseen."
+    },
+    "test_split_provenance": {
+      "total_test_samples": 300,
+      "owner_collected_originals": 38,
+      "augmented_derivatives": 262,
+      "unique_test_roots": 207
+    }
+  }
+}
