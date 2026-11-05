@@ -52,12 +52,17 @@ def make_code_cell(source_lines: List[str]) -> dict:
 
 
 def generate_weatherguard_notebook() -> str:
+    runner_py_path = Path(__file__).resolve().parent / "weatherguard_gpu_runner.py"
+    runner_code = runner_py_path.read_text()
+
     cells = [
         make_markdown_cell([
-            "# WeatherGuard — Cloud GPU Training & Evaluation Harness",
+            "# WeatherGuard Mission 20 — Real Dataset GPU Training & Evaluation Harness",
             "**Platform**: Kaggle NVIDIA Tesla T4 GPU Runtime (16 GB VRAM)",
-            "**Project Owner**: Mohammad Sayem Uddin",
+            "**Dataset**: `allfaz/weatherguard-v2-corpus` (1,000 Curated Frames)",
+            "**Splits**: Train (667 frames), Val (173 frames), Locked Test (160 frames, 0 augmented)",
             "**Repository**: https://github.com/mohammad-sayem-uddin/weatherguard",
+            "**Committer**: Mohammad Sayem Uddin <sayemwork41@gmail.com>",
         ]),
         make_code_cell([
             "!nvidia-smi",
@@ -69,28 +74,48 @@ def generate_weatherguard_notebook() -> str:
             "    print('VRAM (GB):', round(torch.cuda.get_device_properties(0).total_memory / (1024**3), 2))",
         ]),
         make_code_cell([
-            "!git clone https://github.com/mohammad-sayem-uddin/weatherguard.git /kaggle/working/weatherguard",
-            "%cd /kaggle/working/weatherguard",
             "!pip install -q ultralytics pyyaml pandas opencv-python pillow",
         ]),
         make_code_cell([
+            "import os",
+            "from pathlib import Path",
+            "dataset_path = Path('/kaggle/input/weatherguard-v2-corpus')",
+            "print('Dataset directory exists:', dataset_path.exists())",
+            "if dataset_path.exists():",
+            "    for split in ['train', 'val', 'test']:",
+            "        img_cnt = len(list((dataset_path / split / 'images').glob('*.*')))",
+            "        lbl_cnt = len(list((dataset_path / split / 'labels').glob('*.txt')))",
+            "        print(f'  {split}: {img_cnt} images, {lbl_cnt} labels')",
+        ]),
+        make_code_cell([
+            "# Write out standalone runner module to ensure exact version control",
+            "from pathlib import Path",
+            f"runner_content = {repr(runner_code)}",
+            "Path('/kaggle/working/weatherguard_gpu_runner.py').write_text(runner_content)",
+            "print('Runner written to /kaggle/working/weatherguard_gpu_runner.py')",
+        ]),
+        make_code_cell([
             "import sys",
-            "sys.path.insert(0, '/kaggle/working/weatherguard')",
-            "from scripts.kaggle.weatherguard_gpu_runner import audit_gpu_environment, run_training_experiment",
-            "profile = audit_gpu_environment()",
-            "print('Audited Environment:', profile)",
+            "sys.path.insert(0, '/kaggle/working')",
+            "from weatherguard_gpu_runner import run_full_vision_benchmark",
             "",
-            "# Execute benchmark verification training on Tesla T4 with AdamW and mixed precision (AMP)",
-            "results = run_training_experiment(",
-            "    data_yaml='coco8.yaml',",
+            "# Execute end-to-end real dataset training and independent test evaluation",
+            "benchmark_results = run_full_vision_benchmark(",
+            "    data_yaml='/kaggle/input/weatherguard-v2-corpus/data.yaml',",
             "    weights_path='yolov8n.pt',",
-            "    epochs=5,",
+            "    epochs=15,",
             "    imgsz=640,",
             "    batch_size=16,",
             "    output_dir='/kaggle/working/runs/train',",
-            "    experiment_id='weatherguard_t4_benchmark',",
+            "    experiment_id='weatherguard_t4_real',",
             ")",
-            "print('Training Results Summary:', results)",
+            "",
+            "print('--- BENCHMARK RESULTS SUMMARY ---')",
+            "print('Validation Split Metrics:', benchmark_results['validation_split_metrics'])",
+            "print('Locked Test Overall Metrics:', benchmark_results['locked_test_split_metrics']['overall'])",
+            "print('Locked Test Per-Class:', benchmark_results['locked_test_split_metrics']['per_class'])",
+            "print('Locked Test Scale Breakdown:', benchmark_results['locked_test_split_metrics']['scale_breakdown'])",
+            "print('Locked Test Weather Breakdown:', benchmark_results['locked_test_split_metrics']['weather_breakdown'])",
         ]),
     ]
     return create_kaggle_notebook_json(cells)

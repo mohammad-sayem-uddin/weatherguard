@@ -1,0 +1,225 @@
+{
+  "experiment_id": "weatherguard_t4_real",
+  "dataset_yaml": "/kaggle/input/weatherguard-v2-corpus/data.yaml",
+  "gpu_profile": {
+    "platform": "Kaggle Cloud",
+    "cuda_available": true,
+    "device_name": "Tesla T4",
+    "gpu_memory_gb": 14.56,
+    "pytorch_version": "2.11.0+cu130",
+    "cuda_version": "13.0",
+    "is_nvidia_t4": true,
+    "timestamp": "2026-11-05T16:38:56Z"
+  },
+  "training": {
+    "epochs": 15,
+    "imgsz": 640,
+    "batch_size": 16,
+    "optimizer": "AdamW",
+    "amp": true,
+    "training_time_seconds": 191.55,
+    "best_checkpoint": "/kaggle/working/runs/train/weatherguard_t4_real/weights/best.pt"
+  },
+  "validation_split_metrics": {
+    "precision": 0.5919,
+    "recall": 0.1973,
+    "mAP50": 0.1949,
+    "mAP50_95": 0.0976
+  },
+  "locked_test_split_metrics": {
+    "overall": {
+      "precision": 0.2517,
+      "recall": 0.344,
+      "mAP50": 0.2074,
+      "mAP50_95": 0.1095
+    },
+    "per_class": {
+      "truck": {
+        "mAP50": 0.0692,
+        "mAP50_95": 0.0206
+      },
+      "person": {
+        "mAP50": 0.2862,
+        "mAP50_95": 0.1521
+      },
+      "bicycle": {
+        "mAP50": 0.0353,
+        "mAP50_95": 0.0125
+      },
+      "car": {
+        "mAP50": 0.4972,
+        "mAP50_95": 0.3176
+      },
+      "motorcycle": {
+        "mAP50": 0.2211,
+        "mAP50_95": 0.0515
+      },
+      "bus": {
+        "mAP50": 0.1353,
+        "mAP50_95": 0.1025
+      }
+    },
+    "scale_breakdown": {
+      "ultra_small": {
+        "total_gt": 84,
+        "tp": 0,
+        "fp": 0,
+        "fn": 84,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "small": {
+        "total_gt": 616,
+        "tp": 90,
+        "fp": 62,
+        "fn": 526,
+        "precision": 0.5921,
+        "recall": 0.1461,
+        "f1": 0.2344
+      },
+      "medium": {
+        "total_gt": 1044,
+        "tp": 388,
+        "fp": 160,
+        "fn": 656,
+        "precision": 0.708,
+        "recall": 0.3716,
+        "f1": 0.4874
+      },
+      "large": {
+        "total_gt": 579,
+        "tp": 396,
+        "fp": 122,
+        "fn": 183,
+        "precision": 0.7645,
+        "recall": 0.6839,
+        "f1": 0.722
+      }
+    },
+    "weather_breakdown": {
+      "rain": {
+        "images": 51,
+        "total_gt": 1084,
+        "tp": 407,
+        "fp": 119,
+        "fn": 677,
+        "precision": 0.7738,
+        "recall": 0.3755,
+        "f1": 0.5056
+      },
+      "snow": {
+        "images": 47,
+        "total_gt": 348,
+        "tp": 218,
+        "fp": 67,
+        "fn": 130,
+        "precision": 0.7649,
+        "recall": 0.6264,
+        "f1": 0.6888
+      },
+      "night": {
+        "images": 43,
+        "total_gt": 791,
+        "tp": 186,
+        "fp": 141,
+        "fn": 605,
+        "precision": 0.5688,
+        "recall": 0.2351,
+        "f1": 0.3327
+      },
+      "dense_fog": {
+        "images": 19,
+        "total_gt": 100,
+        "tp": 63,
+        "fp": 17,
+        "fn": 37,
+        "precision": 0.7875,
+        "recall": 0.63,
+        "f1": 0.7
+      }
+    }
+  },
+  "zero_shot_baseline_comparison": {
+    "scale_breakdown": {
+      "ultra_small": {
+        "total_gt": 84,
+        "tp": 0,
+        "fp": 0,
+        "fn": 84,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "small": {
+        "total_gt": 616,
+        "tp": 63,
+        "fp": 10,
+        "fn": 553,
+        "precision": 0.863,
+        "recall": 0.1023,
+        "f1": 0.1829
+      },
+      "medium": {
+        "total_gt": 1044,
+        "tp": 399,
+        "fp": 93,
+        "fn": 645,
+        "precision": 0.811,
+        "recall": 0.3822,
+        "f1": 0.5196
+      },
+      "large": {
+        "total_gt": 579,
+        "tp": 417,
+        "fp": 105,
+        "fn": 162,
+        "precision": 0.7989,
+        "recall": 0.7202,
+        "f1": 0.7575
+      }
+    },
+    "weather_breakdown": {
+      "rain": {
+        "images": 51,
+        "total_gt": 1084,
+        "tp": 382,
+        "fp": 51,
+        "fn": 702,
+        "precision": 0.8822,
+        "recall": 0.3524,
+        "f1": 0.5036
+      },
+      "snow": {
+        "images": 47,
+        "total_gt": 348,
+        "tp": 203,
+        "fp": 65,
+        "fn": 145,
+        "precision": 0.7575,
+        "recall": 0.5833,
+        "f1": 0.6591
+      },
+      "night": {
+        "images": 43,
+        "total_gt": 791,
+        "tp": 251,
+        "fp": 81,
+        "fn": 540,
+        "precision": 0.756,
+        "recall": 0.3173,
+        "f1": 0.447
+      },
+      "dense_fog": {
+        "images": 19,
+        "total_gt": 100,
+        "tp": 43,
+        "fp": 11,
+        "fn": 57,
+        "precision": 0.7963,
+        "recall": 0.43,
+        "f1": 0.5584
+      }
+    }
+  }
+}
