@@ -1,0 +1,83 @@
+{
+  "dataset_name": "Bengali Distress Vocalization 1,500-Corpus Leakage-Resistant Splits",
+  "total_samples": 1500,
+  "total_unique_root_sources": 745,
+  "cross_split_root_leakage_violations": 0,
+  "split_summary": {
+    "train": {
+      "total_samples": 900,
+      "percentage": 60.0,
+      "unique_root_sources": 331,
+      "class_distribution": {
+        "bachao": 450,
+        "normal_bengali": 450
+      },
+      "noise_condition_distribution": {
+        "clean_speech": 597,
+        "heavy_rain": 81,
+        "drone_propeller": 77,
+        "flood_water": 74,
+        "strong_wind": 71
+      },
+      "distance_simulation_distribution": {
+        "close_mic": 698,
+        "distant_10m": 112,
+        "medium_3_5m": 90
+      },
+      "source_category_distribution": {
+        "augmented_real_world": 478,
+        "owner_collected_real_world": 422
+      }
+    },
+    "val": {
+      "total_samples": 300,
+      "percentage": 20.0,
+      "unique_root_sources": 207,
+      "class_distribution": {
+        "bachao": 150,
+        "normal_bengali": 150
+      },
+      "noise_condition_distribution": {
+        "clean_speech": 203,
+        "strong_wind": 31,
+        "heavy_rain": 24,
+        "drone_propeller": 22,
+        "flood_water": 20
+      },
+      "distance_simulation_distribution": {
+        "close_mic": 239,
+        "medium_3_5m": 34,
+        "distant_10m": 27
+      },
+      "source_category_distribution": {
+        "augmented_real_world": 260,
+        "owner_collected_real_world": 40
+      }
+    },
+    "test": {
+      "total_samples": 300,
+      "percentage": 20.0,
+      "unique_root_sources": 207,
+      "class_distribution": {
+        "bachao": 150,
+        "normal_bengali": 150
+      },
+      "noise_condition_distribution": {
+        "clean_speech": 200,
+        "strong_wind": 29,
+        "drone_propeller": 25,
+        "heavy_rain": 25,
+        "flood_water": 21
+      },
+      "distance_simulation_distribution": {
+        "close_mic": 233,
+        "distant_10m": 34,
+        "medium_3_5m": 33
+      },
+      "source_category_distribution": {
+        "augmented_real_world": 262,
+        "owner_collected_real_world": 38
+      }
+    }
+  }
+}
