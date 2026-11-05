@@ -163,22 +163,46 @@ Evaluated using the verified evaluation pipeline [`scripts/evaluate_weatherguard
 
 ---
 
-## 8. Datasets & Provenance
+## 8. Datasets, Governance & Provenance
 
-WeatherGuard utilizes three distinct datasets under their respective non-commercial research terms. **No raw dataset images or videos are redistributed in this repository.**
+WeatherGuard is an owner-curated, multi-source adverse-weather road-scene dataset. Its individual records retain their source provenance, including collected, public, generated, and augmented data. Raw large-scale imagery and audio are maintained in local storage and external cloud repositories; manifests, cryptographic ledgers, and governance reports are versioned in this repository.
 
-1. **DAWN (Vehicle Detection in Adverse Weather Nature):**
-   - *Role:* Early within-dataset calibration, threshold optimization, and corruption benchmarking.
-   - *License:* Creative Commons Attribution-NonCommercial 3.0 (CC BY-NC 3.0).
-   - *Reference:* Kenan et al. (2020).
-2. **BDD100K & BDD100K MOT:**
-   - *Role:* Primary driving video benchmark; independent video sequences under rain, night, dusk, and overcast conditions.
-   - *Partitions:* 405 development frames (`b24380ab`, `b255cd6c`) and 808 locked reference frames (`b1e1a7b8`, `b1d0a191`, `b24d283f`, `b23c9e00`).
-   - *License:* BDD100K Academic/Non-Commercial Research License.
-   - *Reference:* Yu et al. (2020).
-3. **FLIR ADAS Thermal Dataset v1:**
+### 8.1. Curated Benchmark Datasets
+
+1. **WeatherGuard V2 Road Perception Corpus (1,000 Frames, 13,838 Objects):**
+   - *Role:* Comprehensive adverse-weather benchmark standardizing 6 canonical road classes (`truck`, `person`, `bicycle`, `car`, `motorcycle`, `bus`) across 4 scale definitions: Ultra-Small ($<16\text{ px}$), Small ($16-32\text{ px}$), Medium ($32-96\text{ px}$), and Large ($\ge 96\text{ px}$).
+   - *Provenance Breakdown:* 700 Public Real-World (DAWN adverse weather + BDD100K independent driving sequences across natural fog, snow, rain, night, sandstorm, and clear daytime); 300 Augmented Real-World (physically grounded atmospheric Koschmieder fog $\beta=0.85$ and heavy rain streaks); 0 AI-generated (synthetic WeatherGuard-D1 remains blocked pending owner generation).
+   - *Geometric Sanitization:* 100% zero degenerate/inverted bounding boxes, subpixel rejection, 352 boxes flagged in manual review queue.
+   - *Cryptographic Checksum:* SHA-256 `aeca94514017...` documented in [`artifacts/dataset_manifests/weatherguard_v2_manifest.json`](file:///Users/sayemuddin/Desktop/WeatherGuard/artifacts/dataset_manifests/weatherguard_v2_manifest.json).
+
+2. **Rescue Drone & WeatherGuard Bengali Distress Vocalization Corpus (1,500 Samples):**
+   - *Role:* Acoustic emergency keyword spotting for Search-and-Rescue UAVs.
+   - *Taxonomy:* Strictly balanced binary classification: Class 1 (750 samples of Bengali emergency distress *"বাঁচাও"* / `bachao`) vs. Class 0 (750 samples of normal conversational speech, non-distress shouting, and environmental acoustics).
+   - *Acoustic Specification:* 16 kHz Mono WAV PCM_16, exactly 2.0s duration (32,000 samples), active-speech target RMS $0.0600$ linear ($-24.44\text{ dBFS}$), peak ceiling $\le 0.9500$ linear ($-0.45\text{ dBFS}$), zero digital clipping, and 20ms cosine fade taper.
+   - *Environmental Noise Grid:* Authentic noise tracks (rotary UAV drone propeller, heavy tropical rain, flood waters, strong gale wind) across calibrated SNRs ($20, 15, 10, 5, 0\text{ dB}$) and room reverberation distances ($<1\text{m}, 3-5\text{m}, 10\text{m+}$).
+   - *Validation:* 100.00% pass rate (1,500/1,500 files) across the 14-point scientific validation suite.
+   - *Cryptographic Checksum:* SHA-256 `0fe5cf238e70...` documented in [`artifacts/dataset_manifests/audio_v2_manifest.json`](file:///Users/sayemuddin/Desktop/WeatherGuard/artifacts/dataset_manifests/audio_v2_manifest.json).
+
+3. **DAWN (Vehicle Detection in Adverse Weather Nature):**
+   - *Role:* Early within-dataset calibration, threshold optimization, and corruption benchmarking ($N=206$ frames).
+   - *License:* Creative Commons Attribution-NonCommercial 3.0 (CC BY-NC 3.0). Reference: Kenan et al. (2020).
+
+4. **BDD100K & BDD100K MOT:**
+   - *Role:* Primary driving video benchmark; independent video sequences under rain, night, dusk, and overcast conditions ($N=405$ dev, $N=808$ locked reference).
+   - *License:* BDD100K Academic/Non-Commercial Research License. Reference: Yu et al. (2020).
+
+5. **FLIR ADAS Thermal Dataset v1:**
    - *Role:* Cross-modality zero-shot infrared evaluation (uncooled LWIR $8–14\,\mu\text{m}$).
    - *License:* FLIR Academic Research Use Terms.
+
+### 8.2. Reusable Kaggle GPU Infrastructure
+
+- **Cloud Platform:** Connected Kaggle MCP with authenticated user `allfaz` (`Allfaz`).
+- **Hardware Profile:** NVIDIA Tesla T4 GPU (16 GB GDDR6 VRAM, 15,360 MB allocatable), CUDA 12.x, mixed-precision AMP, outbound internet enabled.
+- **Execution Modules:**
+  - `scripts/kaggle/weatherguard_gpu_runner.py`: Ultralytics YOLOv8 training with AdamW, Cosine LR, and 101-point COCO evaluation.
+  - `scripts/kaggle/audio_gpu_runner.py`: PyTorch `AudioBaselinePyTorchCNN` training on $64 \times 126$ Log-Mel spectrograms with ROC-AUC and F1 evaluation.
+  - Notebook generator (`scripts/kaggle/generate_kaggle_notebook.py`) publishing reproducible Kaggle notebooks in `artifacts/kaggle_gpu/`.
 
 ---
 

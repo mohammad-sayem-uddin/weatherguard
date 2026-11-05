@@ -1,0 +1,36 @@
+{
+  "dataset_name": "Rescue Drone & WeatherGuard Expanded Bengali Distress Vocalization Corpus",
+  "total_samples": 1500,
+  "positive_count": 750,
+  "negative_count": 750,
+  "source_category_breakdown": {
+    "augmented_real_world": 1000,
+    "owner_collected_real_world": 500
+  },
+  "noise_condition_breakdown": {
+    "clean_speech": 1000,
+    "strong_wind": 131,
+    "heavy_rain": 130,
+    "drone_propeller": 124,
+    "flood_water": 115
+  },
+  "distance_simulation_breakdown": {
+    "close_mic": 1170,
+    "distant_10m": 173,
+    "medium_3_5m": 157
+  },
+  "snr_distribution": {
+    "inf": 1000,
+    "10.0": 107,
+    "0.0": 104,
+    "20.0": 101,
+    "5.0": 97,
+    "15.0": 91
+  },
+  "mean_rms_linear": 0.05429870666666667,
+  "mean_peak_linear": 0.4055939466666667,
+  "total_clipped_samples": 0,
+  "unique_sha256_count": 1500,
+  "validation_14_point_pass_rate": "100.00%",
+  "validation_failure_count": 0
+}
