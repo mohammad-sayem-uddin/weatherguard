@@ -133,6 +133,7 @@ def main() -> None:
             "31. Curated Benchmark Corpora & Dataset Governance (V2 Release)",
             "32. Kaggle GPU Cloud Infrastructure & Training Runs",
             "33. Multi-Modal Rescue Intelligence (Mission 21)",
+            "34. Multi-Modal Research Integrity & Forensic Qualification (Mission 22)",
         ],
     )
 
@@ -202,6 +203,8 @@ def main() -> None:
         page_kaggle_gpu()
     elif page.startswith("33."):
         page_mission21_multimodal()
+    elif page.startswith("34."):
+        page_mission22_research_integrity()
 
 
 def page_overview() -> None:
@@ -5345,6 +5348,243 @@ def page_mission21_multimodal() -> None:
                 st.write(f"- **Cross-Split Parent Leakage:** **{ag.get('cross_split_parent_leakage_count', 0)} parent recordings** (Zero leakage)")
                 st.write(f"- **Locked Test Clips:** {ag.get('split_parent_distribution', {}).get('test', {}).get('clip_count')} clips (38 collected, 262 augmented)")
                 st.write(f"- **Speaker Breakdown:** 6 neural synthetic voices + 38 human speakers (33 novel in locked test)")
+
+
+def page_mission22_research_integrity() -> None:
+    st.header("Multi-Modal Research Integrity & Forensic Qualification (Mission 22)")
+    st.markdown(
+        """
+        > **Forensic Mandate:** Independent scientific audit of multi-modal search-and-rescue findings.
+        > Strictly distinguishes **directly measured results**, **independent dataset metrics**, 
+        > **scenario-level simulations**, **engineering estimates**, and **unconfirmed hypotheses**.
+        """
+    )
+
+    m22_dir = ARTIFACTS / "mission22"
+    audit_data = _load_json(m22_dir / "mission21_forensic_audit.json") or {}
+    spk_data = _load_json(m22_dir / "speaker_provenance_audit.json") or {}
+    stat_data = _load_json(m22_dir / "statistical_reanalysis.json") or {}
+    cal_data = _load_json(m22_dir / "fusion_calibration_and_safety.json") or {}
+    pwr_data = _load_json(m22_dir / "edge_power_reconciliation.json") or {}
+
+    # Summary metrics cards
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Audited Trials", "450 (Paired Sim)")
+    c2.metric("Phantom Trials", "143 (45.4% Pos)", "Empty frame false penalties")
+    c3.metric("Unseen Distress Spk", "1 Human Speaker", "33 was negative talkers")
+    c4.metric("ECE Reduction", "-25.2%", "Platt calibrated on Val")
+    c5.metric("Real UAV Flight Gain", "+6.86% (+1.2m)", "With 180W hover propulsion")
+
+    st.markdown("---")
+
+    tabs = st.tabs([
+        "1. Claim Status Matrix",
+        "2. Forensic Audit & Phantom Labels",
+        "3. Speaker Provenance Truth",
+        "4. Rigorous Statistical Re-Analysis",
+        "5. Fusion Safety & Calibration",
+        "6. Power & Aerodynamics Reality",
+    ])
+
+    # Tab 1: Claim Status Matrix
+    with tabs[0]:
+        st.subheader("Mission 21 Scientific Claim Qualification Matrix")
+        st.markdown("Every major research claim has been assigned a strict scientific validation status:")
+
+        matrix_rows = [
+            {"Research Finding / Claim": "Vision Model Baselines (160 test frames, 0.0% sub-16px recall)", "Status": "VERIFIED & REPRODUCED", "Scientific Qualification": "Pretrained (F1=0.5157), FT (F1=0.4939), sub-16px recall exactly 0/84 due to FPN P3 stride."},
+            {"Research Finding / Claim": "Audio Baseline Performance (300 test clips, F1=0.9267)", "Status": "VERIFIED & REPRODUCED", "Scientific Qualification": "TN=139, FP=11, FN=11, TP=139 at threshold 0.54. Reproducible from saved weights."},
+            {"Research Finding / Claim": "450 Multi-Modal Trial Results (9 Scenarios)", "Status": "SIMULATION_ONLY", "Scientific Qualification": "Constructed from 160 frames and 162 audio clips. Not simultaneous flight recordings."},
+            {"Research Finding / Claim": "Vision Miss Rate of 66.03% in Ablation", "Status": "METHODOLOGICALLY_FLAWED", "Scientific Qualification": "143 of 208 'misses' occurred on frames with NO person in the image (phantom-person defect). True miss rate is 37.8%."},
+            {"Research Finding / Claim": "Speaker-Independent Generalization on 33 Human Victims", "Status": "UNCONFIRMED_MISATTRIBUTED", "Scientific Qualification": "33 novel speakers were negative-class Common Voice talkers. Only 1 novel human distress speaker was tested."},
+            {"Research Finding / Claim": "Adaptive Fusion Statistically Superior to Simple OR", "Status": "REFUTED_NO_SUPERIORITY", "Scientific Qualification": "Simple OR achieved higher F1 (0.8790 vs 0.8685). McNemar p = 0.1798 confirms no significant accuracy difference."},
+            {"Research Finding / Claim": "Effect Size Cohen's d = 3.436", "Status": "STATISTICALLY_INVALID", "Scientific Qualification": "Calculated on 500 bootstrap F1 differences rather than per-trial observations. Reflects bootstrap z-ratio."},
+            {"Research Finding / Claim": "3.8x Total Drone Flight Endurance Extension", "Status": "AERODYNAMICALLY_INVALID", "Scientific Qualification": "Applies strictly to compute battery drain (18.5W to 4.84W). On full UAV with 180W propulsion, flight gain is +6.86%."},
+            {"Research Finding / Claim": "Acoustic-Triggered Visual Search Architecture", "Status": "ENGINEERING_VALIDATED", "Scientific Qualification": "Omnidirectional audio trigger switches flight mode from transit to optical spiral search. Validated concept."},
+            {"Research Finding / Claim": "Physical Multi-Channel Victim Localization", "Status": "BLOCKED_PENDING_HARDWARE", "Scientific Qualification": "100% of audio samples are mono. Direction and coordinates cannot be claimed without physical array testing."},
+        ]
+        st.dataframe(pd.DataFrame(matrix_rows), use_container_width=True)
+
+    # Tab 2: Forensic Audit & Phantom Labels
+    with tabs[1]:
+        st.subheader("Forensic Investigation of 450 Constructed Trials")
+        if audit_data:
+            gt_f = audit_data.get("ground_truth_assignment_forensics", {})
+            st.error(
+                f"**The Phantom Person Ground-Truth Defect:**\n\n"
+                f"In {gt_f.get('phantom_person_trials', 143)} out of {gt_f.get('total_positive_trials', 315)} positive trials "
+                f"({gt_f.get('phantom_person_percentage_of_positives', 45.4)}%), ground truth was forced to True solely because an audio distress clip was attached, "
+                f"even though the camera frame contained **ZERO visible persons**.\n\n"
+                f"- **Result:** Vision-Only was penalized as a 'False Negative (miss)' on empty frames!\n"
+                f"- **Impact:** This accounted for 143 out of 208 reported Vision-Only misses (68.75%), artificially driving Vision-Only recall down to 33.97% and exaggerating the perceived multi-modal gain."
+            )
+
+            p_find = audit_data.get("sample_pairing_and_cooccurrence_findings", {})
+            fr = p_find.get("frame_recycling", {})
+            st.write("#### Sample Recycling Across Scenarios:")
+            st.write(f"- Unique visual frames available: **{audit_data.get('investigation_scope', {}).get('unique_visual_frames_available')}**")
+            st.write(f"- Unique audio clips used: **{audit_data.get('investigation_scope', {}).get('unique_audio_clips_used')}**")
+            st.write(f"- Average frame reuse count: **{fr.get('average_reuse_per_frame')}x** (Max: **{fr.get('max_reuse_per_frame')}x**)")
+            st.write(f"- Frames reused across multiple scenarios: **{fr.get('frames_reused_multiple_times')} / 160 frames**")
+            st.write(f"- The 47 frames of `dawn_snow` were evaluated **4 times** (Daylight, Low-Res, Wind, Rotor Noise).")
+
+            with st.expander("Per-Scenario Sample & Recycling Ledger"):
+                sc_details = audit_data.get("per_scenario_audit", {})
+                sc_rows = []
+                for sc_k, sc_v in sc_details.items():
+                    sc_rows.append({
+                        "Scenario": sc_k.replace("_", " "),
+                        "Sample Count": sc_v.get("sample_count"),
+                        "Noise Condition": sc_v.get("target_noise_condition"),
+                        "Positive Pool Size": sc_v.get("positive_audio_pool_size"),
+                        "Negative Pool Size": sc_v.get("negative_audio_pool_size"),
+                        "Phantom Person Trials": sc_v.get("phantom_person_trials"),
+                        "Audio Pool Cycles": f"{sc_v.get('audio_pool_exhaustion_cycles')}x",
+                    })
+                st.dataframe(pd.DataFrame(sc_rows), use_container_width=True)
+
+    # Tab 3: Speaker Provenance Truth
+    with tabs[2]:
+        st.subheader("Speaker Provenance Reconciliation & Generalization Truth")
+        if spk_data:
+            crit = spk_data.get("critical_speaker_generalization_verdict", {})
+            st.warning(f"**Audit Verdict: {crit.get('forensic_verification_status')}**\n\n{crit.get('explanation')}")
+
+            st.write("#### Performance by Provenance Subset (Locked Test Split):")
+            sub_eval = spk_data.get("evaluation_by_provenance_subset", {})
+            sub_rows = []
+            display_map = {
+                "authentic_field_only": "Authentic Field Recordings (Owner-collected, N=38)",
+                "augmented_only": "Augmented Real-World Clips (Calibrated noise, N=262)",
+                "combined_locked_test": "Combined Locked Test Set (All 300 clips)",
+                "unseen_speakers_subset": "Truly Unseen Speakers Subset (55 neg CV + 1 pos human, N=62)",
+            }
+            for k, label in display_map.items():
+                m = sub_eval.get(k, {})
+                cm = m.get("confusion_matrix", {})
+                sub_rows.append({
+                    "Evaluation Subset": label,
+                    "Samples": m.get("samples"),
+                    "Accuracy": f"{m.get('accuracy', 0)*100:.2f}%",
+                    "Precision": f"{m.get('precision', 0):.4f}",
+                    "Recall": f"{m.get('recall', 0):.4f}",
+                    "F1 Score": f"{m.get('f1', 0):.4f}",
+                    "Miss Rate (FNR)": f"{m.get('false_negative_rate', 0)*100:.2f}%",
+                    "False Alarm Rate (FPR)": f"{m.get('false_positive_rate', 0)*100:.2f}%",
+                    "Confusion Matrix": f"TN={cm.get('tn')}, FP={cm.get('fp')}, FN={cm.get('fn')}, TP={cm.get('tp')}",
+                })
+            st.dataframe(pd.DataFrame(sub_rows), use_container_width=True)
+
+            st.info(
+                "**Critical Insight:** On the subset of genuinely unseen speakers, model F1 drops from **0.9267 down to 0.7143**, "
+                "and the victim miss rate jumps nearly four-fold from **7.33% to 28.57%** (2 out of 7 novel human distress cries were missed). "
+                "Future data collection must prioritize 30+ novel human distress speakers."
+            )
+
+    # Tab 4: Statistical Re-Analysis
+    with tabs[3]:
+        st.subheader("Rigorous Statistical Re-Analysis (5,000 Bootstrap Rounds & McNemar Tests)")
+        if stat_data:
+            mcn = stat_data.get("mcnemar_paired_tests_with_holm_bonferroni", {})
+            mcn_rows = []
+            for comp_k, comp_v in mcn.items():
+                dt = comp_v.get("discordant_table", {})
+                mcn_rows.append({
+                    "Comparison Pair": comp_k.replace("adaptive_vs_", "Adaptive vs. ").title(),
+                    "Discordant Pairs (b, c)": f"({dt.get('adaptive_better_b')}, {dt.get('baseline_better_c')})",
+                    "Raw McNemar p-value": f"{comp_v.get('raw_p_value'):.2e}",
+                    "Holm-Bonferroni Adjusted p": f"{comp_v.get('holm_bonferroni_p_value'):.4f}" if comp_v.get('holm_bonferroni_p_value') > 1e-4 else "< 1e-4",
+                    "Odds Ratio (b/c)": f"{comp_v.get('odds_ratio'):.2f}",
+                    "Cohen's g": f"{comp_v.get('cohens_g'):+.4f}",
+                    "Statistically Significant": "YES (p < 0.05)" if comp_v.get("significant_alpha_05") else "NO (p >= 0.05)",
+                })
+            st.dataframe(pd.DataFrame(mcn_rows), use_container_width=True)
+
+            st.write("#### Empirical Delta-F1 Confidence Intervals (5,000 Bootstrap Iterations):")
+            diff_c = stat_data.get("pairwise_f1_differences_cluster_bootstrap", {})
+            diff_s = stat_data.get("pairwise_f1_differences_sample_bootstrap", {})
+            diff_rows = []
+            for k in diff_c:
+                c_info = diff_c[k]
+                s_info = diff_s[k]
+                diff_rows.append({
+                    "Baseline Compared to Adaptive": k.replace("_", " ").title(),
+                    "Cluster Bootstrap Mean Delta F1": f"{c_info.get('mean'):+.4f}",
+                    "95% Cluster CI (K=4)": f"[{c_info.get('ci_95_low'):+.4f}, {c_info.get('ci_95_high'):+.4f}]",
+                    "Sample Bootstrap Mean Delta F1": f"{s_info.get('mean'):+.4f}",
+                    "95% Sample CI (N=450)": f"[{s_info.get('ci_95_low'):+.4f}, {s_info.get('ci_95_high'):+.4f}]",
+                })
+            st.dataframe(pd.DataFrame(diff_rows), use_container_width=True)
+
+            st.warning(
+                "**Reassessment of Adaptive Fusion vs. Simple OR:**\n\n"
+                "- Simple OR achieves higher overall F1 (0.8790 vs 0.8685, Delta F1 = -0.0105).\n"
+                "- McNemar exact p-value after Holm-Bonferroni correction is **p = 0.1797 (Not Significant)**.\n"
+                "- **The Real Benefit:** Adaptive Fusion does NOT beat Simple OR in F1; rather, Adaptive Fusion reduces False Alarm Rate by **14.3% relative (8.89% vs 10.37%)** by gating low-margin conflicts with uncertainty abstention."
+            )
+
+    # Tab 5: Fusion Safety & Calibration
+    with tabs[4]:
+        st.subheader("Validation-Calibrated Decision Engine & Operational States")
+        if cal_data:
+            c_met = cal_data.get("calibration_metrics", {})
+            p_par = cal_data.get("platt_scaling_parameters", {})
+            opt_t = cal_data.get("optimal_threshold_search", {})
+
+            col_cal1, col_cal2, col_cal3 = st.columns(3)
+            col_cal1.metric("ECE Reduction", f"-{c_met.get('ece_reduction_percent'):.1f}%", f"{c_met.get('raw_expected_calibration_error')} -> {c_met.get('calibrated_expected_calibration_error')}")
+            col_cal2.metric("Brier Score", f"{c_met.get('calibrated_brier_score')}", f"+{c_met.get('brier_score_improvement'):.1f}% improvement")
+            col_cal3.metric("Val Optimal Threshold (tau*)", f"{opt_t.get('optimal_threshold_tau_val'):.2f}", f"Val F1 = {opt_t.get('validation_f1_at_optimal_tau'):.4f}")
+
+            st.caption(f"Fitted Platt Logistic Scaling: logit_cal = {p_par.get('slope_a')} * logit + {p_par.get('intercept_b')} (fitted strictly on Validation split, zero test leakage).")
+
+            st.write("#### Safety Stress-Testing Ledger:")
+            st_ledger = cal_data.get("safety_stress_test_ledger", [])
+            st.dataframe(pd.DataFrame(st_ledger), use_container_width=True)
+
+            st.write("#### Operational Rate & False Alarm Suppression:")
+            sd = cal_data.get("safety_dynamics_and_operational_rates", {})
+            s1, s2, s3 = st.columns(3)
+            s1.metric("Raw False Alarms / Hour", f"{sd.get('raw_false_alarms_per_hour'):.1f}", "At 10 Hz acoustic sampling (7.33% FPR)")
+            s2.metric("2-Alert Gated False Alarms", f"{sd.get('consecutive_2_alert_false_alarms_per_hour'):.1f}", "-92.7% reduction (0.54% Gated FPR)")
+            s3.metric("Detection Delay", f"{sd.get('detection_delay_seconds', {}).get('two_consecutive_alerts_gated')} s", "Negligible for 2s vocalizations")
+
+    # Tab 6: Power & Aerodynamics Reality
+    with tabs[5]:
+        st.subheader("Edge Hardware Latency & Flight Aerodynamics Reality Check")
+        if pwr_data:
+            bm = pwr_data.get("benchmark_measurements", {})
+            st.markdown("#### Real On-Device Measurements (Apple M1 CPU)")
+            c_b1, c_b2, c_b3 = st.columns(3)
+            c_b1.metric("Vision YOLOv8n (FP32)", f"{bm.get('vision_yolov8n_latency_ms')} ms", f"{bm.get('vision_yolov8n_fps')} FPS")
+            c_b2.metric("Audio Standard CNN", f"{bm.get('audio_standard_cnn_latency_ms')} ms", "719 windows / sec")
+            c_b3.metric("Audio Lightweight CNN", f"{bm.get('audio_lightweight_cnn_latency_ms')} ms", "1,020 windows / sec")
+
+            st.write("#### The 3.8x Flight Endurance Disambiguation:")
+            p_rec = pwr_data.get("power_and_endurance_reconciliation", {})
+            case_a = p_rec.get("case_a_dedicated_compute_auxiliary_battery", {})
+            case_b = p_rec.get("case_b_full_uav_flight_battery_with_propulsion", {})
+
+            col_pa, col_pb = st.columns(2)
+            with col_pa:
+                st.info(
+                    f"**Case A: Dedicated Compute Battery (Payload Level)**\n\n"
+                    f"- Continuous Mode: {case_a.get('continuous_vision_endurance_minutes')} min (18.5 W)\n"
+                    f"- Duty-Cycled Mode: {case_a.get('duty_cycled_endurance_minutes')} min (4.84 W)\n"
+                    f"- **Compute Battery Extension: {case_a.get('endurance_extension_ratio')}x**\n\n"
+                    f"> *Status: Mathematically verified for compute payload only.*"
+                )
+            with col_pb:
+                st.warning(
+                    f"**Case B: Shared UAV Flight Battery (Full System with Propulsion)**\n\n"
+                    f"- Hover Propulsion: {case_b.get('propulsion_hover_power_w')} W (Dominates >90% of power)\n"
+                    f"- Continuous Mode: {case_b.get('total_flight_time_continuous_minutes')} min ({case_b.get('total_uav_power_continuous_w')} W)\n"
+                    f"- Duty-Cycled Mode: {case_b.get('total_flight_time_duty_cycled_minutes')} min ({case_b.get('total_uav_power_duty_cycled_w')} W)\n"
+                    f"- **Total Flight Time Extension: +{case_b.get('flight_endurance_gain_percent')}% (+1.2 min)**\n\n"
+                    f"> *Status: Governed by multirotor aerodynamic physics.*"
+                )
+
+            st.error(f"**Critical Scientific Finding:** {p_rec.get('critical_forensic_reconciliation')}")
 
 
 if __name__ == "__main__":
